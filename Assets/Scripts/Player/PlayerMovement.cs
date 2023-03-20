@@ -32,9 +32,6 @@ public class PlayerMovement : MonoBehaviour
         Transform uiParent = GameObject.Find("------ UI ------").transform.Find("Canvas");
         joystick = uiParent.Find("MovingJoystick").GetComponentInChildren<FixedJoystick>();
 
-        Transform player = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter");
-        playerSprite = player.Find("PlayerSprite").GetComponentInChildren<Transform>();
-
         moveSpeed = 3;
     }
 
@@ -51,29 +48,11 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         rb2d.MovePosition(rb2d.position + move * moveSpeed * Time.fixedDeltaTime);
-
-        GetFaceDirection();
     }
 
     private void GetMovingDirection()
     {
         move.x = joystick.Horizontal;
         move.y = joystick.Vertical;
-    }
-
-    private void GetFaceDirection()
-    {
-        Vector3 scale = playerSprite.localScale;
-
-        if (move.x < 0)
-        {
-            scale.x = -0.2f;
-        }
-        else if(move.x > 0) 
-        {
-            scale.x = 0.2f;
-        }
-
-        playerSprite.localScale = scale;
     }
 }

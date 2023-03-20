@@ -6,6 +6,7 @@ public class PlayerCtrl : MonoBehaviour
 {
     [Space]
     public PlayerMovement playerMovement;
+    public PlayerWeapon playerWeapon;
 
     private void Awake()
     {
@@ -20,5 +21,6 @@ public class PlayerCtrl : MonoBehaviour
     private void LoadComponents()
     {
         playerMovement = GetComponentInChildren<PlayerMovement>();
+        playerWeapon = GetComponentInChildren<PlayerWeapon>();
     }
 }
