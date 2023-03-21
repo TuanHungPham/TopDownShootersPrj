@@ -8,6 +8,7 @@ public class PlayerWeapon : MonoBehaviour
     #endregion
 
     #region private var
+    [SerializeField] private PlayerCtrl playerCtrl;
     #endregion
 
     private void Awake()
@@ -22,12 +23,27 @@ public class PlayerWeapon : MonoBehaviour
 
     private void LoadComponents()
     {
+        playerCtrl = GetComponentInParent<PlayerCtrl>();
     }
 
     private void Update()
     {
-        
+        FlipWeapon();
     }
 
+    private void FlipWeapon()
+    {
+        Vector2 scale = transform.localScale;
 
+        if (playerCtrl.playerAimingSystem.joystick.Horizontal < 0)
+        {
+            scale.x = -1;
+        }
+        else if (playerCtrl.playerAimingSystem.joystick.Horizontal > 0)
+        {
+            scale.x = 1;
+        }
+
+        transform.localScale = scale;
+    }
 }
