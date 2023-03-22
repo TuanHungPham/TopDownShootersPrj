@@ -7,7 +7,8 @@ public class PlayerCtrl : MonoBehaviour
     [Space]
     public PlayerMovement playerMovement;
     public PlayerWeapon playerWeapon;
-    public PlayerAimingSystem playerAimingSystem;
+    public PlayerAimingSystem aimingSystem;
+    public PlayerShootingSystem shootingSystem;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         playerMovement = GetComponentInChildren<PlayerMovement>();
         playerWeapon = GetComponentInChildren<PlayerWeapon>();
-        playerAimingSystem = GetComponentInChildren<PlayerAimingSystem>();
+        shootingSystem = GetComponentInChildren<PlayerShootingSystem>();
+        aimingSystem = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetComponent<PlayerAimingSystem>();
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerAimingSystem : MonoBehaviour
 {
     #region public var
-    public float aimDistance;
     public FixedJoystick joystick;
+    public Vector2 aimDirection;
     #endregion
 
     #region private var
@@ -32,7 +32,7 @@ public class PlayerAimingSystem : MonoBehaviour
         joystickTransform = uiParent.Find("AimingJoystick").GetComponent<RectTransform>();
         joystick = joystickTransform.GetComponentInChildren<FixedJoystick>();
 
-        playerSprite = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter").Find("PlayerSprite");
+        playerSprite = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter")/*.Find("PlayerSprite")*/;
     }
 
     private void FixedUpdate()
@@ -44,7 +44,7 @@ public class PlayerAimingSystem : MonoBehaviour
     private void Aim()
     {
         Vector2 joystickDirection = new Vector2(joystick.Horizontal, joystick.Vertical);
-        Vector2 aimDirection = joystickTransform.anchoredPosition - joystickDirection;
+        aimDirection = joystickTransform.anchoredPosition - joystickDirection;
 
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
 
@@ -65,11 +65,11 @@ public class PlayerAimingSystem : MonoBehaviour
 
         if (joystick.Horizontal < 0)
         {
-            scale.x = -0.2f;
+            scale.x = -1f;
         }
         else if (joystick.Horizontal > 0) 
         {
-            scale.x = 0.2f;
+            scale.x = 1f;
         }
 
         playerSprite.localScale = scale;
