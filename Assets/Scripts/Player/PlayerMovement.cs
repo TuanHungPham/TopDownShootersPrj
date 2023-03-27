@@ -6,10 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     #region public var
     public float moveSpeed;
+    public FixedJoystick joystick;
     #endregion
 
     #region private var
-    [SerializeField] private FixedJoystick joystick;
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private Transform playerSprite;
     private Vector2 move;

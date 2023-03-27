@@ -3,38 +3,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Status : MonoBehaviour
+public abstract class Status : MonoBehaviour
 {
     #region public var
     public int currentHP;
     public int maxHP;
+    public bool IsDeath { get => isDeath; protected set => isDeath = value; }
     #endregion
 
     #region private var
+    private bool isDeath;
     #endregion
 
-    private void Awake()
+    protected virtual void Awake()
     {
         LoadComponents();
     }
 
-    private void Reset()
+    protected virtual void Reset()
     {
         LoadComponents();
     }
 
-    private void LoadComponents()
-    {
-        maxHP = 100;
-        currentHP = maxHP;
-    }
+    protected abstract void LoadComponents();
 
-    private void Update()
+    protected virtual void Update()
     {
         CheckHP();
     }
 
-    private void CheckHP()
+    protected virtual void CheckHP()
     {
         if (currentHP <= 0)
         {
@@ -42,8 +40,5 @@ public class Status : MonoBehaviour
         }
     }
 
-    private void Die()
-    {
-        
-    }
+    protected abstract void Die();
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyCtrl : MonoBehaviour
 {
     public EnemyMovement enemyMovement;
+    public EnemyBehaviour enemyBehaviour;
+    public Status enemyStatus;
+    public EnemyCombat enemyCombat;
 
     private void Awake()
     {
@@ -18,6 +21,9 @@ public class EnemyCtrl : MonoBehaviour
 
     private void LoadComponents()
     {
+        enemyStatus = GetComponent<Status>();
         enemyMovement = GetComponentInChildren<EnemyMovement>();
+        enemyBehaviour = GetComponentInChildren<EnemyBehaviour>();
+        enemyCombat = GetComponentInChildren<EnemyCombat>();
     }
 }
