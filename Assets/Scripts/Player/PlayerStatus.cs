@@ -41,8 +41,11 @@ public class PlayerStatus : Status
 
     protected override void Die()
     {
-        IsDeath = true;
+        base.Die();
+    }
 
+    protected override void DisableComponents()
+    {
         playerCtrl.playerMovement.enabled = false;
         playerCtrl.playerWeapon.enabled = false;
         playerCtrl.aimingSystem.enabled = false;
