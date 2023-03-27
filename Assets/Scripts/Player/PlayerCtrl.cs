@@ -9,6 +9,7 @@ public class PlayerCtrl : MonoBehaviour
     public PlayerWeapon playerWeapon;
     public PlayerAimingSystem aimingSystem;
     public PlayerShootingSystem shootingSystem;
+    public Status playerStatus;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class PlayerCtrl : MonoBehaviour
 
     private void LoadComponents()
     {
+        playerStatus = GetComponent<Status>();
         playerMovement = GetComponentInChildren<PlayerMovement>();
         playerWeapon = GetComponentInChildren<PlayerWeapon>();
         shootingSystem = GetComponentInChildren<PlayerShootingSystem>();

@@ -9,6 +9,7 @@ public class PlayerShootingSystem : MonoBehaviour
     public float shootDistance;
     public float shootingDelay;
     public float shootingTimer;
+    public int dmg;
     [Space]
     public Transform crosshair;
     #endregion
@@ -70,10 +71,13 @@ public class PlayerShootingSystem : MonoBehaviour
             return;
         }
 
-
         GameObject trail = Instantiate(bulletTrail, shootingPoint.position, shootingPoint.rotation);
         BulletTrail trailScript = trail.GetComponent<BulletTrail>();
         trailScript.SetTargetPoint(hit.point);
+
+        DamageReceiver damageReceiver = hit.collider.GetComponent<DamageReceiver>();
+        if (damageReceiver == null) return;
+        damageReceiver.ReceiveDamage(dmg);
 
         isShooting = true;
         shootingTimer = shootingDelay;
