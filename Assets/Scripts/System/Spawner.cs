@@ -42,7 +42,7 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        UpdateListOfInactiveObj();
+        UpdateListGameObj();
         CheckSpawnTime();
         Spawn();
     }
@@ -101,13 +101,24 @@ public class Spawner : MonoBehaviour
         return false;
     }
 
-    private void UpdateListOfInactiveObj()
+    private void UpdateListGameObj()
     {
         foreach (Transform child in transform)
         {
-            if (child.gameObject.activeSelf || listOfInactiveObj.Contains(child.gameObject)) continue;
+            Status status = child.GetComponent<Status>();
 
-            listOfInactiveObj.Add(child.gameObject);
+            if (child.gameObject.activeSelf && !listOfActiveObj.Contains(child.gameObject) && !status.IsDeath)
+            {
+                listOfActiveObj.Add(child.gameObject);
+            }
+            else if (listOfActiveObj.Contains(child.gameObject) && status.IsDeath)
+            {
+                listOfActiveObj.Remove(child.gameObject);
+            }
+            else if (!child.gameObject.activeSelf && !listOfInactiveObj.Contains(child.gameObject))
+            {
+                listOfInactiveObj.Add(child.gameObject);
+            }
         }
     }
 }

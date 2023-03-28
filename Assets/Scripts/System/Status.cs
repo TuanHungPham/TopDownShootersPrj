@@ -40,5 +40,11 @@ public abstract class Status : MonoBehaviour
         }
     }
 
-    protected abstract void Die();
+    protected virtual void Die()
+    {
+        isDeath = true;
+        DisableComponents();
+    }
+
+    protected abstract void DisableComponents();
 }
