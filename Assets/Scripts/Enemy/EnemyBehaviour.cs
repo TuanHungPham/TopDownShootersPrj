@@ -33,6 +33,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         SetDeathAnimation();
         SetAttackAnimation();
+        SetRunAnimation();
     }
 
     private void SetDeathAnimation()
@@ -55,5 +56,16 @@ public class EnemyBehaviour : MonoBehaviour
         }
 
         animator.SetBool("Attack", false);
+    }
+
+    private void SetRunAnimation()
+    {
+        if (enemyCtrl.enemyMovement.IsRunning)
+        {
+            animator.SetBool("Run", true);
+            return;
+        }
+
+        animator.SetBool("Run", false);
     }
 }

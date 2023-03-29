@@ -6,11 +6,14 @@ public class EnemyMovement : MonoBehaviour
 {
     #region public var
     public float moveSpeed;
+    public bool IsRunning { get => isRunning; set => isRunning = value; }
     #endregion
 
     #region private var
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private Transform player;
+    private bool isRunning;
+
     #endregion
 
     private void Awake()
@@ -42,6 +45,7 @@ public class EnemyMovement : MonoBehaviour
         Vector3 direction = player.position - transform.parent.position;
         direction.Normalize();
         rb2d.MovePosition(transform.parent.position + direction * moveSpeed * Time.fixedDeltaTime);
+        isRunning = true;
     }
 
     private void GetFaceDirection()

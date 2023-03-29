@@ -9,20 +9,12 @@ public class EnemyStatus : Status
 
     #region private var
     [SerializeField] private EnemyCtrl enemyCtrl;
-    [SerializeField] private Achievement achievement;
     #endregion
 
     private void OnEnable()
     {
-        this.gameObject.SetActive(true);
         IsDeath = false;
         currentHP = maxHP;
-
-        enemyCtrl.enemyCombat.enabled = true;
-        enemyCtrl.enemyMovement.enabled = true;
-        GetComponent<BoxCollider2D>().enabled = true;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        transform.Find("EnemySprite").GetChild(0).gameObject.SetActive(true);
     }
 
     protected override void Awake()
@@ -33,11 +25,6 @@ public class EnemyStatus : Status
     protected override void Reset()
     {
         base.Reset();
-    }
-
-    private void Start()
-    {
-        achievement = GameObject.Find("------ OTHER ------").transform.Find("Achievement").GetComponent<Achievement>();
     }
 
     protected override void LoadComponents()
@@ -66,15 +53,17 @@ public class EnemyStatus : Status
 
     protected override void DisableComponents()
     {
-        enemyCtrl.enemyCombat.enabled = false;
-        enemyCtrl.enemyMovement.enabled = false;
-        GetComponent<BoxCollider2D>().enabled = false;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-        transform.Find("EnemySprite").GetChild(0).gameObject.SetActive(false);
+        enemyCtrl.DisableComponents();
     }
 
     private void DisableGameObject()
     {
         this.gameObject.SetActive(false);
+        GetComponent<EnemyStatus>().enabled = false;
+    }
+
+    private void OnDisable()
+    {
+        Achievement.Instance.enemiesKilled++;
     }
 }

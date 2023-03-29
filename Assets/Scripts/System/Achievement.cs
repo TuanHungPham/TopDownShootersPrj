@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Achievement : MonoBehaviour
 {
+    private static Achievement instance;
+    public static Achievement Instance { get => instance; }
+
     #region public var
     public int enemiesKilled;
-    public Time survivalTime;
+    public float survivalTime;
+    public int totalDmg;
+    public int totalMoney;
     #endregion
 
     #region private var
@@ -24,11 +29,16 @@ public class Achievement : MonoBehaviour
 
     private void LoadComponents()
     {
-
+        instance = this;
     }
 
     private void Update()
     {
-        
+        TimeCounter();
+    }
+
+    private void TimeCounter()
+    {
+        survivalTime += Time.deltaTime;
     }
 }

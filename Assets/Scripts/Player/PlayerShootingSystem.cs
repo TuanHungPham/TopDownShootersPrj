@@ -78,6 +78,7 @@ public class PlayerShootingSystem : MonoBehaviour
         DamageReceiver damageReceiver = hit.collider.GetComponent<DamageReceiver>();
         if (damageReceiver == null) return;
         damageReceiver.ReceiveDamage(dmg);
+        Achievement.Instance.totalDmg += dmg;
 
         isShooting = true;
         shootingTimer = shootingDelay;
