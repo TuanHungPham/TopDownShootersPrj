@@ -481,6 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  enemyCtrl: {fileID: 0}
   rb2d: {fileID: 6600201456604779252}
   player: {fileID: 0}
 --- !u!1 &6600201456545108451
@@ -655,6 +656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objStatus: {fileID: 6600201456604779250}
   animator: {fileID: 6600201455510509642}
+  isHit: 0
 --- !u!114 &6600201456604779253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -671,6 +673,7 @@ MonoBehaviour:
   enemyBehaviour: {fileID: 6600201455510509643}
   enemyStatus: {fileID: 6600201456604779250}
   enemyCombat: {fileID: 6600201455789464048}
+  damageReceiver: {fileID: 0}
 --- !u!114 &6600201456604779250
 MonoBehaviour:
   m_ObjectHideFlags: 0

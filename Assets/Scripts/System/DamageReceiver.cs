@@ -5,11 +5,14 @@ using UnityEngine;
 public class DamageReceiver : MonoBehaviour
 {
     #region public var
+    public bool IsHit { get => isHit; }
     #endregion
 
     #region private var
     [SerializeField] private Status objStatus;
     [SerializeField] private Animator animator;
+    [SerializeField] private bool isHit;
+
     #endregion
 
     private void Awake()
@@ -22,6 +25,11 @@ public class DamageReceiver : MonoBehaviour
         LoadComponents();
     }
 
+    private void Update()
+    {
+        CheckHit();
+    }
+
     private void LoadComponents()
     {
         objStatus = GetComponent<Status>();
@@ -32,5 +40,16 @@ public class DamageReceiver : MonoBehaviour
     {
         objStatus.currentHP -= dmg;
         animator.SetTrigger("Hit");
+    }
+
+    private void CheckHit()
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+        {
+            isHit = true;
+            return;
+        }
+
+        isHit = false;
     }
 }

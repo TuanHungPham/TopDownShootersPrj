@@ -38,6 +38,8 @@ public class SpawnPoint : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
+            if (listOfSpawnPoint.Contains(child)) continue;
+
             listOfSpawnPoint.Add(child);
         }
     }

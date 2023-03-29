@@ -10,6 +10,7 @@ public class EnemyMovement : MonoBehaviour
     #endregion
 
     #region private var
+    [SerializeField] private EnemyCtrl enemyCtrl;
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private Transform player;
     private bool isRunning;
@@ -29,9 +30,8 @@ public class EnemyMovement : MonoBehaviour
     private void LoadComponents()
     {
         rb2d = GetComponentInParent<Rigidbody2D>();
-
+        enemyCtrl = GetComponentInParent<EnemyCtrl>();
         player = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter");
-        moveSpeed = 1;
     }
 
     private void FixedUpdate()
@@ -42,6 +42,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void ChasePlayer()
     {
+        if (enemyCtrl.damageReceiver.IsHit) return;
+
         Vector3 direction = player.position - transform.parent.position;
         direction.Normalize();
         rb2d.MovePosition(transform.parent.position + direction * moveSpeed * Time.fixedDeltaTime);

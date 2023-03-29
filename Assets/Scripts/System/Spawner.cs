@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Spawner : MonoBehaviour
+public abstract class Spawner : MonoBehaviour
 {
     #region public var
     public int maxObj;
@@ -16,92 +16,63 @@ public class Spawner : MonoBehaviour
     #region private var
     [SerializeField] protected GameObject gameObj;
     [SerializeField] protected SpawnPoint spawnPointScript;
-    [SerializeField] private List<GameObject> listOfActiveObj = new List<GameObject>();
-    [SerializeField] private List<GameObject> listOfInactiveObj = new List<GameObject>();
-    private bool isSpawnCooldown;
+    [SerializeField] protected Transform spawnPos;
+    [SerializeField] protected Transform parent;
+    [SerializeField] protected List<GameObject> listOfActiveObj = new List<GameObject>();
+    [SerializeField] protected List<GameObject> listOfInactiveObj = new List<GameObject>();
     #endregion
 
-    private void Awake()
+    protected virtual void Awake()
     {
         LoadComponents();
     }
 
-    private void Reset()
+    protected virtual void Reset()
     {
         LoadComponents();
     }
 
-    private void LoadComponents()
-    {
-        gameObj = Resources.Load<GameObject>("Prefabs/Enemy1");
+    protected abstract void LoadComponents();
 
-        spawnPointScript = GameObject.Find("------ OTHER ------").transform.Find("SpawnPoint").GetComponent<SpawnPoint>();
-
-        spawnTimer = spawnDelay;
-    }
-
-    private void Update()
-    {
-        UpdateListGameObj();
-        CheckSpawnTime();
-        Spawn();
-    }
-
-    private void Spawn()
+    protected virtual void Spawn()
     {
         if (!CanSpawn()) return;
 
-        GameObject enemy;
+        GameObject obj;
         if (listOfInactiveObj.Count > 0)
         {
-            enemy = RandomGameObj();
-            listOfInactiveObj.Remove(enemy);
-            enemy.SetActive(true);
+            obj = RandomGameObj();
+            listOfInactiveObj.Remove(obj);
+            obj.SetActive(true);
         }
         else
         {
-            enemy = NewGameObj(gameObj);
+            obj = NewGameObj(gameObj);
+            obj.SetActive(true);
         }
 
-        enemy.transform.position = spawnPointScript.spawnPointSelected.position;
-        enemy.transform.rotation = spawnPointScript.spawnPointSelected.rotation;
-        enemy.transform.parent = GameObject.Find("EnemySpawner").transform;
+        obj.transform.position = spawnPos.position;
+        obj.transform.rotation = spawnPos.rotation;
+        obj.transform.parent = parent;
 
         spawnTimer = spawnDelay;
     }
 
-    private GameObject NewGameObj(GameObject obj)
+    protected virtual GameObject NewGameObj(GameObject obj)
     {
         GameObject newGameObj = Instantiate(obj);
         return newGameObj;
     }
 
-    private GameObject RandomGameObj()
+    protected virtual GameObject RandomGameObj()
     {
         int index = Random.Range(0, listOfInactiveObj.Count);
         return listOfInactiveObj[index];
     }
 
-    private void CheckSpawnTime()
-    {
-        if (spawnTimer <= 0)
-        {
-            isSpawnCooldown = false;
-            return;
-        }
+    protected abstract bool CanSpawn();
 
-        isSpawnCooldown = true;
-        spawnTimer -= Time.deltaTime;
-    }
-
-    private bool CanSpawn()
-    {
-        if (!isSpawnCooldown && listOfActiveObj.Count < maxObj) return true;
-
-        return false;
-    }
-
-    private void UpdateListGameObj()
+    protected virtual void UpdateListGameObj()
     {
         foreach (Transform child in transform)
         {

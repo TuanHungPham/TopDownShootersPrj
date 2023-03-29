@@ -25,6 +25,7 @@ public class PlayerShootingSystem : MonoBehaviour
     [Space]
     [SerializeField] private bool isShooting;
     [SerializeField] private bool cooldown;
+    private Vector2 direction;
     #endregion
 
     private void Awake()
@@ -53,15 +54,14 @@ public class PlayerShootingSystem : MonoBehaviour
     private void Update()
     {
         CheckCooldown();
+        GetShootDirection();
+        GetShootDistance();
         Shoot();
         GetShootingVFX();
     }
 
     private void Shoot()
     {
-        Vector2 direction = crosshair.position - shootingPoint.position;
-        direction.Normalize();
-
         RaycastHit2D hit = Physics2D.Raycast(shootingPoint.position, direction, shootDistance, enemyLayer);
         Debug.DrawRay(shootingPoint.position, direction * shootDistance, Color.red);
 
@@ -78,10 +78,22 @@ public class PlayerShootingSystem : MonoBehaviour
         DamageReceiver damageReceiver = hit.collider.GetComponent<DamageReceiver>();
         if (damageReceiver == null) return;
         damageReceiver.ReceiveDamage(dmg);
+
         Achievement.Instance.totalDmg += dmg;
 
         isShooting = true;
         shootingTimer = shootingDelay;
+    }
+
+    private void GetShootDirection()
+    {
+        direction = crosshair.position - shootingPoint.position;
+        direction.Normalize();
+    }
+
+    private void GetShootDistance()
+    {
+        shootDistance = Vector2.Distance(crosshair.position, shootingPoint.position);
     }
 
     private void GetShootingVFX()

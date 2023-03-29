@@ -8,6 +8,7 @@ public class EnemyCtrl : MonoBehaviour
     public EnemyBehaviour enemyBehaviour;
     public Status enemyStatus;
     public EnemyCombat enemyCombat;
+    public DamageReceiver damageReceiver;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class EnemyCtrl : MonoBehaviour
 
     private void LoadComponents()
     {
+        damageReceiver = GetComponent<DamageReceiver>();
         enemyStatus = GetComponent<Status>();
         enemyMovement = GetComponentInChildren<EnemyMovement>();
         enemyBehaviour = GetComponentInChildren<EnemyBehaviour>();
@@ -41,8 +43,10 @@ public class EnemyCtrl : MonoBehaviour
         enemyMovement.enabled = true;
         GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        transform.Find("EnemySprite").GetChild(0).gameObject.SetActive(true);
 
+        GameObject enemyWeapon = transform.Find("EnemySprite").GetChild(0).gameObject;
+        if (enemyWeapon == null) return;
+        enemyWeapon.SetActive(false);
     }
 
     public void DisableComponents()
@@ -51,6 +55,9 @@ public class EnemyCtrl : MonoBehaviour
         enemyMovement.enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-        transform.Find("EnemySprite").GetChild(0).gameObject.SetActive(false);
+
+        GameObject enemyWeapon = transform.Find("EnemySprite").GetChild(0).gameObject;
+        if (enemyWeapon == null) return;
+        enemyWeapon.SetActive(false);
     }
 }

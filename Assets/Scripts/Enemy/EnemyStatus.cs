@@ -31,7 +31,6 @@ public class EnemyStatus : Status
     {
         enemyCtrl = GetComponent<EnemyCtrl>();
 
-        maxHP = 100;
         currentHP = maxHP;
     }
 
@@ -48,7 +47,7 @@ public class EnemyStatus : Status
     protected override void Die()
     {
         base.Die();
-        Invoke("DisableGameObject", 2);
+        Invoke("DisableGameObject", 4);
     }
 
     protected override void DisableComponents()
