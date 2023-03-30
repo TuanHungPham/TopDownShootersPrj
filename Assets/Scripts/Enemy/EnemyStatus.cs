@@ -9,6 +9,7 @@ public class EnemyStatus : Status
 
     #region private var
     [SerializeField] private EnemyCtrl enemyCtrl;
+    [SerializeField] private GameObject deadVFX;
     #endregion
 
     private void OnEnable()
@@ -47,7 +48,14 @@ public class EnemyStatus : Status
     protected override void Die()
     {
         base.Die();
-        Invoke("DisableGameObject", 4);
+        Invoke("DisableGameObject", 2.6f);
+    }
+
+    private void SetDeadVFX()
+    {
+        GameObject vfx = Instantiate(deadVFX);
+        vfx.transform.position = this.transform.position;
+        vfx.transform.rotation = this.transform.rotation;
     }
 
     protected override void DisableComponents()
@@ -64,5 +72,6 @@ public class EnemyStatus : Status
     private void OnDisable()
     {
         Achievement.Instance.enemiesKilled++;
+        SetDeadVFX();
     }
 }

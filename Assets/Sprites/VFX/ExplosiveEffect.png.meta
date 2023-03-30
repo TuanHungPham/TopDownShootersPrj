@@ -1,0 +1,440 @@
+fileFormatVersion: 2
+guid: 0cb3a054737c99d48b4736118a090d56
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ExplosiveEffect_5
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 810
+        width: 74
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33b455bb07ed34249bcaf98236c0dd47
+      internalID: -623552903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveEffect_6
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 787
+        width: 129
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4b062201c9aff540887b0726a49beb7
+      internalID: -801443837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveEffect_7
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 811
+        width: 78
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98293912a4e5bfe4f9ddbc837a43b454
+      internalID: -240384869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveEffect_14
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 514
+        width: 203
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1180fb47283cc54cb1e6d16bf419148
+      internalID: 901726659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveEffect_16
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 516
+        width: 206
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 590836f736b8f194484e7a6202e8c94f
+      internalID: 682667734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveEffect_17
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 518
+        width: 208
+        height: 160
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27cbf1e1524066041b1c228651516010
+      internalID: -1354448897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveEffect_27
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 552
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 850e1cbaed0587e4f91c71fa4844999b
+      internalID: 1732995385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveEffect_28
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 243
+        width: 260
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58b3532cf10ec144da54a4e47c88fe98
+      internalID: 827437096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveEffect_33
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 258
+        width: 221
+        height: 201
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a55eb97d697f6ce499d33819da8803e0
+      internalID: -575615772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveEffect_37
+      rect:
+        serializedVersion: 2
+        x: 558
+        y: 268
+        width: 250
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f7b9136ce38c5b47aa2fd04856ff934
+      internalID: 970013098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ExplosiveEffect_64
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 57
+        width: 240
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7c5c39e91917434d9f436db48a33ad4
+      internalID: 1612664408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      ExplosiveEffect_0: -2141066013
+      ExplosiveEffect_1: 523430208
+      ExplosiveEffect_10: -1537575970
+      ExplosiveEffect_11: 1567696654
+      ExplosiveEffect_12: 1079369216
+      ExplosiveEffect_13: 1225494977
+      ExplosiveEffect_14: 901726659
+      ExplosiveEffect_15: 432735313
+      ExplosiveEffect_16: 682667734
+      ExplosiveEffect_17: -1354448897
+      ExplosiveEffect_18: -22846686
+      ExplosiveEffect_19: -72543287
+      ExplosiveEffect_2: -253476639
+      ExplosiveEffect_20: 1352825139
+      ExplosiveEffect_21: -215378873
+      ExplosiveEffect_22: 1763521489
+      ExplosiveEffect_23: 671751867
+      ExplosiveEffect_24: 1204331531
+      ExplosiveEffect_25: 1805483163
+      ExplosiveEffect_26: 1668264966
+      ExplosiveEffect_27: 1732995385
+      ExplosiveEffect_28: 827437096
+      ExplosiveEffect_29: -104690313
+      ExplosiveEffect_3: 1642710688
+      ExplosiveEffect_30: 1717434311
+      ExplosiveEffect_31: 1179374679
+      ExplosiveEffect_32: -1921470392
+      ExplosiveEffect_33: -575615772
+      ExplosiveEffect_34: 1054292481
+      ExplosiveEffect_35: -357372288
+      ExplosiveEffect_36: 1847577524
+      ExplosiveEffect_37: 970013098
+      ExplosiveEffect_38: -950917822
+      ExplosiveEffect_39: -2011405808
+      ExplosiveEffect_4: -2004706195
+      ExplosiveEffect_40: 1957826584
+      ExplosiveEffect_41: 781485022
+      ExplosiveEffect_42: -20892451
+      ExplosiveEffect_43: 229810836
+      ExplosiveEffect_44: 1589304973
+      ExplosiveEffect_45: -1188747743
+      ExplosiveEffect_46: -1469712661
+      ExplosiveEffect_47: 200951394
+      ExplosiveEffect_48: -1033837229
+      ExplosiveEffect_49: 280162425
+      ExplosiveEffect_5: -623552903
+      ExplosiveEffect_50: -1596076450
+      ExplosiveEffect_51: -640017801
+      ExplosiveEffect_52: 444824510
+      ExplosiveEffect_53: -674500429
+      ExplosiveEffect_54: 1346108104
+      ExplosiveEffect_55: 637888768
+      ExplosiveEffect_56: 675134419
+      ExplosiveEffect_57: -653920103
+      ExplosiveEffect_58: 950241300
+      ExplosiveEffect_59: 756029346
+      ExplosiveEffect_6: -801443837
+      ExplosiveEffect_60: -1376162392
+      ExplosiveEffect_61: 145995031
+      ExplosiveEffect_62: -1164490123
+      ExplosiveEffect_63: -811168073
+      ExplosiveEffect_64: 1612664408
+      ExplosiveEffect_65: 1976816115
+      ExplosiveEffect_66: -1213897094
+      ExplosiveEffect_67: 944113551
+      ExplosiveEffect_68: -1836781955
+      ExplosiveEffect_69: 1441508442
+      ExplosiveEffect_7: -240384869
+      ExplosiveEffect_70: -47227405
+      ExplosiveEffect_71: -1224217705
+      ExplosiveEffect_72: -799790427
+      ExplosiveEffect_73: 2143358019
+      ExplosiveEffect_8: -1283116979
+      ExplosiveEffect_9: 363163890
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

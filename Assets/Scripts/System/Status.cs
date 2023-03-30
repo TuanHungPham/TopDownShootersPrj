@@ -8,7 +8,7 @@ public abstract class Status : MonoBehaviour
     #region public var
     public int currentHP;
     public int maxHP;
-    public bool IsDeath { get => isDeath; protected set => isDeath = value; }
+    public bool IsDeath { get => isDeath; set => isDeath = value; }
     #endregion
 
     #region private var

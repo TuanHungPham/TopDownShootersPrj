@@ -46,7 +46,7 @@ public class EnemyCtrl : MonoBehaviour
 
         GameObject enemyWeapon = transform.Find("EnemySprite").GetChild(0).gameObject;
         if (enemyWeapon == null) return;
-        enemyWeapon.SetActive(false);
+        enemyWeapon.SetActive(true);
     }
 
     public void DisableComponents()

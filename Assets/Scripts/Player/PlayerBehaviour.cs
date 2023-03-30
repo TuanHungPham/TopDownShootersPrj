@@ -36,7 +36,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void SetRunAnimation()
     {
-        if (playerCtrl.playerMovement.joystick.Horizontal != 0 || playerCtrl.playerMovement.joystick.Vertical != 0)
+        if (playerCtrl.playerMovement.joystick.Horizontal != 0 || playerCtrl.playerMovement.joystick.Vertical != 0 || InputManager.Instance.IsMovingInput)
         {
             animator.SetBool("Run", true);
             return;

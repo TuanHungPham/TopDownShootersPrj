@@ -180,8 +180,8 @@ GameObject:
   - component: {fileID: 4691977424040976736}
   - component: {fileID: 8860567279345111654}
   - component: {fileID: 7125268966539878658}
-  - component: {fileID: 7924940017224771214}
   - component: {fileID: 5960408818761497112}
+  - component: {fileID: 7924940017224771214}
   - component: {fileID: 250902521381729780}
   m_Layer: 6
   m_Name: Enemy2
@@ -255,21 +255,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.89588547, y: 1.210726}
   m_EdgeRadius: 0
---- !u!114 &7924940017224771214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3053103069830713281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473c44eab0af94d49a3e893ccde09118, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objStatus: {fileID: 250902521381729780}
-  animator: {fileID: 6806177930941078307}
-  isHit: 0
 --- !u!114 &5960408818761497112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +271,22 @@ MonoBehaviour:
   enemyBehaviour: {fileID: 1570215834026631042}
   enemyStatus: {fileID: 250902521381729780}
   enemyCombat: {fileID: 249539560681844404}
-  damageReceiver: {fileID: 0}
+  damageReceiver: {fileID: 7924940017224771214}
+--- !u!114 &7924940017224771214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3053103069830713281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473c44eab0af94d49a3e893ccde09118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objStatus: {fileID: 250902521381729780}
+  animator: {fileID: 6806177930941078307}
+  isHit: 0
 --- !u!114 &250902521381729780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +302,7 @@ MonoBehaviour:
   currentHP: 100
   maxHP: 100
   enemyCtrl: {fileID: 5960408818761497112}
+  deadVFX: {fileID: 4974702213885670630, guid: 0e7694f2151e1e74791d0e62b954309d, type: 3}
 --- !u!1 &3631822125231785495
 GameObject:
   m_ObjectHideFlags: 0

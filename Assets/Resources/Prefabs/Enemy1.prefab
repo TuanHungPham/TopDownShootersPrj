@@ -567,8 +567,8 @@ GameObject:
   - component: {fileID: 6600201456604779144}
   - component: {fileID: 6600201456604779252}
   - component: {fileID: 6600201456604779145}
-  - component: {fileID: 6600201456604779255}
   - component: {fileID: 6600201456604779253}
+  - component: {fileID: 6600201456604779255}
   - component: {fileID: 6600201456604779250}
   m_Layer: 6
   m_Name: Enemy1
@@ -642,21 +642,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.89588547, y: 1.210726}
   m_EdgeRadius: 0
---- !u!114 &6600201456604779255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6600201456604779147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473c44eab0af94d49a3e893ccde09118, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objStatus: {fileID: 6600201456604779250}
-  animator: {fileID: 6600201455510509642}
-  isHit: 0
 --- !u!114 &6600201456604779253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,7 +658,22 @@ MonoBehaviour:
   enemyBehaviour: {fileID: 6600201455510509643}
   enemyStatus: {fileID: 6600201456604779250}
   enemyCombat: {fileID: 6600201455789464048}
-  damageReceiver: {fileID: 0}
+  damageReceiver: {fileID: 6600201456604779255}
+--- !u!114 &6600201456604779255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6600201456604779147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473c44eab0af94d49a3e893ccde09118, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objStatus: {fileID: 6600201456604779250}
+  animator: {fileID: 6600201455510509642}
+  isHit: 0
 --- !u!114 &6600201456604779250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,3 +689,4 @@ MonoBehaviour:
   currentHP: 100
   maxHP: 100
   enemyCtrl: {fileID: 6600201456604779253}
+  deadVFX: {fileID: 4974702213885670630, guid: 0e7694f2151e1e74791d0e62b954309d, type: 3}

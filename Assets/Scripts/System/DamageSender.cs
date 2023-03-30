@@ -27,7 +27,6 @@ public class DamageSender : MonoBehaviour
 
     private void LoadComponents()
     {
-        rawDmg = 10;
         dmgSending = rawDmg;
     }
 

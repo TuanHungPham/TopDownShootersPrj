@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        GetMovingDirection();
+        SetMovingDirection();
     }
 
     private void FixedUpdate()
@@ -45,12 +45,24 @@ public class PlayerMovement : MonoBehaviour
         Move();
     }
 
+    private void SetMovingDirection()
+    {
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            move.x = Input.GetAxis("Horizontal");
+            move.y = Input.GetAxis("Vertical");
+            return;
+        }
+
+        GetMovingDirectionByTouchPad();
+    }
+
     private void Move()
     {
         rb2d.MovePosition(rb2d.position + move * moveSpeed * Time.fixedDeltaTime);
     }
 
-    private void GetMovingDirection()
+    private void GetMovingDirectionByTouchPad()
     {
         move.x = joystick.Horizontal;
         move.y = joystick.Vertical;
