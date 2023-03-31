@@ -12,7 +12,7 @@ public class DamageReceiver : MonoBehaviour
     [SerializeField] private Status objStatus;
     [SerializeField] private Animator animator;
     [SerializeField] private bool isHit;
-
+    [SerializeField] private GameObject deadVFX;
     #endregion
 
     private void Awake()
@@ -40,6 +40,22 @@ public class DamageReceiver : MonoBehaviour
     {
         objStatus.currentHP -= dmg;
         animator.SetTrigger("Hit");
+        if (objStatus.currentHP <= 0) 
+        {
+            Invoke("SetDeadVFX", 2.6f);
+
+            if (!this.gameObject.CompareTag("Enemy")) return;
+            Achievement.Instance.enemiesKilled++;
+        }
+    }
+
+    private void SetDeadVFX()
+    {
+        if (deadVFX == null) return;
+
+        GameObject vfx = Instantiate(deadVFX);
+        vfx.transform.position = this.transform.position;
+        vfx.transform.rotation = this.transform.rotation;
     }
 
     private void CheckHit()

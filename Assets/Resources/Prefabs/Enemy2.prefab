@@ -287,6 +287,7 @@ MonoBehaviour:
   objStatus: {fileID: 250902521381729780}
   animator: {fileID: 6806177930941078307}
   isHit: 0
+  deadVFX: {fileID: 4974702213885670630, guid: 0e7694f2151e1e74791d0e62b954309d, type: 3}
 --- !u!114 &250902521381729780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +303,6 @@ MonoBehaviour:
   currentHP: 100
   maxHP: 100
   enemyCtrl: {fileID: 5960408818761497112}
-  deadVFX: {fileID: 4974702213885670630, guid: 0e7694f2151e1e74791d0e62b954309d, type: 3}
 --- !u!1 &3631822125231785495
 GameObject:
   m_ObjectHideFlags: 0

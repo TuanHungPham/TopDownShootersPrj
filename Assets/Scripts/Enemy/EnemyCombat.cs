@@ -13,9 +13,14 @@ public class EnemyCombat : MonoBehaviour
     #region private var
     [SerializeField] private AttackArea attackArea;
     [SerializeField] private EnemyCtrl enemyCtrl;
-    private bool isAttacking;
+    [SerializeField] private bool isAttacking;
     private bool cooldown;
     #endregion
+
+    private void OnEnable()
+    {
+        isAttacking = false;
+    }
 
     private void Awake()
     {

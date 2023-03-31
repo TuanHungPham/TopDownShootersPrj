@@ -55,7 +55,10 @@ public class EnemyCtrl : MonoBehaviour
         enemyMovement.enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+    }
 
+    public void DisableWeapon()
+    {
         GameObject enemyWeapon = transform.Find("EnemySprite").GetChild(0).gameObject;
         if (enemyWeapon == null) return;
         enemyWeapon.SetActive(false);

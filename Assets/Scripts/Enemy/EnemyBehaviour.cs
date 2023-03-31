@@ -10,7 +10,13 @@ public class EnemyBehaviour : MonoBehaviour
     #region private var
     [SerializeField] private Animator animator;
     [SerializeField] private EnemyCtrl enemyCtrl;
+    private bool checkDeathAnimation;
     #endregion
+
+    private void OnEnable()
+    {
+        checkDeathAnimation = false;
+    }
 
     private void Awake()
     {
@@ -36,15 +42,16 @@ public class EnemyBehaviour : MonoBehaviour
         SetRunAnimation();
     }
 
-    private void SetDeathAnimation()
+    public void SetDeathAnimation()
     {
+        if (checkDeathAnimation) return; 
+
         if (enemyCtrl.enemyStatus.IsDeath)
         {
-            animator.SetBool("isDeath", true);
-            return;
+            animator.SetTrigger("isDeath");
+            checkDeathAnimation = true;
         }
 
-        animator.SetBool("isDeath", false);
     }
 
     private void SetAttackAnimation()

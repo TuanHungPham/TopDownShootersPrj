@@ -10,7 +10,7 @@ public class AttackArea : MonoBehaviour
 
     #region private var
     [SerializeField] private string targetTag;
-    private bool isTrigger;
+    [SerializeField] private bool isTrigger;
 
     #endregion
 

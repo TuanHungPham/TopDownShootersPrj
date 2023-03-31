@@ -51,13 +51,6 @@ public class EnemyStatus : Status
         Invoke("DisableGameObject", 2.6f);
     }
 
-    private void SetDeadVFX()
-    {
-        GameObject vfx = Instantiate(deadVFX);
-        vfx.transform.position = this.transform.position;
-        vfx.transform.rotation = this.transform.rotation;
-    }
-
     protected override void DisableComponents()
     {
         enemyCtrl.DisableComponents();
@@ -66,12 +59,7 @@ public class EnemyStatus : Status
     private void DisableGameObject()
     {
         this.gameObject.SetActive(false);
+        enemyCtrl.DisableWeapon();
         GetComponent<EnemyStatus>().enabled = false;
-    }
-
-    private void OnDisable()
-    {
-        Achievement.Instance.enemiesKilled++;
-        SetDeadVFX();
     }
 }
