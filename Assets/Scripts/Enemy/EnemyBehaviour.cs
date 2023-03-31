@@ -40,11 +40,23 @@ public class EnemyBehaviour : MonoBehaviour
         SetDeathAnimation();
         SetAttackAnimation();
         SetRunAnimation();
+        SetIdleAnimation();
     }
 
-    public void SetDeathAnimation()
+    private void SetIdleAnimation()
     {
-        if (checkDeathAnimation) return; 
+        if (!enemyCtrl.TargetExist)
+        {
+            animator.SetBool("Idle", true);
+            return;
+        }
+
+        animator.SetBool("Idle", false);
+    }
+
+    private void SetDeathAnimation()
+    {
+        if (checkDeathAnimation) return;
 
         if (enemyCtrl.enemyStatus.IsDeath)
         {

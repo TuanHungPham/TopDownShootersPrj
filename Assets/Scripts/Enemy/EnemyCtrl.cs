@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class EnemyCtrl : MonoBehaviour
 {
+    #region public var
     public EnemyMovement enemyMovement;
     public EnemyBehaviour enemyBehaviour;
     public Status enemyStatus;
     public EnemyCombat enemyCombat;
     public DamageReceiver damageReceiver;
+    public PlayerCtrl playerCtrl;
+    public bool TargetExist { get => targetExist; set => targetExist = value; }
+    #endregion
+
+    #region private var
+    [SerializeField] private bool targetExist;
+
+    #endregion
 
     private void Awake()
     {
@@ -27,11 +36,13 @@ public class EnemyCtrl : MonoBehaviour
         enemyMovement = GetComponentInChildren<EnemyMovement>();
         enemyBehaviour = GetComponentInChildren<EnemyBehaviour>();
         enemyCombat = GetComponentInChildren<EnemyCombat>();
+        playerCtrl = GameObject.Find("MainCharacter").GetComponent<PlayerCtrl>();
     }
 
     private void Update()
     {
         EnableComponents();
+        CheckTargetExist();
     }
 
     private void EnableComponents()
@@ -62,5 +73,16 @@ public class EnemyCtrl : MonoBehaviour
         GameObject enemyWeapon = transform.Find("EnemySprite").GetChild(0).gameObject;
         if (enemyWeapon == null) return;
         enemyWeapon.SetActive(false);
+    }
+
+    private void CheckTargetExist()
+    {
+        if (playerCtrl.playerStatus.IsDeath)
+        {
+            targetExist = false;
+            return;
+        }
+
+        targetExist = true;
     }
 }

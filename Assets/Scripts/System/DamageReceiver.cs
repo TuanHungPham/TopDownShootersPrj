@@ -46,6 +46,7 @@ public class DamageReceiver : MonoBehaviour
 
             if (!this.gameObject.CompareTag("Enemy")) return;
             Achievement.Instance.enemiesKilled++;
+            EnemyWaveManager.Instance.restOfEnemy--;
         }
     }
 

@@ -14,8 +14,14 @@ public class GameOverBoard : MonoBehaviour
     [SerializeField] private TMP_Text totalDamageText;
     [SerializeField] private TMP_Text timeSurvivedText;
     [SerializeField] private TMP_Text totalMoneyText;
+    [SerializeField] private GameObject gameOverSceneColor;
     private float min, sec, hour;
     #endregion
+
+    private void OnEnable()
+    {
+        gameOverSceneColor.SetActive(true);
+    }
 
     private void Awake()
     {
@@ -33,6 +39,7 @@ public class GameOverBoard : MonoBehaviour
         totalDamageText = transform.Find("TotalDamageText").Find("Number").GetComponent<TMP_Text>();
         timeSurvivedText = transform.Find("TimeSurvivedText").Find("Number").GetComponent<TMP_Text>();
         totalMoneyText = transform.Find("TotalMoneyText").Find("Number").GetComponent<TMP_Text>();
+        gameOverSceneColor = transform.root.GetChild(0).Find("GameOverSceneColor").gameObject;
     }
 
     private void Update()
@@ -59,5 +66,10 @@ public class GameOverBoard : MonoBehaviour
         }
 
         timeSurvivedText.text = string.Format("{0:00}:{1:00}:{2:00}", hour, min, sec);
+    }
+
+    private void OnDisable()
+    {
+        gameOverSceneColor.SetActive(false);
     }
 }

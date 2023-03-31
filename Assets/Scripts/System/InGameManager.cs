@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InGameManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class InGameManager : MonoBehaviour
     {
         pauseMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").gameObject;
         gameOverBoard = GameObject.Find("Canvas").transform.Find("GameOverBoard").gameObject;
+        
         playerCtrl = GameObject.Find("------ PLAYER ------").transform.GetChild(0).GetComponent<PlayerCtrl>();
 
         pauseMenu.SetActive(false);
@@ -79,7 +81,6 @@ public class InGameManager : MonoBehaviour
         if (!playerCtrl.playerStatus.IsDeath)
         {
             gameOverCheck = false;
-            Invoke("SetGameOverBoard", 2.6f);
         }
         else
         {
@@ -94,5 +95,11 @@ public class InGameManager : MonoBehaviour
 
         if (!gameOverCheck) return;
         PauseTime();
+    }
+
+    public void ResetGame()
+    {
+        SceneManager.LoadScene("InGameScene");
+        ResumeTime();
     }
 }

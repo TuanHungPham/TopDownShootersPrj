@@ -260,8 +260,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a4e76878971934da06fa1689bee9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmgSending: 10
-  rawDmg: 10
+  dmgSending: 20
+  rawDmg: 20
   criticalRate: 0
   criticalDmg: 0
   targetTag: Player
@@ -436,6 +436,7 @@ MonoBehaviour:
   atkDelay: 1.5
   attackArea: {fileID: 6600201456545108462}
   enemyCtrl: {fileID: 6600201456604779253}
+  isAttacking: 0
 --- !u!1 &6600201455921746480
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +531,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.08654165, y: 0.22720551}
+  m_Offset: {x: -0.2603674, y: 0.11132169}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -541,7 +542,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8269167, y: 1.454411}
+  m_Size: {x: 0.86554337, y: 1.6861787}
   m_EdgeRadius: 0
 --- !u!114 &6600201456545108462
 MonoBehaviour:
@@ -556,6 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: Player
+  isTrigger: 0
 --- !u!1 &6600201456604779147
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +661,8 @@ MonoBehaviour:
   enemyStatus: {fileID: 6600201456604779250}
   enemyCombat: {fileID: 6600201455789464048}
   damageReceiver: {fileID: 6600201456604779255}
+  playerCtrl: {fileID: 0}
+  targetExist: 0
 --- !u!114 &6600201456604779255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,3 +694,4 @@ MonoBehaviour:
   currentHP: 100
   maxHP: 100
   enemyCtrl: {fileID: 6600201456604779253}
+  deadVFX: {fileID: 0}

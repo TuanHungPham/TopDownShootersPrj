@@ -42,7 +42,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void ChasePlayer()
     {
-        if (enemyCtrl.damageReceiver.IsHit) return;
+        if (enemyCtrl.damageReceiver.IsHit || enemyCtrl.enemyCombat.attackArea.IsTrigger || !enemyCtrl.TargetExist) return;
 
         Vector3 direction = player.position - transform.parent.position;
         direction.Normalize();

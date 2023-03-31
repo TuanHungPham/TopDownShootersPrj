@@ -8,10 +8,10 @@ public class EnemyCombat : MonoBehaviour
     public float atkCoolDownTimer;
     public float atkDelay;
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
+    public AttackArea attackArea;
     #endregion
 
     #region private var
-    [SerializeField] private AttackArea attackArea;
     [SerializeField] private EnemyCtrl enemyCtrl;
     [SerializeField] private bool isAttacking;
     private bool cooldown;
