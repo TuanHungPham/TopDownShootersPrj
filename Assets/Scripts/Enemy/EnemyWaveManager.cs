@@ -17,10 +17,10 @@ public class EnemyWaveManager : MonoBehaviour
     #region private var
     [SerializeField] private int addEnemyNumber;
     [SerializeField] private int addEnemyHP;
-    [SerializeField] private int addEnemyDmg;
     [SerializeField] private ListOfEnemy listOfEnemy;
     [SerializeField] private EnemySpawner enemySpawner;
-
+    [SerializeField] private bool isEndWave;
+    [SerializeField] private bool updateWave;
     #endregion
 
     private void Awake()
@@ -41,16 +41,41 @@ public class EnemyWaveManager : MonoBehaviour
 
         waveNumber = 1;
         numberOfEnemy = 10;
-        nextWaveTimer = 60;
+        nextWaveTimer = 15;
         addEnemyNumber = 5;
         addEnemyHP = 25;
-        addEnemyDmg = 10;
         restOfEnemy = numberOfEnemy;
     }
 
     private void Update()
     {
-        
+        CheckNumberOfAliveEnemy();
+        CheckWave();
+        SetUpForNextWave();
+    }
+
+    private void SetUpForNextWave()
+    {
+        if (!isEndWave)
+        {
+            updateWave = false;
+            nextWaveTimer = 15;
+            return;
+        }
+
+        updateWave = true;
+
+        if (updateWave)
+        {
+            CheckNextWaveTimer();
+            StopSpawnEnemy();
+            if (nextWaveTimer > 0) return;
+
+            AddEnemyNumber();
+            AddEnemyHP();
+            updateWave = false;
+            isEndWave = false;
+        }
     }
 
     private void CheckNextWaveTimer()
@@ -58,16 +83,40 @@ public class EnemyWaveManager : MonoBehaviour
         nextWaveTimer -= Time.deltaTime;
     }
 
-    private void AddEnemyStatus()
+    private void AddEnemyHP()
     {
-        foreach (GameObject item in listOfEnemy.listOfEnemies)
+        foreach (GameObject enemy in listOfEnemy.listOfEnemies)
         {
-
+            EnemyCtrl enemyCtrl = enemy.GetComponent<EnemyCtrl>();
+            enemyCtrl.enemyStatus.maxHP += addEnemyHP;
         }
+    }
+
+    private void CheckNumberOfAliveEnemy()
+    {
+        enemySpawner.maxObj = restOfEnemy;
     }
 
     private void AddEnemyNumber()
     {
+        numberOfEnemy += addEnemyNumber;
+        restOfEnemy = numberOfEnemy;
+    }
 
+    private void StopSpawnEnemy()
+    {
+        enemySpawner.maxObj = 0;
+    }
+
+    private void CheckWave()
+    {
+        if (restOfEnemy <= 0)
+        {
+            isEndWave = true;
+            Debug.Log("Wave is done...");
+            return;
+        }
+
+        isEndWave = false;
     }
 }

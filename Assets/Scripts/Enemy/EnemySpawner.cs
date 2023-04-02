@@ -30,6 +30,7 @@ public class EnemySpawner : Spawner
 
         parent = transform;
         spawnTimer = spawnDelay;
+        maxObj = EnemyWaveManager.Instance.numberOfEnemy;
     }
 
     protected void Update()
