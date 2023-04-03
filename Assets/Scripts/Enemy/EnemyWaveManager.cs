@@ -6,6 +6,7 @@ public class EnemyWaveManager : MonoBehaviour
 {
     private static EnemyWaveManager instance;
     public static EnemyWaveManager Instance { get => instance; set => instance = value; }
+    public bool UpdateWave { get => updateWave; set => updateWave = value; }
 
     #region public var
     public int waveNumber;
@@ -58,22 +59,24 @@ public class EnemyWaveManager : MonoBehaviour
     {
         if (!isEndWave)
         {
-            updateWave = false;
+            UpdateWave = false;
             nextWaveTimer = 15;
             return;
         }
 
-        updateWave = true;
+        UpdateWave = true;
 
-        if (updateWave)
+        if (UpdateWave)
         {
             CheckNextWaveTimer();
             StopSpawnEnemy();
             if (nextWaveTimer > 0) return;
 
             AddEnemyNumber();
-            AddEnemyHP();
-            updateWave = false;
+            AddEnemyHP(listOfEnemy.listOfEnemies);
+            AddEnemyHP(enemySpawner.listOfInactiveObj);
+            waveNumber++;
+            UpdateWave = false;
             isEndWave = false;
         }
     }
@@ -83,9 +86,9 @@ public class EnemyWaveManager : MonoBehaviour
         nextWaveTimer -= Time.deltaTime;
     }
 
-    private void AddEnemyHP()
+    private void AddEnemyHP(List<GameObject> list)
     {
-        foreach (GameObject enemy in listOfEnemy.listOfEnemies)
+        foreach (GameObject enemy in list)
         {
             EnemyCtrl enemyCtrl = enemy.GetComponent<EnemyCtrl>();
             enemyCtrl.enemyStatus.maxHP += addEnemyHP;
@@ -113,7 +116,6 @@ public class EnemyWaveManager : MonoBehaviour
         if (restOfEnemy <= 0)
         {
             isEndWave = true;
-            Debug.Log("Wave is done...");
             return;
         }
 

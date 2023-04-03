@@ -12,7 +12,7 @@ public abstract class Status : MonoBehaviour
     #endregion
 
     #region private var
-    private bool isDeath;
+    [SerializeField] private bool isDeath;
     #endregion
 
     protected virtual void Awake()

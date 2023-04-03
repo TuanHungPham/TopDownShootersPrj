@@ -39,6 +39,7 @@ public class EnemySpawner : Spawner
         GetObjFromEnemyList();
         GetSpawnPosition();
         Spawn();
+        SetActiveEnemy();
         UpdateListGameObj();
     }
 
@@ -50,6 +51,11 @@ public class EnemySpawner : Spawner
     protected override void Spawn()
     {
         base.Spawn();
+    }
+
+    protected override void SetActiveEnemy()
+    {
+        base.SetActiveEnemy();
     }
 
     protected override GameObject NewGameObj(GameObject obj)

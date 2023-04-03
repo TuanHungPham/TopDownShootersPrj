@@ -144,7 +144,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2973323, y: 0.08045268}
+  m_Offset: {x: -0.36336136, y: 0.15088391}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -155,7 +155,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9069643, y: 1.7479167}
+  m_Size: {x: 0.77490616, y: 1.5366235}
   m_EdgeRadius: 0
 --- !u!114 &2842074490756829786
 MonoBehaviour:
@@ -292,6 +292,7 @@ MonoBehaviour:
   animator: {fileID: 6806177930941078307}
   isHit: 0
   deadVFX: {fileID: 4974702213885670630, guid: 0e7694f2151e1e74791d0e62b954309d, type: 3}
+  stateName: Enemy2_Hit
 --- !u!114 &250902521381729780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHP: 100
   maxHP: 100
+  isDeath: 0
   enemyCtrl: {fileID: 5960408818761497112}
   deadVFX: {fileID: 0}
 --- !u!1 &3631822125231785495

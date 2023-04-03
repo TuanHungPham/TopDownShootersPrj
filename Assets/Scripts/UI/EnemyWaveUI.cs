@@ -64,10 +64,14 @@ public class EnemyWaveUI : MonoBehaviour
 
     private void SetWavePanel()
     {
-        if (EnemyWaveManager.Instance.nextWaveTimer == 0)
+        if (!EnemyWaveManager.Instance.UpdateWave)
         {
             waveNumerPanel.gameObject.SetActive(true);
             nextWavePanel.gameObject.SetActive(false);
+            return;
         }
+
+        waveNumerPanel.gameObject.SetActive(false);
+        nextWavePanel.gameObject.SetActive(true);
     }
 }

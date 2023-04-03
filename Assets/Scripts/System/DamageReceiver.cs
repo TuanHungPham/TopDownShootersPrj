@@ -13,6 +13,7 @@ public class DamageReceiver : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private bool isHit;
     [SerializeField] private GameObject deadVFX;
+    [SerializeField] private string stateName;
     #endregion
 
     private void Awake()
@@ -25,22 +26,22 @@ public class DamageReceiver : MonoBehaviour
         LoadComponents();
     }
 
-    private void Update()
-    {
-        CheckHit();
-    }
-
     private void LoadComponents()
     {
         objStatus = GetComponent<Status>();
         animator = GetComponentInChildren<Animator>();
     }
 
+    private void Update()
+    {
+        CheckHit();
+    }
+
     public void ReceiveDamage(int dmg)
     {
         objStatus.currentHP -= dmg;
         animator.SetTrigger("Hit");
-        if (objStatus.currentHP <= 0) 
+        if (objStatus.currentHP <= 0)
         {
             Invoke("SetDeadVFX", 2.6f);
 
@@ -61,7 +62,7 @@ public class DamageReceiver : MonoBehaviour
 
     private void CheckHit()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(stateName))
         {
             isHit = true;
             return;

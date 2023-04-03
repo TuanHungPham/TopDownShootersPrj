@@ -11,6 +11,8 @@ public abstract class Spawner : MonoBehaviour
     public int maxObj;
     public float spawnDelay;
     public float spawnTimer;
+    public List<GameObject> listOfActiveObj = new List<GameObject>();
+    public List<GameObject> listOfInactiveObj = new List<GameObject>();
     #endregion
 
     #region private var
@@ -18,8 +20,6 @@ public abstract class Spawner : MonoBehaviour
     [SerializeField] protected SpawnPoint spawnPointScript;
     [SerializeField] protected Transform spawnPos;
     [SerializeField] protected Transform parent;
-    [SerializeField] protected List<GameObject> listOfActiveObj = new List<GameObject>();
-    [SerializeField] protected List<GameObject> listOfInactiveObj = new List<GameObject>();
     #endregion
 
     protected virtual void Awake()
@@ -43,12 +43,12 @@ public abstract class Spawner : MonoBehaviour
         {
             obj = RandomGameObj();
             listOfInactiveObj.Remove(obj);
-            obj.SetActive(true);
+            listOfActiveObj.Add(obj);
         }
         else
         {
             obj = NewGameObj(gameObj);
-            obj.SetActive(true);
+            listOfActiveObj.Add(obj);
         }
 
         obj.transform.position = spawnPos.position;
@@ -56,6 +56,14 @@ public abstract class Spawner : MonoBehaviour
         obj.transform.parent = parent;
 
         spawnTimer = spawnDelay;
+    }
+
+    protected virtual void SetActiveEnemy()
+    {
+        foreach (var item in listOfActiveObj)
+        {
+            item.SetActive(true);
+        }
     }
 
     protected virtual GameObject NewGameObj(GameObject obj)
