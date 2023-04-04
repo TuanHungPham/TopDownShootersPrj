@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class InGameManager : MonoBehaviour
 {
+    private static InGameManager instance;
+
     #region public var
+    public RespawnManager respawnManager;
+    public bool GameOverCheck { get => gameOverCheck; set => gameOverCheck = value; }
+    public static InGameManager Instance { get => instance; }
     #endregion
 
     #region private var
@@ -13,6 +18,7 @@ public class InGameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverBoard;
     [SerializeField] private PlayerCtrl playerCtrl;
     private bool gameOverCheck;
+
     #endregion
 
     private void Awake()
@@ -31,6 +37,7 @@ public class InGameManager : MonoBehaviour
         gameOverBoard = GameObject.Find("Canvas").transform.Find("GameOverBoard").gameObject;
         
         playerCtrl = GameObject.Find("------ PLAYER ------").transform.GetChild(0).GetComponent<PlayerCtrl>();
+        respawnManager = GetComponentInChildren<RespawnManager>();
 
         pauseMenu.SetActive(false);
     }
@@ -80,20 +87,20 @@ public class InGameManager : MonoBehaviour
     {
         if (!playerCtrl.playerStatus.IsDeath)
         {
-            gameOverCheck = false;
+            GameOverCheck = false;
         }
         else
         {
-            gameOverCheck = true;
+            GameOverCheck = true;
             Invoke("SetGameOverBoard", 2.6f);
         }
     }
 
     private void SetGameOverBoard()
     {
-        gameOverBoard.SetActive(gameOverCheck);
+        gameOverBoard.SetActive(GameOverCheck);
 
-        if (!gameOverCheck) return;
+        if (!GameOverCheck) return;
         PauseTime();
     }
 
