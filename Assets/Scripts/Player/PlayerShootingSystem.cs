@@ -12,6 +12,7 @@ public class PlayerShootingSystem : MonoBehaviour
     public int dmg;
     [Space]
     public Transform crosshair;
+    public bool IsShooting { get => isShooting; set => isShooting = value; }
     #endregion
 
     #region private var
@@ -26,6 +27,7 @@ public class PlayerShootingSystem : MonoBehaviour
     [SerializeField] private bool isShooting;
     [SerializeField] private bool cooldown;
     private Vector2 direction;
+
     #endregion
 
     private void Awake()
@@ -67,7 +69,7 @@ public class PlayerShootingSystem : MonoBehaviour
 
         if (hit.collider == null || !CanShoot())
         {
-            isShooting = false;
+            IsShooting = false;
             return;
         }
 
@@ -81,7 +83,7 @@ public class PlayerShootingSystem : MonoBehaviour
 
         Achievement.Instance.totalDmg += dmg;
 
-        isShooting = true;
+        IsShooting = true;
         shootingTimer = shootingDelay;
     }
 
@@ -98,7 +100,7 @@ public class PlayerShootingSystem : MonoBehaviour
 
     private void GetShootingVFX()
     {
-        if (!isShooting) muzzleFlash.SetActive(false);
+        if (!IsShooting) muzzleFlash.SetActive(false);
         else muzzleFlash.SetActive(true);
     }
 
@@ -116,7 +118,7 @@ public class PlayerShootingSystem : MonoBehaviour
 
     private bool CanShoot()
     {
-        if (cooldown) return false;
+        if (cooldown || !playerCtrl.ammoSystem.AmmoLeft) return false;
 
         return true;
     }

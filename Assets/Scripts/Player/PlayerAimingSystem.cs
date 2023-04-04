@@ -32,7 +32,7 @@ public class PlayerAimingSystem : MonoBehaviour
         joystickTransform = uiParent.Find("AimingJoystick").GetComponent<RectTransform>();
         joystick = joystickTransform.GetComponentInChildren<FixedJoystick>();
 
-        playerSprite = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter")/*.Find("PlayerSprite")*/;
+        playerSprite = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter");
     }
 
     private void FixedUpdate()

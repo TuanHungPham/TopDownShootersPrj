@@ -10,6 +10,7 @@ public class PlayerCtrl : MonoBehaviour
     public PlayerAimingSystem aimingSystem;
     public PlayerShootingSystem shootingSystem;
     public Status playerStatus;
+    public AmmoSystem ammoSystem;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class PlayerCtrl : MonoBehaviour
         playerMovement = GetComponentInChildren<PlayerMovement>();
         playerWeapon = GetComponentInChildren<PlayerWeapon>();
         shootingSystem = GetComponentInChildren<PlayerShootingSystem>();
+        ammoSystem = GetComponentInChildren<AmmoSystem>();
         aimingSystem = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetComponent<PlayerAimingSystem>();
     }
 }
