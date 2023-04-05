@@ -13,8 +13,8 @@ public class RespawnManager : MonoBehaviour
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private Transform player;
-    [SerializeField] private Vector3 deadPosition;
-    [SerializeField] private GameObject respawnBorad;
+    [SerializeField] private GameObject respawnBoard;
+    [SerializeField] private Transform enemySpawner;
     [SerializeField] private bool canRespawn;
     [SerializeField] private bool isRespawned;
     #endregion
@@ -31,11 +31,12 @@ public class RespawnManager : MonoBehaviour
 
     private void LoadComponents()
     {
-        respawnBorad = GameObject.Find("Canvas").transform.Find("RespawnBoard").gameObject;
+        respawnBoard = GameObject.Find("Canvas").transform.Find("RespawnBoard").gameObject;
         playerCtrl = GameObject.Find("------ PLAYER ------").transform.GetChild(0).GetComponent<PlayerCtrl>();
         player = GameObject.Find("------ PLAYER ------").transform.GetChild(0);
+        enemySpawner = GameObject.Find("------ ENEMY ------").transform.Find("EnemySpawner");
 
-        respawnAvailableTimer = 3;
+        respawnAvailableTimer = 4;
     }
 
     private void Update()
@@ -44,50 +45,66 @@ public class RespawnManager : MonoBehaviour
         SetUpRespawnBoard();
     }
 
-    private void PauseTime()
-    {
-        Time.timeScale = 0;
-    }
-
-    private void ResumeTime()
-    {
-        Time.timeScale = 1;
-    }
-
     private void SetUpRespawnBoard()
     {
         if (!canRespawn)
         {
-            respawnBorad.SetActive(false);
+            respawnBoard.SetActive(false);
             return;
         }
 
-        respawnBorad.SetActive(true);
-        PauseTime();
+        respawnBoard.SetActive(true);
     }
 
     public void Respawn()
     {
-        GetDeadPosition();
+        ResetPlayerComponentState();
+        DespawnAllEnemy();
+
+        isRespawned = true;
     }
 
-    private void GetDeadPosition()
+    private void DespawnAllEnemy()
     {
-        if (!playerCtrl.playerStatus.IsDeath) return;
+        foreach (Transform enemy in enemySpawner)
+        {
+            if (!enemy.gameObject.activeSelf) continue;
 
-        deadPosition = player.position;
+            enemy.gameObject.SetActive(false);
+        }
+    }
+
+    private void ResetPlayerComponentState()
+    {
+        playerCtrl.playerStatus.IsDeath = false;
+        playerCtrl.playerStatus.currentHP = playerCtrl.playerStatus.maxHP;
+        playerCtrl.playerMovement.enabled = true;
+        playerCtrl.playerWeapon.enabled = true;
+        playerCtrl.aimingSystem.enabled = true;
+        player.GetComponent<BoxCollider2D>().enabled = true;
+        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        player.Find("PlayerWeapon").gameObject.SetActive(true);
     }
 
     private void RespawnCheck()
     {
-        if (isRespawned || !playerCtrl.playerStatus.IsDeath || respawnAvailableTimer <= 0)
+        if (!playerCtrl.playerStatus.IsDeath)
         {
-            CanRespawn = false;
+            canRespawn = false;
             return;
         }
 
-        CanRespawn = true;
-        RunRespawnButtonTimer();
+        if (isRespawned || respawnAvailableTimer <= 0.1)
+        {
+            canRespawn = false;
+            InGameManager.Instance.GameOverCheck = true;
+        }
+        else
+        {
+            canRespawn = true;
+            InGameManager.Instance.GameOverCheck = false;
+            RunRespawnButtonTimer();
+        }
     }
 
     private void RunRespawnButtonTimer()
