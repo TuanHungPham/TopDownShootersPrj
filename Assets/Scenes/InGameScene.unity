@@ -2635,7 +2635,6 @@ MonoBehaviour:
   respawnAvailableTimer: 4
   playerCtrl: {fileID: 842636826}
   player: {fileID: 842636823}
-  deadPosition: {x: 0, y: 0, z: 0}
   respawnBoard: {fileID: 57810694}
   enemySpawner: {fileID: 1349174432}
   canRespawn: 0
@@ -3549,7 +3548,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160.67499, y: -40.26001}
+  m_AnchoredPosition: {x: 160.67499, y: -40.259995}
   m_SizeDelta: {x: 321.35, y: 80.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &775803860
@@ -4642,7 +4641,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160.67499, y: -141.07404}
+  m_AnchoredPosition: {x: 160.67499, y: -141.07405}
   m_SizeDelta: {x: 321.35, y: 118.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &966344170
@@ -5472,11 +5471,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000026703
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.00000095367
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5698,6 +5697,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1268092008}
   - component: {fileID: 1268092009}
+  - component: {fileID: 1268092010}
   m_Layer: 0
   m_Name: GrenadeTrajectorySystem
   m_TagString: Untagged
@@ -5712,7 +5712,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268092007}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5738,7 +5738,22 @@ MonoBehaviour:
   lastPredictPosition: {x: 0, y: 0, z: 0}
   playerCtrl: {fileID: 842636826}
   joystick: {fileID: 1220085511}
+  grenadeJoystick: {fileID: 1703379078}
   grenadeDmgArea: {fileID: 1384679318}
+  player: {fileID: 842636823}
+--- !u!114 &1268092010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268092007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e20e2e06bd9add848b0c20be151f613e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 842636823}
 --- !u!1 &1286464060
 GameObject:
   m_ObjectHideFlags: 0
@@ -6995,6 +7010,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 605258222}
+  - {fileID: 2137504928}
   m_Father: {fileID: 536840634}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7011,9 +7027,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawnManager: {fileID: 605258221}
+  gameOverManager: {fileID: 2137504929}
   pauseMenu: {fileID: 1439975807}
-  gameOverBoard: {fileID: 721288956}
-  playerCtrl: {fileID: 842636826}
 --- !u!1 &1542084615
 GameObject:
   m_ObjectHideFlags: 0
@@ -7482,7 +7497,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130.53003, y: -110.71002}
+  m_AnchoredPosition: {x: 130.53003, y: -110.71004}
   m_SizeDelta: {x: 228.22, y: 79.49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1582906806
@@ -7878,7 +7893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 714.6, y: -149.56}
+  m_AnchoredPosition: {x: 771, y: -179}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1706252029
@@ -8344,7 +8359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 136.90002, y: -40.005005}
+  m_AnchoredPosition: {x: 136.90002, y: -40.00502}
   m_SizeDelta: {x: 261.06, y: 220.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1836556777
@@ -9596,6 +9611,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125943213}
   m_CullTransparentMesh: 0
+--- !u!1 &2137504927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2137504928}
+  - component: {fileID: 2137504929}
+  m_Layer: 0
+  m_Name: GameOverManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2137504928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137504927}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1537759631}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2137504929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137504927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 876a904d217445b4cb18ef7638507f5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverBoard: {fileID: 721288956}
 --- !u!1 &2137964760
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,42 +36,36 @@ public class RespawnManager : MonoBehaviour
         player = GameObject.Find("------ PLAYER ------").transform.GetChild(0);
         enemySpawner = GameObject.Find("------ ENEMY ------").transform.Find("EnemySpawner");
 
-        respawnAvailableTimer = 4;
+        respawnAvailableTimer = 6.5f;
     }
 
     private void Update()
     {
         RespawnCheck();
-        SetUpRespawnBoard();
+        GetRespawnBoard();
     }
 
-    private void SetUpRespawnBoard()
+    private void SetRespawnBoard()
+    {
+        respawnBoard.SetActive(canRespawn);
+    }
+
+    private void GetRespawnBoard()
     {
         if (!canRespawn)
         {
-            respawnBoard.SetActive(false);
+            SetRespawnBoard();
             return;
         }
 
-        respawnBoard.SetActive(true);
+        Invoke("SetRespawnBoard", 2.6f);
     }
 
     public void Respawn()
     {
         ResetPlayerComponentState();
-        DespawnAllEnemy();
 
         isRespawned = true;
-    }
-
-    private void DespawnAllEnemy()
-    {
-        foreach (Transform enemy in enemySpawner)
-        {
-            if (!enemy.gameObject.activeSelf) continue;
-
-            enemy.gameObject.SetActive(false);
-        }
     }
 
     private void ResetPlayerComponentState()
@@ -97,12 +91,12 @@ public class RespawnManager : MonoBehaviour
         if (isRespawned || respawnAvailableTimer <= 0.1)
         {
             canRespawn = false;
-            InGameManager.Instance.GameOverCheck = true;
+            InGameManager.Instance.gameOverManager.GameOverCheck = true;
         }
         else
         {
             canRespawn = true;
-            InGameManager.Instance.GameOverCheck = false;
+            InGameManager.Instance.gameOverManager.GameOverCheck = false;
             RunRespawnButtonTimer();
         }
     }

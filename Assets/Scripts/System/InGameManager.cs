@@ -10,15 +10,11 @@ public class InGameManager : MonoBehaviour
 
     #region public var
     public RespawnManager respawnManager;
-    public bool GameOverCheck { get => gameOverCheck; set => gameOverCheck = value; }
+    public GameOverManager gameOverManager;
     #endregion
 
     #region private var
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject gameOverBoard;
-    [SerializeField] private PlayerCtrl playerCtrl;
-    private bool gameOverCheck;
-
     #endregion
 
     private void Awake()
@@ -36,17 +32,11 @@ public class InGameManager : MonoBehaviour
     private void LoadComponents()
     {
         pauseMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").gameObject;
-        gameOverBoard = GameObject.Find("Canvas").transform.Find("GameOverBoard").gameObject;
 
-        playerCtrl = GameObject.Find("------ PLAYER ------").transform.GetChild(0).GetComponent<PlayerCtrl>();
         respawnManager = GetComponentInChildren<RespawnManager>();
+        gameOverManager = GetComponentInChildren<GameOverManager>();
 
         pauseMenu.SetActive(false);
-    }
-
-    private void Update()
-    {
-        SetGameOver();
     }
 
     public void SetPauseAndResumeGame()
@@ -63,12 +53,12 @@ public class InGameManager : MonoBehaviour
         SetPauseMenu();
     }
 
-    private void PauseTime()
+    public void PauseTime()
     {
         Time.timeScale = 0;
     }
 
-    private void ResumeTime()
+    public void ResumeTime()
     {
         Time.timeScale = 1;
     }
@@ -83,21 +73,6 @@ public class InGameManager : MonoBehaviour
         {
             pauseMenu.SetActive(true);
         }
-    }
-
-    private void SetGameOver()
-    {
-        if (!GameOverCheck) return;
-
-        Invoke("SetGameOverBoard", 2.6f);
-    }
-
-    private void SetGameOverBoard()
-    {
-        gameOverBoard.SetActive(GameOverCheck);
-
-        if (!GameOverCheck) return;
-        PauseTime();
     }
 
     public void ResetGame()

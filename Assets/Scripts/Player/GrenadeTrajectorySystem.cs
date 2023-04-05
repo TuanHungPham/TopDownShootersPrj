@@ -12,7 +12,10 @@ public class GrenadeTrajectorySystem : MonoBehaviour
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private FixedJoystick joystick;
+    [SerializeField] private RectTransform grenadeJoystick;
     [SerializeField] private Transform grenadeDmgArea;
+    [SerializeField] private Transform player;
+    private Vector2 distance;
     private Vector2 direction;
     #endregion
 
@@ -29,10 +32,12 @@ public class GrenadeTrajectorySystem : MonoBehaviour
     private void LoadComponents()
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
+        player = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter");
         grenadeDmgArea = transform.Find("GrenadeDmgAreaBG");
 
         Transform uiParent = GameObject.Find("------ UI ------").transform.Find("Canvas");
         joystick = uiParent.Find("GrenadeJoystick").GetComponentInChildren<FixedJoystick>();
+        grenadeJoystick = uiParent.Find("GrenadeJoystick").GetComponent<RectTransform>();
 
         maxThrowDistance = 12;
     }
@@ -42,11 +47,17 @@ public class GrenadeTrajectorySystem : MonoBehaviour
         GetGrenadeJoystickDirection();
         PredictGrenadeDmgArea();
         SetUpGrenadeDmgArea();
+        GetDistance();
     }
 
     private void PredictGrenadeDmgArea()
     {
-        grenadeDmgArea.position = Vector2.MoveTowards(grenadeDmgArea.position, direction * maxThrowDistance, 10f);
+        grenadeDmgArea.position = Vector2.MoveTowards(transform.position, direction * maxThrowDistance, 10f);
+    }
+
+    private void GetDistance()
+    {
+        distance = player.position - grenadeDmgArea.position;
     }
 
     private void GetGrenadeJoystickDirection()
