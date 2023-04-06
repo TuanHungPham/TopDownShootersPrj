@@ -49,7 +49,7 @@ public class DamageReceiver : MonoBehaviour
 
             EnemyCtrl enemyCtrl = this.gameObject.GetComponent<EnemyCtrl>();
             enemyCtrl.itemDropSystem.dropPos = this.gameObject.transform;
-            enemyCtrl.itemDropSystem.DropItem();
+            enemyCtrl.itemDropSystem.Invoke("DropItem", 2.6f);
 
             Achievement.Instance.enemiesKilled++;
             EnemyWaveManager.Instance.restOfEnemy--;

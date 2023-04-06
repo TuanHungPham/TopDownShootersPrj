@@ -5,7 +5,8 @@ using UnityEngine;
 public class AmmoSystem : MonoBehaviour
 {
     #region public var
-    public int ammoCapacity;
+    public int ammoAR;
+    public int ammoPistol;
     public bool AmmoLeft { get => ammoLeft; set => ammoLeft = value; }
     #endregion
 
@@ -29,7 +30,7 @@ public class AmmoSystem : MonoBehaviour
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
 
-        ammoCapacity = 200;
+        ammoAR = 200;
     }
 
     private void Update()
@@ -42,12 +43,12 @@ public class AmmoSystem : MonoBehaviour
     {
         if (!playerCtrl.shootingSystem.IsShooting) return;
 
-        ammoCapacity--;
+        ammoAR--;
     }
 
     private void CheckAmmo()
     {
-        if (ammoCapacity <= 0)
+        if (ammoAR <= 0)
         {
             ammoLeft = false;
             return;

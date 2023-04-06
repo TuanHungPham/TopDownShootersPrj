@@ -5,7 +5,9 @@ using UnityEngine;
 public class ItemDropSystem : MonoBehaviour
 {
     #region public var
-    public int itemDropQuantity;
+    public int coinDropQuantity;
+    public float coinDropRate;
+    public float magazineDropRate;
     public Transform dropPos;
     #endregion
 
@@ -30,6 +32,8 @@ public class ItemDropSystem : MonoBehaviour
 
     private void LoadComponents()
     {
+        coinDropRate = 0.8f;
+        magazineDropRate = 0.3f;
     }
 
     private void Update()
@@ -45,31 +49,57 @@ public class ItemDropSystem : MonoBehaviour
 
     private void GetRandomItemDropQuantity()
     {
-        itemDropQuantity = Random.Range(1, 7);
+        coinDropQuantity = Random.Range(1, 7);
     }
 
     public void DropItem()
     {
-        DropCoin();
+        DropItem(coinDropRate, ItemSpawnerCtrl.Instance.coinSpawner, coinDropQuantity);
+        DropItem(magazineDropRate, ItemSpawnerCtrl.Instance.magazineSpawner, 1);
+
+        isDrop = true;
     }
 
     private void DropCoin()
     {
-        if (isDrop)
+        if (isDrop || Random.value > coinDropRate)
         {
             ItemSpawnerCtrl.Instance.coinSpawner.CanDrop = false;
             return;
         }
 
         ItemSpawnerCtrl.Instance.coinSpawner.GetSpawnPos(dropPos);
-        ItemSpawnerCtrl.Instance.coinSpawner.maxObj += itemDropQuantity;
+        ItemSpawnerCtrl.Instance.coinSpawner.maxObj += coinDropQuantity;
         ItemSpawnerCtrl.Instance.coinSpawner.CanDrop = true;
-        Debug.Log("Drop Item");
         isDrop = true;
     }
 
-    private void OnDisable()
+    private void DropMagazine()
     {
-        ItemSpawnerCtrl.Instance.coinSpawner.CanDrop = false;
+        if (isDrop || Random.value > magazineDropRate)
+        {
+            ItemSpawnerCtrl.Instance.magazineSpawner.CanDrop = false;
+            return;
+        }
+
+        ItemSpawnerCtrl.Instance.magazineSpawner.GetSpawnPos(dropPos);
+        ItemSpawnerCtrl.Instance.magazineSpawner.maxObj += 1;
+        ItemSpawnerCtrl.Instance.magazineSpawner.CanDrop = true;
+        isDrop = true;
+    }
+
+    private void DropItem(float dropRate, ItemSpanwer itemSpawner, int itemDropQuantity)
+    {
+        float dropChance = Random.value;
+        Debug.Log(dropChance);
+        if (isDrop || dropChance > dropRate)
+        {
+            itemSpawner.CanDrop = false;
+            return;
+        }
+
+        itemSpawner.GetSpawnPos(dropPos);
+        itemSpawner.maxObj += itemDropQuantity;
+        itemSpawner.CanDrop = true;
     }
 }

@@ -58,7 +58,6 @@ public abstract class Spawner : MonoBehaviour
         }
 
         SetActiveObj();
-        Debug.Log("Spawn " + obj.name);
         obj.transform.position = spawnPos.position;
         obj.transform.rotation = spawnPos.rotation;
         obj.transform.parent = parent;

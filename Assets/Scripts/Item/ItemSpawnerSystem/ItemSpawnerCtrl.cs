@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ItemSpawnerCtrl : MonoBehaviour
 {
-    private static ItemSpawnerCtrl instance; 
+    private static ItemSpawnerCtrl instance;
     public static ItemSpawnerCtrl Instance { get => instance; }
 
-    public CoinSpawner coinSpawner;
+    public ItemSpanwer coinSpawner;
+    public MagazineSpawner magazineSpawner;
 
     private void Awake()
     {
@@ -17,11 +18,12 @@ public class ItemSpawnerCtrl : MonoBehaviour
 
     private void Reset()
     {
-        LoadComponents();   
+        LoadComponents();
     }
 
     private void LoadComponents()
     {
-        coinSpawner = GetComponentInChildren<CoinSpawner>();
+        coinSpawner = GetComponentInChildren<ItemSpanwer>();
+        magazineSpawner = GetComponentInChildren<MagazineSpawner>();
     }
 }

@@ -10,4 +10,9 @@ public class DestroyAfterAnimation : MonoBehaviour
     {
         Destroy(gameObject, this.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length + delay);
     }
+
+    private void OnDisable()
+    {
+        ItemSpawnerCtrl.Instance.coinSpawner.CanDrop = false;
+    }
 }
