@@ -6,11 +6,11 @@ using UnityEngine;
 public class CoinSpawner : Spawner
 {
     #region public var
-    public bool canSpawn { get => _canSpawn; set => _canSpawn = value; }
+    public bool CanDrop { get => canDrop; set => canDrop = value; }
     #endregion
 
     #region private var
-    [SerializeField] private bool _canSpawn;
+    [SerializeField] private bool canDrop;
 
     #endregion
 
@@ -27,15 +27,17 @@ public class CoinSpawner : Spawner
     protected override void LoadComponents()
     {
         listOfObj = transform.root.Find("CoinStorage").GetComponent<ListOfObj>();
-        parent = transform.parent;
+        parent = transform;
     }
 
     private void Update()
     {
-        GetObjFromList();
+        Spawn();
+        UpdateListGameObj();
+        ClearActiveList();
     }
 
-    protected override void Spawn()
+    public override void Spawn()
     {
         base.Spawn();
     }
@@ -67,11 +69,27 @@ public class CoinSpawner : Spawner
 
     protected override void UpdateListGameObj()
     {
-        base.UpdateListGameObj();
+        foreach (Transform child in transform)
+        {
+            if (!child.gameObject.activeSelf && !listOfInactiveObj.Contains(child.gameObject))
+            {
+                listOfInactiveObj.Add(child.gameObject);
+            }
+        }
+    }
+
+    private void ClearActiveList()
+    {
+        if (!EnemyWaveManager.Instance.UpdateWave) return;
+
+        listOfActiveObj.Clear();
+        maxObj = 0;
     }
 
     protected override bool CanSpawn()
     {
-        return _canSpawn;
+        if (canDrop && listOfActiveObj.Count < maxObj) return true;
+
+        return false;
     }
 }

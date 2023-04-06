@@ -38,6 +38,7 @@ public class EnemySpawner : Spawner
         CheckSpawnTime();
         GetSpawnPosition();
         Spawn();
+        SetActiveObj();
         UpdateListGameObj();
     }
 
@@ -46,7 +47,7 @@ public class EnemySpawner : Spawner
         base.GetObjFromList();
     }
 
-    protected override void Spawn()
+    public override void Spawn()
     {
         base.Spawn();
     }
@@ -87,7 +88,23 @@ public class EnemySpawner : Spawner
 
     protected override void UpdateListGameObj()
     {
-        base.UpdateListGameObj();
+        foreach (Transform child in transform)
+        {
+            Status status = child.GetComponent<Status>();
+
+            if (child.gameObject.activeSelf && !listOfActiveObj.Contains(child.gameObject) && !status.IsDeath)
+            {
+                listOfActiveObj.Add(child.gameObject);
+            }
+            else if (listOfActiveObj.Contains(child.gameObject) && status.IsDeath)
+            {
+                listOfActiveObj.Remove(child.gameObject);
+            }
+            else if (!child.gameObject.activeSelf && !listOfInactiveObj.Contains(child.gameObject))
+            {
+                listOfInactiveObj.Add(child.gameObject);
+            }
+        }
     }
 
     private void GetSpawnPosition()

@@ -48,6 +48,7 @@ public class DamageReceiver : MonoBehaviour
             if (!this.gameObject.CompareTag("Enemy")) return;
 
             EnemyCtrl enemyCtrl = this.gameObject.GetComponent<EnemyCtrl>();
+            enemyCtrl.itemDropSystem.dropPos = this.gameObject.transform;
             enemyCtrl.itemDropSystem.DropItem();
 
             Achievement.Instance.enemiesKilled++;

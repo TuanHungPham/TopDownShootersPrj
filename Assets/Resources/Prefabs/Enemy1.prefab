@@ -44,7 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e6983ec252445439aa0ed6bb8cd374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemDropQuantity: 0
   isDrop: 0
+  dropPos: {fileID: 6600201456604779144}
 --- !u!1 &6600201455478772430
 GameObject:
   m_ObjectHideFlags: 0

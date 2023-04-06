@@ -39,7 +39,7 @@ public abstract class Spawner : MonoBehaviour
         gameObj = listOfObj.selectedObj;
     }
 
-    protected virtual void Spawn()
+    public virtual void Spawn()
     {
         if (!CanSpawn()) return;
 
@@ -88,24 +88,5 @@ public abstract class Spawner : MonoBehaviour
 
     protected abstract bool CanSpawn();
 
-    protected virtual void UpdateListGameObj()
-    {
-        foreach (Transform child in transform)
-        {
-            Status status = child.GetComponent<Status>();
-
-            if (child.gameObject.activeSelf && !listOfActiveObj.Contains(child.gameObject) && !status.IsDeath)
-            {
-                listOfActiveObj.Add(child.gameObject);
-            }
-            else if (listOfActiveObj.Contains(child.gameObject) && status.IsDeath)
-            {
-                listOfActiveObj.Remove(child.gameObject);
-            }
-            else if (!child.gameObject.activeSelf && !listOfInactiveObj.Contains(child.gameObject))
-            {
-                listOfInactiveObj.Add(child.gameObject);
-            }
-        }
-    }
+    protected abstract void UpdateListGameObj();
 }

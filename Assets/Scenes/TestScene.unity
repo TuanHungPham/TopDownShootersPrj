@@ -310,7 +310,7 @@ MonoBehaviour:
   listOfObj: {fileID: 1794806417}
   gameObj: {fileID: 0}
   spawnPos: {fileID: 0}
-  parent: {fileID: 567354937}
+  parent: {fileID: 87382814}
   _canSpawn: 0
 --- !u!1 &88451200
 GameObject:
