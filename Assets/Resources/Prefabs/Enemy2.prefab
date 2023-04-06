@@ -207,6 +207,7 @@ Transform:
   - {fileID: 2183353010396319574}
   - {fileID: 1935396094485639087}
   - {fileID: 3089828092715346680}
+  - {fileID: 825963406508099733}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -269,12 +270,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f0e4455674bc541b42dac9333d12a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCtrl: {fileID: 0}
   enemyMovement: {fileID: 1891764000494598936}
   enemyBehaviour: {fileID: 1570215834026631042}
   enemyStatus: {fileID: 250902521381729780}
   enemyCombat: {fileID: 249539560681844404}
   damageReceiver: {fileID: 7924940017224771214}
-  playerCtrl: {fileID: 0}
+  itemDropSystem: {fileID: 0}
   targetExist: 0
 --- !u!114 &7924940017224771214
 MonoBehaviour:
@@ -342,6 +344,51 @@ Transform:
   m_Father: {fileID: 2183353010396319574}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4594920449534382333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 825963406508099733}
+  - component: {fileID: 1028411792751441182}
+  m_Layer: 6
+  m_Name: ItemDropSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &825963406508099733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4594920449534382333}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4691977424040976736}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1028411792751441182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4594920449534382333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e6983ec252445439aa0ed6bb8cd374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCtrl: {fileID: 0}
 --- !u!1 &5311403680024689246
 GameObject:
   m_ObjectHideFlags: 0

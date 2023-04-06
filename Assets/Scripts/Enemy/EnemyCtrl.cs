@@ -5,12 +5,13 @@ using UnityEngine;
 public class EnemyCtrl : MonoBehaviour
 {
     #region public var
+    public PlayerCtrl playerCtrl;
     public EnemyMovement enemyMovement;
     public EnemyBehaviour enemyBehaviour;
     public Status enemyStatus;
     public EnemyCombat enemyCombat;
     public DamageReceiver damageReceiver;
-    public PlayerCtrl playerCtrl;
+    public ItemDropSystem itemDropSystem;
     public bool TargetExist { get => targetExist; set => targetExist = value; }
     #endregion
 
@@ -36,6 +37,7 @@ public class EnemyCtrl : MonoBehaviour
         enemyMovement = GetComponentInChildren<EnemyMovement>();
         enemyBehaviour = GetComponentInChildren<EnemyBehaviour>();
         enemyCombat = GetComponentInChildren<EnemyCombat>();
+        itemDropSystem = GetComponentInChildren<ItemDropSystem>();
         playerCtrl = GameObject.Find("MainCharacter").GetComponent<PlayerCtrl>();
     }
 

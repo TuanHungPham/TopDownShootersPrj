@@ -16,8 +16,8 @@ public abstract class Spawner : MonoBehaviour
     #endregion
 
     #region private var
+    [SerializeField] protected ListOfObj listOfObj;
     [SerializeField] protected GameObject gameObj;
-    [SerializeField] protected SpawnPoint spawnPointScript;
     [SerializeField] protected Transform spawnPos;
     [SerializeField] protected Transform parent;
     #endregion
@@ -34,6 +34,11 @@ public abstract class Spawner : MonoBehaviour
 
     protected abstract void LoadComponents();
 
+    protected virtual void GetObjFromList()
+    {
+        gameObj = listOfObj.selectedObj;
+    }
+
     protected virtual void Spawn()
     {
         if (!CanSpawn()) return;
@@ -47,10 +52,13 @@ public abstract class Spawner : MonoBehaviour
         }
         else
         {
+            GetObjFromList();
             obj = NewGameObj(gameObj);
             listOfActiveObj.Add(obj);
         }
 
+        SetActiveObj();
+        Debug.Log("Spawn " + obj.name);
         obj.transform.position = spawnPos.position;
         obj.transform.rotation = spawnPos.rotation;
         obj.transform.parent = parent;
@@ -58,7 +66,7 @@ public abstract class Spawner : MonoBehaviour
         spawnTimer = spawnDelay;
     }
 
-    protected virtual void SetActiveEnemy()
+    protected virtual void SetActiveObj()
     {
         foreach (var item in listOfActiveObj)
         {

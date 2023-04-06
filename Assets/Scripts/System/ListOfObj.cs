@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListOfEnemy : MonoBehaviour
+public class ListOfObj : MonoBehaviour
 {
     #region public var
-    public GameObject selectedEnemy;
-    public List<GameObject> listOfEnemies = new List<GameObject>();
+    public GameObject selectedObj;
+    public List<GameObject> listOfObj = new List<GameObject>();
     #endregion
 
     #region private var
@@ -36,15 +36,15 @@ public class ListOfEnemy : MonoBehaviour
     {
         foreach (Transform item in transform)
         {
-            if (listOfEnemies.Contains(item.gameObject)) continue;
+            if (listOfObj.Contains(item.gameObject)) continue;
 
-            listOfEnemies.Add(item.gameObject);
+            listOfObj.Add(item.gameObject);
         }
     }
 
     private void GetRandomObjFromList()
     {
-        int index = Random.Range(0, listOfEnemies.Count);
-        selectedEnemy = listOfEnemies[index];
+        int index = Random.Range(0, listOfObj.Count);
+        selectedObj = listOfObj[index];
     }
 }

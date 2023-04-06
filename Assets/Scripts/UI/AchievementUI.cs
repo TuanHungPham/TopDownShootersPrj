@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,6 +10,7 @@ public class AchievementUI : MonoBehaviour
     public TMP_Text enemiesKilledText;
     public TMP_Text survivalTimeText;
     public TMP_Text totalDmgText;
+    public TMP_Text totalMoneyText;
     #endregion
 
     #region private var
@@ -32,6 +34,7 @@ public class AchievementUI : MonoBehaviour
         enemiesKilledText = transform.Find("EnemiesKilledText").GetComponent<TMP_Text>();
         survivalTimeText = transform.Find("SurvivalTimeText").GetComponent<TMP_Text>();
         totalDmgText = transform.Find("TotalDamageText").GetComponent<TMP_Text>();
+        totalMoneyText = transform.Find("TotalMoneyText").GetComponent<TMP_Text>();
     }
 
     private void Update()
@@ -39,6 +42,12 @@ public class AchievementUI : MonoBehaviour
         ShowEnemiesKilledText();
         ShowSurvivalTimeText();
         ShowTotalDamageText();
+        ShowTotalMoneyText();
+    }
+
+    private void ShowTotalMoneyText()
+    {
+        totalMoneyText.text = "Total Money: " + Achievement.Instance.totalMoney.ToString();
     }
 
     private void ShowEnemiesKilledText()

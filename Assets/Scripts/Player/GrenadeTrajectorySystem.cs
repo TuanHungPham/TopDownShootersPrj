@@ -47,17 +47,12 @@ public class GrenadeTrajectorySystem : MonoBehaviour
         GetGrenadeJoystickDirection();
         PredictGrenadeDmgArea();
         SetUpGrenadeDmgArea();
-        GetDistance();
     }
 
     private void PredictGrenadeDmgArea()
     {
-        grenadeDmgArea.position = Vector2.MoveTowards(transform.position, direction * maxThrowDistance, 10f);
-    }
-
-    private void GetDistance()
-    {
-        distance = player.position - grenadeDmgArea.position;
+        Vector3 offset = direction * maxThrowDistance;
+        grenadeDmgArea.position = transform.position + offset;
     }
 
     private void GetGrenadeJoystickDirection()

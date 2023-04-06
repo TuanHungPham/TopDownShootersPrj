@@ -201,6 +201,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &43438089396503067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5192157563432614565}
+  - component: {fileID: 2314808126025917499}
+  m_Layer: 6
+  m_Name: ItemDropSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5192157563432614565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43438089396503067}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.4399996, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8758125936858409214}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2314808126025917499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43438089396503067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8e6983ec252445439aa0ed6bb8cd374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCtrl: {fileID: 0}
 --- !u!1 &1353490740619232863
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,13 +275,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353490740619232863}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.63, y: 4.64, z: -0.05257993}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2799706549822031560}
   - {fileID: 2471831636094182961}
   - {fileID: 1330562997644157798}
+  - {fileID: 5192157563432614565}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -299,12 +345,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2f0e4455674bc541b42dac9333d12a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCtrl: {fileID: 0}
   enemyMovement: {fileID: 2510397171742012038}
   enemyBehaviour: {fileID: 3268728514623313436}
   enemyStatus: {fileID: 4318177141406366826}
   enemyCombat: {fileID: 4314685182512785194}
   damageReceiver: {fileID: 6155672256367046416}
-  playerCtrl: {fileID: 0}
+  itemDropSystem: {fileID: 2314808126025917499}
   targetExist: 0
 --- !u!114 &6155672256367046416
 MonoBehaviour:

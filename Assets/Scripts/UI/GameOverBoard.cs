@@ -45,7 +45,6 @@ public class GameOverBoard : MonoBehaviour
     private void Update()
     {
         ShowAchievement();
-        ShowSurvivalTimeText();
     }
 
     private void ShowAchievement()
@@ -53,6 +52,7 @@ public class GameOverBoard : MonoBehaviour
         enemiesKilledText.text = Achievement.Instance.enemiesKilled.ToString();
         totalDamageText.text = Achievement.Instance.totalDmg.ToString();
         totalMoneyText.text = Achievement.Instance.totalMoney.ToString();
+        ShowSurvivalTimeText();
     }
 
     private void ShowSurvivalTimeText()

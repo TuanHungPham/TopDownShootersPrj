@@ -8,8 +8,8 @@ public class EnemySpawner : Spawner
     #endregion
 
     #region private var
-    [SerializeField] private ListOfEnemy listOfEnemy;
-    private bool isSpawnCooldown;
+    [SerializeField] private SpawnPoint spawnPointScript;
+    [SerializeField] private bool isSpawnCooldown;
     #endregion
 
     protected override void Awake()
@@ -24,7 +24,7 @@ public class EnemySpawner : Spawner
 
     protected override void LoadComponents()
     {
-        listOfEnemy = transform.root.Find("ListOfEnemy").GetComponent<ListOfEnemy>();
+        listOfObj = transform.root.Find("ListOfEnemy").GetComponent<ListOfObj>();
 
         spawnPointScript = GameObject.Find("------ OTHER ------").transform.Find("SpawnPoint").GetComponent<SpawnPoint>();
 
@@ -36,16 +36,14 @@ public class EnemySpawner : Spawner
     protected void Update()
     {
         CheckSpawnTime();
-        GetObjFromEnemyList();
         GetSpawnPosition();
         Spawn();
-        SetActiveEnemy();
         UpdateListGameObj();
     }
 
-    private void GetObjFromEnemyList()
+    protected override void GetObjFromList()
     {
-        gameObj = listOfEnemy.selectedEnemy;
+        base.GetObjFromList();
     }
 
     protected override void Spawn()
@@ -53,9 +51,9 @@ public class EnemySpawner : Spawner
         base.Spawn();
     }
 
-    protected override void SetActiveEnemy()
+    protected override void SetActiveObj()
     {
-        base.SetActiveEnemy();
+        base.SetActiveObj();
     }
 
     protected override GameObject NewGameObj(GameObject obj)

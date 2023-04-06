@@ -18,7 +18,7 @@ public class EnemyWaveManager : MonoBehaviour
     #region private var
     [SerializeField] private int addEnemyNumber;
     [SerializeField] private int addEnemyHP;
-    [SerializeField] private ListOfEnemy listOfEnemy;
+    [SerializeField] private ListOfObj listOfEnemy;
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private bool isEndWave;
     [SerializeField] private bool updateWave;
@@ -37,11 +37,11 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void LoadComponents()
     {
-        listOfEnemy = transform.root.Find("ListOfEnemy").GetComponent<ListOfEnemy>();
+        listOfEnemy = transform.root.Find("ListOfEnemy").GetComponent<ListOfObj>();
         enemySpawner = transform.root.Find("EnemySpawner").GetComponent<EnemySpawner>();
 
         waveNumber = 1;
-        numberOfEnemy = 10;
+        //numberOfEnemy = 10;
         nextWaveTimer = 15;
         addEnemyNumber = 5;
         addEnemyHP = 25;
@@ -73,7 +73,7 @@ public class EnemyWaveManager : MonoBehaviour
             if (nextWaveTimer > 0) return;
 
             AddEnemyNumber();
-            AddEnemyHP(listOfEnemy.listOfEnemies);
+            AddEnemyHP(listOfEnemy.listOfObj);
             AddEnemyHP(enemySpawner.listOfInactiveObj);
             waveNumber++;
             UpdateWave = false;
