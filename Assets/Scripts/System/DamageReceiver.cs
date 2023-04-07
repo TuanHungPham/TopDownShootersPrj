@@ -14,7 +14,6 @@ public class DamageReceiver : MonoBehaviour
     [SerializeField] private bool isHit;
     [SerializeField] private GameObject deadVFX;
     [SerializeField] private string stateName;
-    [SerializeField] private Transform deadPos;
     #endregion
 
     private void Awake()

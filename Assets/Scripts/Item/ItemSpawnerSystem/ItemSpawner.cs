@@ -10,6 +10,7 @@ public class ItemSpanwer : Spawner
 
     #region private var
     [SerializeField] protected bool canDrop;
+    [SerializeField] private Vector3 checkPos;
     #endregion
 
     protected override void Awake()
@@ -29,7 +30,6 @@ public class ItemSpanwer : Spawner
 
     private void Update()
     {
-        SetRandomDropPos();
         Spawn();
         UpdateListGameObj();
         ClearActiveList();
@@ -37,16 +37,18 @@ public class ItemSpanwer : Spawner
 
     public override void Spawn()
     {
+        SetRandomDropPos();
         base.Spawn();
     }
 
-    private void SetRandomDropPos()
+    public void SetRandomDropPos()
     {
-        if (spawnPos == null) return;
+        if (!CanSpawn()) return;
 
         Vector3 randomPos = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
-        this.spawnPos.position = this.spawnPos.position + randomPos;
+        spawnPos.position = spawnPos.position + randomPos;
+        checkPos = spawnPos.position;
     }
 
     public virtual void SetSpawnPos(Transform position)

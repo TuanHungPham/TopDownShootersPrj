@@ -69,9 +69,4 @@ public class ItemDropSystem : MonoBehaviour
         itemSpawner.maxObj += itemDropQuantity;
         itemSpawner.CanDrop = true;
     }
-
-    private void OnDisable()
-    {
-        dropPos = null;
-    }
 }

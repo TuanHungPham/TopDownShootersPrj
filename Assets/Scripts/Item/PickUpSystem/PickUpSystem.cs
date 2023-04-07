@@ -28,7 +28,6 @@ public abstract class PickUpSystem : MonoBehaviour
 
         AddItemToPlayerInventory();
         gameObject.SetActive(false);
-        Debug.Log("Da nhat item " + gameObject.name);
     }
 
     protected abstract void AddItemToPlayerInventory();

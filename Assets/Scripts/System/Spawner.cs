@@ -57,10 +57,11 @@ public abstract class Spawner : MonoBehaviour
             listOfActiveObj.Add(obj);
         }
 
-        SetActiveObj();
         obj.transform.position = spawnPos.position;
         obj.transform.rotation = spawnPos.rotation;
         obj.transform.parent = parent;
+        obj.SetActive(true);
+        // SetActiveObj();
 
         spawnTimer = spawnDelay;
     }
