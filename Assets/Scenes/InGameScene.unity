@@ -1548,9 +1548,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfWeaponHolderUI: []
+  playerCtrl: {fileID: 0}
   primaryHolder: {fileID: 3919953723260247448, guid: 1dca4b62fecec6e4aa08e533bc9a4dbf, type: 3}
   secondaryHolder: {fileID: 3223116324602374456, guid: cb223ead9464f0e4dbc10ee894d9f7be, type: 3}
   meleeHolder: {fileID: 3816490295398528926, guid: efb9d8ae4f213bf4097cf277224ac7a0, type: 3}
+  primaryHolderUI: {fileID: 0}
+  secondaryHolderUI: {fileID: 0}
+  meleeHolderUI: {fileID: 0}
 --- !u!1 &291189677
 GameObject:
   m_ObjectHideFlags: 0
@@ -2103,7 +2107,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.33935562, g: 0.4335606, b: 0.5849056, a: 1}
+  m_BackGroundColor: {r: 0.11294055, g: 0.26642182, b: 0.509434, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5178,6 +5182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinSpawner: {fileID: 1752451550}
   magazineSpawner: {fileID: 1501067943}
+  weaponSpawner: {fileID: 0}
 --- !u!1001 &1220085506
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9843,6 +9848,34 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7688660050270796694, guid: a6775d192307998469d062f7ca33d291, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688660050764991194, guid: a6775d192307998469d062f7ca33d291, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688660050764991194, guid: a6775d192307998469d062f7ca33d291, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688660050764991194, guid: a6775d192307998469d062f7ca33d291, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688660050764991194, guid: a6775d192307998469d062f7ca33d291, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688660050764991194, guid: a6775d192307998469d062f7ca33d291, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688660050764991194, guid: a6775d192307998469d062f7ca33d291, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688660050764991194, guid: a6775d192307998469d062f7ca33d291, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
