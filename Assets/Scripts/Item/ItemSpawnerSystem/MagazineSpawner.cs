@@ -20,9 +20,9 @@ public class MagazineSpawner : ItemSpanwer
         listOfObj = transform.root.Find("MagazineStorage").GetComponent<ListOfObj>();
     }
 
-    public override void GetSpawnPos(Transform position)
+    public override void SetSpawnPos(Transform position)
     {
-        base.GetSpawnPos(position);
+        base.SetSpawnPos(position);
     }
 
     public override void Spawn()

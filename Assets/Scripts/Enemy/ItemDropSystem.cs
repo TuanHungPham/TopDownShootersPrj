@@ -41,12 +41,6 @@ public class ItemDropSystem : MonoBehaviour
         GetRandomItemDropQuantity();
     }
 
-    private void GetRandomDropPosition()
-    {
-        Vector3 randomPosAround = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-        dropPos.position = transform.parent.position + randomPosAround;
-    }
-
     private void GetRandomItemDropQuantity()
     {
         coinDropQuantity = Random.Range(1, 7);
@@ -60,46 +54,24 @@ public class ItemDropSystem : MonoBehaviour
         isDrop = true;
     }
 
-    private void DropCoin()
-    {
-        if (isDrop || Random.value > coinDropRate)
-        {
-            ItemSpawnerCtrl.Instance.coinSpawner.CanDrop = false;
-            return;
-        }
-
-        ItemSpawnerCtrl.Instance.coinSpawner.GetSpawnPos(dropPos);
-        ItemSpawnerCtrl.Instance.coinSpawner.maxObj += coinDropQuantity;
-        ItemSpawnerCtrl.Instance.coinSpawner.CanDrop = true;
-        isDrop = true;
-    }
-
-    private void DropMagazine()
-    {
-        if (isDrop || Random.value > magazineDropRate)
-        {
-            ItemSpawnerCtrl.Instance.magazineSpawner.CanDrop = false;
-            return;
-        }
-
-        ItemSpawnerCtrl.Instance.magazineSpawner.GetSpawnPos(dropPos);
-        ItemSpawnerCtrl.Instance.magazineSpawner.maxObj += 1;
-        ItemSpawnerCtrl.Instance.magazineSpawner.CanDrop = true;
-        isDrop = true;
-    }
-
     private void DropItem(float dropRate, ItemSpanwer itemSpawner, int itemDropQuantity)
     {
+        dropPos = transform.parent;
+
         float dropChance = Random.value;
-        Debug.Log(dropChance);
         if (isDrop || dropChance > dropRate)
         {
             itemSpawner.CanDrop = false;
             return;
         }
 
-        itemSpawner.GetSpawnPos(dropPos);
+        itemSpawner.SetSpawnPos(dropPos);
         itemSpawner.maxObj += itemDropQuantity;
         itemSpawner.CanDrop = true;
+    }
+
+    private void OnDisable()
+    {
+        dropPos = null;
     }
 }

@@ -69,6 +69,8 @@ public abstract class Spawner : MonoBehaviour
     {
         foreach (var item in listOfActiveObj)
         {
+            if (item.activeSelf) continue;
+
             item.SetActive(true);
         }
     }

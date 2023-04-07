@@ -30,7 +30,7 @@ public class GameOverBoard : MonoBehaviour
 
     private void Reset()
     {
-        LoadComponents();   
+        LoadComponents();
     }
 
     private void LoadComponents()

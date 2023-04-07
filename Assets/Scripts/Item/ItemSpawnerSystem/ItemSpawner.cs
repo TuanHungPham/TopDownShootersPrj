@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +10,6 @@ public class ItemSpanwer : Spawner
 
     #region private var
     [SerializeField] protected bool canDrop;
-
     #endregion
 
     protected override void Awake()
@@ -31,6 +29,7 @@ public class ItemSpanwer : Spawner
 
     private void Update()
     {
+        SetRandomDropPos();
         Spawn();
         UpdateListGameObj();
         ClearActiveList();
@@ -41,7 +40,16 @@ public class ItemSpanwer : Spawner
         base.Spawn();
     }
 
-    public virtual void GetSpawnPos(Transform position)
+    private void SetRandomDropPos()
+    {
+        if (spawnPos == null) return;
+
+        Vector3 randomPos = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+
+        this.spawnPos.position = this.spawnPos.position + randomPos;
+    }
+
+    public virtual void SetSpawnPos(Transform position)
     {
         spawnPos = position;
     }
