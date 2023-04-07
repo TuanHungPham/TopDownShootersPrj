@@ -24,7 +24,7 @@ public class MagazinePickUp : PickUpSystem
 
     protected override void AddItemToPlayerInventory()
     {
-        playerCtrl.ammoSystem.ammoAR += bulletQuantity;
+        playerCtrl.ammoSystem.currentWeaponAmmo += bulletQuantity;
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

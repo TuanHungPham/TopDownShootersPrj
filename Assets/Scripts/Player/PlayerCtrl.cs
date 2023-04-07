@@ -9,6 +9,7 @@ public class PlayerCtrl : MonoBehaviour
     public PlayerWeapon playerWeapon;
     public PlayerAimingSystem aimingSystem;
     public PlayerShootingSystem shootingSystem;
+    public PlayerWeaponInventory playerWeaponInventory;
     public Status playerStatus;
     public AmmoSystem ammoSystem;
 
@@ -28,6 +29,7 @@ public class PlayerCtrl : MonoBehaviour
         playerMovement = GetComponentInChildren<PlayerMovement>();
         playerWeapon = GetComponentInChildren<PlayerWeapon>();
         shootingSystem = GetComponentInChildren<PlayerShootingSystem>();
+        playerWeaponInventory = GetComponentInChildren<PlayerWeaponInventory>();
         ammoSystem = GetComponentInChildren<AmmoSystem>();
         aimingSystem = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetComponent<PlayerAimingSystem>();
     }

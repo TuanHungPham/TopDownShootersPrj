@@ -81,4 +81,14 @@ public class PlayerWeapon : MonoBehaviour
             return;
         }
     }
+
+    private void StoreAllWeapons()
+    {
+        foreach (Transform child in transform)
+        {
+            if (!child.gameObject.activeSelf) continue;
+
+            child.gameObject.SetActive(false);
+        }
+    }
 }

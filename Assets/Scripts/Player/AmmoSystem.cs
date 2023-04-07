@@ -5,15 +5,14 @@ using UnityEngine;
 public class AmmoSystem : MonoBehaviour
 {
     #region public var
-    public int ammoAR;
-    public int ammoPistol;
+    public int currentWeaponAmmo;
     public bool AmmoLeft { get => ammoLeft; set => ammoLeft = value; }
     #endregion
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private bool ammoLeft;
-
+    [SerializeField] private int previousWeaponAmmo;
     #endregion
 
     private void Awake()
@@ -30,7 +29,7 @@ public class AmmoSystem : MonoBehaviour
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
 
-        ammoAR = 200;
+        currentWeaponAmmo = 200;
     }
 
     private void Update()
@@ -43,12 +42,12 @@ public class AmmoSystem : MonoBehaviour
     {
         if (!playerCtrl.shootingSystem.IsShooting) return;
 
-        ammoAR--;
+        currentWeaponAmmo--;
     }
 
     private void CheckAmmo()
     {
-        if (ammoAR <= 0)
+        if (currentWeaponAmmo <= 0)
         {
             ammoLeft = false;
             return;

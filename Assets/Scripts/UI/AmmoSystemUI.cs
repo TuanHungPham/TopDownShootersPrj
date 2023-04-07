@@ -36,6 +36,6 @@ public class AmmoSystemUI : MonoBehaviour
 
     private void ShowAmmo()
     {
-        ammoCapacityText.text = playerCtrl.ammoSystem.ammoAR.ToString();
+        ammoCapacityText.text = playerCtrl.ammoSystem.currentWeaponAmmo.ToString();
     }
 }

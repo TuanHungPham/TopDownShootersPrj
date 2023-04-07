@@ -9,6 +9,7 @@ public class ItemSpawnerCtrl : MonoBehaviour
 
     public ItemSpanwer coinSpawner;
     public MagazineSpawner magazineSpawner;
+    public WeaponSpawner weaponSpawner;
 
     private void Awake()
     {
@@ -25,5 +26,6 @@ public class ItemSpawnerCtrl : MonoBehaviour
     {
         coinSpawner = GetComponentInChildren<ItemSpanwer>();
         magazineSpawner = GetComponentInChildren<MagazineSpawner>();
+        weaponSpawner = GetComponentInChildren<WeaponSpawner>();
     }
 }

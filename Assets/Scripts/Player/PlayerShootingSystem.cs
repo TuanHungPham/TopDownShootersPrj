@@ -21,12 +21,13 @@ public class PlayerShootingSystem : MonoBehaviour
     [SerializeField] private GameObject muzzleFlash;
     [Space]
     [SerializeField] private PlayerCtrl playerCtrl;
+    [SerializeField] private Weapon weapon;
     [Space]
     [SerializeField] private LayerMask enemyLayer;
     [Space]
     [SerializeField] private bool isShooting;
     [SerializeField] private bool cooldown;
-    private Vector2 direction;
+    private Vector3 direction;
 
     #endregion
 
@@ -43,13 +44,16 @@ public class PlayerShootingSystem : MonoBehaviour
     private void LoadComponents()
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
+        weapon = GetComponentInChildren<Weapon>();
         crosshair = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetChild(0);
         enemyLayer = LayerMask.GetMask("Enemy");
         shootingPoint = transform.GetChild(0).Find("ShootingPoint");
         muzzleFlash = transform.GetChild(0).Find("Muzzle").gameObject;
         bulletTrail = Resources.Load<GameObject>("Prefabs/BulletTrail");
 
-        shootDistance = 7;
+        shootDistance = weapon.weaponData.ShootDistance;
+        shootingDelay = 1 / weapon.weaponData.FireRate;
+        dmg = weapon.weaponData.WeaponDmg;
         shootingTimer = 0;
     }
 
@@ -57,7 +61,7 @@ public class PlayerShootingSystem : MonoBehaviour
     {
         CheckCooldown();
         GetShootDirection();
-        GetShootDistance();
+        // GetShootDistance();
         Shoot();
         GetShootingVFX();
     }
@@ -66,6 +70,7 @@ public class PlayerShootingSystem : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(shootingPoint.position, direction, shootDistance, enemyLayer);
         Debug.DrawRay(shootingPoint.position, direction * shootDistance, Color.red);
+        SetCrosshairPosition();
 
         if (hit.collider == null || !CanShoot())
         {
@@ -87,15 +92,15 @@ public class PlayerShootingSystem : MonoBehaviour
         shootingTimer = shootingDelay;
     }
 
+    private void SetCrosshairPosition()
+    {
+        crosshair.position = shootingPoint.position + direction * shootDistance;
+    }
+
     private void GetShootDirection()
     {
         direction = crosshair.position - shootingPoint.position;
         direction.Normalize();
-    }
-
-    private void GetShootDistance()
-    {
-        shootDistance = Vector2.Distance(crosshair.position, shootingPoint.position);
     }
 
     private void GetShootingVFX()
