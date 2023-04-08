@@ -13,7 +13,7 @@ public class WeaponData : ScriptableObject
     [SerializeField] private float fireRate;
 
     public int Id { get => id; set => id = GetInstanceID(); }
-    public string Name { get => weaponName; set => weaponName = value; }
+    public string WeaponName { get => weaponName; set => weaponName = value; }
     public Sprite WeaponSprite { get => weaponSprite; set => weaponSprite = value; }
     public int WeaponDmg { get => weaponDmg; set => weaponDmg = value; }
     public float FireRate { get => fireRate; set => fireRate = value; }

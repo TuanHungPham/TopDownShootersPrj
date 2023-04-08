@@ -12,13 +12,14 @@ public class PlayerShootingSystem : MonoBehaviour
     public int dmg;
     [Space]
     public Transform crosshair;
+    public Transform shootingPoint;
+    public GameObject muzzleFlash;
     public bool IsShooting { get => isShooting; set => isShooting = value; }
     #endregion
 
     #region private var
-    [SerializeField] private Transform shootingPoint;
+
     [SerializeField] private GameObject bulletTrail;
-    [SerializeField] private GameObject muzzleFlash;
     [Space]
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private Weapon weapon;
@@ -47,8 +48,6 @@ public class PlayerShootingSystem : MonoBehaviour
         weapon = transform.GetChild(0).GetComponentInChildren<Weapon>();
         crosshair = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetChild(0);
         enemyLayer = LayerMask.GetMask("Enemy");
-        shootingPoint = transform.Find("Holder").GetChild(0).Find("ShootingPoint");
-        muzzleFlash = transform.Find("Holder").GetChild(0).Find("Muzzle").gameObject;
         bulletTrail = Resources.Load<GameObject>("Prefabs/BulletTrail");
 
         shootDistance = weapon.weaponData.ShootDistance;
@@ -61,7 +60,6 @@ public class PlayerShootingSystem : MonoBehaviour
     {
         CheckCooldown();
         GetShootDirection();
-        // GetShootDistance();
         Shoot();
         GetShootingVFX();
     }

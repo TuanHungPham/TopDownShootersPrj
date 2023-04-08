@@ -8,15 +8,17 @@ using UnityEngine.UI;
 public class WeaponHolderUI : MonoBehaviour, IPointerClickHandler
 {
     #region public var
+    public HolderType holderType;
     public event Action<WeaponHolderUI> OnItemClicked;
-    public bool IsEmpty { get => isEmpty; set => isEmpty = value; }
+    public bool IsEmpty { get => isEmpty; private set => isEmpty = value; }
+    public bool IsSelected { get => isSelected; set => isSelected = value; }
     #endregion
 
     #region private var
     [SerializeField] private Image background;
     [SerializeField] private Image weaponImage;
     [SerializeField] private bool isEmpty;
-
+    [SerializeField] private bool isSelected;
     #endregion
 
     private void Awake()
@@ -59,6 +61,7 @@ public class WeaponHolderUI : MonoBehaviour, IPointerClickHandler
         ColorUtility.TryParseHtmlString("#225926", out color);
 
         background.color = color;
+        IsSelected = true;
     }
 
     public void Deselect()
@@ -67,6 +70,7 @@ public class WeaponHolderUI : MonoBehaviour, IPointerClickHandler
         ColorUtility.TryParseHtmlString("#223B59", out color);
 
         background.color = color;
+        IsSelected = false;
     }
 
     public void OnPointerClick(PointerEventData eventData)

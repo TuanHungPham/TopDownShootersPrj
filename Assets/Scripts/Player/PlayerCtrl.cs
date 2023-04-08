@@ -13,6 +13,17 @@ public class PlayerCtrl : MonoBehaviour
     public Status playerStatus;
     public AmmoSystem ammoSystem;
 
+    private void OnEnable()
+    {
+        playerMovement.enabled = true;
+        playerWeaponSystem.enabled = true;
+        aimingSystem.enabled = true;
+        shootingSystem.enabled = true;
+        playerWeaponInventory.enabled = true;
+        playerStatus.enabled = true;
+        ammoSystem.enabled = true;
+    }
+
     private void Awake()
     {
         LoadComponents();

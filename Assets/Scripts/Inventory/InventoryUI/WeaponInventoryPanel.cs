@@ -7,6 +7,7 @@ public class WeaponInventoryPanel : MonoBehaviour
 {
     #region public var
     public List<WeaponHolderUI> listOfWeaponHolderUI = new List<WeaponHolderUI>();
+    public bool IsWeaponSwitched { get => isWeaponSwitched; set => isWeaponSwitched = value; }
     #endregion
 
     #region private var
@@ -14,9 +15,11 @@ public class WeaponInventoryPanel : MonoBehaviour
     [SerializeField] private GameObject primaryHolder;
     [SerializeField] private GameObject secondaryHolder;
     [SerializeField] private GameObject meleeHolder;
+    [SerializeField] private bool isWeaponSwitched;
     [SerializeField] WeaponHolderUI primaryHolderUI;
     [SerializeField] WeaponHolderUI secondaryHolderUI;
     [SerializeField] WeaponHolderUI meleeHolderUI;
+
     #endregion
 
     private void Awake()
@@ -62,6 +65,8 @@ public class WeaponInventoryPanel : MonoBehaviour
         SetUpHandleMethod(primaryHolderUI);
         SetUpHandleMethod(secondaryHolderUI);
         SetUpHandleMethod(meleeHolderUI);
+
+        primaryHolderUI.IsSelected = true;
     }
 
     private GameObject NewWeaponHolder(GameObject obj)
@@ -84,6 +89,7 @@ public class WeaponInventoryPanel : MonoBehaviour
 
         DeselecteAllItems();
         weaponHolderUI.Select();
+        IsWeaponSwitched = true;
     }
 
     private void DeselecteAllItems()
@@ -96,7 +102,7 @@ public class WeaponInventoryPanel : MonoBehaviour
 
     private void SetData(WeaponHolderUI weaponHolderUI, WeaponType weaponType)
     {
-        WeaponData weapon = playerCtrl.playerWeaponInventory.SearchByWeaponType(weaponType);
+        WeaponData weapon = playerCtrl.playerWeaponInventory.SearchInventoryByWeaponType(weaponType);
         if (weapon == null) return;
 
         weaponHolderUI.SetImage(weapon.WeaponSprite);

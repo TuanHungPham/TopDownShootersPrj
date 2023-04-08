@@ -270,5 +270,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9642b82c96aaf5e4692c71c17d6c41cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  holderType: 2
   background: {fileID: 3816490293558568299}
   weaponImage: {fileID: 3816490295388683343}
+  isEmpty: 0
+  isSelected: 0

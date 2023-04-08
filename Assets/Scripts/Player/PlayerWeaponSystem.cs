@@ -10,6 +10,12 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
+    [SerializeField] private WeaponInventoryPanel weaponInventoryPanel;
+
+    [SerializeField] private Transform weaponStorage;
+    [SerializeField] private Transform primaryWeaponHolder;
+    [SerializeField] private Transform secondaryWeaponHolder;
+    [SerializeField] private Transform meleeWeaponHolder;
     private Quaternion lastRotation;
     #endregion
 
@@ -28,10 +34,16 @@ public class PlayerWeaponSystem : MonoBehaviour
         GetWeaponInHolder();
 
         playerCtrl = GetComponentInParent<PlayerCtrl>();
+        weaponInventoryPanel = GameObject.Find("------ UI ------").transform.GetChild(0).GetComponentInChildren<WeaponInventoryPanel>();
+        weaponStorage = GameObject.Find("------ ITEM ------").transform.Find("WeaponStorage");
+        primaryWeaponHolder = transform.Find("PrimaryWeapon");
+        secondaryWeaponHolder = transform.Find("SecondaryWeapon");
     }
 
     private void Update()
     {
+        GetWeaponFromStorage();
+        SwitchWeapon();
         GetWeaponInHolder();
         FlipWeapon();
         GetWeaponDirection();
@@ -71,13 +83,91 @@ public class PlayerWeaponSystem : MonoBehaviour
         }
     }
 
+    private void GetWeaponFromStorage()
+    {
+        if (!playerCtrl.playerWeaponInventory.IsUpdateInventory) return;
+
+        for (int i = 0; i < playerCtrl.playerWeaponInventory.weaponInventory.Count; i++)
+        {
+            Transform weapon = SearchWeaponInStorage(playerCtrl.playerWeaponInventory.weaponInventory[i]);
+
+            if (weapon == null) continue;
+
+            PutWeaponToHolder(weapon);
+            weapon.localPosition = Vector3.zero;
+            weapon.gameObject.SetActive(true);
+        }
+
+        playerCtrl.playerWeaponInventory.IsUpdateInventory = false;
+    }
+
+    private void PutWeaponToHolder(Transform obj)
+    {
+        Weapon weapon = obj.GetComponent<Weapon>();
+
+        if (weapon.weaponData.WeaponType == WeaponType.PRIMARY_WEAPON)
+        {
+            obj.SetParent(primaryWeaponHolder.GetChild(0));
+        }
+        else if (weapon.weaponData.WeaponType == WeaponType.SECONDARY_WEAPON)
+        {
+            obj.SetParent(secondaryWeaponHolder.GetChild(0));
+        }
+    }
+
+    private Transform SearchWeaponInStorage(WeaponData weaponData)
+    {
+        foreach (Transform item in weaponStorage)
+        {
+            Weapon weapon = item.GetComponent<Weapon>();
+
+            if (!weapon.weaponData.WeaponName.Equals(weaponData.WeaponName)) continue;
+
+            return item;
+        }
+
+        return null;
+    }
+
+    private void SwitchWeapon()
+    {
+        if (!weaponInventoryPanel.IsWeaponSwitched) return;
+
+        foreach (WeaponHolderUI weaponHolderUI in weaponInventoryPanel.listOfWeaponHolderUI)
+        {
+            if (!weaponHolderUI.IsSelected) continue;
+
+            GetHolder(weaponHolderUI);
+            return;
+        }
+    }
+
+    private void GetHolder(WeaponHolderUI weaponHolderUI)
+    {
+        primaryWeaponHolder.gameObject.SetActive(false);
+        secondaryWeaponHolder.gameObject.SetActive(false);
+
+        if (weaponHolderUI.holderType == HolderType.PRIMARY_HOLDER)
+        {
+            primaryWeaponHolder.gameObject.SetActive(true);
+        }
+        else if (weaponHolderUI.holderType == HolderType.SECONDARY_HOLDER)
+        {
+            secondaryWeaponHolder.gameObject.SetActive(true);
+        }
+    }
+
     private void GetWeaponInHolder()
     {
         foreach (Transform child in transform)
         {
             if (!child.gameObject.activeSelf) continue;
 
-            selectedWeapon = child.GetChild(0);
+            selectedWeapon = child.Find("Holder").GetChild(0);
+
+            PlayerShootingSystem playerShootingSystem = child.GetComponent<PlayerShootingSystem>();
+            playerShootingSystem.shootingPoint = selectedWeapon.Find("ShootingPoint");
+            playerShootingSystem.muzzleFlash = selectedWeapon.Find("Muzzle").gameObject;
             return;
         }
     }
