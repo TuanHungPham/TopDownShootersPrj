@@ -10,7 +10,7 @@ public class WeaponHolderUI : MonoBehaviour, IPointerClickHandler
     #region public var
     public HolderType holderType;
     public event Action<WeaponHolderUI> OnItemClicked;
-    public bool IsEmpty { get => isEmpty; private set => isEmpty = value; }
+    public bool IsEmpty { get => isEmpty; set => isEmpty = value; }
     public bool IsSelected { get => isSelected; set => isSelected = value; }
     #endregion
 

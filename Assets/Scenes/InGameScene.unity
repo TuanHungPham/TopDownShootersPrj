@@ -6778,17 +6778,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 842636826}
   ammoCapacityText: {fileID: 1347447831}
---- !u!114 &1527175065 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7762592234997883815, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
-  m_PrefabInstance: {fileID: 3018312047670018142}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93f3987f9f0ccbb4ca6537fbfcdad9a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1537759630
 GameObject:
   m_ObjectHideFlags: 0
@@ -9612,26 +9601,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1189993356}
     m_Modifications:
-    - target: {fileID: 985105787, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
-      propertyPath: weaponData
-      value: 
-      objectReference: {fileID: 11400000, guid: 1a20ccba53708654c818e625e348f2cf, type: 2}
     - target: {fileID: 3018312046746888132, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
       propertyPath: joystick
       value: 
       objectReference: {fileID: 1818175205}
     - target: {fileID: 3018312047551072473, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 1527175065}
-    - target: {fileID: 3018312047551072473, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 1542084616}
-    - target: {fileID: 3018312047551072473, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
-      propertyPath: shootingDelay
-      value: 0.14285715
-      objectReference: {fileID: 0}
     - target: {fileID: 3018312048441220676, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
       propertyPath: aimingSystem
       value: 

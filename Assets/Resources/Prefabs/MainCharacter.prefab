@@ -129,13 +129,11 @@ MonoBehaviour:
   dmg: 7
   crosshair: {fileID: 0}
   shootingPoint: {fileID: 0}
-  bulletTrail: {fileID: 1206378085696735749, guid: a3f6de3a78961af4ba2940a456ef2a7d, type: 3}
   muzzleFlash: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
+  bulletTrail: {fileID: 1206378085696735749, guid: a3f6de3a78961af4ba2940a456ef2a7d, type: 3}
   playerCtrl: {fileID: 3018312048441220676}
   weapon: {fileID: 0}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
   isShooting: 0
   cooldown: 0
 --- !u!1 &1258274170
@@ -264,18 +262,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootDistance: 10
-  shootingDelay: 1
+  shootingDelay: 0.14285715
   shootingTimer: 0
   dmg: 15
   crosshair: {fileID: 0}
   shootingPoint: {fileID: 0}
+  muzzleFlash: {fileID: 4780982578158285958}
+  direction: {x: 0, y: 0, z: 0}
   bulletTrail: {fileID: 1206378085696735749, guid: a3f6de3a78961af4ba2940a456ef2a7d, type: 3}
-  muzzleFlash: {fileID: 0}
   playerCtrl: {fileID: 3018312048441220676}
-  weapon: {fileID: 0}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  weapon: {fileID: 7762592234997883815}
   isShooting: 0
   cooldown: 0
 --- !u!1 &3018312047909351435
@@ -341,12 +337,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b0dbc652d7f544cb0462646b566dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedWeapon: {fileID: 1258274171}
+  selectedWeapon: {fileID: 4780982576338277809}
+  shootDistance: 0
   playerCtrl: {fileID: 3018312048441220676}
+  playerShootingSystem: {fileID: 3018312047551072473}
+  weaponInventoryPanel: {fileID: 0}
   weaponStorage: {fileID: 0}
-  primaryWeaponHolder: {fileID: 1258274171}
-  secondaryWeaponHolder: {fileID: 819012061}
+  primaryWeaponHolder: {fileID: 3018312047551072472}
+  secondaryWeaponHolder: {fileID: 847705832}
   meleeWeaponHolder: {fileID: 0}
+  shootingPoint: {fileID: 4780982576481792233}
+  crosshair: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &3018312048003826603
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,3 +677,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4780982576999569581, guid: 509ca7bb3e238da4b8c67e16b044333f, type: 3}
   m_PrefabInstance: {fileID: 949849372}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &4780982576481792233 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4780982576877338101, guid: 509ca7bb3e238da4b8c67e16b044333f, type: 3}
+  m_PrefabInstance: {fileID: 949849372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4780982578158285958 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4780982577226398106, guid: 509ca7bb3e238da4b8c67e16b044333f, type: 3}
+  m_PrefabInstance: {fileID: 949849372}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7762592234997883815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7762592234068553403, guid: 509ca7bb3e238da4b8c67e16b044333f, type: 3}
+  m_PrefabInstance: {fileID: 949849372}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93f3987f9f0ccbb4ca6537fbfcdad9a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

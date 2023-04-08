@@ -2553,7 +2553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e20e2e06bd9add848b0c20be151f613e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1310102491}
 --- !u!1 &821561292
 GameObject:
   m_ObjectHideFlags: 0
@@ -3785,11 +3785,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1189993356}
     m_Modifications:
-    - target: {fileID: 847705831, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 847705833, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
+      propertyPath: crosshair
+      value: 
+      objectReference: {fileID: 1542084616}
+    - target: {fileID: 1461908857, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 1542084616}
@@ -3797,14 +3797,14 @@ PrefabInstance:
       propertyPath: weaponStorage
       value: 
       objectReference: {fileID: 1065677640}
+    - target: {fileID: 1461908857, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
+      propertyPath: weaponInventoryPanel
+      value: 
+      objectReference: {fileID: 102976322}
     - target: {fileID: 3018312047551072473, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 1542084616}
-    - target: {fileID: 3018312047551072475, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3018312048441220676, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
       propertyPath: aimingSystem
       value: 

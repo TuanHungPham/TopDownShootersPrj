@@ -10,26 +10,18 @@ public class PlayerShootingSystem : MonoBehaviour
     public float shootingDelay;
     public float shootingTimer;
     public int dmg;
-    [Space]
-    public Transform crosshair;
-    public Transform shootingPoint;
     public GameObject muzzleFlash;
     public bool IsShooting { get => isShooting; set => isShooting = value; }
     #endregion
 
     #region private var
-
     [SerializeField] private GameObject bulletTrail;
     [Space]
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private Weapon weapon;
     [Space]
-    [SerializeField] private LayerMask enemyLayer;
-    [Space]
     [SerializeField] private bool isShooting;
     [SerializeField] private bool cooldown;
-    private Vector3 direction;
-
     #endregion
 
     private void Awake()
@@ -46,8 +38,6 @@ public class PlayerShootingSystem : MonoBehaviour
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
         weapon = transform.GetChild(0).GetComponentInChildren<Weapon>();
-        crosshair = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetChild(0);
-        enemyLayer = LayerMask.GetMask("Enemy");
         bulletTrail = Resources.Load<GameObject>("Prefabs/BulletTrail");
 
         shootDistance = weapon.weaponData.ShootDistance;
@@ -59,28 +49,23 @@ public class PlayerShootingSystem : MonoBehaviour
     private void Update()
     {
         CheckCooldown();
-        GetShootDirection();
         Shoot();
         GetShootingVFX();
     }
 
     private void Shoot()
     {
-        RaycastHit2D hit = Physics2D.Raycast(shootingPoint.position, direction, shootDistance, enemyLayer);
-        Debug.DrawRay(shootingPoint.position, direction * shootDistance, Color.red);
-        SetCrosshairPosition();
-
-        if (hit.collider == null || !CanShoot())
+        if (playerCtrl.playerWeaponSystem.hit.collider == null || !CanShoot())
         {
             IsShooting = false;
             return;
         }
 
-        GameObject trail = Instantiate(bulletTrail, shootingPoint.position, shootingPoint.rotation);
+        GameObject trail = Instantiate(bulletTrail, playerCtrl.playerWeaponSystem.shootingPoint.position, playerCtrl.playerWeaponSystem.shootingPoint.rotation);
         BulletTrail trailScript = trail.GetComponent<BulletTrail>();
-        trailScript.SetTargetPoint(hit.point);
+        trailScript.SetTargetPoint(playerCtrl.playerWeaponSystem.hit.point);
 
-        DamageReceiver damageReceiver = hit.collider.GetComponent<DamageReceiver>();
+        DamageReceiver damageReceiver = playerCtrl.playerWeaponSystem.hit.collider.GetComponent<DamageReceiver>();
         if (damageReceiver == null) return;
         damageReceiver.ReceiveDamage(dmg);
 
@@ -88,17 +73,6 @@ public class PlayerShootingSystem : MonoBehaviour
 
         IsShooting = true;
         shootingTimer = shootingDelay;
-    }
-
-    private void SetCrosshairPosition()
-    {
-        crosshair.position = shootingPoint.position + direction * shootDistance;
-    }
-
-    private void GetShootDirection()
-    {
-        direction = crosshair.position - shootingPoint.position;
-        direction.Normalize();
     }
 
     private void GetShootingVFX()

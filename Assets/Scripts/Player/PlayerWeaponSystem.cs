@@ -6,16 +6,24 @@ public class PlayerWeaponSystem : MonoBehaviour
 {
     #region public var
     public Transform selectedWeapon;
+    public Transform shootingPoint;
+    public float shootDistance;
+    public RaycastHit2D hit;
     #endregion
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
+    [SerializeField] private PlayerShootingSystem playerShootingSystem;
     [SerializeField] private WeaponInventoryPanel weaponInventoryPanel;
-
+    [Space]
     [SerializeField] private Transform weaponStorage;
     [SerializeField] private Transform primaryWeaponHolder;
     [SerializeField] private Transform secondaryWeaponHolder;
     [SerializeField] private Transform meleeWeaponHolder;
+    [SerializeField] private Transform crosshair;
+    [Space]
+    [SerializeField] private LayerMask enemyLayer;
+    private Vector3 direction;
     private Quaternion lastRotation;
     #endregion
 
@@ -34,10 +42,14 @@ public class PlayerWeaponSystem : MonoBehaviour
         GetWeaponInHolder();
 
         playerCtrl = GetComponentInParent<PlayerCtrl>();
+
         weaponInventoryPanel = GameObject.Find("------ UI ------").transform.GetChild(0).GetComponentInChildren<WeaponInventoryPanel>();
         weaponStorage = GameObject.Find("------ ITEM ------").transform.Find("WeaponStorage");
+        crosshair = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetChild(0);
         primaryWeaponHolder = transform.Find("PrimaryWeapon");
         secondaryWeaponHolder = transform.Find("SecondaryWeapon");
+
+        enemyLayer = LayerMask.GetMask("Enemy");
     }
 
     private void Update()
@@ -45,8 +57,32 @@ public class PlayerWeaponSystem : MonoBehaviour
         GetWeaponFromStorage();
         SwitchWeapon();
         GetWeaponInHolder();
+
         FlipWeapon();
         GetWeaponDirection();
+
+        GetShootDirection();
+        SetUpAimingLine();
+    }
+
+    private void SetUpAimingLine()
+    {
+        shootDistance = playerShootingSystem.shootDistance;
+
+        hit = Physics2D.Raycast(shootingPoint.position, direction, shootDistance, enemyLayer);
+        Debug.DrawRay(shootingPoint.position, direction * shootDistance, Color.red);
+        SetUpCrosshairPosition();
+    }
+
+    private void GetShootDirection()
+    {
+        direction = crosshair.position - shootingPoint.position;
+        direction.Normalize();
+    }
+
+    private void SetUpCrosshairPosition()
+    {
+        crosshair.position = shootingPoint.position + direction * shootDistance;
     }
 
     private void FlipWeapon()
@@ -67,7 +103,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private void GetWeaponDirection()
     {
-        Vector2 direction = selectedWeapon.position - playerCtrl.shootingSystem.crosshair.position;
+        Vector2 direction = selectedWeapon.position - crosshair.position;
         direction.Normalize();
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -89,7 +125,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
         for (int i = 0; i < playerCtrl.playerWeaponInventory.weaponInventory.Count; i++)
         {
-            Transform weapon = SearchWeaponInStorage(playerCtrl.playerWeaponInventory.weaponInventory[i]);
+            Transform weapon = GetWeaponInStorageByName(playerCtrl.playerWeaponInventory.weaponInventory[i]);
 
             if (weapon == null) continue;
 
@@ -115,7 +151,7 @@ public class PlayerWeaponSystem : MonoBehaviour
         }
     }
 
-    private Transform SearchWeaponInStorage(WeaponData weaponData)
+    private Transform GetWeaponInStorageByName(WeaponData weaponData)
     {
         foreach (Transform item in weaponStorage)
         {
@@ -125,7 +161,6 @@ public class PlayerWeaponSystem : MonoBehaviour
 
             return item;
         }
-
         return null;
     }
 
@@ -164,21 +199,11 @@ public class PlayerWeaponSystem : MonoBehaviour
             if (!child.gameObject.activeSelf) continue;
 
             selectedWeapon = child.Find("Holder").GetChild(0);
+            shootingPoint = selectedWeapon.Find("ShootingPoint");
 
-            PlayerShootingSystem playerShootingSystem = child.GetComponent<PlayerShootingSystem>();
-            playerShootingSystem.shootingPoint = selectedWeapon.Find("ShootingPoint");
+            playerShootingSystem = child.GetComponent<PlayerShootingSystem>();
             playerShootingSystem.muzzleFlash = selectedWeapon.Find("Muzzle").gameObject;
             return;
-        }
-    }
-
-    private void StoreAllWeapons()
-    {
-        foreach (Transform child in transform)
-        {
-            if (!child.gameObject.activeSelf) continue;
-
-            child.gameObject.SetActive(false);
         }
     }
 }

@@ -26,6 +26,7 @@ public class WeaponInventoryPanel : MonoBehaviour
     {
         LoadComponents();
         InitializeWeaponInventory();
+        SetUpInitialInventory();
     }
 
     private void Reset()
@@ -65,8 +66,12 @@ public class WeaponInventoryPanel : MonoBehaviour
         SetUpHandleMethod(primaryHolderUI);
         SetUpHandleMethod(secondaryHolderUI);
         SetUpHandleMethod(meleeHolderUI);
+    }
 
-        primaryHolderUI.IsSelected = true;
+    private void SetUpInitialInventory()
+    {
+        primaryHolderUI.IsEmpty = false;
+        primaryHolderUI.Select();
     }
 
     private GameObject NewWeaponHolder(GameObject obj)
