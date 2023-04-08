@@ -9,12 +9,14 @@ public class WeaponHolderUI : MonoBehaviour, IPointerClickHandler
 {
     #region public var
     public event Action<WeaponHolderUI> OnItemClicked;
+    public bool IsEmpty { get => isEmpty; set => isEmpty = value; }
     #endregion
 
     #region private var
     [SerializeField] private Image background;
     [SerializeField] private Image weaponImage;
     [SerializeField] private bool isEmpty;
+
     #endregion
 
     private void Awake()
@@ -39,19 +41,19 @@ public class WeaponHolderUI : MonoBehaviour, IPointerClickHandler
     {
         weaponImage.gameObject.SetActive(true);
         weaponImage.sprite = image;
-        isEmpty = false;
+        IsEmpty = false;
     }
 
     public void ResetImage()
     {
         weaponImage.gameObject.SetActive(false);
         weaponImage.sprite = null;
-        isEmpty = true;
+        IsEmpty = true;
     }
 
     public void Select()
     {
-        if (isEmpty) return;
+        if (IsEmpty) return;
 
         Color color;
         ColorUtility.TryParseHtmlString("#225926", out color);

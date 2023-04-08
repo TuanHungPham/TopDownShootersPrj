@@ -73,7 +73,7 @@ public class RespawnManager : MonoBehaviour
         playerCtrl.playerStatus.IsDeath = false;
         playerCtrl.playerStatus.currentHP = playerCtrl.playerStatus.maxHP;
         playerCtrl.playerMovement.enabled = true;
-        playerCtrl.playerWeapon.enabled = true;
+        playerCtrl.playerWeaponSystem.enabled = true;
         playerCtrl.aimingSystem.enabled = true;
         player.GetComponent<BoxCollider2D>().enabled = true;
         player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;

@@ -80,8 +80,9 @@ public class WeaponInventoryPanel : MonoBehaviour
 
     private void HandleItemSelection(WeaponHolderUI weaponHolderUI)
     {
-        DeselecteAllItems();
+        if (weaponHolderUI.IsEmpty) return;
 
+        DeselecteAllItems();
         weaponHolderUI.Select();
     }
 

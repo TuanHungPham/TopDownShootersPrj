@@ -44,11 +44,11 @@ public class PlayerShootingSystem : MonoBehaviour
     private void LoadComponents()
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
-        weapon = GetComponentInChildren<Weapon>();
+        weapon = transform.GetChild(0).GetComponentInChildren<Weapon>();
         crosshair = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetChild(0);
         enemyLayer = LayerMask.GetMask("Enemy");
-        shootingPoint = transform.GetChild(0).Find("ShootingPoint");
-        muzzleFlash = transform.GetChild(0).Find("Muzzle").gameObject;
+        shootingPoint = transform.Find("Holder").GetChild(0).Find("ShootingPoint");
+        muzzleFlash = transform.Find("Holder").GetChild(0).Find("Muzzle").gameObject;
         bulletTrail = Resources.Load<GameObject>("Prefabs/BulletTrail");
 
         shootDistance = weapon.weaponData.ShootDistance;

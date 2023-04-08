@@ -248,7 +248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4780982576999569581
 Transform:
   m_ObjectHideFlags: 0
@@ -281,6 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 1a20ccba53708654c818e625e348f2cf, type: 2}
+  weaponSprite: {fileID: 0}
 --- !u!1 &4780982577224103116
 GameObject:
   m_ObjectHideFlags: 0

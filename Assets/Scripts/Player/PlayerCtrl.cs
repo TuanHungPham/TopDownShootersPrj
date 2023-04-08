@@ -6,7 +6,7 @@ public class PlayerCtrl : MonoBehaviour
 {
     [Space]
     public PlayerMovement playerMovement;
-    public PlayerWeapon playerWeapon;
+    public PlayerWeaponSystem playerWeaponSystem;
     public PlayerAimingSystem aimingSystem;
     public PlayerShootingSystem shootingSystem;
     public PlayerWeaponInventory playerWeaponInventory;
@@ -27,7 +27,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         playerStatus = GetComponent<Status>();
         playerMovement = GetComponentInChildren<PlayerMovement>();
-        playerWeapon = GetComponentInChildren<PlayerWeapon>();
+        playerWeaponSystem = GetComponentInChildren<PlayerWeaponSystem>();
         shootingSystem = GetComponentInChildren<PlayerShootingSystem>();
         playerWeaponInventory = GetComponentInChildren<PlayerWeaponInventory>();
         ammoSystem = GetComponentInChildren<AmmoSystem>();

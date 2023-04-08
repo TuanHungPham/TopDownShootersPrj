@@ -47,7 +47,7 @@ public class PlayerStatus : Status
     protected override void DisableComponents()
     {
         playerCtrl.playerMovement.enabled = false;
-        playerCtrl.playerWeapon.enabled = false;
+        playerCtrl.playerWeaponSystem.enabled = false;
         playerCtrl.aimingSystem.enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;

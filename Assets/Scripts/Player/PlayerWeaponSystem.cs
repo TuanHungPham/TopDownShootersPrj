@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWeapon : MonoBehaviour
+public class PlayerWeaponSystem : MonoBehaviour
 {
     #region public var
     public Transform selectedWeapon;
