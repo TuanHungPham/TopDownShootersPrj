@@ -40,6 +40,7 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
     private void Update()
     {
         GetWeaponFromStorage();
+        StoreWeapon();
         SwitchWeapon();
     }
 
@@ -57,8 +58,6 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
             weapon.localPosition = Vector3.zero;
             weapon.gameObject.SetActive(true);
         }
-
-        playerCtrl.playerWeaponInventory.IsUpdateInventory = false;
     }
 
     private void PutWeaponToHolder(Transform obj)
@@ -73,6 +72,39 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
         {
             obj.SetParent(secondaryWeaponHolder);
         }
+    }
+
+    private void StoreWeapon()
+    {
+        if (!playerCtrl.playerWeaponInventory.IsUpdateInventory || playerCtrl.playerWeaponInventory.swappedWeapon == null) return;
+
+        Transform holder = null;
+
+        if (playerCtrl.playerWeaponInventory.swappedWeapon.WeaponType == WeaponType.PRIMARY_WEAPON)
+        {
+            holder = primaryWeaponHolder;
+        }
+        else if (playerCtrl.playerWeaponInventory.swappedWeapon.WeaponType == WeaponType.SECONDARY_WEAPON)
+        {
+            holder = secondaryWeaponHolder;
+        }
+
+        foreach (Transform item in holder)
+        {
+            Weapon weapon = item.GetComponent<Weapon>();
+
+            if (weapon.weaponData != playerCtrl.playerWeaponInventory.swappedWeapon) continue;
+
+            item.gameObject.SetActive(false);
+            PutWeaponToStorage(item);
+        }
+
+        playerCtrl.playerWeaponInventory.IsUpdateInventory = false;
+    }
+
+    private void PutWeaponToStorage(Transform obj)
+    {
+        obj.SetParent(weaponStorage);
     }
 
     private Transform GetWeaponInStorageByName(WeaponData weaponData)

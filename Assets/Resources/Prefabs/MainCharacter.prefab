@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponInventory: []
+  swappedWeapon: {fileID: 0}
   initialWeapon: {fileID: 11400000, guid: 1a20ccba53708654c818e625e348f2cf, type: 2}
   isUpdateInventory: 0
 --- !u!1 &819012060
@@ -123,11 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b6309682aba5b41a84d0e5ecbffeab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootDistance: 5
-  shootingDelay: 0.5
-  shootingTimer: 0
-  dmg: 7
-  muzzleFlash: {fileID: 0}
   bulletTrail: {fileID: 1206378085696735749, guid: a3f6de3a78961af4ba2940a456ef2a7d, type: 3}
   playerCtrl: {fileID: 3018312048441220676}
   weapon: {fileID: 0}
@@ -157,7 +153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258274170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.367, y: -1.108, z: 0}
+  m_LocalPosition: {x: 0.539, y: -1.057, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -258,11 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b6309682aba5b41a84d0e5ecbffeab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootDistance: 10
-  shootingDelay: 0.14285715
-  shootingTimer: 0
-  dmg: 15
-  muzzleFlash: {fileID: 4780982578158285958}
   bulletTrail: {fileID: 1206378085696735749, guid: a3f6de3a78961af4ba2940a456ef2a7d, type: 3}
   playerCtrl: {fileID: 3018312048441220676}
   weapon: {fileID: 7762592234997883815}
@@ -279,6 +270,7 @@ GameObject:
   - component: {fileID: 3018312047909351432}
   - component: {fileID: 3018312047909351430}
   - component: {fileID: 1461908857}
+  - component: {fileID: 585958276}
   m_Layer: 0
   m_Name: PlayerWeapon
   m_TagString: Untagged
@@ -333,18 +325,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedWeapon: {fileID: 4780982576338277809}
   shootingPoint: {fileID: 4780982576481792233}
-  shootDistance: 0
+  crosshair: {fileID: 0}
+  shootDistance: 10
+  shootingTimer: 0
+  shootingDelay: 0.33333334
+  dmg: 15
+  muzzleFlash: {fileID: 4780982578158285958}
   playerShootingSystem: {fileID: 3018312047551072473}
   playerCtrl: {fileID: 3018312048441220676}
-  weaponInventoryPanel: {fileID: 0}
-  weaponStorage: {fileID: 0}
-  primaryWeaponHolder: {fileID: 3018312047551072472}
-  secondaryWeaponHolder: {fileID: 847705832}
-  meleeWeaponHolder: {fileID: 0}
-  crosshair: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &585958276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3018312047909351435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a6ab054a41662a46b8765374adcb2e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCtrl: {fileID: 3018312048441220676}
+  weaponInventoryPanel: {fileID: 0}
+  weaponStorage: {fileID: 0}
+  primaryWeaponHolder: {fileID: 1258274171}
+  secondaryWeaponHolder: {fileID: 819012061}
+  meleeWeaponHolder: {fileID: 0}
 --- !u!1 &3018312048003826603
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,11 +634,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4780982576999569581, guid: 509ca7bb3e238da4b8c67e16b044333f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.059
       objectReference: {fileID: 0}
     - target: {fileID: 4780982576999569581, guid: 509ca7bb3e238da4b8c67e16b044333f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.015
       objectReference: {fileID: 0}
     - target: {fileID: 4780982576999569581, guid: 509ca7bb3e238da4b8c67e16b044333f, type: 3}
       propertyPath: m_LocalPosition.z

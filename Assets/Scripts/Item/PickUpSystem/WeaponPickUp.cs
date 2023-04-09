@@ -34,7 +34,7 @@ public class WeaponPickUp : PickUpSystem
 
     protected override void AddItemToPlayerInventory()
     {
-        playerCtrl.playerWeaponInventory.weaponInventory.Add(weapon.weaponData);
+        playerCtrl.playerWeaponInventory.AddWeaponToInventory(weapon.weaponData);
         playerCtrl.playerWeaponInventory.IsUpdateInventory = true;
     }
 

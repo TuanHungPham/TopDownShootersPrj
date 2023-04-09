@@ -15,6 +15,6 @@ MonoBehaviour:
   weaponName: Sniper
   weaponType: 0
   weaponSprite: {fileID: 21300000, guid: 751a41dcd607b1647ac9927359cb222b, type: 3}
-  weaponDmg: 50
-  shootDistance: 20
-  fireRate: 0.75
+  weaponDmg: 75
+  shootDistance: 15
+  fireRate: 0.25

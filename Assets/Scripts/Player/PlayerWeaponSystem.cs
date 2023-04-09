@@ -8,6 +8,7 @@ public class PlayerWeaponSystem : MonoBehaviour
     [Space]
     public Transform selectedWeapon;
     public Transform shootingPoint;
+    public Transform crosshair;
 
     [Space]
     public float shootDistance;
@@ -24,8 +25,6 @@ public class PlayerWeaponSystem : MonoBehaviour
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
 
-    [Space]
-    [SerializeField] private Transform crosshair;
 
     [Space]
     [SerializeField] private LayerMask enemyLayer;
