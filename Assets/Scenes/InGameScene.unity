@@ -2475,6 +2475,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 567725825}
   m_CullTransparentMesh: 1
+--- !u!1 &585958272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3018312047909351435, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
+  m_PrefabInstance: {fileID: 3018312047670018142}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &585958276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 585958272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a6ab054a41662a46b8765374adcb2e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCtrl: {fileID: 842636826}
+  weaponInventoryPanel: {fileID: 269818287}
+  weaponStorage: {fileID: 2016537048}
+  primaryWeaponHolder: {fileID: 1851511238}
+  secondaryWeaponHolder: {fileID: 1527927172}
+  meleeWeaponHolder: {fileID: 0}
 --- !u!1 &587124279
 GameObject:
   m_ObjectHideFlags: 0
@@ -6778,6 +6801,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 842636826}
   ammoCapacityText: {fileID: 1347447831}
+--- !u!4 &1527927172 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 819012061, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
+  m_PrefabInstance: {fileID: 3018312047670018142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1537759630
 GameObject:
   m_ObjectHideFlags: 0
@@ -8290,6 +8318,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1836556775}
   m_CullTransparentMesh: 1
+--- !u!4 &1851511238 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1258274171, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
+  m_PrefabInstance: {fileID: 3018312047670018142}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1871533149
 GameObject:
   m_ObjectHideFlags: 0
