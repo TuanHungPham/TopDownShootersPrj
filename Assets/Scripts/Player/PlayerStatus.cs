@@ -48,7 +48,7 @@ public class PlayerStatus : Status
     {
         playerCtrl.playerMovement.enabled = false;
         playerCtrl.playerWeaponSystem.enabled = false;
-        playerCtrl.aimingSystem.enabled = false;
+        playerCtrl.playerAimingSystem.enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
         transform.Find("PlayerWeapon").gameObject.SetActive(false);

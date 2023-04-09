@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: asd
+  m_text: 'Enemies Killed:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -3767,7 +3767,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: asd
+  m_text: 'Survival Time:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -4723,7 +4723,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: asd
+  m_text: 'Total Money:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -4932,7 +4932,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: asd
+  m_text: 'Total Damage:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -7614,6 +7614,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1129011881}
+  - {fileID: 2145991713}
   m_Father: {fileID: 1735012839}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8207,17 +8208,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
   m_PrefabInstance: {fileID: 1818175203}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1818175205 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
-  m_PrefabInstance: {fileID: 1818175203}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1819418684 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252285020697096, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
@@ -9594,6 +9584,76 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137964760}
   m_CullTransparentMesh: 1
+--- !u!4 &2145991713 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+  m_PrefabInstance: {fileID: 957296192682330718}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &957296192682330718
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1659786221}
+    m_Modifications:
+    - target: {fileID: 957296193027913341, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: playerCtrl
+      value: 
+      objectReference: {fileID: 842636826}
+    - target: {fileID: 957296193027913342, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_Name
+      value: SniperDrop
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913342, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 957296193027913343, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bfb9e90daabd9414db40076d4e0874a6, type: 3}
 --- !u!1001 &3018312047670018142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9601,16 +9661,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1189993356}
     m_Modifications:
-    - target: {fileID: 3018312046746888132, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
-      propertyPath: joystick
-      value: 
-      objectReference: {fileID: 1818175205}
-    - target: {fileID: 3018312047551072473, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
-      propertyPath: crosshair
-      value: 
-      objectReference: {fileID: 1542084616}
+    - target: {fileID: 847705833, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
+      propertyPath: dmg
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 847705833, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
+      propertyPath: shootDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 847705833, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
+      propertyPath: shootingDelay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3018312048441220676, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
-      propertyPath: aimingSystem
+      propertyPath: playerAimingSystem
       value: 
       objectReference: {fileID: 811394027}
     - target: {fileID: 3018312048441220680, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}

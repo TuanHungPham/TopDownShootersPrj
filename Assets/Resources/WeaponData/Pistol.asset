@@ -17,4 +17,4 @@ MonoBehaviour:
   weaponSprite: {fileID: 21300000, guid: 9dc64f190e1ac3045bf2c30967c391e6, type: 3}
   weaponDmg: 7
   shootDistance: 5
-  fireRate: 2
+  fireRate: 0.9

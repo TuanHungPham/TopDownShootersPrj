@@ -35,13 +35,10 @@ public class AmmoSystem : MonoBehaviour
     private void Update()
     {
         CheckAmmo();
-        ConsumpAmmo();
     }
 
-    private void ConsumpAmmo()
+    public void ConsumpAmmo()
     {
-        if (!playerCtrl.shootingSystem.IsShooting) return;
-
         currentWeaponAmmo--;
     }
 

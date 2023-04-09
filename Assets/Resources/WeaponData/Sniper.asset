@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 121dbc7a2e3d45a42bfdf9657c2ea876, type: 3}
-  m_Name: AK47
+  m_Name: Sniper
   m_EditorClassIdentifier: 
-  weaponName: AK47
+  weaponName: Sniper
   weaponType: 0
-  weaponSprite: {fileID: 21300000, guid: 3892bbb4407058a4bb185cc381d45f36, type: 3}
-  weaponDmg: 15
-  shootDistance: 10
-  fireRate: 3
+  weaponSprite: {fileID: 21300000, guid: 751a41dcd607b1647ac9927359cb222b, type: 3}
+  weaponDmg: 50
+  shootDistance: 20
+  fireRate: 0.75

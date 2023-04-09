@@ -6,11 +6,6 @@ using UnityEngine;
 public class PlayerShootingSystem : MonoBehaviour
 {
     #region public var
-    public float shootDistance;
-    public float shootingDelay;
-    public float shootingTimer;
-    public int dmg;
-    public GameObject muzzleFlash;
     public bool IsShooting { get => isShooting; set => isShooting = value; }
     #endregion
 
@@ -18,7 +13,7 @@ public class PlayerShootingSystem : MonoBehaviour
     [SerializeField] private GameObject bulletTrail;
     [Space]
     [SerializeField] private PlayerCtrl playerCtrl;
-    [SerializeField] private Weapon weapon;
+    [SerializeField] public Weapon weapon;
     [Space]
     [SerializeField] private bool isShooting;
     [SerializeField] private bool cooldown;
@@ -37,13 +32,8 @@ public class PlayerShootingSystem : MonoBehaviour
     private void LoadComponents()
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
-        weapon = transform.GetChild(0).GetComponentInChildren<Weapon>();
-        bulletTrail = Resources.Load<GameObject>("Prefabs/BulletTrail");
 
-        shootDistance = weapon.weaponData.ShootDistance;
-        shootingDelay = 1 / weapon.weaponData.FireRate;
-        dmg = weapon.weaponData.WeaponDmg;
-        shootingTimer = 0;
+        bulletTrail = Resources.Load<GameObject>("Prefabs/BulletTrail");
     }
 
     private void Update()
@@ -67,25 +57,28 @@ public class PlayerShootingSystem : MonoBehaviour
 
         DamageReceiver damageReceiver = playerCtrl.playerWeaponSystem.hit.collider.GetComponent<DamageReceiver>();
         if (damageReceiver == null) return;
-        damageReceiver.ReceiveDamage(dmg);
+        damageReceiver.ReceiveDamage(playerCtrl.playerWeaponSystem.dmg);
 
-        Achievement.Instance.totalDmg += dmg;
+        Achievement.Instance.totalDmg += playerCtrl.playerWeaponSystem.dmg;
 
         IsShooting = true;
-        shootingTimer = shootingDelay;
+        playerCtrl.ammoSystem.ConsumpAmmo();
+        playerCtrl.playerWeaponSystem.shootingTimer = playerCtrl.playerWeaponSystem.shootingDelay;
     }
 
     private void GetShootingVFX()
     {
-        if (!IsShooting) muzzleFlash.SetActive(false);
-        else muzzleFlash.SetActive(true);
+        if (playerCtrl.playerWeaponSystem.muzzleFlash == null) return;
+
+        if (!IsShooting) playerCtrl.playerWeaponSystem.muzzleFlash.SetActive(false);
+        else playerCtrl.playerWeaponSystem.muzzleFlash.SetActive(true);
     }
 
     private void CheckCooldown()
     {
-        if (shootingTimer > 0)
+        if (playerCtrl.playerWeaponSystem.shootingTimer > 0)
         {
-            shootingTimer -= Time.deltaTime;
+            playerCtrl.playerWeaponSystem.shootingTimer -= Time.deltaTime;
             cooldown = true;
             return;
         }

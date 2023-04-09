@@ -5,28 +5,39 @@ using UnityEngine;
 public class PlayerWeaponSystem : MonoBehaviour
 {
     #region public var
+    [Space]
     public Transform selectedWeapon;
     public Transform shootingPoint;
+
+    [Space]
     public float shootDistance;
+    public float shootingTimer;
+    public float shootingDelay;
+    public int dmg;
+    public GameObject muzzleFlash;
+
+    [Space]
+    public PlayerShootingSystem playerShootingSystem;
     public RaycastHit2D hit;
     #endregion
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
-    [SerializeField] private PlayerShootingSystem playerShootingSystem;
     [SerializeField] private WeaponInventoryPanel weaponInventoryPanel;
+
     [Space]
     [SerializeField] private Transform weaponStorage;
     [SerializeField] private Transform primaryWeaponHolder;
     [SerializeField] private Transform secondaryWeaponHolder;
     [SerializeField] private Transform meleeWeaponHolder;
     [SerializeField] private Transform crosshair;
+
     [Space]
     [SerializeField] private LayerMask enemyLayer;
+
     private Vector3 direction;
     private Quaternion lastRotation;
     #endregion
-
     private void Awake()
     {
         LoadComponents();
@@ -46,8 +57,8 @@ public class PlayerWeaponSystem : MonoBehaviour
         weaponInventoryPanel = GameObject.Find("------ UI ------").transform.GetChild(0).GetComponentInChildren<WeaponInventoryPanel>();
         weaponStorage = GameObject.Find("------ ITEM ------").transform.Find("WeaponStorage");
         crosshair = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetChild(0);
-        primaryWeaponHolder = transform.Find("PrimaryWeapon");
-        secondaryWeaponHolder = transform.Find("SecondaryWeapon");
+        primaryWeaponHolder = transform.Find("PrimaryWeapon").Find("Holder");
+        secondaryWeaponHolder = transform.Find("SecondaryWeapon").Find("Holder");
 
         enemyLayer = LayerMask.GetMask("Enemy");
     }
@@ -67,7 +78,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private void SetUpAimingLine()
     {
-        shootDistance = playerShootingSystem.shootDistance;
+        shootDistance = playerShootingSystem.weapon.weaponData.ShootDistance;
 
         hit = Physics2D.Raycast(shootingPoint.position, direction, shootDistance, enemyLayer);
         Debug.DrawRay(shootingPoint.position, direction * shootDistance, Color.red);
@@ -89,11 +100,11 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         Vector2 scale = selectedWeapon.localScale;
 
-        if (playerCtrl.aimingSystem.joystick.Horizontal < 0)
+        if (playerCtrl.playerAimingSystem.joystick.Horizontal < 0)
         {
             scale = new Vector2(-1, -1);
         }
-        else if (playerCtrl.aimingSystem.joystick.Horizontal > 0)
+        else if (playerCtrl.playerAimingSystem.joystick.Horizontal > 0)
         {
             scale = Vector2.one;
         }
@@ -108,7 +119,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        if (playerCtrl.aimingSystem.joystick.Horizontal != 0 && playerCtrl.aimingSystem.joystick.Vertical != 0)
+        if (playerCtrl.playerAimingSystem.joystick.Horizontal != 0 && playerCtrl.playerAimingSystem.joystick.Vertical != 0)
         {
             selectedWeapon.rotation = Quaternion.Euler(0, 0, angle - 180);
             lastRotation = selectedWeapon.rotation;
@@ -143,11 +154,11 @@ public class PlayerWeaponSystem : MonoBehaviour
 
         if (weapon.weaponData.WeaponType == WeaponType.PRIMARY_WEAPON)
         {
-            obj.SetParent(primaryWeaponHolder.GetChild(0));
+            obj.SetParent(primaryWeaponHolder);
         }
         else if (weapon.weaponData.WeaponType == WeaponType.SECONDARY_WEAPON)
         {
-            obj.SetParent(secondaryWeaponHolder.GetChild(0));
+            obj.SetParent(secondaryWeaponHolder);
         }
     }
 
@@ -196,14 +207,24 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (!child.gameObject.activeSelf) continue;
+            if (!child.Find("Holder").gameObject.activeSelf) continue;
 
             selectedWeapon = child.Find("Holder").GetChild(0);
             shootingPoint = selectedWeapon.Find("ShootingPoint");
 
             playerShootingSystem = child.GetComponent<PlayerShootingSystem>();
-            playerShootingSystem.muzzleFlash = selectedWeapon.Find("Muzzle").gameObject;
+            GetWeaponInfo(playerShootingSystem, child);
             return;
         }
+    }
+
+    private void GetWeaponInfo(PlayerShootingSystem playerShootingSystem, Transform transform)
+    {
+        muzzleFlash = selectedWeapon.Find("Muzzle").gameObject;
+
+        playerShootingSystem.weapon = transform.Find("Holder").GetComponentInChildren<Weapon>();
+        shootDistance = playerShootingSystem.weapon.weaponData.ShootDistance;
+        shootingDelay = 1 / playerShootingSystem.weapon.weaponData.FireRate;
+        dmg = playerShootingSystem.weapon.weaponData.WeaponDmg;
     }
 }
