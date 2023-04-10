@@ -12,6 +12,11 @@ public class WeaponPickUp : PickUpSystem
     [SerializeField] private Weapon weapon;
     #endregion
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
+
     protected override void Awake()
     {
         base.Awake();

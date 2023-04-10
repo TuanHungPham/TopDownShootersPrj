@@ -12,6 +12,11 @@ public class MagazinePickUp : PickUpSystem
     [SerializeField] private MagazineData magazineData;
     #endregion
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
+
     protected override void Awake()
     {
         base.Awake();

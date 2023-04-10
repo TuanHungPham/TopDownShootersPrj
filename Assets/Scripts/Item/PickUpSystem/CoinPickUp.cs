@@ -11,6 +11,11 @@ public class CoinPickUp : PickUpSystem
     [SerializeField] private int coinQuantity;
     #endregion
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+    }
+
     protected override void Awake()
     {
         base.Awake();

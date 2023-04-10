@@ -8,8 +8,13 @@ public abstract class PickUpSystem : MonoBehaviour
     #endregion
 
     #region private var
-    [SerializeField] private float existTime = 15f;
+    [SerializeField] protected float existTime = 15f;
     #endregion
+
+    protected virtual void OnEnable()
+    {
+        existTime = 15f;
+    }
 
     protected virtual void Awake()
     {
