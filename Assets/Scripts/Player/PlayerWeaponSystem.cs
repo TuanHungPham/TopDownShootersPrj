@@ -24,14 +24,16 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
-
+    [SerializeField] private UIManager uIManager;
 
     [Space]
     [SerializeField] private LayerMask enemyLayer;
 
     private Vector3 direction;
     private Quaternion lastRotation;
+    private Vector2 lastScale;
     #endregion
+
     private void Awake()
     {
         LoadComponents();
@@ -47,6 +49,7 @@ public class PlayerWeaponSystem : MonoBehaviour
         GetWeaponInHolder();
 
         playerCtrl = GetComponentInParent<PlayerCtrl>();
+        uIManager = GameObject.Find("------ UI ------").GetComponentInChildren<UIManager>();
 
         crosshair = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetChild(0);
 
@@ -86,6 +89,8 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private void FlipWeapon()
     {
+        FlipNewWeapon();
+
         Vector2 scale = selectedWeapon.localScale;
 
         if (playerCtrl.playerAimingSystem.joystick.Horizontal < 0)
@@ -97,7 +102,16 @@ public class PlayerWeaponSystem : MonoBehaviour
             scale = Vector2.one;
         }
 
+        lastScale = scale;
         selectedWeapon.localScale = scale;
+    }
+
+    private void FlipNewWeapon()
+    {
+        if (uIManager.weaponInventoryPanel.IsWeaponSwitched)
+        {
+            selectedWeapon.localScale = lastScale;
+        }
     }
 
     private void GetWeaponDirection()

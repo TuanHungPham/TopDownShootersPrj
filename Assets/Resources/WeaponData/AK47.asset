@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: AK47
   weaponType: 0
   weaponSprite: {fileID: 21300000, guid: 3892bbb4407058a4bb185cc381d45f36, type: 3}
-  weaponDmg: 15
+  weaponDmg: 18
   shootDistance: 10
   fireRate: 3
   ammoType: 0

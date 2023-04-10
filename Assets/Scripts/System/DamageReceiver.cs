@@ -45,12 +45,12 @@ public class DamageReceiver : MonoBehaviour
 
         if (objStatus.currentHP <= 0)
         {
-            Invoke("SetDeadVFX", 2.6f);
+            Invoke("SetDeadVFX", 1.2f);
 
             if (!this.gameObject.CompareTag("Enemy")) return;
 
             EnemyCtrl enemyCtrl = this.gameObject.GetComponent<EnemyCtrl>();
-            enemyCtrl.itemDropSystem.Invoke("DropItem", 2.6f);
+            enemyCtrl.itemDropSystem.Invoke("DropItem", 1.3f);
 
             Achievement.Instance.enemiesKilled++;
             EnemyWaveManager.Instance.restOfEnemy--;

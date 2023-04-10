@@ -48,7 +48,7 @@ public class EnemyStatus : Status
     protected override void Die()
     {
         base.Die();
-        Invoke("DisableGameObject", 2.6f);
+        Invoke("DisableGameObject", 1.2f);
     }
 
     protected override void DisableComponents()

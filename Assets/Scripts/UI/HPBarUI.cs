@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class HPBarUI : MonoBehaviour
 {
     #region public var
+    public Slider hpSlider;
     #endregion
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private TMP_Text hpText;
-    [SerializeField] private Slider hpSlider;
     [SerializeField] private float smoothTime;
     #endregion
 

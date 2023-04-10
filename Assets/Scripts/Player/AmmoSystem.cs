@@ -12,7 +12,7 @@ public class AmmoSystem : MonoBehaviour
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
-    [SerializeField] private WeaponInventoryPanel weaponInventoryPanel;
+    [SerializeField] private UIManager uIManager;
     [SerializeField] private bool ammoLeft;
     [SerializeField] private int rifleAmmo;
     [SerializeField] private int pistolAmmo;
@@ -31,7 +31,7 @@ public class AmmoSystem : MonoBehaviour
     private void LoadComponents()
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
-        weaponInventoryPanel = GameObject.Find("------ UI ------").transform.GetChild(0).GetComponentInChildren<WeaponInventoryPanel>();
+        uIManager = GameObject.Find("------ UI ------").GetComponentInChildren<UIManager>();
 
         rifleAmmo = playerCtrl.playerWeaponSystem.playerShootingSystem.weapon.weaponData.Ammo;
         currentWeaponAmmo = rifleAmmo;
@@ -46,8 +46,8 @@ public class AmmoSystem : MonoBehaviour
 
     private void SwapAmmoType()
     {
-        if (!weaponInventoryPanel.IsWeaponSwitched) return;
-        WeaponHolderUI holderSelected = weaponInventoryPanel.WeaponHolderSelected();
+        if (!uIManager.weaponInventoryPanel.IsWeaponSwitched) return;
+        WeaponHolderUI holderSelected = uIManager.weaponInventoryPanel.WeaponHolderSelected();
 
         if (holderSelected.holderType == HolderType.PRIMARY_HOLDER)
         {
@@ -59,7 +59,7 @@ public class AmmoSystem : MonoBehaviour
         }
 
         RenewAmmoCapacity();
-        weaponInventoryPanel.IsWeaponSwitched = false;
+        uIManager.weaponInventoryPanel.IsWeaponSwitched = false;
     }
 
     public void ConsumpAmmo()

@@ -8,6 +8,7 @@ public class RespawnManager : MonoBehaviour
     #region public var
     public float respawnAvailableTimer;
     public bool CanRespawn { get => canRespawn; set => canRespawn = value; }
+    public bool IsRespawned { get => isRespawned; set => isRespawned = value; }
     #endregion
 
     #region private var
@@ -31,8 +32,9 @@ public class RespawnManager : MonoBehaviour
 
     private void LoadComponents()
     {
-        respawnBoard = GameObject.Find("Canvas").transform.Find("RespawnBoard").gameObject;
         playerCtrl = GameObject.Find("------ PLAYER ------").transform.GetChild(0).GetComponent<PlayerCtrl>();
+
+        respawnBoard = GameObject.Find("Canvas").transform.Find("RespawnBoard").gameObject;
         player = GameObject.Find("------ PLAYER ------").transform.GetChild(0);
         enemySpawner = GameObject.Find("------ ENEMY ------").transform.Find("EnemySpawner");
 
@@ -58,26 +60,21 @@ public class RespawnManager : MonoBehaviour
             return;
         }
 
-        Invoke("SetRespawnBoard", 2.6f);
+        Invoke("SetRespawnBoard", 1.8f);
     }
 
     public void Respawn()
     {
         ResetPlayerComponentState();
 
-        isRespawned = true;
+        IsRespawned = true;
     }
 
     private void ResetPlayerComponentState()
     {
-        playerCtrl.playerStatus.IsDeath = false;
-        playerCtrl.playerStatus.currentHP = playerCtrl.playerStatus.maxHP;
-        playerCtrl.playerMovement.enabled = true;
-        playerCtrl.playerWeaponSystem.enabled = true;
-        playerCtrl.playerAimingSystem.enabled = true;
-        player.GetComponent<BoxCollider2D>().enabled = true;
-        player.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        player.Find("PlayerWeapon").gameObject.SetActive(true);
+        EnableWeapon();
+
+        playerCtrl.EnableComponents();
     }
 
     private void RespawnCheck()
@@ -88,7 +85,7 @@ public class RespawnManager : MonoBehaviour
             return;
         }
 
-        if (isRespawned || respawnAvailableTimer <= 0.1)
+        if (IsRespawned || respawnAvailableTimer <= 0.1)
         {
             canRespawn = false;
             InGameManager.Instance.gameOverManager.GameOverCheck = true;
@@ -104,5 +101,15 @@ public class RespawnManager : MonoBehaviour
     private void RunRespawnButtonTimer()
     {
         respawnAvailableTimer -= Time.deltaTime;
+    }
+
+    private void EnableWeapon()
+    {
+        foreach (Transform item in GameObject.Find("------ PLAYER ------").transform.GetChild(0).Find("PlayerWeapon"))
+        {
+            if (item.gameObject.activeSelf) continue;
+
+            item.gameObject.SetActive(true);
+        }
     }
 }

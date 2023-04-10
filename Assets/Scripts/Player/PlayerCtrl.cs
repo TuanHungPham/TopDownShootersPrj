@@ -9,18 +9,16 @@ public class PlayerCtrl : MonoBehaviour
     public PlayerWeaponSystem playerWeaponSystem;
     public PlayerAimingSystem playerAimingSystem;
     public PlayerWeaponInventory playerWeaponInventory;
+    public PlayerSwapWeaponSystem playerSwapWeaponSystem;
     public Status playerStatus;
     public AmmoSystem ammoSystem;
     public DamageReceiver damageReceiver;
 
+    public UIManager uIManager;
+
     private void OnEnable()
     {
-        playerMovement.enabled = true;
-        playerWeaponSystem.enabled = true;
-        playerAimingSystem.enabled = true;
-        playerWeaponInventory.enabled = true;
-        playerStatus.enabled = true;
-        ammoSystem.enabled = true;
+        EnableComponents();
     }
 
     private void Awake()
@@ -40,7 +38,25 @@ public class PlayerCtrl : MonoBehaviour
         playerMovement = GetComponentInChildren<PlayerMovement>();
         playerWeaponSystem = GetComponentInChildren<PlayerWeaponSystem>();
         playerWeaponInventory = GetComponentInChildren<PlayerWeaponInventory>();
+        playerSwapWeaponSystem = GetComponentInChildren<PlayerSwapWeaponSystem>();
         ammoSystem = GetComponentInChildren<AmmoSystem>();
         playerAimingSystem = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetComponent<PlayerAimingSystem>();
+
+        uIManager = GameObject.Find("------ UI ------").GetComponentInChildren<UIManager>();
+    }
+
+    public void EnableComponents()
+    {
+        playerStatus.IsDeath = false;
+        playerStatus.currentHP = playerStatus.maxHP;
+        playerMovement.enabled = true;
+        playerWeaponSystem.enabled = true;
+        playerAimingSystem.enabled = true;
+        playerWeaponInventory.enabled = true;
+        playerSwapWeaponSystem.enabled = true;
+        GetComponent<BoxCollider2D>().enabled = true;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
+        uIManager.hPBarUI.hpSlider.value = playerStatus.maxHP;
     }
 }

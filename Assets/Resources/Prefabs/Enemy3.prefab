@@ -245,7 +245,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e6983ec252445439aa0ed6bb8cd374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCtrl: {fileID: 0}
+  coinDropQuantity: 0
+  coinDropRate: 0
+  magazineDropRate: 0
+  weaponDropRate: 0
+  dropPos: {fileID: 0}
+  isDrop: 0
 --- !u!1 &1353490740619232863
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41f0be80a9b2934cb15d48a380458bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2.5
+  moveSpeed: 6.5
   enemyCtrl: {fileID: 7647672390006846342}
   rb2d: {fileID: 4783195841426447352}
   player: {fileID: 0}
