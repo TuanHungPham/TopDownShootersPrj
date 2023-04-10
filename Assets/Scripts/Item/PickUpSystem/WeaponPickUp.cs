@@ -30,6 +30,12 @@ public class WeaponPickUp : PickUpSystem
 
     private void Update()
     {
+        SelfDestroy();
+    }
+
+    protected override void SelfDestroy()
+    {
+        base.SelfDestroy();
     }
 
     protected override void AddItemToPlayerInventory()

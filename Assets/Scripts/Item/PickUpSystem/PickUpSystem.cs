@@ -8,6 +8,7 @@ public abstract class PickUpSystem : MonoBehaviour
     #endregion
 
     #region private var
+    [SerializeField] private float existTime = 15f;
     #endregion
 
     protected virtual void Awake()
@@ -21,6 +22,17 @@ public abstract class PickUpSystem : MonoBehaviour
     }
 
     protected abstract void LoadComponents();
+
+    protected virtual void SelfDestroy()
+    {
+        if (existTime <= 0)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        existTime -= Time.deltaTime;
+    }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {

@@ -7,6 +7,7 @@ public class EnemyWaveManager : MonoBehaviour
     private static EnemyWaveManager instance;
     public static EnemyWaveManager Instance { get => instance; set => instance = value; }
     public bool UpdateWave { get => updateWave; set => updateWave = value; }
+    public bool IsEndWave { get => isEndWave; set => isEndWave = value; }
 
     #region public var
     public int waveNumber;
@@ -57,7 +58,7 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void SetUpForNextWave()
     {
-        if (!isEndWave)
+        if (!IsEndWave)
         {
             UpdateWave = false;
             nextWaveTimer = 15;
@@ -77,7 +78,7 @@ public class EnemyWaveManager : MonoBehaviour
             AddEnemyHP(enemySpawner.listOfInactiveObj);
             waveNumber++;
             UpdateWave = false;
-            isEndWave = false;
+            IsEndWave = false;
         }
     }
 
@@ -115,10 +116,10 @@ public class EnemyWaveManager : MonoBehaviour
     {
         if (restOfEnemy <= 0)
         {
-            isEndWave = true;
+            IsEndWave = true;
             return;
         }
 
-        isEndWave = false;
+        IsEndWave = false;
     }
 }

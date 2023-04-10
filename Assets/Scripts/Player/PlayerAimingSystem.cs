@@ -67,7 +67,7 @@ public class PlayerAimingSystem : MonoBehaviour
         {
             scale.x = -1f;
         }
-        else if (joystick.Horizontal > 0) 
+        else if (joystick.Horizontal > 0)
         {
             scale.x = 1f;
         }

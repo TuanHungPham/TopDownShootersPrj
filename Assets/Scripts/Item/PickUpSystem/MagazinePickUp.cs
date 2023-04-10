@@ -22,6 +22,16 @@ public class MagazinePickUp : PickUpSystem
         playerCtrl = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter").GetComponent<PlayerCtrl>();
     }
 
+    private void Update()
+    {
+        SelfDestroy();
+    }
+
+    protected override void SelfDestroy()
+    {
+        base.SelfDestroy();
+    }
+
     protected override void AddItemToPlayerInventory()
     {
         playerCtrl.ammoSystem.AddAmmo(magazineData.AmmoType, magazineData.AmmoQuantity);

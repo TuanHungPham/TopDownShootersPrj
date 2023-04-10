@@ -28,6 +28,7 @@ public class CoinPickUp : PickUpSystem
     private void Update()
     {
         GetRandomCoinQuantity();
+        SelfDestroy();
     }
 
     protected override void AddItemToPlayerInventory()
@@ -38,6 +39,11 @@ public class CoinPickUp : PickUpSystem
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
+    }
+
+    protected override void SelfDestroy()
+    {
+        base.SelfDestroy();
     }
 
     private void GetRandomCoinQuantity()
