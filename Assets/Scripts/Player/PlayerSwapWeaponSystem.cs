@@ -39,8 +39,8 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
 
     private void Update()
     {
-        GetWeaponFromStorage();
         StoreWeapon();
+        GetWeaponFromStorage();
         SwitchWeapon();
     }
 
@@ -56,8 +56,11 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
 
             PutWeaponToHolder(weapon);
             weapon.localPosition = Vector3.zero;
+            weapon.localRotation = transform.parent.rotation;
             weapon.gameObject.SetActive(true);
         }
+
+        playerCtrl.playerWeaponInventory.IsUpdateInventory = false;
     }
 
     private void PutWeaponToHolder(Transform obj)
@@ -72,6 +75,9 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
         {
             obj.SetParent(secondaryWeaponHolder);
         }
+
+        obj.localPosition = Vector3.zero;
+        obj.localRotation = obj.parent.rotation;
     }
 
     private void StoreWeapon()
@@ -98,8 +104,6 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
             item.gameObject.SetActive(false);
             PutWeaponToStorage(item);
         }
-
-        playerCtrl.playerWeaponInventory.IsUpdateInventory = false;
     }
 
     private void PutWeaponToStorage(Transform obj)
@@ -109,14 +113,19 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
 
     private Transform GetWeaponInStorageByName(WeaponData weaponData)
     {
+        int childCount = 0;
+        if (childCount > weaponStorage.childCount) return null;
+
         foreach (Transform item in weaponStorage)
         {
+            childCount++;
             Weapon weapon = item.GetComponent<Weapon>();
 
             if (!weapon.weaponData.WeaponName.Equals(weaponData.WeaponName)) continue;
 
             return item;
         }
+
         return null;
     }
 
@@ -124,13 +133,9 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
     {
         if (!weaponInventoryPanel.IsWeaponSwitched) return;
 
-        foreach (WeaponHolderUI weaponHolderUI in weaponInventoryPanel.listOfWeaponHolderUI)
-        {
-            if (!weaponHolderUI.IsSelected) continue;
+        WeaponHolderUI weaponHolderUI = weaponInventoryPanel.WeaponHolderSelected();
 
-            GetHolder(weaponHolderUI);
-            return;
-        }
+        GetHolder(weaponHolderUI);
     }
 
     private void GetHolder(WeaponHolderUI weaponHolderUI)

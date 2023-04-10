@@ -42,6 +42,6 @@ public class CoinPickUp : PickUpSystem
 
     private void GetRandomCoinQuantity()
     {
-        coinQuantity = Random.Range(10, 30);
+        coinQuantity = Random.Range(2, 10);
     }
 }

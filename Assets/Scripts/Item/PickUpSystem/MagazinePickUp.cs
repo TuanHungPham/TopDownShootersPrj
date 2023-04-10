@@ -9,7 +9,7 @@ public class MagazinePickUp : PickUpSystem
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
-    [SerializeField] private int bulletQuantity;
+    [SerializeField] private MagazineData magazineData;
     #endregion
 
     protected override void Awake()
@@ -24,7 +24,7 @@ public class MagazinePickUp : PickUpSystem
 
     protected override void AddItemToPlayerInventory()
     {
-        playerCtrl.ammoSystem.currentWeaponAmmo += bulletQuantity;
+        playerCtrl.ammoSystem.AddAmmo(magazineData.AmmoType, magazineData.AmmoQuantity);
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

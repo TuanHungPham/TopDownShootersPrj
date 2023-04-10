@@ -112,4 +112,19 @@ public class WeaponInventoryPanel : MonoBehaviour
 
         weaponHolderUI.SetImage(weapon.WeaponSprite);
     }
+
+    public WeaponHolderUI WeaponHolderSelected()
+    {
+        WeaponHolderUI holderSelected;
+
+        for (int i = 0; i < listOfWeaponHolderUI.Count; i++)
+        {
+            if (!listOfWeaponHolderUI[i].IsSelected) continue;
+
+            holderSelected = listOfWeaponHolderUI[i];
+            return holderSelected;
+        }
+
+        return null;
+    }
 }

@@ -18,3 +18,4 @@ MonoBehaviour:
   weaponDmg: 75
   shootDistance: 15
   fireRate: 0.25
+  ammo: 20

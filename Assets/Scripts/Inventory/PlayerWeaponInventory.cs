@@ -11,6 +11,7 @@ public class PlayerWeaponInventory : MonoBehaviour
     #endregion
 
     #region private var
+    [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private WeaponData initialWeapon;
     [SerializeField] private bool isUpdateInventory;
     #endregion
@@ -28,6 +29,8 @@ public class PlayerWeaponInventory : MonoBehaviour
 
     private void LoadComponents()
     {
+        playerCtrl = GetComponentInParent<PlayerCtrl>();
+
         initialWeapon = Resources.Load<WeaponData>("WeaponData/AK47");
     }
 
@@ -41,17 +44,25 @@ public class PlayerWeaponInventory : MonoBehaviour
 
     public void AddWeaponToInventory(WeaponData weaponData)
     {
-        if (!IsExistWeaponInInventory(weaponData))
+        AddNewWeapon(weaponData);
+        playerCtrl.ammoSystem.AddAmmo(weaponData.AmmoType, weaponData.Ammo);
+    }
+
+    private void AddNewWeapon(WeaponData weaponData)
+    {
+        if (!IsExistWeaponTypeInInventory(weaponData))
         {
             weaponInventory.Add(weaponData);
             return;
         }
+        else if (weaponInventory.Contains(weaponData)) return;
 
         weaponInventory.Remove(swappedWeapon);
         weaponInventory.Add(weaponData);
+        return;
     }
 
-    private bool IsExistWeaponInInventory(WeaponData weaponData)
+    private bool IsExistWeaponTypeInInventory(WeaponData weaponData)
     {
         swappedWeapon = weaponInventory.Find((x) => x.WeaponType == weaponData.WeaponType);
 

@@ -14,6 +14,7 @@ public class ItemDropSystem : MonoBehaviour
 
     #region private var
     [SerializeField] private bool isDrop;
+    private float dropChance;
     #endregion
 
     private void OnEnable()
@@ -35,7 +36,7 @@ public class ItemDropSystem : MonoBehaviour
     {
         coinDropRate = 0.8f;
         magazineDropRate = 0.3f;
-        weaponDropRate = 0.2f;
+        weaponDropRate = 0.1f;
     }
 
     private void Update()
@@ -61,7 +62,7 @@ public class ItemDropSystem : MonoBehaviour
     {
         dropPos = transform.parent;
 
-        float dropChance = Random.value;
+        dropChance = Random.value;
         if (isDrop || dropChance > dropRate)
         {
             itemSpawner.CanDrop = false;
