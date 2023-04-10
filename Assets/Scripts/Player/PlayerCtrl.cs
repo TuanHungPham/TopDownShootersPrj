@@ -11,6 +11,7 @@ public class PlayerCtrl : MonoBehaviour
     public PlayerWeaponInventory playerWeaponInventory;
     public Status playerStatus;
     public AmmoSystem ammoSystem;
+    public DamageReceiver damageReceiver;
 
     private void OnEnable()
     {
@@ -35,6 +36,7 @@ public class PlayerCtrl : MonoBehaviour
     private void LoadComponents()
     {
         playerStatus = GetComponent<Status>();
+        damageReceiver = GetComponent<DamageReceiver>();
         playerMovement = GetComponentInChildren<PlayerMovement>();
         playerWeaponSystem = GetComponentInChildren<PlayerWeaponSystem>();
         playerWeaponInventory = GetComponentInChildren<PlayerWeaponInventory>();

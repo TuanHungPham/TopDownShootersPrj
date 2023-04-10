@@ -6,8 +6,8 @@ using UnityEngine;
 public abstract class Status : MonoBehaviour
 {
     #region public var
-    public int currentHP;
-    public int maxHP;
+    public float currentHP;
+    public float maxHP;
     public bool IsDeath { get => isDeath; set => isDeath = value; }
     #endregion
 

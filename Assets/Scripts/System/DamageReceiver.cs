@@ -41,6 +41,8 @@ public class DamageReceiver : MonoBehaviour
     {
         objStatus.currentHP -= dmg;
         animator.SetTrigger("Hit");
+
+
         if (objStatus.currentHP <= 0)
         {
             Invoke("SetDeadVFX", 2.6f);

@@ -47,7 +47,7 @@ public class FlyEnemySkill : MonoBehaviour
             return;
         }
 
-        enemyCtrl.damageReceiver.ReceiveDamage(enemyCtrl.enemyStatus.maxHP);
+        enemyCtrl.damageReceiver.ReceiveDamage((int)enemyCtrl.enemyStatus.maxHP);
         checkExplode = true;
     }
 }

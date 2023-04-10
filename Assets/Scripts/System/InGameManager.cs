@@ -15,6 +15,7 @@ public class InGameManager : MonoBehaviour
 
     #region private var
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject pauseSceneColor;
     #endregion
 
     private void Awake()
@@ -32,6 +33,7 @@ public class InGameManager : MonoBehaviour
     private void LoadComponents()
     {
         pauseMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").gameObject;
+        pauseSceneColor = GameObject.Find("Canvas").transform.Find("PauseSceneColor").gameObject;
 
         respawnManager = GetComponentInChildren<RespawnManager>();
         gameOverManager = GetComponentInChildren<GameOverManager>();
@@ -68,10 +70,12 @@ public class InGameManager : MonoBehaviour
         if (Time.timeScale != 0)
         {
             pauseMenu.SetActive(false);
+            pauseSceneColor.SetActive(false);
         }
         else
         {
             pauseMenu.SetActive(true);
+            pauseSceneColor.SetActive(true);
         }
     }
 
