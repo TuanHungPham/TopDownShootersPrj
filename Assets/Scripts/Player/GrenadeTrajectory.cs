@@ -7,7 +7,7 @@ public class GrenadeTrajectory : MonoBehaviour
     #region  public var
     public List<Vector3> listOfPoint = new List<Vector3>();
     public float stepSize;
-    public float distanceToVertex = 5f;
+    public float distanceToVertex;
     #endregion
 
     #region private var
@@ -30,6 +30,9 @@ public class GrenadeTrajectory : MonoBehaviour
     private void LoadComponents()
     {
         lineRenderer = GetComponent<LineRenderer>();
+
+        stepSize = 0.2f;
+        distanceToVertex = 5;
     }
 
     private void Update()
