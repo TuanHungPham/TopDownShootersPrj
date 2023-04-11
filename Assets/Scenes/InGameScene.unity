@@ -3301,7 +3301,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnAvailableTimer: 4
   playerCtrl: {fileID: 842636826}
-  uIManager: {fileID: 0}
   player: {fileID: 842636823}
   respawnBoard: {fileID: 57810694}
   enemySpawner: {fileID: 1349174432}
@@ -4058,7 +4057,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160.67493, y: -40.259995}
+  m_AnchoredPosition: {x: 160.67493, y: -40.26001}
   m_SizeDelta: {x: 321.35, y: 80.52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &775803860
@@ -5182,7 +5181,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 160.67493, y: -141.07405}
+  m_AnchoredPosition: {x: 160.67493, y: -141.07404}
   m_SizeDelta: {x: 321.35, y: 118.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &966344170
@@ -8169,7 +8168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130.53003, y: -110.71004}
+  m_AnchoredPosition: {x: 130.53003, y: -110.71002}
   m_SizeDelta: {x: 228.22, y: 79.49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1582906806
@@ -9234,7 +9233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 136.90002, y: -40.00502}
+  m_AnchoredPosition: {x: 136.90002, y: -40.005005}
   m_SizeDelta: {x: 261.06, y: 220.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1836556777
@@ -10829,10 +10828,6 @@ PrefabInstance:
       propertyPath: weaponStorage
       value: 
       objectReference: {fileID: 2016537048}
-    - target: {fileID: 585958276, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
-      propertyPath: weaponInventoryPanel
-      value: 
-      objectReference: {fileID: 269818287}
     - target: {fileID: 1461908857, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
       propertyPath: crosshair
       value: 
@@ -10841,10 +10836,6 @@ PrefabInstance:
       propertyPath: playerAimingSystem
       value: 
       objectReference: {fileID: 811394027}
-    - target: {fileID: 3018312048441220676, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
-      propertyPath: playerWeaponInventory
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3018312048441220680, guid: a47fffa59dcdf0e4ea3f002ab84746ea, type: 3}
       propertyPath: m_Name
       value: MainCharacter

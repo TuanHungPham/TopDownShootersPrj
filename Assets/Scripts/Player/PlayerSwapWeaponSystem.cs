@@ -9,7 +9,7 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
-    [SerializeField] private WeaponInventoryPanel weaponInventoryPanel;
+    [SerializeField] private UIManager uIManager;
     [SerializeField] private Transform weaponStorage;
 
     [SerializeField] private Transform primaryWeaponHolder;
@@ -31,7 +31,7 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
     {
         playerCtrl = GetComponentInParent<PlayerCtrl>();
 
-        weaponInventoryPanel = GameObject.Find("------ UI ------").transform.GetChild(0).GetComponentInChildren<WeaponInventoryPanel>();
+        uIManager = GameObject.Find("------ UI ------").GetComponentInChildren<UIManager>();
         weaponStorage = GameObject.Find("------ ITEM ------").transform.Find("WeaponStorage");
         primaryWeaponHolder = transform.Find("PrimaryWeapon").Find("Holder");
         secondaryWeaponHolder = transform.Find("SecondaryWeapon").Find("Holder");
@@ -131,9 +131,9 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
 
     private void SwitchWeapon()
     {
-        if (!weaponInventoryPanel.IsWeaponSwitched) return;
+        if (!uIManager.weaponInventoryPanel.IsWeaponSwitched) return;
 
-        WeaponHolderUI weaponHolderUI = weaponInventoryPanel.WeaponHolderSelected();
+        WeaponHolderUI weaponHolderUI = uIManager.weaponInventoryPanel.WeaponHolderSelected();
 
         GetHolder(weaponHolderUI);
     }

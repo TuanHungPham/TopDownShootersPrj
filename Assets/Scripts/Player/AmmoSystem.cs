@@ -59,7 +59,6 @@ public class AmmoSystem : MonoBehaviour
         }
 
         RenewAmmoCapacity();
-        uIManager.weaponInventoryPanel.IsWeaponSwitched = false;
     }
 
     public void ConsumpAmmo()

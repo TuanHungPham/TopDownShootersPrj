@@ -108,10 +108,9 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private void FlipNewWeapon()
     {
-        if (uIManager.weaponInventoryPanel.IsWeaponSwitched)
-        {
-            selectedWeapon.localScale = lastScale;
-        }
+        if (!uIManager.weaponInventoryPanel.IsWeaponSwitched) return;
+
+        selectedWeapon.localScale = lastScale;
     }
 
     private void GetWeaponDirection()
