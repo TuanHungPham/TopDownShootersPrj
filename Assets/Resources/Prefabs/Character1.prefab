@@ -72,6 +72,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1277702901238744862}
+  - component: {fileID: 4171583}
   m_Layer: 0
   m_Name: CharacterData
   m_TagString: Untagged
@@ -94,6 +95,25 @@ Transform:
   m_Father: {fileID: 1277702901283987834}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4171583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277702901238744861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 708349be8e87d094e9199c9101f8d520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterName: Character1
+  characterLevel: 0
+  buyPrice: 0
+  upgradePrice: 0
+  upgradePriceAdd: 5000
+  isOwned: 0
+  canUpgrade: 0
 --- !u!1 &1277702901283987833
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,6 +123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1277702901283987834}
+  - component: {fileID: 57229659}
   m_Layer: 0
   m_Name: Character1
   m_TagString: Untagged
@@ -129,6 +150,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &57229659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1277702901283987833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967fa35417d77984eb5eb4db42f7b3d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterData: {fileID: 4171583}
+  characterSprite: {fileID: 1277702901450451643}
+  characterWeapomSprite: {fileID: 6044435802242183134}
+  selectedPoint: {fileID: 0}
+  isSelected: 0
 --- !u!1 &1277702901450451641
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c99adf309de345249bb9ae54fef6d363, type: 3}
+--- !u!212 &6044435802242183134 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6042520717588959977, guid: c99adf309de345249bb9ae54fef6d363, type: 3}
+  m_PrefabInstance: {fileID: 16183461125061943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6044435802746786370 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6042520716953808757, guid: c99adf309de345249bb9ae54fef6d363, type: 3}

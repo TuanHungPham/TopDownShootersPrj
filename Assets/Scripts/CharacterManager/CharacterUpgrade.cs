@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterShop : MonoBehaviour
+public class CharacterUpgrade : MonoBehaviour
 {
     #region public var
 
