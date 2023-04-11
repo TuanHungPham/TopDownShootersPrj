@@ -7,6 +7,7 @@ public class GrenadeTrajectorySystem : MonoBehaviour
     #region public var
     public float maxThrowDistance;
     public Vector3 lastPredictPosition;
+    public GrenadeTrajectory grenadeTrajectory;
     #endregion
 
     #region private var
@@ -32,6 +33,7 @@ public class GrenadeTrajectorySystem : MonoBehaviour
     private void LoadComponents()
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
+        grenadeTrajectory = transform.Find("GrenadeTrajectory").GetComponent<GrenadeTrajectory>();
         player = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter");
         grenadeDmgArea = transform.Find("GrenadeDmgAreaBG");
 
@@ -70,5 +72,6 @@ public class GrenadeTrajectorySystem : MonoBehaviour
         }
 
         grenadeDmgArea.gameObject.SetActive(false);
+        grenadeTrajectory.HideTrajectory();
     }
 }
