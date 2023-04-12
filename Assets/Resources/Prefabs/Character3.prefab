@@ -594,7 +594,8 @@ MonoBehaviour:
   characterSprite: {fileID: 4651567069959242370}
   characterWeapomSprite: {fileID: 0}
   pointIndex: 0
-  smoothTime: 0.5
+  smoothTime: 0.07
   displayPointManager: {fileID: 0}
   recentPoint: {fileID: 0}
+  targetPoint: {fileID: 0}
   isSelected: 0

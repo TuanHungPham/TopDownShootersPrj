@@ -253,9 +253,10 @@ MonoBehaviour:
   characterSprite: {fileID: 4663039633261258023}
   characterWeapomSprite: {fileID: 5835366974919000475}
   pointIndex: 0
-  smoothTime: 0.5
+  smoothTime: 0.07
   displayPointManager: {fileID: 0}
   recentPoint: {fileID: 0}
+  targetPoint: {fileID: 0}
   isSelected: 0
 --- !u!1 &4663039633087006849
 GameObject:

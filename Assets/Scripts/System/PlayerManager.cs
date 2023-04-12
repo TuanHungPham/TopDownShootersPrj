@@ -4,15 +4,38 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    private static PlayerManager instance;
 
+    public static PlayerManager Instance { get => instance; set => instance = value; }
+
+    #region public var
+    public CharacterData selectedCharacterData;
+    #endregion
+
+    #region private var
+    #endregion
+
+    private void Awake()
+    {
+        instance = this;
+        LoadComponents();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Reset()
     {
+        LoadComponents();
+    }
 
+    private void LoadComponents()
+    {
+        DontDestroyOnLoad(this);
+    }
+
+    public void GetCharacterData()
+    {
+        if (CharacterManagerCtrl.Instance.selectedCharacter == null) return;
+
+        CharacterDisplayCtrl characterDisplayCtrl = CharacterManagerCtrl.Instance.selectedCharacter.GetComponent<CharacterDisplayCtrl>();
+        selectedCharacterData = characterDisplayCtrl.characterData;
     }
 }

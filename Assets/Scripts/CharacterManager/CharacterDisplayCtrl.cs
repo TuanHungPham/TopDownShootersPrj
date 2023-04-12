@@ -18,6 +18,7 @@ public class CharacterDisplayCtrl : MonoBehaviour
     #region private var
     [SerializeField] private DisplayPointManager displayPointManager;
     [SerializeField] private Transform recentPoint;
+    [SerializeField] private Transform targetPoint;
     [SerializeField] private bool isSelected;
     private Transform selectedPoint;
     private Vector3 velocity = Vector3.zero;
@@ -64,7 +65,7 @@ public class CharacterDisplayCtrl : MonoBehaviour
 
     private void CheckSelected()
     {
-        if (recentPoint == selectedPoint)
+        if (targetPoint == selectedPoint)
         {
             isSelected = true;
             return;
@@ -75,7 +76,7 @@ public class CharacterDisplayCtrl : MonoBehaviour
 
     private void MoveToRecentPoint()
     {
-        recentPoint = displayPointManager.listOfDisplayPoint[pointIndex];
-        transform.position = Vector3.SmoothDamp(transform.position, recentPoint.position, ref velocity, smoothTime);
+        targetPoint = displayPointManager.listOfDisplayPoint[pointIndex];
+        transform.position = Vector3.SmoothDamp(transform.position, targetPoint.position, ref velocity, smoothTime);
     }
 }
