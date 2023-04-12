@@ -9,12 +9,18 @@ public class CharacterDisplayCtrl : MonoBehaviour
     [Space(20)]
     public SpriteRenderer characterSprite;
     public SpriteRenderer characterWeapomSprite;
+    public int pointIndex;
+    public float smoothTime;
+
     public bool IsSelected { get => isSelected; set => isSelected = value; }
     #endregion
 
     #region private var
-    [SerializeField] private Transform selectedPoint;
+    [SerializeField] private DisplayPointManager displayPointManager;
+    [SerializeField] private Transform recentPoint;
     [SerializeField] private bool isSelected;
+    private Transform selectedPoint;
+    private Vector3 velocity = Vector3.zero;
     #endregion
 
     private void Awake()
@@ -30,8 +36,8 @@ public class CharacterDisplayCtrl : MonoBehaviour
     private void LoadComponents()
     {
         characterData = GetComponentInChildren<CharacterData>();
-
         characterSprite = GetComponentInChildren<SpriteRenderer>();
+        displayPointManager = transform.root.GetComponentInChildren<DisplayPointManager>();
         characterWeapomSprite = transform.Find("CharacterWeaponDisplay").GetChild(0).GetComponentInChildren<SpriteRenderer>();
         selectedPoint = transform.root.Find("DisplayPoint").Find("SelectedPoint");
     }
@@ -40,6 +46,7 @@ public class CharacterDisplayCtrl : MonoBehaviour
     {
         DisplayCharacter();
         CheckSelected();
+        MoveToRecentPoint();
     }
 
     private void DisplayCharacter()
@@ -57,12 +64,18 @@ public class CharacterDisplayCtrl : MonoBehaviour
 
     private void CheckSelected()
     {
-        if (transform.position != selectedPoint.position)
+        if (recentPoint == selectedPoint)
         {
-            isSelected = false;
+            isSelected = true;
             return;
         }
 
-        isSelected = true;
+        isSelected = false;
+    }
+
+    private void MoveToRecentPoint()
+    {
+        recentPoint = displayPointManager.listOfDisplayPoint[pointIndex];
+        transform.position = Vector3.SmoothDamp(transform.position, recentPoint.position, ref velocity, smoothTime);
     }
 }
