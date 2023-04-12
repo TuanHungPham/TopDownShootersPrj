@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CharacterManagerCtrl : MonoBehaviour
 {
+    private static CharacterManagerCtrl instance;
+    public static CharacterManagerCtrl Instance { get => instance; set => instance = value; }
+
     public List<Transform> listOfCharacter = new List<Transform>();
     public Transform selectedCharacter;
 
@@ -12,8 +15,10 @@ public class CharacterManagerCtrl : MonoBehaviour
 
     public DisplayPointManager displayPointManager;
 
+
     private void Awake()
     {
+        instance = this;
         LoadComponents();
     }
 

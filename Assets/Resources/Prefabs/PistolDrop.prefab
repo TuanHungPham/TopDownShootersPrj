@@ -87,6 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49af80b94c754ba47b3f15b293f57d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  existTime: 15
   playerCtrl: {fileID: 0}
   weapon: {fileID: 5518469611679815363}
 --- !u!1 &5518469611776432174
@@ -101,7 +102,7 @@ GameObject:
   - component: {fileID: 5518469611776432160}
   - component: {fileID: 5518469611776432163}
   m_Layer: 0
-  m_Name: PistolSprite
+  m_Name: UziSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

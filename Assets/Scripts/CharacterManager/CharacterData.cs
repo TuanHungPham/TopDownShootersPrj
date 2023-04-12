@@ -5,6 +5,9 @@ using UnityEngine;
 public class CharacterData : MonoBehaviour
 {
     #region public var
+    public int characterSkinIndex;
+
+    [Space(20)]
     public string characterName;
     public int characterLevel;
     public int characterHP;

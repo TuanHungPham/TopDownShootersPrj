@@ -301,11 +301,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708349be8e87d094e9199c9101f8d520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSkinIndex: 1
   characterName: Character2
   characterLevel: 0
   characterHP: 80
   primaryWeaponData: {fileID: 11400000, guid: 745f5cab798c400478ca43f92c615e28, type: 2}
-  secondaryWeaponData: {fileID: 11400000, guid: 55e2f993959de4042a877c9222fe0c12, type: 2}
+  secondaryWeaponData: {fileID: 11400000, guid: 5ebd0e51e89aa094d98e3b3370352c13, type: 2}
   coinRequirement: 0
   upgradePrice: 5000
   upgradePriceAdd: 500

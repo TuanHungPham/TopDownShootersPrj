@@ -6,6 +6,7 @@ public class PlayerCtrl : MonoBehaviour
 {
     [Space]
     public PlayerMovement playerMovement;
+    public PlayerBehaviour playerBehaviour;
     public PlayerWeaponSystem playerWeaponSystem;
     public PlayerAimingSystem playerAimingSystem;
     public PlayerWeaponInventory playerWeaponInventory;
@@ -36,6 +37,7 @@ public class PlayerCtrl : MonoBehaviour
         playerStatus = GetComponent<Status>();
         damageReceiver = GetComponent<DamageReceiver>();
         playerMovement = GetComponentInChildren<PlayerMovement>();
+        playerBehaviour = transform.GetComponentInChildren<PlayerBehaviour>();
         playerWeaponSystem = GetComponentInChildren<PlayerWeaponSystem>();
         playerWeaponInventory = GetComponentInChildren<PlayerWeaponInventory>();
         playerSwapWeaponSystem = GetComponentInChildren<PlayerSwapWeaponSystem>();
@@ -50,6 +52,7 @@ public class PlayerCtrl : MonoBehaviour
         playerStatus.IsDeath = false;
         playerStatus.currentHP = playerStatus.maxHP;
         playerMovement.enabled = true;
+        playerBehaviour.enabled = true;
         playerWeaponSystem.enabled = true;
         playerAimingSystem.enabled = true;
         playerWeaponInventory.enabled = true;

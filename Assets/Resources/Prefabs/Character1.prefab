@@ -107,8 +107,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708349be8e87d094e9199c9101f8d520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterSkinIndex: 0
   characterName: Character1
-  characterLevel: 1
+  characterLevel: 0
   characterHP: 80
   primaryWeaponData: {fileID: 11400000, guid: 1a20ccba53708654c818e625e348f2cf, type: 2}
   secondaryWeaponData: {fileID: 11400000, guid: 55e2f993959de4042a877c9222fe0c12, type: 2}

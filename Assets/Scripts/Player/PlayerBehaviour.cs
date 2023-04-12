@@ -25,7 +25,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void LoadComponents()
     {
         animator = GetComponent<Animator>();
-        playerCtrl = GetComponentInParent<PlayerCtrl>();
+        playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
     }
 
     private void Update()
