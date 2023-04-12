@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     private static PlayerManager instance;
 
-    public static PlayerManager Instance { get => instance; set => instance = value; }
+    public static PlayerManager Instance { get => instance; }
 
     #region public var
     public CharacterData selectedCharacterData;

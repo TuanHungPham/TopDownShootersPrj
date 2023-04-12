@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterManagerCtrl : MonoBehaviour
 {
     private static CharacterManagerCtrl instance;
-    public static CharacterManagerCtrl Instance { get => instance; set => instance = value; }
+    public static CharacterManagerCtrl Instance { get => instance; }
 
     public List<Transform> listOfCharacter = new List<Transform>();
     public Transform selectedCharacter;
