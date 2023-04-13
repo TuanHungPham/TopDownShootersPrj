@@ -50,18 +50,19 @@ public class GrenadeTrajectory : MonoBehaviour
 
         Vector2 inputVector = new Vector2(x2 - x1, y2 - y1);
 
-        //Tim vector vuong goc voi vector tao boi diem A vs B
+        // Tim vector vuong goc voi vector tao boi diem A vs B
         Vector2 perpendicularVector = MathVector.PerpendicularVector(inputVector);
-        //Tim dinh cua parabol
-        //Tim trung diem cua AB (M)
+        // Tim dinh cua parabol
+        // Tim trung diem cua AB(M)
         Vector2 midPoint = new Vector2((x1 + x2) / 2, (y1 + y2) / 2);
-        //Tim vector MI vuong goc vector AB, MI co do dai distanceToVertex --> I
+        // Tim vector MI vuong goc vector AB, MI co do dai distanceToVertex --> I
         Vector2 perpendicularVector_normalize = perpendicularVector.normalized;
         vertex = midPoint + perpendicularVector_normalize * distanceToVertex;
-        //Tao parabol di qua diem A B va dinh vua tim dc
+        // Tao parabol di qua diem A B va dinh vua tim dc
 
         float a = (y1 - vertex.y) / Mathf.Pow(x1 - vertex.x, 2);
         float b = -2 * a * vertex.x;
+        // float b = (x2 = x1) * (a - ((y2 - y1) / (x2 * x2 - x1 * x1)));
         float c = y1 - a * x1 * x1 - b * x1;
 
         for (float x = x1; x < x2; x += stepSize)
