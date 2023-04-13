@@ -43,6 +43,11 @@ public class PlayerWeaponSystem : MonoBehaviour
         LoadComponents();
     }
 
+    private void Start()
+    {
+        lastScale = Vector2.one;
+    }
+
     private void LoadComponents()
     {
         GetWeaponInHolder();

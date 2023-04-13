@@ -77,6 +77,7 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
         }
 
         obj.localPosition = Vector3.zero;
+        obj.localScale = Vector3.one;
         obj.localRotation = obj.parent.rotation;
     }
 

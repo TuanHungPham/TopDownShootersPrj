@@ -31,7 +31,7 @@ public class GrenadeTrajectory : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
 
-        stepSize = 0.2f;
+        stepSize = 0.1f;
         distanceToVertex = 5;
     }
 
@@ -56,16 +56,18 @@ public class GrenadeTrajectory : MonoBehaviour
         //Tim trung diem cua AB (M)
         Vector2 midPoint = new Vector2((x1 + x2) / 2, (y1 + y2) / 2);
         //Tim vector MI vuong goc vector AB, MI co do dai distanceToVertex --> I
-
+        Vector2 perpendicularVector_normalize = perpendicularVector.normalized;
+        vertex = midPoint + perpendicularVector_normalize * distanceToVertex;
         //Tao parabol di qua diem A B va dinh vua tim dc
 
         float a = (y1 - vertex.y) / Mathf.Pow(x1 - vertex.x, 2);
-        float b = (y1 * x2 * x2 - y2 * x1 * x1) / (x2 * x2 - x1 * x1);
+        float b = -2 * a * vertex.x;
         float c = y1 - a * x1 * x1 - b * x1;
 
         for (float x = x1; x < x2; x += stepSize)
         {
-            float y = a * Mathf.Pow(x - vertex.x, 2) + vertex.y;
+            // float y = a * Mathf.Pow(x - vertex.x, 2) + vertex.y;
+            float y = a * x * x + b * x + c;
             listOfPoint.Add(new Vector3(x, y, 0));
         }
 
