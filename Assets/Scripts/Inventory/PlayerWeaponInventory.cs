@@ -12,14 +12,12 @@ public class PlayerWeaponInventory : MonoBehaviour
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
-    [SerializeField] private WeaponData initialWeapon;
     [SerializeField] private bool isUpdateInventory;
     #endregion
 
     private void Awake()
     {
         LoadComponents();
-        InitializeWeaponInventory();
     }
 
     private void Reset()
@@ -30,16 +28,6 @@ public class PlayerWeaponInventory : MonoBehaviour
     private void LoadComponents()
     {
         playerCtrl = GetComponentInParent<PlayerCtrl>();
-
-        initialWeapon = Resources.Load<WeaponData>("WeaponData/AK47");
-    }
-
-    private void InitializeWeaponInventory()
-    {
-        if (weaponInventory.Contains(initialWeapon)) return;
-
-        weaponInventory.Add(initialWeapon);
-        isUpdateInventory = true;
     }
 
     public void AddWeaponToInventory(WeaponData weaponData)

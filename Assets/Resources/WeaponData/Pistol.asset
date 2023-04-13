@@ -19,4 +19,5 @@ MonoBehaviour:
   shootDistance: 5
   fireRate: 0.9
   ammoType: 1
+  initialAmmo: 200
   ammo: 100

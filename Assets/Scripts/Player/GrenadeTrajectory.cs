@@ -48,7 +48,16 @@ public class GrenadeTrajectory : MonoBehaviour
         float x2 = endPoint.x;
         float y2 = endPoint.y;
 
-        vertex = new Vector3((x1 + x2) / 2, y1 + distanceToVertex);
+        Vector2 inputVector = new Vector2(x2 - x1, y2 - y1);
+
+        //Tim vector vuong goc voi vector tao boi diem A vs B
+        Vector2 perpendicularVector = MathVector.PerpendicularVector(inputVector);
+        //Tim dinh cua parabol
+        //Tim trung diem cua AB (M)
+        Vector2 midPoint = new Vector2((x1 + x2) / 2, (y1 + y2) / 2);
+        //Tim vector MI vuong goc vector AB, MI co do dai distanceToVertex --> I
+
+        //Tao parabol di qua diem A B va dinh vua tim dc
 
         float a = (y1 - vertex.y) / Mathf.Pow(x1 - vertex.x, 2);
         float b = (y1 * x2 * x2 - y2 * x1 * x1) / (x2 * x2 - x1 * x1);
@@ -69,6 +78,12 @@ public class GrenadeTrajectory : MonoBehaviour
     {
         startPoint = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter").position;
         endPoint = transform.parent.Find("GrenadeDmgAreaBG").position;
+    }
+
+    private Vector2 GetPerpendicularVector(Vector2 inputVector)
+    {
+        Vector2 newVector = Vector2.Perpendicular(inputVector);
+        return newVector;
     }
 
     public void HideTrajectory()

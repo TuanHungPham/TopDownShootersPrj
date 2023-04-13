@@ -6,6 +6,8 @@ public class AmmoSystem : MonoBehaviour
 {
     #region public var
     public int currentWeaponAmmo;
+    public int rifleAmmo;
+    public int pistolAmmo;
     public AmmoType currentUsingAmmoType;
     public bool AmmoLeft { get => ammoLeft; set => ammoLeft = value; }
     #endregion
@@ -14,8 +16,6 @@ public class AmmoSystem : MonoBehaviour
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private UIManager uIManager;
     [SerializeField] private bool ammoLeft;
-    [SerializeField] private int rifleAmmo;
-    [SerializeField] private int pistolAmmo;
     #endregion
 
     private void Awake()
@@ -28,14 +28,15 @@ public class AmmoSystem : MonoBehaviour
         LoadComponents();
     }
 
+    private void Start()
+    {
+        currentWeaponAmmo = rifleAmmo;
+    }
+
     private void LoadComponents()
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
         uIManager = GameObject.Find("------ UI ------").GetComponentInChildren<UIManager>();
-
-        rifleAmmo = playerCtrl.playerWeaponSystem.playerShootingSystem.weapon.weaponData.Ammo;
-        currentWeaponAmmo = rifleAmmo;
-        pistolAmmo = 200;
     }
 
     private void Update()

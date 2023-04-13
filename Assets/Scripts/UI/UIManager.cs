@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    private static UIManager instance;
+    public static UIManager Instance { get => instance; set => instance = value; }
+
     public AchievementUI achievementUI;
     public AmmoSystemUI ammoSystemUI;
     public EnemyWaveUI enemyWaveUI;
@@ -15,6 +18,7 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         LoadComponents();
     }
 

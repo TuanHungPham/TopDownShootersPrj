@@ -24,7 +24,6 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
-    [SerializeField] private UIManager uIManager;
 
     [Space]
     [SerializeField] private LayerMask enemyLayer;
@@ -49,7 +48,6 @@ public class PlayerWeaponSystem : MonoBehaviour
         GetWeaponInHolder();
 
         playerCtrl = GetComponentInParent<PlayerCtrl>();
-        uIManager = GameObject.Find("------ UI ------").GetComponentInChildren<UIManager>();
 
         crosshair = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetChild(0);
 
@@ -108,7 +106,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private void FlipNewWeapon()
     {
-        if (!uIManager.weaponInventoryPanel.IsWeaponSwitched) return;
+        if (!UIManager.Instance.weaponInventoryPanel.IsWeaponSwitched) return;
 
         selectedWeapon.localScale = lastScale;
     }
@@ -135,9 +133,12 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (!child.Find("Holder").gameObject.activeSelf) continue;
+            Transform holder = child.Find("Holder");
+            if (!holder.gameObject.activeSelf) continue;
 
+            if (holder.childCount <= 0) continue;
             selectedWeapon = child.Find("Holder").GetChild(0);
+
             shootingPoint = selectedWeapon.Find("ShootingPoint");
 
             playerShootingSystem = child.GetComponent<PlayerShootingSystem>();

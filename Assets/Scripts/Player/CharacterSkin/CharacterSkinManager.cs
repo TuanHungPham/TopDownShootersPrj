@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class CharacterSkinManager : MonoBehaviour
 {
+    private static CharacterSkinManager instance;
+    public static CharacterSkinManager Instance { get => instance; }
+
     #region public var
     public List<Transform> listOfCharacterSkin = new List<Transform>();
     #endregion
@@ -15,6 +18,7 @@ public class CharacterSkinManager : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         LoadComponents();
     }
 
@@ -23,16 +27,16 @@ public class CharacterSkinManager : MonoBehaviour
         LoadComponents();
     }
 
+    private void Start()
+    {
+        ChangeSkin();
+    }
+
     private void LoadComponents()
     {
         recentCharacterSkin = GameObject.Find("------ PLAYER ------").transform.GetChild(0).Find("CharacterSprite");
 
         InitializeCharacterSkinList();
-    }
-
-    private void Update()
-    {
-        ChangeSkin();
     }
 
     private void InitializeCharacterSkinList()
@@ -56,11 +60,12 @@ public class CharacterSkinManager : MonoBehaviour
         selectedCharacterSkin = null;
     }
 
-    public void GetSkin(int index)
+    public void SetSkin(int index)
     {
         selectedCharacterSkin = listOfCharacterSkin[index];
     }
 
+    #region FUNCTION FOR TEST SCENE
     public void GetSkin1()
     {
         selectedCharacterSkin = listOfCharacterSkin.Find((x) => x.name.Equals("Character1Sprite"));
@@ -77,4 +82,5 @@ public class CharacterSkinManager : MonoBehaviour
     {
         selectedCharacterSkin = listOfCharacterSkin.Find((x) => x.name.Equals("Character4Sprite"));
     }
+    #endregion
 }

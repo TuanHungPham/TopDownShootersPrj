@@ -76,7 +76,8 @@ public class CharacterManagerCtrl : MonoBehaviour
             if (!characterDisplayCtrl.IsSelected) continue;
 
             selectedCharacter = character;
-            PlayerManager.Instance.GetCharacterData();
+
+            DataManager.Instance.GetCharacterData();
             return;
         }
     }

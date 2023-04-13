@@ -12,6 +12,7 @@ public class WeaponData : ScriptableObject
     [SerializeField] private int shootDistance;
     [SerializeField] private float fireRate;
     [SerializeField] private AmmoType ammoType;
+    [SerializeField] private int initialAmmo;
     [SerializeField] private int ammo;
 
     public int Id { get => id; set => id = GetInstanceID(); }
@@ -22,5 +23,6 @@ public class WeaponData : ScriptableObject
     public int ShootDistance { get => shootDistance; set => shootDistance = value; }
     public WeaponType WeaponType { get => weaponType; set => weaponType = value; }
     public AmmoType AmmoType { get => ammoType; set => ammoType = value; }
+    public int InitialAmmo { get => initialAmmo; set => initialAmmo = value; }
     public int Ammo { get => ammo; set => ammo = value; }
 }

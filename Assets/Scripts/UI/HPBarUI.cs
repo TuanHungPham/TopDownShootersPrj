@@ -26,6 +26,11 @@ public class HPBarUI : MonoBehaviour
         LoadComponents();
     }
 
+    private void Start()
+    {
+        hpSlider.value = playerCtrl.playerStatus.currentHP;
+    }
+
     private void LoadComponents()
     {
         hpText = transform.Find("TextBG").GetComponentInChildren<TMP_Text>();
