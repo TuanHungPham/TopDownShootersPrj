@@ -888,15 +888,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3414d9ffe52dacd46bdfe593edddb7a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputVector: {x: 0, y: 0}
   point1: {fileID: 1422902578}
   point2: {fileID: 166985687}
-  midPointTest: {fileID: 369205071}
-  vertexPointTest: {fileID: 1255875790}
   gravity: {x: 0, y: 0}
   vel: 0
   height: 0
-  time: 2
   angle: 45
   timeStep: 0.01
   lineRenderer: {fileID: 1422902580}

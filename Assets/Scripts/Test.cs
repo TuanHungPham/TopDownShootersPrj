@@ -6,62 +6,13 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
-    public Vector2 inputVector;
     public Transform point1;
     public Transform point2;
-    public Transform midPointTest;
-    public Transform vertexPointTest;
-    public Vector2 startPoint => point1.position;
-    public Vector2 endPoint => point2.position;
-    // public float distanceToVertex;
-    // public Vector2 vertex;
-    // public float speed;
-
-    // private void TestIn2D()
-    // {
-    //     inputVector = endPoint - startPoint;
-
-    //     Vector2 perpendicularVector = MathVector.PerpendicularVector(inputVector);
-    //     if (perpendicularVector.y < 0)
-    //     {
-    //         perpendicularVector.y *= -1;
-    //     }
-    //     Debug.Log($"Vector: {JsonUtility.ToJson(perpendicularVector)}");
-
-    //     // Tim trung diem cua AB(M)
-    //     Vector2 midPoint = (startPoint + endPoint) / 2;
-    //     midPointTest.position = midPoint;
-    //     // Tim vector MI vuong goc vector AB, MI co do dai distanceToVertex --> I
-    //     // Tim dinh cua parabol
-    //     Vector2 perpendicularVector_normalize = perpendicularVector.normalized;
-    //     vertex = midPoint + perpendicularVector_normalize * distanceToVertex;
-    //     vertexPointTest.position = vertex;
-    // }
-
-    // private void TestIn3d()
-    // {
-    // Vector3 inputVector = endPoint - startPoint;
-
-    // Vector3 perpendicularVector = MathVector.PerpendicularVector(inputVector);
-    // if (perpendicularVector.y < 0)
-    // {
-    //     perpendicularVector.y *= -1;
-    // }
-    // Debug.Log($"Vector: {JsonUtility.ToJson(perpendicularVector)}");
-
-    // // Tim trung diem cua AB(M)
-    // Vector3 midPoint = (startPoint + endPoint) / 2;
-    // midPointTest.position = midPoint;
-    // // Tim vector MI vuong goc vector AB, MI co do dai distanceToVertex --> I
-    // // Tim dinh cua parabol
-    // Vector3 perpendicularVector_normalize = perpendicularVector.normalized;
-    // var vertex = midPoint + perpendicularVector_normalize * distanceToVertex;
-    // vertexPointTest.position = vertex;
-    // }
-    public Vector2 gravity;
+    public Vector3 startPoint => point1.position;
+    public Vector3 endPoint => point2.position;
+    public Vector3 gravity;
     public float vel;
     public float height;
-    public float time;
     public float angle;
     public float timeStep;
     public LineRenderer lineRenderer;
@@ -74,47 +25,47 @@ public class Test : MonoBehaviour
 
     private void Start()
     {
-        ThrowLine();
     }
 
     private void Update()
     {
-        // ThrowLine();
+        ThrowLine();
     }
 
     private void ThrowLine()
     {
-        float distance = Vector2.Distance(startPoint, endPoint);
-        gravity = new Vector2(0, -9.81f);
+        gravity = new Vector3(0, -9.81f);
+        Vector3 vectorAB = endPoint - startPoint;
+        Vector3 direction = vectorAB.normalized;
+        Debug.Log("Dỉrection: " + direction);
+        float distance = vectorAB.magnitude;
         float g = gravity.magnitude;
 
-        Vector2 midPoint = (startPoint + endPoint) / 2;
-
-        CalculateVelocity(distance, time, angle);
+        CalculateVelocity(distance, g, angle);
         CalculateHeight(g, angle);
 
-        float maxY = 0;
-        float t2 = 0;
-        for (float t = 0; t <= 2 * time; t += timeStep)
+        float t1 = GetT1(vel, angle, g);
+        float t2 = GetT2(height, g);
+
+        float lastX = 0;
+        float lastY = 0;
+        for (float t = 0; t <= t1; t += timeStep)
         {
-            float x = GetX(t);
-
-            if (t >= time)
-            {
-                float y2 = GetY2(g, t2, height);
-                // float y2 = maxY - ((x * x * g) / (2 * vel * vel * Mathf.Cos(angle) * Mathf.Cos(angle)));
-                t2 += timeStep;
-                listOfPoint.Add(new Vector3(x, y2));
-                continue;
-            }
-
-            float y1 = GetY1(g, t);
-            // float y1 = x * Mathf.Tan(angle) - ((x * x * g) / (2 * vel * vel * Mathf.Cos(angle) * Mathf.Cos(angle)));
-            maxY = y1;
-            listOfPoint.Add(new Vector3(x, y1));
+            float x = startPoint.x + GetX(t);
+            lastX = x;
+            float y = startPoint.y + GetY1(g, t);
+            lastY = y;
+            listOfPoint.Add(new Vector3(x, y));
         }
 
-        Log(listOfPoint);
+        for (float t = 0; t <= t2; t += timeStep)
+        {
+            float x = lastX + GetX(t);
+            float y = GetY2(g, t, lastY);
+            listOfPoint.Add(new Vector3(x, y));
+        }
+
+        // Log(listOfPoint);
 
         lineRenderer.positionCount = listOfPoint.Count;
         lineRenderer.SetPositions(listOfPoint.ToArray());
@@ -147,15 +98,23 @@ public class Test : MonoBehaviour
         return t * vel * Mathf.Cos(angle);
     }
 
+    private float GetT1(float vel, float angle, float gravity)
+    {
+        return (vel * Mathf.Sin(angle)) / gravity;
+    }
+
+    private float GetT2(float height, float gravity)
+    {
+        return Mathf.Sqrt((2 * height) / gravity);
+    }
+
     private void CalculateHeight(float gravity, float angle)
     {
         height = (vel * vel * Mathf.Sin(angle) * Mathf.Sin(angle)) / (2 * gravity);
     }
 
-    private void CalculateVelocity(float distance, float time, float angle)
+    private void CalculateVelocity(float distance, float gravity, float angle)
     {
-        vel = distance / (2 * time * Mathf.Cos(angle));
-        Debug.Log("Vel0: " + vel);
-        Debug.Log("Vel0 x VelY: " + (vel * Mathf.Sin(angle)));
+        vel = Mathf.Sqrt((distance * gravity) / Mathf.Sin(2 * angle));
     }
 }
