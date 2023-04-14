@@ -28,6 +28,7 @@ public class HPBarUI : MonoBehaviour
 
     private void Start()
     {
+        hpSlider.maxValue = playerCtrl.playerStatus.maxHP;
         hpSlider.value = playerCtrl.playerStatus.currentHP;
     }
 

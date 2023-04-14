@@ -52,24 +52,34 @@ public class GrenadeTrajectory : MonoBehaviour
 
         // Tim vector vuong goc voi vector tao boi diem A vs B
         Vector2 perpendicularVector = MathVector.PerpendicularVector(inputVector);
-        // Tim dinh cua parabol
+        Debug.Log($"Vector: {JsonUtility.ToJson(perpendicularVector)}");
         // Tim trung diem cua AB(M)
-        Vector2 midPoint = new Vector2((x1 + x2) / 2, (y1 + y2) / 2);
+        Vector2 midPoint = (startPoint + endPoint) / 2;
         // Tim vector MI vuong goc vector AB, MI co do dai distanceToVertex --> I
+        // Tim dinh cua parabol
         Vector2 perpendicularVector_normalize = perpendicularVector.normalized;
         vertex = midPoint + perpendicularVector_normalize * distanceToVertex;
         // Tao parabol di qua diem A B va dinh vua tim dc
 
         float a = (y1 - vertex.y) / Mathf.Pow(x1 - vertex.x, 2);
         float b = -2 * a * vertex.x;
-        // float b = (x2 = x1) * (a - ((y2 - y1) / (x2 * x2 - x1 * x1)));
         float c = y1 - a * x1 * x1 - b * x1;
 
-        for (float x = x1; x < x2; x += stepSize)
+        if (x2 > x1)
         {
-            // float y = a * Mathf.Pow(x - vertex.x, 2) + vertex.y;
-            float y = a * x * x + b * x + c;
-            listOfPoint.Add(new Vector3(x, y, 0));
+            for (float x = x1; x < x2; x += stepSize)
+            {
+                float y = a * x * x + b * x + c;
+                listOfPoint.Add(new Vector3(x, y, 0));
+            }
+        }
+        else if (x2 < x1)
+        {
+            for (float x = x1; x > x2; x -= stepSize)
+            {
+                float y = -(a * x * x + b * x + c);
+                listOfPoint.Add(new Vector3(x, y, 0));
+            }
         }
 
         lineRenderer.positionCount = listOfPoint.Count;

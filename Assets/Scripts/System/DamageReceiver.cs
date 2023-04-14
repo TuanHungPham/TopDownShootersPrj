@@ -41,14 +41,16 @@ public class DamageReceiver : MonoBehaviour
     {
         objStatus.currentHP -= dmg;
         animator.SetTrigger("Hit");
-
+        if (this.gameObject.CompareTag("Player"))
+        {
+            UIManager.Instance.hitScene.TriggerHitScene();
+        }
 
         if (objStatus.currentHP <= 0)
         {
             Invoke("SetDeadVFX", 1.2f);
 
             if (!this.gameObject.CompareTag("Enemy")) return;
-
             EnemyCtrl enemyCtrl = this.gameObject.GetComponent<EnemyCtrl>();
             enemyCtrl.itemDropSystem.Invoke("DropItem", 1.3f);
 

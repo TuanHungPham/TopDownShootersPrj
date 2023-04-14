@@ -5,6 +5,7 @@ using UnityEngine;
 public class HitScene : MonoBehaviour
 {
     [SerializeField] private PlayerCtrl playerCtrl;
+    [SerializeField] private float enableTime;
 
     private void Awake()
     {
@@ -23,17 +24,16 @@ public class HitScene : MonoBehaviour
 
     private void Update()
     {
-        TriggerHitScene();
+        Invoke("DisableHitScene", enableTime);
     }
 
-    private void TriggerHitScene()
+    public void TriggerHitScene()
     {
-        if (playerCtrl.damageReceiver.IsHit)
-        {
-            gameObject.SetActive(true);
-            return;
-        }
+        this.gameObject.SetActive(true);
+    }
 
-        gameObject.SetActive(false);
+    private void DisableHitScene()
+    {
+        this.gameObject.SetActive(false);
     }
 }

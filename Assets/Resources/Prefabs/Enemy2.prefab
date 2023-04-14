@@ -622,8 +622,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a4e76878971934da06fa1689bee9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmgSending: 20
-  rawDmg: 20
+  dmgSending: 10
+  rawDmg: 10
   criticalRate: 0
   criticalDmg: 0
   targetTag: Player

@@ -8,4 +8,10 @@ public static class MathVector
         Vector2 perpendicularVector = Vector2.Perpendicular(inputVector);
         return perpendicularVector;
     }
+
+    public static Vector3 PerpendicularVector(Vector3 inputVector)
+    {
+        Vector3 perpendicularVector = Vector3.Cross(inputVector, Vector3.back);
+        return perpendicularVector;
+    }
 }
