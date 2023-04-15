@@ -8,12 +8,12 @@ public class GrenadeSystem : MonoBehaviour
     #region public var
     public float throwTimer;
     public float throwDelay;
+    public Transform throwingPoint;
     #endregion
 
     #region private var
     [SerializeField] private GrenadeTrajectorySystem grenadeTrajectorySystem;
     [SerializeField] private GameObject grenadePrefab;
-    [SerializeField] private Transform throwingPoint;
     private bool isDelay;
     #endregion
 

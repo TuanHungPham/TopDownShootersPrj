@@ -39,9 +39,9 @@ public static class PhysicExtension
         vel = b / Mathf.Sin(angle);
     }
 
-    public static void CalculateHeight(Vector3 targetPoint, float distance, float heigthPlus, out float height)
+    public static void CalculateHeight(Vector3 startPoint, Vector3 targetPoint, float distance, float heigthPlus, out float height)
     {
-        height = targetPoint.y + heigthPlus / distance;
+        height = Mathf.Abs(targetPoint.y - startPoint.y) + heigthPlus / distance;
         height = Mathf.Max(1f, height);
         // if (distance > 0 && distance < 4.7f)
         // {

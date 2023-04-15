@@ -45,8 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5442b5990a4fd848b9c01280c912438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listOfTrajectoryPoint: []
+  stepSize: 0.1
   explodeVFX: {fileID: 4322210011380972357, guid: 33d1d09b76550c84f98c25dc60e80663, type: 3}
+  playerCtrl: {fileID: 0}
+  grenadeTrajectorySystem: {fileID: 0}
 --- !u!1 &5219775289063481563
 GameObject:
   m_ObjectHideFlags: 0

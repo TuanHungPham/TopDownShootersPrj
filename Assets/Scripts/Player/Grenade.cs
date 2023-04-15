@@ -5,12 +5,19 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     #region public var
-    public List<Vector3> listOfTrajectoryPoint = new List<Vector3>();
+    public Vector3 startPoint;
+    public Vector3 endPoint;
+
+    public float time;
+    public float angle;
+    public float vel;
     #endregion
 
     #region private var
     [SerializeField] private GameObject explodeVFX;
+    [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private GrenadeTrajectorySystem grenadeTrajectorySystem;
+    private Vector3 gravity = new Vector3(0, -9.81f);
     #endregion
 
     private void Awake()
@@ -25,38 +32,52 @@ public class Grenade : MonoBehaviour
 
     private void LoadComponents()
     {
-        explodeVFX = Resources.Load<GameObject>("Prefabs/GrenadeExplosiveVFX");
+        playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
         grenadeTrajectorySystem = GameObject.Find("------ PLAYER ------").transform.GetComponentInChildren<GrenadeTrajectorySystem>();
 
-        listOfTrajectoryPoint = grenadeTrajectorySystem.grenadeTrajectory.lastListOfPoint;
+        explodeVFX = Resources.Load<GameObject>("Prefabs/GrenadeExplosiveVFX");
     }
 
     private void Start()
     {
-        StartCoroutine("GrenadeFly");
+        startPoint = playerCtrl.grenadeSystem.throwingPoint.position;
+        endPoint = grenadeTrajectorySystem.lastPredictPosition;
     }
 
     private void Update()
     {
-        // StartCoroutine("GrenadeFly");
-        Explode();
+        StartCoroutine("GrenadeFly");
     }
 
     IEnumerator GrenadeFly()
     {
-        for (int i = 0; i < listOfTrajectoryPoint.Count; i++)
+        float distance = Vector3.Distance(startPoint, endPoint);
+
+        Vector3 lastPoint = new Vector3(endPoint.x - startPoint.x, endPoint.y - startPoint.y);
+
+        float newHeight;
+        PhysicExtension.CalculateHeight(startPoint, endPoint, distance, 0, out newHeight);
+
+        gravity = new Vector3(0, -9.81f);
+        float g = gravity.magnitude;
+
+        PhysicExtension.CalculatePathWithHeight(lastPoint, g, newHeight, out time, out angle, out vel);
+
+        for (float t = 0; t < time; t += Time.deltaTime)
         {
-            transform.position = listOfTrajectoryPoint[i];
+            float x = startPoint.x + PhysicExtension.GetX(t, vel, angle);
+            float y = startPoint.y + PhysicExtension.GetY(g, t, vel, angle);
+
+            transform.position = new Vector3(x, y);
+
             yield return null;
         }
-        grenadeTrajectorySystem.grenadeTrajectory.ClearTrajectoryPointList();
+
+        Explode();
     }
 
     private void Explode()
     {
-        float distacneToLastPoint = Vector3.Distance(listOfTrajectoryPoint[listOfTrajectoryPoint.Count - 1], transform.position);
-        if (distacneToLastPoint >= 0.5f) return;
-
         GameObject vfx = Instantiate(explodeVFX);
         vfx.transform.position = transform.position;
         vfx.transform.rotation = transform.rotation;
