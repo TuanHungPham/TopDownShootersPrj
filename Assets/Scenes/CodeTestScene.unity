@@ -153,7 +153,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1283197768}
-  - {fileID: 976037964}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -479,7 +478,7 @@ SphereCollider:
   m_GameObject: {fileID: 947066645}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -559,12 +558,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976037963}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: -6.17, y: 2.34, z: -4.95}
+  m_LocalPosition: {x: 15.87, y: 18.51, z: 9.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 166985687}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!108 &976037965
 Light:
@@ -637,6 +636,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1255875790}
+  - component: {fileID: 1255875791}
   m_Layer: 0
   m_Name: VertexPointTest
   m_TagString: Untagged
@@ -652,7 +652,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255875789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.71, y: 5.06, z: -0.04119921}
+  m_LocalPosition: {x: -20.18, y: 5.06, z: -0.04119921}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -660,6 +660,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1255875791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255875789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d0bff98e49798d43b509b7e32413bf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  test: {fileID: 1422902579}
+  speed: 0.05
 --- !u!1 &1283197767
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,8 +716,8 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283197767}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_IsTrigger: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -809,9 +823,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 92
+  field of view: 57
   orthographic: 0
-  orthographic size: 7.69
+  orthographic size: 15.2741785
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -888,15 +902,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3414d9ffe52dacd46bdfe593edddb7a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 1255875789}
   point1: {fileID: 1422902578}
   point2: {fileID: 166985687}
-  gravity: {x: 0, y: 0}
+  gravity: {x: 0, y: 0, z: 0}
   vel: 0
-  height: 0
-  angle: 45
+  height: 50
+  angle: 0
+  time: 0
   timeStep: 0.01
+  distance: 0
   lineRenderer: {fileID: 1422902580}
   listOfPoint: []
+  lastListOfPoint: []
 --- !u!120 &1422902580
 LineRenderer:
   m_ObjectHideFlags: 0

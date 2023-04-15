@@ -6,8 +6,9 @@ public class GrenadeTrajectory : MonoBehaviour
 {
     #region  public var
     public List<Vector3> listOfPoint = new List<Vector3>();
+    public List<Vector3> lastListOfPoint = new List<Vector3>();
     public float stepSize;
-    public float distanceToVertex;
+    public float heigthPlus;
     #endregion
 
     #region private var
@@ -15,6 +16,10 @@ public class GrenadeTrajectory : MonoBehaviour
     [SerializeField] private Vector3 endPoint;
     [SerializeField] private Vector3 vertex;
     [SerializeField] private LineRenderer lineRenderer;
+    private float vel;
+    private float angle;
+    private float time;
+    private Vector3 gravity;
     #endregion
 
     private void Awake()
@@ -32,59 +37,12 @@ public class GrenadeTrajectory : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
 
         stepSize = 0.1f;
-        distanceToVertex = 5;
     }
 
     private void Update()
     {
         GetPoint();
-        GenerateTrajectory();
-    }
-
-    private void GenerateTrajectory()
-    {
-        float x1 = startPoint.x;
-        float y1 = startPoint.y;
-        float x2 = endPoint.x;
-        float y2 = endPoint.y;
-
-        Vector2 inputVector = new Vector2(x2 - x1, y2 - y1);
-
-        // Tim vector vuong goc voi vector tao boi diem A vs B
-        Vector2 perpendicularVector = MathVector.PerpendicularVector(inputVector);
-        Debug.Log($"Vector: {JsonUtility.ToJson(perpendicularVector)}");
-        // Tim trung diem cua AB(M)
-        Vector2 midPoint = (startPoint + endPoint) / 2;
-        // Tim vector MI vuong goc vector AB, MI co do dai distanceToVertex --> I
-        // Tim dinh cua parabol
-        Vector2 perpendicularVector_normalize = perpendicularVector.normalized;
-        vertex = midPoint + perpendicularVector_normalize * distanceToVertex;
-        // Tao parabol di qua diem A B va dinh vua tim dc
-
-        float a = (y1 - vertex.y) / Mathf.Pow(x1 - vertex.x, 2);
-        float b = -2 * a * vertex.x;
-        float c = y1 - a * x1 * x1 - b * x1;
-
-        if (x2 > x1)
-        {
-            for (float x = x1; x < x2; x += stepSize)
-            {
-                float y = a * x * x + b * x + c;
-                listOfPoint.Add(new Vector3(x, y, 0));
-            }
-        }
-        else if (x2 < x1)
-        {
-            for (float x = x1; x > x2; x -= stepSize)
-            {
-                float y = -(a * x * x + b * x + c);
-                listOfPoint.Add(new Vector3(x, y, 0));
-            }
-        }
-
-        lineRenderer.positionCount = listOfPoint.Count;
-        lineRenderer.SetPositions(listOfPoint.ToArray());
-        listOfPoint.Clear();
+        DrawGeneradeTrajectory();
     }
 
     private void GetPoint()
@@ -93,15 +51,50 @@ public class GrenadeTrajectory : MonoBehaviour
         endPoint = transform.parent.Find("GrenadeDmgAreaBG").position;
     }
 
-    private Vector2 GetPerpendicularVector(Vector2 inputVector)
+    private Vector3 GetLastPoint()
     {
-        Vector2 newVector = Vector2.Perpendicular(inputVector);
-        return newVector;
+        Vector3 lastPoint = new Vector3(endPoint.x - startPoint.x, endPoint.y - startPoint.y);
+        return lastPoint;
+    }
+
+    private void DrawGeneradeTrajectory()
+    {
+        lastListOfPoint.Clear();
+        listOfPoint.Clear();
+
+        float distance = Vector3.Distance(startPoint, endPoint);
+
+        Vector3 lastPoint = GetLastPoint();
+
+        float newHeight;
+        PhysicExtension.CalculateHeight(endPoint, distance, heigthPlus, out newHeight);
+
+        gravity = new Vector3(0, -9.81f);
+        float g = gravity.magnitude;
+
+        PhysicExtension.CalculatePathWithHeight(lastPoint, g, newHeight, out time, out angle, out vel);
+
+        for (float t = 0; t < time; t += stepSize)
+        {
+            float x = startPoint.x + PhysicExtension.GetX(t, vel, angle);
+            float y = startPoint.y + PhysicExtension.GetY(g, t, vel, angle);
+            listOfPoint.Add(new Vector3(x, y));
+            lastListOfPoint.Add(new Vector3(x, y));
+        }
+
+        lineRenderer.positionCount = listOfPoint.Count;
+        lineRenderer.SetPositions(listOfPoint.ToArray());
+
     }
 
     public void HideTrajectory()
     {
         listOfPoint.Clear();
         lineRenderer.positionCount = 0;
+    }
+
+    public void ClearTrajectoryPointList()
+    {
+        lastListOfPoint.Clear();
     }
 }

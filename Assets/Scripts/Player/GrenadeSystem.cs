@@ -1,0 +1,74 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GrenadeSystem : MonoBehaviour
+{
+    #region public var
+    public float throwTimer;
+    public float throwDelay;
+    #endregion
+
+    #region private var
+    [SerializeField] private GrenadeTrajectorySystem grenadeTrajectorySystem;
+    [SerializeField] private GameObject grenadePrefab;
+    [SerializeField] private Transform throwingPoint;
+    private bool isDelay;
+    #endregion
+
+    private void Awake()
+    {
+        LoadComponents();
+    }
+
+    private void Reset()
+    {
+        LoadComponents();
+    }
+
+    private void LoadComponents()
+    {
+        grenadeTrajectorySystem = transform.parent.Find("GrenadeTrajectorySystem").GetComponent<GrenadeTrajectorySystem>();
+        throwingPoint = transform.parent.Find("MainCharacter").Find("ThrowingPoint");
+        grenadePrefab = Resources.Load<GameObject>("Prefabs/Grenade");
+
+        throwDelay = 2;
+        throwTimer = throwDelay;
+    }
+
+    private void Update()
+    {
+        CheckThrowTimer();
+        ThrowGrenade();
+    }
+
+    public void ThrowGrenade()
+    {
+        if (!CanThrow()) return;
+        GameObject grenade = Instantiate(grenadePrefab);
+        grenade.transform.position = throwingPoint.position;
+        grenade.transform.rotation = throwingPoint.rotation;
+
+        throwTimer = throwDelay;
+    }
+
+    private void CheckThrowTimer()
+    {
+        if (throwTimer <= 0)
+        {
+            isDelay = false;
+            return;
+        }
+
+        isDelay = true;
+        throwTimer -= Time.deltaTime;
+    }
+
+    private bool CanThrow()
+    {
+        if (grenadeTrajectorySystem.IsAreaActive || isDelay) return false;
+
+        return true;
+    }
+}

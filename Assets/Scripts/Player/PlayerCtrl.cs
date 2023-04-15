@@ -13,6 +13,7 @@ public class PlayerCtrl : MonoBehaviour
     public PlayerWeaponInventory playerWeaponInventory;
     public PlayerSwapWeaponSystem playerSwapWeaponSystem;
     public Status playerStatus;
+    public GrenadeSystem grenadeSystem;
     public AmmoSystem ammoSystem;
     public DamageReceiver damageReceiver;
 
@@ -44,6 +45,7 @@ public class PlayerCtrl : MonoBehaviour
         playerWeaponInventory = GetComponentInChildren<PlayerWeaponInventory>();
         playerSwapWeaponSystem = GetComponentInChildren<PlayerSwapWeaponSystem>();
         ammoSystem = GetComponentInChildren<AmmoSystem>();
+        grenadeSystem = GetComponentInChildren<GrenadeSystem>();
         playerAimingSystem = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetComponent<PlayerAimingSystem>();
 
         uIManager = GameObject.Find("------ UI ------").GetComponentInChildren<UIManager>();

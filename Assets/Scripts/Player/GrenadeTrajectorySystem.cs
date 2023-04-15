@@ -8,6 +8,7 @@ public class GrenadeTrajectorySystem : MonoBehaviour
     public float maxThrowDistance;
     public Vector3 lastPredictPosition;
     public GrenadeTrajectory grenadeTrajectory;
+    public bool IsAreaActive { get => isAreaActive; set => isAreaActive = value; }
     #endregion
 
     #region private var
@@ -16,8 +17,10 @@ public class GrenadeTrajectorySystem : MonoBehaviour
     [SerializeField] private RectTransform grenadeJoystick;
     [SerializeField] private Transform grenadeDmgArea;
     [SerializeField] private Transform player;
+    [SerializeField] private bool isAreaActive;
     private Vector2 distance;
     private Vector2 direction;
+
     #endregion
 
     private void Awake()
@@ -68,10 +71,15 @@ public class GrenadeTrajectorySystem : MonoBehaviour
         {
             grenadeDmgArea.gameObject.SetActive(true);
             lastPredictPosition = grenadeDmgArea.position;
+            isAreaActive = true;
             return;
         }
 
+        isAreaActive = false;
         grenadeDmgArea.gameObject.SetActive(false);
+
+        playerCtrl.grenadeSystem.ThrowGrenade();
         grenadeTrajectory.HideTrajectory();
+        grenadeTrajectory.ClearTrajectoryPointList();
     }
 }
