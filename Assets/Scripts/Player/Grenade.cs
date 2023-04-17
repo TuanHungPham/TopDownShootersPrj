@@ -6,8 +6,6 @@ public class Grenade : MonoBehaviour
 {
     #region public var
     public List<Vector3> listOfTrajectoryPoint = new List<Vector3>();
-    public float flyTime;
-    public float smoothTime;
     #endregion
 
     #region private var
@@ -40,16 +38,14 @@ public class Grenade : MonoBehaviour
     {
         listOfTrajectoryPoint = grenadeTrajectorySystem.grenadeTrajectory.listOfTrajectoryPoint;
         StartCoroutine("GrenadeFly");
-        // GrenadeFly();
     }
 
     IEnumerator GrenadeFly()
     {
         for (int i = 0; i < listOfTrajectoryPoint.Count; i++)
         {
-            // transform.position = listOfTrajectoryPoint[i];
-            transform.position = Vector3.Lerp(transform.position, listOfTrajectoryPoint[i], smoothTime);
-            yield return new WaitForSeconds(flyTime);
+            transform.position = listOfTrajectoryPoint[i];
+            yield return null;
         }
 
         grenadeTrajectorySystem.grenadeTrajectory.ClearListOfTrajectoryPoint();

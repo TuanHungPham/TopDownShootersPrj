@@ -2,77 +2,69 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemiesKilledPanel : MonoBehaviour
+public class EnemiesKilledPanel : LeaderboardPanel
 {
     #region public var
-    public List<BoardListUI> listOfUserBoard = new List<BoardListUI>();
     #endregion
 
     #region private var
-    [SerializeField] private Transform board;
-    [SerializeField] private GameObject firstUserBoard;
-    [SerializeField] private GameObject secondUserBoard;
-    [SerializeField] private GameObject userBoard;
     #endregion
 
-    private void Awake()
+    protected override void Awake()
     {
-        LoadComponents();
-
-        IntializeBoard();
+        base.Awake();
     }
 
-    private void Reset()
+    protected override void Reset()
     {
-        LoadComponents();
+        base.Reset();
     }
 
-    private void LoadComponents()
+    protected override void LoadComponents()
     {
-        board = transform.Find("Board");
-
-        firstUserBoard = Resources.Load<GameObject>("Prefabs/UI/FirstPlayerListUI");
-        secondUserBoard = Resources.Load<GameObject>("Prefabs/UI/SecondPlayerListUI");
-        userBoard = Resources.Load<GameObject>("Prefabs/UI/PlayerListUI");
+        base.LoadComponents();
     }
 
-    private void IntializeBoard()
+    protected override void IntializeBoard()
     {
-        for (int i = 0; i < 9; i++)
+        base.IntializeBoard();
+    }
+
+    protected override GameObject CreateUserBoard(GameObject obj)
+    {
+        return base.CreateUserBoard(obj);
+    }
+
+    protected override void AddNumerUserToList(int index, GameObject board)
+    {
+        base.AddNumerUserToList(index, board);
+    }
+
+    public override void SortList(List<UserManager> achievementList)
+    {
+        achievementList.Sort
+        (
+            (a, b) => b.mainAchievementData.highestEnemiesKilled.CompareTo(a.mainAchievementData.highestEnemiesKilled)
+        );
+    }
+
+    public override void ShowUserAchievement(List<UserManager> achievementList)
+    {
+        SortList(achievementList);
+
+        for (int i = 0; i < achievementList.Count; i++)
         {
-            if (i == 0)
-            {
-                GameObject newUserBoard = CreateUserBoard(firstUserBoard);
-                AddToList(i + 1, newUserBoard);
-            }
-            else if (i == 1)
-            {
-                GameObject newUserBoard = CreateUserBoard(secondUserBoard);
-                AddToList(i + 1, newUserBoard);
-            }
-            else
-            {
-                GameObject newUserBoard = CreateUserBoard(userBoard);
-                AddToList(i + 1, newUserBoard);
-            }
+            if (i >= listOfBoard.Count) return;
+
+            ShowNewUserAchievement(achievementList, i);
         }
     }
 
-    private GameObject CreateUserBoard(GameObject obj)
+    private void ShowNewUserAchievement(List<UserManager> achievementList, int index)
     {
-        GameObject userBoard = Instantiate(obj);
-        userBoard.transform.SetParent(board);
-        userBoard.transform.localScale = Vector3.one;
+        string name = achievementList[index].userName;
+        int score = achievementList[index].mainAchievementData.highestEnemiesKilled;
 
-        return userBoard;
+        listOfBoard[index].SetUIData(name, score);
     }
-
-    private void AddToList(int index, GameObject board)
-    {
-        BoardListUI boardListUI = board.GetComponent<BoardListUI>();
-        boardListUI.Number.text = index.ToString();
-        listOfUserBoard.Add(boardListUI);
-    }
-
-
 }

@@ -68,8 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfTrajectoryPoint: []
-  flyTime: 0.019
-  smoothTime: 10
+  flyTime: 0
+  smoothTime: 50
   playerCtrl: {fileID: 0}
   explodeVFX: {fileID: 4322210011380972357, guid: 33d1d09b76550c84f98c25dc60e80663, type: 3}
   grenadeTrajectorySystem: {fileID: 0}
