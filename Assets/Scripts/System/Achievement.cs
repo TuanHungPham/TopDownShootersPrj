@@ -41,4 +41,11 @@ public class Achievement : MonoBehaviour
     {
         survivalTime += Time.deltaTime;
     }
+
+    public void UpdateToMainData()
+    {
+        enemiesKilled = DataManager.Instance.achievementDataManager.enemiesKilled;
+        survivalTime = DataManager.Instance.achievementDataManager.survivalTime;
+        totalMoney = DataManager.Instance.achievementDataManager.coin;
+    }
 }

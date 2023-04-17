@@ -14,6 +14,7 @@ public class GrenadeSystem : MonoBehaviour
     #region private var
     [SerializeField] private GrenadeTrajectorySystem grenadeTrajectorySystem;
     [SerializeField] private GameObject grenadePrefab;
+    private bool isThrowing;
     private bool isDelay;
     #endregion
 
@@ -45,11 +46,13 @@ public class GrenadeSystem : MonoBehaviour
 
     public void ThrowGrenade()
     {
-        if (!CanThrow()) return;
+        if (!CanThrow() || isThrowing) return;
+
         GameObject grenade = Instantiate(grenadePrefab);
         grenade.transform.position = throwingPoint.position;
         grenade.transform.rotation = throwingPoint.rotation;
 
+        isThrowing = true;
         throwTimer = throwDelay;
     }
 
@@ -58,6 +61,7 @@ public class GrenadeSystem : MonoBehaviour
         if (throwTimer <= 0)
         {
             isDelay = false;
+            isThrowing = false;
             return;
         }
 
@@ -67,7 +71,7 @@ public class GrenadeSystem : MonoBehaviour
 
     private bool CanThrow()
     {
-        if (grenadeTrajectorySystem.IsAreaActive || isDelay) return false;
+        if (grenadeTrajectorySystem.grenadeTrajectory.listOfTrajectoryPoint.Count == 0 || grenadeTrajectorySystem.IsAreaActive || isDelay) return false;
 
         return true;
     }

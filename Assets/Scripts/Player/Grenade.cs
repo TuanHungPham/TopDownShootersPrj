@@ -5,19 +5,16 @@ using UnityEngine;
 public class Grenade : MonoBehaviour
 {
     #region public var
-    public Vector3 startPoint;
-    public Vector3 endPoint;
-
-    public float time;
-    public float angle;
-    public float vel;
+    public List<Vector3> listOfTrajectoryPoint = new List<Vector3>();
+    public float flyTime;
     #endregion
 
     #region private var
-    [SerializeField] private GameObject explodeVFX;
+    [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private PlayerCtrl playerCtrl;
+    [SerializeField] private GameObject explodeVFX;
     [SerializeField] private GrenadeTrajectorySystem grenadeTrajectorySystem;
-    private Vector3 gravity = new Vector3(0, -9.81f);
+    private bool isExploded;
     #endregion
 
     private void Awake()
@@ -32,6 +29,7 @@ public class Grenade : MonoBehaviour
 
     private void LoadComponents()
     {
+        rb2d = GetComponent<Rigidbody2D>();
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
         grenadeTrajectorySystem = GameObject.Find("------ PLAYER ------").transform.GetComponentInChildren<GrenadeTrajectorySystem>();
 
@@ -40,8 +38,7 @@ public class Grenade : MonoBehaviour
 
     private void Start()
     {
-        startPoint = playerCtrl.grenadeSystem.throwingPoint.position;
-        endPoint = grenadeTrajectorySystem.lastPredictPosition;
+        listOfTrajectoryPoint = grenadeTrajectorySystem.grenadeTrajectory.listOfTrajectoryPoint;
     }
 
     private void Update()
@@ -51,37 +48,25 @@ public class Grenade : MonoBehaviour
 
     IEnumerator GrenadeFly()
     {
-        float distance = Vector3.Distance(startPoint, endPoint);
-
-        Vector3 lastPoint = new Vector3(endPoint.x - startPoint.x, endPoint.y - startPoint.y);
-
-        float newHeight;
-        PhysicExtension.CalculateHeight(startPoint, endPoint, distance, 0, out newHeight);
-
-        gravity = new Vector3(0, -9.81f);
-        float g = gravity.magnitude;
-
-        PhysicExtension.CalculatePathWithHeight(lastPoint, g, newHeight, out time, out angle, out vel);
-
-        for (float t = 0; t < time; t += Time.deltaTime)
+        for (int i = 0; i < listOfTrajectoryPoint.Count; i++)
         {
-            float x = startPoint.x + PhysicExtension.GetX(t, vel, angle);
-            float y = startPoint.y + PhysicExtension.GetY(g, t, vel, angle);
-
-            transform.position = new Vector3(x, y);
-
-            yield return null;
+            transform.position = listOfTrajectoryPoint[i];
+            yield return new WaitForSeconds(flyTime);
         }
 
+        grenadeTrajectorySystem.grenadeTrajectory.ClearListOfTrajectoryPoint();
         Explode();
     }
 
     private void Explode()
     {
+        Destroy(this.gameObject);
+
+        if (isExploded) return;
+
         GameObject vfx = Instantiate(explodeVFX);
         vfx.transform.position = transform.position;
         vfx.transform.rotation = transform.rotation;
-
-        Destroy(this.gameObject);
+        isExploded = true;
     }
 }

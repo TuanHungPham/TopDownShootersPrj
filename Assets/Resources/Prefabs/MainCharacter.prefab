@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 281400364}
+  - component: {fileID: 3018312047670018145}
   m_Layer: 3
   m_Name: ThrowingPoint
   m_TagString: Untagged
@@ -23,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281400363}
-  m_LocalRotation: {x: -0, y: 0, z: -0.02783463, w: -0.9996125}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31,7 +32,22 @@ Transform:
   - {fileID: 283622430}
   m_Father: {fileID: 3018312048441220681}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -356.81}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3018312047670018145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281400363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3391507f124364247a0fa33ae03019bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  joystick: {fileID: 0}
+  aimDirection: {x: 0, y: 0}
+  joystickTransform: {fileID: 0}
 --- !u!1 &283622429
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +803,7 @@ MonoBehaviour:
   playerWeaponInventory: {fileID: 2864182367071178142}
   playerSwapWeaponSystem: {fileID: 585958276}
   playerStatus: {fileID: 3018312048441220674}
+  grenadeSystem: {fileID: 0}
   ammoSystem: {fileID: 3018312047909351430}
   damageReceiver: {fileID: 3018312048441220677}
   uIManager: {fileID: 0}

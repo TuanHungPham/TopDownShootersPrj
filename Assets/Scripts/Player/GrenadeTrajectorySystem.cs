@@ -5,7 +5,6 @@ using UnityEngine;
 public class GrenadeTrajectorySystem : MonoBehaviour
 {
     #region public var
-    public List<Vector3> listOfTrajectoryPoint = new List<Vector3>();
     public float maxThrowDistance;
     public Vector3 lastPredictPosition;
     public GrenadeTrajectory grenadeTrajectory;

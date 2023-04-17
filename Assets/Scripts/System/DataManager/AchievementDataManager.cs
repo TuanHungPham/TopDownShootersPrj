@@ -1,0 +1,30 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class AchievementDataManager : MonoBehaviour
+{
+    #region public var
+    public int enemiesKilled;
+    public float survivalTime;
+    public int totalDmg;
+    public int coin;
+    #endregion
+
+    #region private var
+    #endregion
+
+    private void Awake()
+    {
+        LoadComponents();
+    }
+
+    private void Reset()
+    {
+        LoadComponents();
+    }
+
+    private void LoadComponents()
+    {
+    }
+}

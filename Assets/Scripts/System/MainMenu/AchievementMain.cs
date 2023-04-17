@@ -8,7 +8,7 @@ public class AchievementMain : MonoBehaviour
 
     public static AchievementMain Instance { get => instance; set => instance = value; }
     #region public var
-    public int coin;
+    public CoinManager coinManager;
     #endregion
 
     #region private var
@@ -27,5 +27,6 @@ public class AchievementMain : MonoBehaviour
 
     private void LoadComponents()
     {
+        coinManager = GetComponentInChildren<CoinManager>();
     }
 }

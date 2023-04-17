@@ -5,13 +5,13 @@ using UnityEngine;
 public class GrenadeTrajectory : MonoBehaviour
 {
     #region  public var
-    public List<Vector3> listOfPoint = new List<Vector3>();
-    public List<Vector3> lastListOfPoint = new List<Vector3>();
+    public List<Vector3> listOfTrajectoryPoint = new List<Vector3>();
     public float stepSize;
     public float heigthPlus;
     #endregion
 
     #region private var
+    [SerializeField] private GrenadeTrajectorySystem grenadeTrajectorySystem;
     [SerializeField] private Vector3 startPoint;
     [SerializeField] private Vector3 endPoint;
     [SerializeField] private Vector3 vertex;
@@ -35,6 +35,7 @@ public class GrenadeTrajectory : MonoBehaviour
     private void LoadComponents()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        grenadeTrajectorySystem = GetComponentInParent<GrenadeTrajectorySystem>();
 
         stepSize = 0.1f;
     }
@@ -59,8 +60,9 @@ public class GrenadeTrajectory : MonoBehaviour
 
     private void DrawGeneradeTrajectory()
     {
-        lastListOfPoint.Clear();
-        listOfPoint.Clear();
+        if (!grenadeTrajectorySystem.IsAreaActive) return;
+
+        ClearListOfTrajectoryPoint();
 
         float distance = Vector3.Distance(startPoint, endPoint);
 
@@ -78,18 +80,20 @@ public class GrenadeTrajectory : MonoBehaviour
         {
             float x = startPoint.x + PhysicExtension.GetX(t, vel, angle);
             float y = startPoint.y + PhysicExtension.GetY(g, t, vel, angle);
-            listOfPoint.Add(new Vector3(x, y));
-            lastListOfPoint.Add(new Vector3(x, y));
+            listOfTrajectoryPoint.Add(new Vector3(x, y));
         }
 
-        lineRenderer.positionCount = listOfPoint.Count;
-        lineRenderer.SetPositions(listOfPoint.ToArray());
-
+        lineRenderer.positionCount = listOfTrajectoryPoint.Count;
+        lineRenderer.SetPositions(listOfTrajectoryPoint.ToArray());
     }
 
     public void HideTrajectory()
     {
-        listOfPoint.Clear();
         lineRenderer.positionCount = 0;
+    }
+
+    public void ClearListOfTrajectoryPoint()
+    {
+        listOfTrajectoryPoint.Clear();
     }
 }

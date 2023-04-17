@@ -84,4 +84,10 @@ public class InGameManager : MonoBehaviour
         SceneManager.LoadScene("InGameScene");
         ResumeTime();
     }
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        ResumeTime();
+    }
 }

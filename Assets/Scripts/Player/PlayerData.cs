@@ -41,24 +41,24 @@ public class PlayerData : MonoBehaviour
 
     private void SetHP()
     {
-        playerCtrl.playerStatus.maxHP = DataManager.Instance.characterHP;
+        playerCtrl.playerStatus.maxHP = DataManager.Instance.characterDataManager.characterHP;
     }
 
     private void SetCharacterSkin()
     {
-        CharacterSkinManager.Instance.SetSkin(DataManager.Instance.characterSkinIndex);
+        CharacterSkinManager.Instance.SetSkin(DataManager.Instance.characterDataManager.characterSkinIndex);
     }
 
     private void SetInitialWeapons()
     {
-        playerCtrl.playerWeaponInventory.weaponInventory.Add(DataManager.Instance.primaryWeaponData);
-        playerCtrl.playerWeaponInventory.weaponInventory.Add(DataManager.Instance.secondaryWeaponData);
+        playerCtrl.playerWeaponInventory.weaponInventory.Add(DataManager.Instance.characterDataManager.primaryWeaponData);
+        playerCtrl.playerWeaponInventory.weaponInventory.Add(DataManager.Instance.characterDataManager.secondaryWeaponData);
         playerCtrl.playerWeaponInventory.IsUpdateInventory = true;
     }
 
     private void SetInitialAmmo()
     {
-        playerCtrl.ammoSystem.rifleAmmo = DataManager.Instance.primaryWeaponData.InitialAmmo;
-        playerCtrl.ammoSystem.pistolAmmo = DataManager.Instance.secondaryWeaponData.InitialAmmo;
+        playerCtrl.ammoSystem.rifleAmmo = DataManager.Instance.characterDataManager.primaryWeaponData.InitialAmmo;
+        playerCtrl.ammoSystem.pistolAmmo = DataManager.Instance.characterDataManager.secondaryWeaponData.InitialAmmo;
     }
 }
