@@ -35,6 +35,7 @@ public class Achievement : MonoBehaviour
     private void Update()
     {
         TimeCounter();
+        UpdateToMainData();
     }
 
     private void TimeCounter()
@@ -44,8 +45,8 @@ public class Achievement : MonoBehaviour
 
     public void UpdateToMainData()
     {
-        enemiesKilled = DataManager.Instance.achievementDataManager.enemiesKilled;
-        survivalTime = DataManager.Instance.achievementDataManager.survivalTime;
-        totalMoney = DataManager.Instance.achievementDataManager.coin;
+        DataManager.Instance.achievementDataManager.enemiesKilled = enemiesKilled;
+        survivalTime = DataManager.Instance.achievementDataManager.survivalTime = survivalTime;
+        totalMoney = DataManager.Instance.achievementDataManager.coin = totalMoney;
     }
 }

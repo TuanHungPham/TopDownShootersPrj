@@ -42,9 +42,9 @@ public class WeaponInventoryPanel : MonoBehaviour
     private void LoadComponents()
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
-        primaryHolder = Resources.Load<GameObject>("Prefabs/PrimaryWeaponHolderUI");
-        secondaryHolder = Resources.Load<GameObject>("Prefabs/SecondaryWeaponHolderUI");
-        meleeHolder = Resources.Load<GameObject>("Prefabs/MeleeWeaponHolderUI");
+        primaryHolder = Resources.Load<GameObject>("Prefabs/UI/PrimaryWeaponHolderUI");
+        secondaryHolder = Resources.Load<GameObject>("Prefabs/UI/SecondaryWeaponHolderUI");
+        meleeHolder = Resources.Load<GameObject>("Prefabs/UI/MeleeWeaponHolderUI");
     }
 
     private void Update()

@@ -6,6 +6,7 @@ using UnityEngine;
 public class GrenadeSystem : MonoBehaviour
 {
     #region public var
+    public float grenadeQuantity;
     public float throwTimer;
     public float throwDelay;
     public Transform throwingPoint;
@@ -16,6 +17,7 @@ public class GrenadeSystem : MonoBehaviour
     [SerializeField] private GameObject grenadePrefab;
     private bool isThrowing;
     private bool isDelay;
+    private bool grenadeLeft;
     #endregion
 
     private void Awake()
@@ -36,10 +38,12 @@ public class GrenadeSystem : MonoBehaviour
 
         throwDelay = 2;
         throwTimer = throwDelay;
+        grenadeQuantity = 3;
     }
 
     private void Update()
     {
+        CheckGrenadeQuantity();
         CheckThrowTimer();
         ThrowGrenade();
     }
@@ -52,6 +56,7 @@ public class GrenadeSystem : MonoBehaviour
         grenade.transform.position = throwingPoint.position;
         grenade.transform.rotation = throwingPoint.rotation;
 
+        ConsumeGrenade();
         isThrowing = true;
         throwTimer = throwDelay;
     }
@@ -69,10 +74,26 @@ public class GrenadeSystem : MonoBehaviour
         throwTimer -= Time.deltaTime;
     }
 
+    private void CheckGrenadeQuantity()
+    {
+        if (grenadeQuantity <= 0)
+        {
+            grenadeLeft = false;
+            return;
+        }
+
+        grenadeLeft = true;
+    }
+
     private bool CanThrow()
     {
-        if (grenadeTrajectorySystem.grenadeTrajectory.listOfTrajectoryPoint.Count == 0 || grenadeTrajectorySystem.IsAreaActive || isDelay) return false;
+        if (grenadeTrajectorySystem.grenadeTrajectory.listOfTrajectoryPoint.Count == 0 || grenadeTrajectorySystem.IsAreaActive || isDelay || !grenadeLeft) return false;
 
         return true;
+    }
+
+    private void ConsumeGrenade()
+    {
+        grenadeQuantity--;
     }
 }

@@ -45,8 +45,8 @@ public class PlayerCtrl : MonoBehaviour
         playerWeaponInventory = GetComponentInChildren<PlayerWeaponInventory>();
         playerSwapWeaponSystem = GetComponentInChildren<PlayerSwapWeaponSystem>();
         ammoSystem = GetComponentInChildren<AmmoSystem>();
-        grenadeSystem = GetComponentInChildren<GrenadeSystem>();
         playerAimingSystem = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetComponent<PlayerAimingSystem>();
+        grenadeSystem = GameObject.Find("------ PLAYER ------").transform.Find("GrenadeSystem").GetComponent<GrenadeSystem>();
 
         uIManager = GameObject.Find("------ UI ------").GetComponentInChildren<UIManager>();
     }

@@ -31,9 +31,9 @@ public class CharacterUpgrade : MonoBehaviour
     {
         CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.selectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        if (AchievementMain.Instance.coinManager.coin < characterDisplayCtrl.characterData.coinRequirement) return;
+        if (AchievementManager.Instance.mainAchievementData.coin < characterDisplayCtrl.characterData.coinRequirement) return;
 
-        AchievementMain.Instance.coinManager.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
+        AchievementManager.Instance.mainAchievementData.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
 
         characterDisplayCtrl.characterData.characterLevel++;
         characterDisplayCtrl.characterData.characterHP += hpUpgrade;

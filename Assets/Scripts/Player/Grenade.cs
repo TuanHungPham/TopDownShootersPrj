@@ -7,14 +7,15 @@ public class Grenade : MonoBehaviour
     #region public var
     public List<Vector3> listOfTrajectoryPoint = new List<Vector3>();
     public float flyTime;
+    public float smoothTime;
     #endregion
 
     #region private var
-    [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private GameObject explodeVFX;
     [SerializeField] private GrenadeTrajectorySystem grenadeTrajectorySystem;
     private bool isExploded;
+    private Vector3 velocity = Vector3.zero;
     #endregion
 
     private void Awake()
@@ -29,7 +30,6 @@ public class Grenade : MonoBehaviour
 
     private void LoadComponents()
     {
-        rb2d = GetComponent<Rigidbody2D>();
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
         grenadeTrajectorySystem = GameObject.Find("------ PLAYER ------").transform.GetComponentInChildren<GrenadeTrajectorySystem>();
 
@@ -39,18 +39,16 @@ public class Grenade : MonoBehaviour
     private void Start()
     {
         listOfTrajectoryPoint = grenadeTrajectorySystem.grenadeTrajectory.listOfTrajectoryPoint;
-    }
-
-    private void Update()
-    {
         StartCoroutine("GrenadeFly");
+        // GrenadeFly();
     }
 
     IEnumerator GrenadeFly()
     {
         for (int i = 0; i < listOfTrajectoryPoint.Count; i++)
         {
-            transform.position = listOfTrajectoryPoint[i];
+            // transform.position = listOfTrajectoryPoint[i];
+            transform.position = Vector3.Lerp(transform.position, listOfTrajectoryPoint[i], smoothTime);
             yield return new WaitForSeconds(flyTime);
         }
 
@@ -66,7 +64,6 @@ public class Grenade : MonoBehaviour
 
         GameObject vfx = Instantiate(explodeVFX);
         vfx.transform.position = transform.position;
-        vfx.transform.rotation = transform.rotation;
         isExploded = true;
     }
 }
