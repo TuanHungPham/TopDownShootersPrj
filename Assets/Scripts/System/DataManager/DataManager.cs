@@ -19,8 +19,8 @@ public class DataManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        DontDestroyOnLoad(this);
         LoadComponents();
+        DontDestroyOnLoad(this);
     }
 
     private void Reset()

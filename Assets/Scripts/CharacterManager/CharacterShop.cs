@@ -5,13 +5,12 @@ using UnityEngine;
 public class CharacterShop : MonoBehaviour
 {
     #region public var
-    public bool IsCharacterOwned { get => isCharacterOwned; set => isCharacterOwned = value; }
+    public bool IsCharacterCanBeOwned { get => isCharacterCanBeOwned; set => isCharacterCanBeOwned = value; }
     #endregion
 
     #region private var
-    [SerializeField] private UserManager userManager;
     [SerializeField] private CharacterManagerCtrl characterManagerCtrl;
-    [SerializeField] private bool isCharacterOwned;
+    [SerializeField] private bool isCharacterCanBeOwned;
     #endregion
 
     private void Awake()
@@ -26,7 +25,6 @@ public class CharacterShop : MonoBehaviour
 
     private void LoadComponents()
     {
-        userManager = GameObject.Find("UserManager").GetComponent<UserManager>();
         characterManagerCtrl = GetComponent<CharacterManagerCtrl>();
     }
 
@@ -43,22 +41,19 @@ public class CharacterShop : MonoBehaviour
 
         if (!characterDisplayCtrl.characterData.IsOwned)
         {
-            isCharacterOwned = true;
+            isCharacterCanBeOwned = true;
             return;
         }
-        isCharacterOwned = false;
+        isCharacterCanBeOwned = false;
     }
 
     public void Buy()
     {
         CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.selectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        // if (UserManager.Instance.mainAchievementData.coin < characterDisplayCtrl.characterData.coinRequirement) return;
-        if (userManager.mainAchievementData.coin < characterDisplayCtrl.characterData.coinRequirement) return;
+        if (UserManager.Instance.mainAchievementData.coin < characterDisplayCtrl.characterData.coinRequirement) return;
 
-        // UserManager.Instance.mainAchievementData.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
-        userManager.mainAchievementData.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
-
+        UserManager.Instance.mainAchievementData.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
         characterDisplayCtrl.characterData.IsOwned = true;
         characterDisplayCtrl.characterData.characterLevel = 1;
     }

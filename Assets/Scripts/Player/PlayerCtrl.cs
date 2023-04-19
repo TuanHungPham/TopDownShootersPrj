@@ -14,6 +14,7 @@ public class PlayerCtrl : MonoBehaviour
     public PlayerSwapWeaponSystem playerSwapWeaponSystem;
     public Status playerStatus;
     public GrenadeSystem grenadeSystem;
+    public GrenadeAimSystem grenadeAimSystem;
     public AmmoSystem ammoSystem;
     public DamageReceiver damageReceiver;
 
@@ -45,6 +46,7 @@ public class PlayerCtrl : MonoBehaviour
         playerWeaponInventory = GetComponentInChildren<PlayerWeaponInventory>();
         playerSwapWeaponSystem = GetComponentInChildren<PlayerSwapWeaponSystem>();
         ammoSystem = GetComponentInChildren<AmmoSystem>();
+        grenadeAimSystem = GetComponentInChildren<GrenadeAimSystem>();
         playerAimingSystem = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetComponent<PlayerAimingSystem>();
         grenadeSystem = GameObject.Find("------ PLAYER ------").transform.Find("GrenadeSystem").GetComponent<GrenadeSystem>();
 
@@ -61,6 +63,7 @@ public class PlayerCtrl : MonoBehaviour
         playerAimingSystem.enabled = true;
         playerWeaponInventory.enabled = true;
         playerSwapWeaponSystem.enabled = true;
+        grenadeAimSystem.enabled = true;
         GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 

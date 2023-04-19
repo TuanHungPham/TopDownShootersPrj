@@ -10,6 +10,7 @@ public abstract class LeaderboardPanel : MonoBehaviour
 
     #region private var
     [SerializeField] protected Transform board;
+    [SerializeField] protected GameObject darkScreen;
     [SerializeField] protected GameObject firstUserBoard;
     [SerializeField] protected GameObject secondUserBoard;
     [SerializeField] protected GameObject userBoard;
@@ -31,6 +32,7 @@ public abstract class LeaderboardPanel : MonoBehaviour
     {
         board = transform.Find("Board");
 
+        darkScreen = transform.root.GetChild(0).Find("DarkScreen").gameObject;
         firstUserBoard = Resources.Load<GameObject>("Prefabs/UI/FirstPlayerListUI");
         secondUserBoard = Resources.Load<GameObject>("Prefabs/UI/SecondPlayerListUI");
         userBoard = Resources.Load<GameObject>("Prefabs/UI/PlayerListUI");
@@ -39,6 +41,7 @@ public abstract class LeaderboardPanel : MonoBehaviour
     public void DisableBoard()
     {
         this.gameObject.SetActive(false);
+        darkScreen.SetActive(false);
     }
 
     protected virtual void IntializeBoard()

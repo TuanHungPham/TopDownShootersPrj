@@ -21,14 +21,14 @@ public class PlayerData : MonoBehaviour
         LoadComponents();
     }
 
-    private void Start()
-    {
-        SetPlayerData();
-    }
-
     private void LoadComponents()
     {
         playerCtrl = GetComponentInParent<PlayerCtrl>();
+    }
+
+    private void Start()
+    {
+        SetPlayerData();
     }
 
     private void SetPlayerData()

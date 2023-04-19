@@ -42,17 +42,17 @@ public class EnemyWaveManager : MonoBehaviour
         enemySpawner = transform.root.Find("EnemySpawner").GetComponent<EnemySpawner>();
 
         waveNumber = 1;
-        // numberOfEnemy = 10;
-        // nextWaveTimer = 15;
-        // addEnemyNumber = 5;
-        // addEnemyHP = 25;
+        numberOfEnemy = 10;
+        nextWaveTimer = 15;
+        addEnemyNumber = 5;
+        addEnemyHP = 25;
         restOfEnemy = numberOfEnemy;
     }
 
     private void Update()
     {
         CheckNumberOfAliveEnemy();
-        // CheckWave();
+        CheckWave();
         SetUpForNextWave();
     }
 

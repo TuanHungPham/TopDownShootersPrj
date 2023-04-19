@@ -19,4 +19,9 @@ public class MainMenuManager : MonoBehaviour
         if (characterDisplayCtrl.characterData.IsOwned) return true;
         return false;
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

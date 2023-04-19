@@ -77,7 +77,6 @@ public class CharacterManagerCtrl : MonoBehaviour
 
             selectedCharacter = character;
 
-            if (DataManager.Instance == null) return;
             DataManager.Instance.characterDataManager.GetCharacterData();
             return;
         }

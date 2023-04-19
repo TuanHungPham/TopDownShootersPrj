@@ -44,7 +44,7 @@ public class ButtonManager : MonoBehaviour
 
     private void HandleButton()
     {
-        if (!characterManagerCtrl.characterShop.IsCharacterOwned)
+        if (!characterManagerCtrl.characterShop.IsCharacterCanBeOwned)
         {
             levelUpButton.gameObject.SetActive(true);
             buyButton.gameObject.SetActive(false);

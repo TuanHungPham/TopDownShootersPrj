@@ -9,7 +9,6 @@ public class CoinPanel : MonoBehaviour
     #endregion
 
     #region private var
-    [SerializeField] private UserManager userManager;
     [SerializeField] private TMP_Text coinText;
     #endregion
 
@@ -25,7 +24,6 @@ public class CoinPanel : MonoBehaviour
 
     private void LoadComponents()
     {
-        userManager = GameObject.Find("UserManager").GetComponent<UserManager>();
         coinText = GetComponentInChildren<TMP_Text>();
     }
 
@@ -36,7 +34,6 @@ public class CoinPanel : MonoBehaviour
 
     private void ShowCoin()
     {
-        // coinText.text = UserManager.Instance.mainAchievementData.coin.ToString();
-        coinText.text = userManager.mainAchievementData.coin.ToString();
+        coinText.text = UserManager.Instance.mainAchievementData.coin.ToString();
     }
 }

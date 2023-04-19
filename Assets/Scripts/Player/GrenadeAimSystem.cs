@@ -11,6 +11,7 @@ public class GrenadeAimSystem : MonoBehaviour
 
     #region private var
     [SerializeField] private RectTransform joystickTransform;
+    [SerializeField] private Transform hand;
     private Quaternion lastRotation;
     #endregion
 
@@ -29,6 +30,7 @@ public class GrenadeAimSystem : MonoBehaviour
         Transform uiParent = GameObject.Find("------ UI ------").transform.Find("Canvas");
         joystickTransform = uiParent.Find("GrenadeJoystick").GetComponent<RectTransform>();
         joystick = joystickTransform.GetComponentInChildren<FixedJoystick>();
+        hand = transform.Find("Hand");
     }
 
     private void FixedUpdate()
@@ -47,10 +49,17 @@ public class GrenadeAimSystem : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0, 0, angle - 180);
             lastRotation = transform.rotation;
+            DisplayHandWithGrenade(true);
         }
         else
         {
             transform.rotation = lastRotation;
+            DisplayHandWithGrenade(false);
         }
+    }
+
+    public void DisplayHandWithGrenade(bool isDisplay)
+    {
+        hand.gameObject.SetActive(isDisplay);
     }
 }

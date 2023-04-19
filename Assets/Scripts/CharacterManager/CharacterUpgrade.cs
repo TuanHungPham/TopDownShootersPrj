@@ -9,7 +9,6 @@ public class CharacterUpgrade : MonoBehaviour
     #endregion
 
     #region private var
-    [SerializeField] private UserManager userManager;
     [SerializeField] private CharacterManagerCtrl characterManagerCtrl;
     #endregion
 
@@ -25,7 +24,6 @@ public class CharacterUpgrade : MonoBehaviour
 
     private void LoadComponents()
     {
-        userManager = GameObject.Find("UserManager").GetComponent<UserManager>();
         characterManagerCtrl = GetComponent<CharacterManagerCtrl>();
     }
 
@@ -33,12 +31,9 @@ public class CharacterUpgrade : MonoBehaviour
     {
         CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.selectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        // if (UserManager.Instance.mainAchievementData.coin < characterDisplayCtrl.characterData.coinRequirement) return;
-        if (userManager.mainAchievementData.coin < characterDisplayCtrl.characterData.coinRequirement) return;
+        if (UserManager.Instance.mainAchievementData.coin < characterDisplayCtrl.characterData.coinRequirement) return;
 
-        // UserManager.Instance.mainAchievementData.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
-        userManager.mainAchievementData.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
-
+        UserManager.Instance.mainAchievementData.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
         characterDisplayCtrl.characterData.characterLevel++;
         characterDisplayCtrl.characterData.characterHP += hpUpgrade;
         characterDisplayCtrl.characterData.upgradePrice += characterDisplayCtrl.characterData.upgradePriceAdd;

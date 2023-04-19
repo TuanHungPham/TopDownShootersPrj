@@ -15,15 +15,8 @@ public class MainAchievementData : MonoBehaviour
     #region private var
     #endregion
 
-    private void OnEnable()
+    public void UpdateData()
     {
-        UpdateData();
-    }
-
-    private void UpdateData()
-    {
-        if (DataManager.Instance == null) return;
-
         UpdateCoin();
         UpdateEnemiesKilled();
         UpdateSurvivalTime();
@@ -38,16 +31,16 @@ public class MainAchievementData : MonoBehaviour
     {
         enemiesKilled = DataManager.Instance.achievementDataManager.enemiesKilled;
 
-        if (highestEnemiesKilled <= enemiesKilled) return;
-        highestEnemiesKilled = enemiesKilled;
+        if (highestEnemiesKilled >= DataManager.Instance.achievementDataManager.enemiesKilled) return;
+        highestEnemiesKilled = DataManager.Instance.achievementDataManager.enemiesKilled;
     }
 
     private void UpdateSurvivalTime()
     {
         survivalTime = DataManager.Instance.achievementDataManager.survivalTime;
 
-        if (highestSurvivalTime <= survivalTime) return;
-        highestSurvivalTime = survivalTime;
+        if (highestSurvivalTime >= DataManager.Instance.achievementDataManager.survivalTime) return;
+        highestSurvivalTime = DataManager.Instance.achievementDataManager.survivalTime;
     }
 
     public void ConsumeCoin(int consumptionQuantity)

@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CharacterManagerUI : MonoBehaviour
 {
     #region public var
     public ButtonManager buttonManager;
-    public CoinPanel coinPanel;
     public CharacterInfoPanel characterInfoPanel;
     #endregion
 
     #region private var
     [SerializeField] private CharacterManagerCtrl characterManagerCtrl;
+    [SerializeField] private TMP_Text usernameText;
     #endregion
 
     private void Awake()
@@ -26,10 +27,20 @@ public class CharacterManagerUI : MonoBehaviour
 
     private void LoadComponents()
     {
+        usernameText = transform.Find("UsernameUI").GetComponent<TMP_Text>();
         buttonManager = GetComponentInChildren<ButtonManager>();
-        coinPanel = GetComponentInChildren<CoinPanel>();
         characterInfoPanel = GetComponentInChildren<CharacterInfoPanel>();
 
         characterManagerCtrl = GameObject.Find("------ MANAGER ------").GetComponentInChildren<CharacterManagerCtrl>();
+    }
+
+    private void Start()
+    {
+        ShowUsername();
+    }
+
+    public void ShowUsername()
+    {
+        usernameText.text = UserManager.Instance.userName;
     }
 }

@@ -6,10 +6,10 @@ public class LeaderboardMangerUI : MonoBehaviour
 {
     #region public var
     public List<UserManager> listOfUser = new List<UserManager>();
-    public List<UserManager> listNewUser = new List<UserManager>();
     #endregion
 
     #region private var
+    [SerializeField] private GameObject darkScreen;
     [SerializeField] private GameObject enemiesKilledBoard;
     [SerializeField] private GameObject survivalTimeBoard;
     [SerializeField] private EnemiesKilledPanel enemiesKilledPanel;
@@ -18,20 +18,12 @@ public class LeaderboardMangerUI : MonoBehaviour
 
     private void OnEnable()
     {
-        foreach (UserManager user in listNewUser)
-        {
-            AddUser(user);
-        }
+        AddUser(UserManager.Instance);
     }
 
     private void Awake()
     {
         LoadComponents();
-
-        foreach (UserManager user in listNewUser)
-        {
-            AddUser(user);
-        }
     }
 
     private void Reset()
@@ -41,25 +33,23 @@ public class LeaderboardMangerUI : MonoBehaviour
 
     private void LoadComponents()
     {
+        darkScreen = transform.parent.Find("DarkScreen").gameObject;
         enemiesKilledBoard = transform.Find("EnemiesKilledPanel").gameObject;
         survivalTimeBoard = transform.Find("SurvivalTimePanel").gameObject;
         enemiesKilledPanel = enemiesKilledBoard.GetComponent<EnemiesKilledPanel>();
         survivalTimePanel = survivalTimeBoard.GetComponent<SurvivalTimePanel>();
     }
 
-    private void Update()
-    {
-
-    }
-
     public void DisplayEnemiesKilledBoard()
     {
         enemiesKilledBoard.SetActive(true);
+        darkScreen.SetActive(true);
         enemiesKilledPanel.ShowUserAchievement(listOfUser);
     }
 
     public void DisplaySurvivalTimeBoard()
     {
+        darkScreen.SetActive(true);
         survivalTimeBoard.SetActive(true);
         survivalTimePanel.ShowUserAchievement(listOfUser);
     }

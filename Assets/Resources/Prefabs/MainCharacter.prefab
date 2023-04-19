@@ -48,6 +48,7 @@ MonoBehaviour:
   joystick: {fileID: 0}
   aimDirection: {x: 0, y: 0}
   joystickTransform: {fileID: 0}
+  hand: {fileID: 0}
 --- !u!1 &283622429
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +805,7 @@ MonoBehaviour:
   playerSwapWeaponSystem: {fileID: 585958276}
   playerStatus: {fileID: 3018312048441220674}
   grenadeSystem: {fileID: 0}
+  grenadeAimSystem: {fileID: 3018312047670018145}
   ammoSystem: {fileID: 3018312047909351430}
   damageReceiver: {fileID: 3018312048441220677}
   uIManager: {fileID: 0}
