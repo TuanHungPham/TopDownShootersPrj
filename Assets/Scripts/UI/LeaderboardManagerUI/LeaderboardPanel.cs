@@ -82,7 +82,4 @@ public abstract class LeaderboardPanel : MonoBehaviour
     public abstract void SortList(List<UserManager> achievementList);
 
     public abstract void ShowUserAchievement(List<UserManager> achievementList);
-
-    //Kiem tra user ton tai chua?
-    //Neu user ton tai thi thay highscore
 }

@@ -11,7 +11,9 @@ public class LeaderboardMangerUI : MonoBehaviour
 
     #region private var
     [SerializeField] private GameObject enemiesKilledBoard;
+    [SerializeField] private GameObject survivalTimeBoard;
     [SerializeField] private EnemiesKilledPanel enemiesKilledPanel;
+    [SerializeField] private SurvivalTimePanel survivalTimePanel;
     #endregion
 
     private void OnEnable()
@@ -40,7 +42,9 @@ public class LeaderboardMangerUI : MonoBehaviour
     private void LoadComponents()
     {
         enemiesKilledBoard = transform.Find("EnemiesKilledPanel").gameObject;
+        survivalTimeBoard = transform.Find("SurvivalTimePanel").gameObject;
         enemiesKilledPanel = enemiesKilledBoard.GetComponent<EnemiesKilledPanel>();
+        survivalTimePanel = survivalTimeBoard.GetComponent<SurvivalTimePanel>();
     }
 
     private void Update()
@@ -52,6 +56,12 @@ public class LeaderboardMangerUI : MonoBehaviour
     {
         enemiesKilledBoard.SetActive(true);
         enemiesKilledPanel.ShowUserAchievement(listOfUser);
+    }
+
+    public void DisplaySurvivalTimeBoard()
+    {
+        survivalTimeBoard.SetActive(true);
+        survivalTimePanel.ShowUserAchievement(listOfUser);
     }
 
     public void AddUser(UserManager user)
@@ -77,8 +87,14 @@ public class LeaderboardMangerUI : MonoBehaviour
     {
         int index = listOfUser.IndexOf(oldUserStatus);
 
-        if (listOfUser[index].mainAchievementData.highestEnemiesKilled > newUserStatus.mainAchievementData.highestEnemiesKilled) return;
+        if (listOfUser[index].mainAchievementData.highestEnemiesKilled < newUserStatus.mainAchievementData.highestEnemiesKilled)
+        {
+            listOfUser[index].mainAchievementData.highestEnemiesKilled = newUserStatus.mainAchievementData.highestEnemiesKilled;
+        }
 
-        listOfUser[index].mainAchievementData.highestEnemiesKilled = newUserStatus.mainAchievementData.highestEnemiesKilled;
+        if (listOfUser[index].mainAchievementData.highestSurvivalTime < newUserStatus.mainAchievementData.highestSurvivalTime)
+        {
+            listOfUser[index].mainAchievementData.highestSurvivalTime = newUserStatus.mainAchievementData.highestSurvivalTime;
+        }
     }
 }

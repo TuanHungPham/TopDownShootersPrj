@@ -22,6 +22,8 @@ public class MainAchievementData : MonoBehaviour
 
     private void UpdateData()
     {
+        if (DataManager.Instance == null) return;
+
         UpdateCoin();
         UpdateEnemiesKilled();
         UpdateSurvivalTime();

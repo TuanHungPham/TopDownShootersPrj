@@ -35,9 +35,38 @@ public class BoardUI : MonoBehaviour
         Score = transform.Find("ScorePanel").GetComponentInChildren<TMP_Text>();
     }
 
-    public void SetUIData(string name, int score)
+    public void SetUIEnemiesKilledData(string name, int score)
     {
         UserName.text = name;
         this.Score.text = score.ToString();
+    }
+
+    public void SetUISurvivalTimeData(string name, float time)
+    {
+        UserName.text = name;
+
+        float sec = 0;
+        float min = 0;
+        float hour = 0;
+        float t = time;
+
+        while (t > 0)
+        {
+            min = Mathf.FloorToInt(t / 60);
+            sec = Mathf.FloorToInt(t % 60);
+
+            if (min >= 60)
+            {
+                hour++;
+                min -= 60;
+                t -= 3600;
+            }
+            else if (min < 60)
+            {
+                t -= t;
+            }
+        }
+
+        score.text = string.Format("{0:00}:{1:00}:{2:00}", hour, min, sec);
     }
 }

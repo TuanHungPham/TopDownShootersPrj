@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemiesKilledPanel : LeaderboardPanel
+public class SurvivalTimePanel : LeaderboardPanel
 {
     #region public var
     #endregion
@@ -44,8 +44,21 @@ public class EnemiesKilledPanel : LeaderboardPanel
     {
         achievementList.Sort
         (
-            (a, b) => b.mainAchievementData.highestEnemiesKilled.CompareTo(a.mainAchievementData.highestEnemiesKilled)
+            (a, b) => ComepareSurvivalTime(a, b)
         );
+    }
+
+    private int ComepareSurvivalTime(UserManager user1, UserManager user2)
+    {
+        if (user2.mainAchievementData.highestSurvivalTime > user1.mainAchievementData.highestSurvivalTime)
+        {
+            return 1;
+        }
+        else if (user2.mainAchievementData.highestSurvivalTime < user1.mainAchievementData.highestSurvivalTime)
+        {
+            return -1;
+        }
+        return 0;
     }
 
     public override void ShowUserAchievement(List<UserManager> achievementList)
@@ -57,9 +70,9 @@ public class EnemiesKilledPanel : LeaderboardPanel
             if (i >= listOfBoard.Count) return;
 
             string name = achievementList[i].userName;
-            int score = achievementList[i].mainAchievementData.highestEnemiesKilled;
+            float time = achievementList[i].mainAchievementData.highestSurvivalTime;
 
-            listOfBoard[i].SetUIEnemiesKilledData(name, score);
+            listOfBoard[i].SetUISurvivalTimeData(name, time);
         }
     }
 }
