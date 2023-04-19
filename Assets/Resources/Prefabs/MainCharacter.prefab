@@ -822,9 +822,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objStatus: {fileID: 3018312048441220674}
-  animator: {fileID: 0}
+  animator: {fileID: 1634146186}
   isHit: 0
   deadVFX: {fileID: 0}
+  bloodVFX: {fileID: 100000, guid: bc98890f6028f444eaa7789bde5e2eeb, type: 3}
   stateName: Player_Hit
 --- !u!114 &3018312048441220674
 MonoBehaviour:

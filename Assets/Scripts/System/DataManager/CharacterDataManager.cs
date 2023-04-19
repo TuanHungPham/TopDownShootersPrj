@@ -7,11 +7,15 @@ public class CharacterDataManager : MonoBehaviour
     #region public var
     public int characterHP;
     public int characterSkinIndex;
+
+
+    [Space(20)]
     public WeaponData primaryWeaponData;
     public WeaponData secondaryWeaponData;
     #endregion
 
     #region private var
+    [Space(20)]
     [SerializeField] private CharacterData selectedCharacterData;
     #endregion
 

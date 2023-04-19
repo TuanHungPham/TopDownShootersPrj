@@ -13,6 +13,7 @@ public class DamageReceiver : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private bool isHit;
     [SerializeField] private GameObject deadVFX;
+    [SerializeField] private GameObject bloodVFX;
     [SerializeField] private string stateName;
     #endregion
 
@@ -30,6 +31,7 @@ public class DamageReceiver : MonoBehaviour
     {
         objStatus = GetComponent<Status>();
         animator = GetComponentInChildren<Animator>();
+        bloodVFX = Resources.Load<GameObject>("Prefabs/ParticalEffects/CFX2_Blood");
     }
 
     private void Update()
@@ -41,6 +43,11 @@ public class DamageReceiver : MonoBehaviour
     {
         objStatus.currentHP -= dmg;
         animator.SetTrigger("Hit");
+
+        GameObject blood = Instantiate(bloodVFX);
+        blood.transform.position = transform.position;
+        // blood.transform.rotation = new Vector3(bloodVFX.transform.rotation.x, transform.rotation.y - 180, bloodVFX.transform.rotation.z);
+
         if (this.gameObject.CompareTag("Player"))
         {
             UIManager.Instance.hitScene.TriggerHitScene();

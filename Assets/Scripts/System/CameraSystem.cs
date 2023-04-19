@@ -22,7 +22,7 @@ public class CameraSystem : MonoBehaviour
 
     private void Awake()
     {
-        LoadComponents();
+        // LoadComponents();
     }
 
     private void Reset()
@@ -45,10 +45,15 @@ public class CameraSystem : MonoBehaviour
         mainCam.orthographicSize = defaultZoom;
     }
 
+    private void Start()
+    {
+        LoadComponents();
+    }
+
     private void Update()
     {
         Follow();
-        SetUpCameraZoom();
+        // SetUpCameraZoom();
     }
 
     private void Follow()
@@ -77,5 +82,4 @@ public class CameraSystem : MonoBehaviour
         if (mainCam.orthographicSize <= defaultZoom) return;
         mainCam.orthographicSize -= smoothZoom;
     }
-
 }

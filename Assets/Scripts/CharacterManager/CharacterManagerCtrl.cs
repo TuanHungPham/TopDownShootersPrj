@@ -7,14 +7,16 @@ public class CharacterManagerCtrl : MonoBehaviour
     private static CharacterManagerCtrl instance;
     public static CharacterManagerCtrl Instance { get => instance; }
 
+    #region public var
     public List<Transform> listOfCharacter = new List<Transform>();
     public Transform selectedCharacter;
-
     public CharacterShop characterShop;
     public CharacterUpgrade characterUpgrade;
-
     public DisplayPointManager displayPointManager;
+    #endregion
 
+    #region private var
+    #endregion
 
     private void Awake()
     {

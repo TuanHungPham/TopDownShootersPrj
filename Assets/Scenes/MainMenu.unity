@@ -4231,7 +4231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -711.0001, y: -133}
+  m_AnchoredPosition: {x: -711.0001, y: -132.99998}
   m_SizeDelta: {x: -1607.77, y: -950.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &710597459
@@ -6339,6 +6339,10 @@ MonoBehaviour:
   characterShop: {fileID: 1261235467}
   characterUpgrade: {fileID: 1261235466}
   displayPointManager: {fileID: 1264183437}
+  character1: {fileID: 1277702901283987833, guid: 6f71de231135ccb46bc134ee6919a28c, type: 3}
+  character2: {fileID: 4663039633040273125, guid: c23188979a56c5f478d9893f8d521881, type: 3}
+  character3: {fileID: 4651567070182852928, guid: 23b9beca83ef9514bbe99327ecc5ed89, type: 3}
+  character4: {fileID: 1106494599359852954, guid: 600bee162860a974d9cb7b99d6e1f80b, type: 3}
 --- !u!114 &1261235466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6366,7 +6370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterManagerCtrl: {fileID: 1261235465}
-  isCharacterOwned: 0
+  isCharacterCanBeOwned: 0
 --- !u!1 &1264183435
 GameObject:
   m_ObjectHideFlags: 0
