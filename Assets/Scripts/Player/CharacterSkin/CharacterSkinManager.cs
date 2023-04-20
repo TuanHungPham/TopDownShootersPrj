@@ -56,31 +56,10 @@ public class CharacterSkinManager : MonoBehaviour
         Animator animator = recentCharacterSkin.GetComponent<Animator>();
         Animator newAnimator = selectedCharacterSkin.GetComponent<Animator>();
         animator.runtimeAnimatorController = newAnimator.runtimeAnimatorController;
-
-        selectedCharacterSkin = null;
     }
 
     public void SetSkin(int index)
     {
         selectedCharacterSkin = listOfCharacterSkin[index];
     }
-
-    #region FUNCTION FOR TEST SCENE
-    public void GetSkin1()
-    {
-        selectedCharacterSkin = listOfCharacterSkin.Find((x) => x.name.Equals("Character1Sprite"));
-    }
-    public void GetSkin2()
-    {
-        selectedCharacterSkin = listOfCharacterSkin.Find((x) => x.name.Equals("Character2Sprite"));
-    }
-    public void GetSkin3()
-    {
-        selectedCharacterSkin = listOfCharacterSkin.Find((x) => x.name.Equals("Character3Sprite"));
-    }
-    public void GetSkin4()
-    {
-        selectedCharacterSkin = listOfCharacterSkin.Find((x) => x.name.Equals("Character4Sprite"));
-    }
-    #endregion
 }

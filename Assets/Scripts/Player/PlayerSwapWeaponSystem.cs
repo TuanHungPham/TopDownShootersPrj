@@ -44,7 +44,7 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
         SwitchWeapon();
     }
 
-    private void GetWeaponFromStorage()
+    public void GetWeaponFromStorage()
     {
         if (!playerCtrl.playerWeaponInventory.IsUpdateInventory) return;
 

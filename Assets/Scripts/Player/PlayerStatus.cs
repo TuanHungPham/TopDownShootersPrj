@@ -21,11 +21,6 @@ public class PlayerStatus : Status
         base.Reset();
     }
 
-    private void Start()
-    {
-        currentHP = maxHP;
-    }
-
     protected override void LoadComponents()
     {
         playerCtrl = GetComponent<PlayerCtrl>();

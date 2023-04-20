@@ -50,8 +50,6 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private void LoadComponents()
     {
-        GetWeaponInHolder();
-
         playerCtrl = GetComponentInParent<PlayerCtrl>();
 
         crosshair = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetChild(0);
@@ -134,7 +132,7 @@ public class PlayerWeaponSystem : MonoBehaviour
         }
     }
 
-    private void GetWeaponInHolder()
+    public void GetWeaponInHolder()
     {
         foreach (Transform child in transform)
         {

@@ -79,7 +79,7 @@ public class CharacterManagerCtrl : MonoBehaviour
 
             selectedCharacter = character;
 
-            DataManager.Instance.characterDataManager.GetCharacterData();
+            DataManager.Instance.characterDataManager.GetSelectedCharacterData();
             return;
         }
     }

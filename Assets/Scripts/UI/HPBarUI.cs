@@ -26,12 +26,6 @@ public class HPBarUI : MonoBehaviour
         LoadComponents();
     }
 
-    private void Start()
-    {
-        hpSlider.maxValue = playerCtrl.playerStatus.maxHP;
-        hpSlider.value = playerCtrl.playerStatus.currentHP;
-    }
-
     private void LoadComponents()
     {
         hpText = transform.Find("TextBG").GetComponentInChildren<TMP_Text>();
@@ -40,6 +34,12 @@ public class HPBarUI : MonoBehaviour
         playerCtrl = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter").GetComponent<PlayerCtrl>();
 
         smoothTime = 0.5f;
+    }
+
+    public void InitializeHPBar()
+    {
+        hpSlider.maxValue = playerCtrl.playerStatus.maxHP;
+        hpSlider.value = playerCtrl.playerStatus.currentHP;
     }
 
     private void Update()

@@ -43,10 +43,7 @@ public class DamageReceiver : MonoBehaviour
     {
         objStatus.currentHP -= dmg;
         animator.SetTrigger("Hit");
-
-        GameObject blood = Instantiate(bloodVFX);
-        blood.transform.position = transform.position;
-        // blood.transform.rotation = new Vector3(bloodVFX.transform.rotation.x, transform.rotation.y - 180, bloodVFX.transform.rotation.z);
+        SetBloodVFX();
 
         if (this.gameObject.CompareTag("Player"))
         {
@@ -56,14 +53,28 @@ public class DamageReceiver : MonoBehaviour
         if (objStatus.currentHP <= 0)
         {
             Invoke("SetDeadVFX", 1.2f);
-
-            if (!this.gameObject.CompareTag("Enemy")) return;
-            EnemyCtrl enemyCtrl = this.gameObject.GetComponent<EnemyCtrl>();
-            enemyCtrl.itemDropSystem.Invoke("DropItem", 1.3f);
+            Drop();
 
             Achievement.Instance.enemiesKilled++;
             EnemyWaveManager.Instance.restOfEnemy--;
         }
+    }
+
+    private void SetBloodVFX()
+    {
+        GameObject blood = Instantiate(bloodVFX);
+        blood.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+
+        Vector3 rotate = blood.transform.localEulerAngles;
+        if (transform.localScale.x == -1)
+        {
+            rotate.y = transform.rotation.y + 90;
+        }
+        else if (transform.localScale.x == 1)
+        {
+            rotate.y = transform.rotation.y - 90;
+        }
+        blood.transform.localEulerAngles = rotate;
     }
 
     private void SetDeadVFX()
@@ -73,6 +84,13 @@ public class DamageReceiver : MonoBehaviour
         GameObject vfx = Instantiate(deadVFX);
         vfx.transform.position = this.transform.position;
         vfx.transform.rotation = this.transform.rotation;
+    }
+
+    private void Drop()
+    {
+        if (!this.gameObject.CompareTag("Enemy")) return;
+        EnemyCtrl enemyCtrl = this.gameObject.GetComponent<EnemyCtrl>();
+        enemyCtrl.itemDropSystem.Invoke("DropItem", 1.3f);
     }
 
     private void CheckHit()

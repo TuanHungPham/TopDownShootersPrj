@@ -36,8 +36,6 @@ public class GrenadeTrajectory : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         grenadeTrajectorySystem = GetComponentInParent<GrenadeTrajectorySystem>();
-
-        stepSize = 0.01f;
     }
 
     private void Update()

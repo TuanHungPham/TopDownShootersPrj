@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerCtrl : MonoBehaviour
 {
     [Space]
-    public PlayerData playerData;
     public PlayerMovement playerMovement;
     public PlayerBehaviour playerBehaviour;
     public PlayerWeaponSystem playerWeaponSystem;
@@ -39,7 +38,6 @@ public class PlayerCtrl : MonoBehaviour
     {
         playerStatus = GetComponent<Status>();
         damageReceiver = GetComponent<DamageReceiver>();
-        playerData = GetComponentInChildren<PlayerData>();
         playerMovement = GetComponentInChildren<PlayerMovement>();
         playerBehaviour = transform.GetComponentInChildren<PlayerBehaviour>();
         playerWeaponSystem = GetComponentInChildren<PlayerWeaponSystem>();
