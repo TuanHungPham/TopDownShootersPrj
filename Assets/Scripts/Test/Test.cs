@@ -38,6 +38,7 @@ public class Test : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Throw();
+            TestScore.Instance.score++;
         }
     }
 
@@ -50,7 +51,6 @@ public class Test : MonoBehaviour
 
         float newHeight;
         CalculateHeight(endPoint, distance, out newHeight);
-        Debug.Log(newHeight);
 
         gravity = new Vector3(0, -9.81f);
         float g = gravity.magnitude;
