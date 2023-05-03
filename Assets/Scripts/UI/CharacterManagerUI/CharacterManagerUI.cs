@@ -34,11 +34,6 @@ public class CharacterManagerUI : MonoBehaviour
         characterManagerCtrl = GameObject.Find("------ MANAGER ------").GetComponentInChildren<CharacterManagerCtrl>();
     }
 
-    private void Start()
-    {
-        ShowUsername();
-    }
-
     public void ShowUsername()
     {
         usernameText.text = UserManager.Instance.userName;
