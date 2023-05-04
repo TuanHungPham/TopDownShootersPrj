@@ -59,7 +59,6 @@ public class FacebookAccountSystem : MonoBehaviour
         List<string> permissions = new List<string>();
         permissions.Add("public_profile");
         permissions.Add("user_friends");
-        permissions.Add("user_photos");
         permissions.Add("email");
 
         FB.LogInWithReadPermissions(permissions, OnFacebookLogin);

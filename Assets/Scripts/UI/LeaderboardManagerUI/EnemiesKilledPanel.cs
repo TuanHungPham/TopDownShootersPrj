@@ -40,24 +40,14 @@ public class EnemiesKilledPanel : LeaderboardPanel
         base.AddNumerUserToList(index, board);
     }
 
-    public override void SortList(List<UserManager> achievementList)
-    {
-        achievementList.Sort
-        (
-            (a, b) => b.mainAchievementData.highestEnemiesKilled.CompareTo(a.mainAchievementData.highestEnemiesKilled)
-        );
-    }
-
     public override void ShowUserAchievement(List<UserManager> achievementList)
     {
-        SortList(achievementList);
-
         for (int i = 0; i < achievementList.Count; i++)
         {
             if (i >= listOfBoard.Count) return;
 
             string name = achievementList[i].userName;
-            int score = achievementList[i].mainAchievementData.highestEnemiesKilled;
+            int score = achievementList[i].enemiesKilledScore;
 
             listOfBoard[i].SetUIEnemiesKilledData(name, score);
         }

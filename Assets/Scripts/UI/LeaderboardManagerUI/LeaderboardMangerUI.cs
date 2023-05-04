@@ -18,7 +18,7 @@ public class LeaderboardMangerUI : MonoBehaviour
 
     private void OnEnable()
     {
-        AddUser(UserManager.Instance);
+        ResetUserList();
     }
 
     private void Awake()
@@ -29,6 +29,34 @@ public class LeaderboardMangerUI : MonoBehaviour
     private void Reset()
     {
         LoadComponents();
+    }
+
+    private void Start()
+    {
+        InitializeUserList();
+    }
+
+    private void InitializeUserList()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            listOfUser.Add(new UserManager
+            {
+                userName = "",
+                enemiesKilledScore = 0,
+                timeSurvivalScore = 0,
+            });
+        }
+    }
+
+    private void ResetUserList()
+    {
+        foreach (var user in listOfUser)
+        {
+            user.userName = "";
+            user.enemiesKilledScore = 0;
+            user.timeSurvivalScore = 0;
+        }
     }
 
     private void LoadComponents()
@@ -42,49 +70,31 @@ public class LeaderboardMangerUI : MonoBehaviour
 
     public void DisplayEnemiesKilledBoard()
     {
-        enemiesKilledBoard.SetActive(true);
-        darkScreen.SetActive(true);
-        enemiesKilledPanel.ShowUserAchievement(listOfUser);
+        StartCoroutine(SetEnemiesKilledBoard());
     }
 
     public void DisplaySurvivalTimeBoard()
     {
+        StartCoroutine(SetSurvivalTimeBoard());
+    }
+
+    private IEnumerator SetEnemiesKilledBoard()
+    {
+        enemiesKilledBoard.SetActive(true);
+        darkScreen.SetActive(true);
+
+        PlayfabSystemManager.Instance.PlayfabLeaderboardSystem.GetGlobalLeaderboard("EnemiesKilled", listOfUser);
+        yield return new WaitForSeconds(1);
+        enemiesKilledPanel.ShowUserAchievement(listOfUser);
+    }
+
+    private IEnumerator SetSurvivalTimeBoard()
+    {
         darkScreen.SetActive(true);
         survivalTimeBoard.SetActive(true);
+
+        PlayfabSystemManager.Instance.PlayfabLeaderboardSystem.GetGlobalLeaderboard("SurvivalTime", listOfUser);
+        yield return new WaitForSeconds(1);
         survivalTimePanel.ShowUserAchievement(listOfUser);
-    }
-
-    public void AddUser(UserManager user)
-    {
-        if (listOfUser.Contains(user)) return;
-
-        UserManager user1 = listOfUser.Find((x) => x.userName == user.userName);
-        if (user1 == null)
-        {
-            AddNewUser(user);
-            return;
-        }
-
-        EditExistedUser(user1, user);
-    }
-
-    private void AddNewUser(UserManager user)
-    {
-        listOfUser.Add(user);
-    }
-
-    private void EditExistedUser(UserManager oldUserStatus, UserManager newUserStatus)
-    {
-        int index = listOfUser.IndexOf(oldUserStatus);
-
-        if (listOfUser[index].mainAchievementData.highestEnemiesKilled < newUserStatus.mainAchievementData.highestEnemiesKilled)
-        {
-            listOfUser[index].mainAchievementData.highestEnemiesKilled = newUserStatus.mainAchievementData.highestEnemiesKilled;
-        }
-
-        if (listOfUser[index].mainAchievementData.highestSurvivalTime < newUserStatus.mainAchievementData.highestSurvivalTime)
-        {
-            listOfUser[index].mainAchievementData.highestSurvivalTime = newUserStatus.mainAchievementData.highestSurvivalTime;
-        }
     }
 }

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: PlayFabEditorPrefsSO
   m_EditorClassIdentifier: 
   DevAccountEmail: rrvqth@gmail.com
-  DevAccountToken: nxnkdsi7di4hmgx9pza9ng9gsse6pnbxkz18fq4ahjh1rnginmh7agg5qqikjonpkraz386c6yphbzsds8jmpq51tf5nr5d7qx75sgy7jsa1xxoc7h934to6hngatc1naa63twsbcthbeomzxxd1zwa47q6kiog86sdtr7rp9yyfe3awwgw8iium6iouekny4o634hsi
+  DevAccountToken: 43go6a8mkpu881jw7ikdsctcb7q7qjq5wf8za7gyhh9s5f7o4tpyyidzg7f7xa494t4p3ezwbijs833fk44kgce5336s1pnr3cu8s99jbymdprf1yiw17tccymmpdnf6ss8176jd5z374xgsb5986oxuw8d6ppijwai9o5xr7o9ktfcogpb3ue55x84sncqfze447ak9
   AadAuthorization: 
-  SelectedStudio: My Game Studio
+  SelectedStudio: 
   SdkPath: Assets/PlayFabSDK
   EdExPath: 
   LocalCloudScriptPath: 
   PanelIsShown: 0
-  curMainMenuIdx: 1
+  curMainMenuIdx: 0
   curSubMenuIdx: 0

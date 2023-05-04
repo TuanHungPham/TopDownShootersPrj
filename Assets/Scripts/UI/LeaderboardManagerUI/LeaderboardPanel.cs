@@ -82,7 +82,5 @@ public abstract class LeaderboardPanel : MonoBehaviour
         listOfBoard.Add(boardListUI);
     }
 
-    public abstract void SortList(List<UserManager> achievementList);
-
     public abstract void ShowUserAchievement(List<UserManager> achievementList);
 }
