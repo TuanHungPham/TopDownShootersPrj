@@ -18,6 +18,11 @@ public class FacebookAccountSystem : MonoBehaviour
         InitializeFacebookSDK();
     }
 
+    private void Start()
+    {
+        DisplayUsernameAtStart();
+    }
+
     private void InitializeFacebookSDK()
     {
         if (FB.IsInitialized)
@@ -97,5 +102,12 @@ public class FacebookAccountSystem : MonoBehaviour
         MenuUIManager.Instance.CharacterManagerUI.ShowUsername();
 
         PlayfabSystemManager.Instance.PlayfabAccountSystem.LoginWithFacebook(accessToken.TokenString, username);
+    }
+
+    private static void DisplayUsernameAtStart()
+    {
+        if (!FB.IsLoggedIn) return;
+
+        MenuUIManager.Instance.CharacterManagerUI.ShowUsername();
     }
 }

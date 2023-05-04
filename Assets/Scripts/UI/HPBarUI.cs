@@ -8,6 +8,7 @@ public class HPBarUI : MonoBehaviour
 {
     #region public var
     public Slider hpSlider;
+    public Slider hpBGSlider;
     #endregion
 
     #region private var
@@ -30,6 +31,7 @@ public class HPBarUI : MonoBehaviour
     {
         hpText = transform.Find("TextBG").GetComponentInChildren<TMP_Text>();
         hpSlider = transform.Find("HPBarBG").Find("HPSlider").GetComponent<Slider>();
+        hpBGSlider = transform.Find("HPBarBG").Find("HPBGSlider").GetComponent<Slider>();
 
         playerCtrl = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter").GetComponent<PlayerCtrl>();
 

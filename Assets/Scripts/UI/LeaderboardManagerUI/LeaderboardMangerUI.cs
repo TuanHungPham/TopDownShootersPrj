@@ -43,8 +43,8 @@ public class LeaderboardMangerUI : MonoBehaviour
             listOfUser.Add(new UserManager
             {
                 userName = "",
-                enemiesKilledScore = 0,
-                timeSurvivalScore = 0,
+                highestEnemiesKilled = 0,
+                highestSurvivalTime = 0,
             });
         }
     }
@@ -54,8 +54,8 @@ public class LeaderboardMangerUI : MonoBehaviour
         foreach (var user in listOfUser)
         {
             user.userName = "";
-            user.enemiesKilledScore = 0;
-            user.timeSurvivalScore = 0;
+            user.highestEnemiesKilled = 0;
+            user.highestSurvivalTime = 0;
         }
     }
 

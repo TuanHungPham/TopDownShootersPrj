@@ -34,6 +34,6 @@ public class CoinPanel : MonoBehaviour
 
     private void ShowCoin()
     {
-        coinText.text = UserManager.Instance.mainAchievementData.coin.ToString();
+        coinText.text = UserManager.Instance.coin.ToString();
     }
 }

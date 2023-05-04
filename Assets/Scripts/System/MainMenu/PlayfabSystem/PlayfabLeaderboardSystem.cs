@@ -48,11 +48,11 @@ public class PlayfabLeaderboardSystem : MonoBehaviour
     {
         if (statsName.Equals("EnemiesKilled"))
         {
-            newUser.enemiesKilledScore = score;
+            newUser.highestEnemiesKilled = score;
         }
         else if (statsName.Equals("SurvivalTime"))
         {
-            newUser.timeSurvivalScore = score;
+            newUser.highestSurvivalTime = score;
         }
     }
 

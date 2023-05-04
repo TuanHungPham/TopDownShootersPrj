@@ -47,7 +47,7 @@ public class SurvivalTimePanel : LeaderboardPanel
             if (i >= listOfBoard.Count) return;
 
             string name = achievementList[i].userName;
-            float time = achievementList[i].timeSurvivalScore;
+            float time = achievementList[i].highestSurvivalTime;
 
             listOfBoard[i].SetUISurvivalTimeData(name, time);
         }

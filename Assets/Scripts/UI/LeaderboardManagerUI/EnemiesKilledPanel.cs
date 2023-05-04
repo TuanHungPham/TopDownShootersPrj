@@ -47,7 +47,7 @@ public class EnemiesKilledPanel : LeaderboardPanel
             if (i >= listOfBoard.Count) return;
 
             string name = achievementList[i].userName;
-            int score = achievementList[i].enemiesKilledScore;
+            int score = achievementList[i].highestEnemiesKilled;
 
             listOfBoard[i].SetUIEnemiesKilledData(name, score);
         }

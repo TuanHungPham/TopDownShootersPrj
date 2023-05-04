@@ -51,9 +51,9 @@ public class CharacterShop : MonoBehaviour
     {
         CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.selectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        if (UserManager.Instance.mainAchievementData.coin < characterDisplayCtrl.characterData.coinRequirement) return;
+        if (UserManager.Instance.coin < characterDisplayCtrl.characterData.coinRequirement) return;
 
-        UserManager.Instance.mainAchievementData.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
+        UserManager.Instance.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
         characterDisplayCtrl.characterData.IsOwned = true;
         characterDisplayCtrl.characterData.characterLevel = 1;
     }
