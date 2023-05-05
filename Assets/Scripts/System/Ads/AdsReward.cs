@@ -7,6 +7,8 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
     #endregion 
 
     #region private var
+    [SerializeField] private GameObject rewardPanel;
+    [SerializeField] private GameObject darkScreen;
     [SerializeField] private string androidAdUnitID;
     [SerializeField] private string iosAdUnitID;
     private string adUnitID;
@@ -19,6 +21,11 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
         SetUnitID();
     }
 
+    private void Start()
+    {
+        SetupRewardPanelRandomly();
+    }
+
     private void Reset()
     {
         LoadComponents();
@@ -26,6 +33,9 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
     private void LoadComponents()
     {
+        rewardPanel = GameObject.Find("------ UI ------").transform.GetChild(0).Find("RewardPanel").gameObject;
+        darkScreen = GameObject.Find("------ UI ------").transform.GetChild(0).Find("DarkScreen").gameObject;
+
         androidAdUnitID = "Rewarded_Android";
         iosAdUnitID = "Rewarded_iOS";
     }
@@ -66,6 +76,15 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
         if (!placementId.Equals(adUnitID) || !showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED)) return;
 
         Debug.Log("Unity Ads Rewarded Ad Completed");
+        Reward();
+
+        rewardPanel.SetActive(false);
+        darkScreen.SetActive(false);
+    }
+
+    private void Reward()
+    {
+        UserManager.Instance.coin += 1500;
     }
 
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
@@ -79,5 +98,16 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
     public void OnUnityAdsShowClick(string placementId)
     {
+    }
+
+    private void SetupRewardPanelRandomly()
+    {
+        float random = Random.Range(0f, 1f);
+        Debug.Log(random);
+
+        if (random > 0.65f) return;
+
+        rewardPanel.SetActive(true);
+        darkScreen.SetActive(true);
     }
 }

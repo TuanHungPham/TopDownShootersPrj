@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LeaderboardButton : MonoBehaviour
@@ -30,6 +27,8 @@ public class LeaderboardButton : MonoBehaviour
 
     public void ShowButtonPanel()
     {
+        if (!PlayFab.PlayFabClientAPI.IsClientLoggedIn()) return;
+
         if (!isShowed)
         {
             boardButtonPanel.SetActive(true);
