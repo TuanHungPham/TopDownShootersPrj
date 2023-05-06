@@ -9,6 +9,7 @@ public class PlayfabRegistrySystem : MonoBehaviour
     public string Username { get => username; set => username = value; }
     public string Email { get => email; set => email = value; }
     public string Password { get => password; set => password = value; }
+    public string ReEnterPassword { get => reEnterPassword; set => reEnterPassword = value; }
     #endregion
 
     #region private var
@@ -18,6 +19,7 @@ public class PlayfabRegistrySystem : MonoBehaviour
     [SerializeField] private string username;
     [SerializeField] private string email;
     [SerializeField] private string password;
+    [SerializeField] private string reEnterPassword;
     #endregion
 
     private void Awake()
@@ -44,6 +46,13 @@ public class PlayfabRegistrySystem : MonoBehaviour
 
     public void RegisterPlayfabAccount()
     {
+        if (reEnterPassword != password)
+        {
+            errorPanel.gameObject.SetActive(true);
+            errorPanelText.text = "Re-enter Password is not match with Password!";
+            return;
+        }
+
         RegisterPlayFabUserRequest request = new RegisterPlayFabUserRequest
         {
             Username = username,

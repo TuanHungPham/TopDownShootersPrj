@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class RegisterySystemUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void InputUsername(string username)
     {
-        
+        PlayfabSystemManager.Instance.PlayfabRegistrySystem.Username = username;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InputPassword(string password)
     {
-        
+        PlayfabSystemManager.Instance.PlayfabRegistrySystem.Password = password;
+    }
+
+    public void ReEnterPassword(string password)
+    {
+        PlayfabSystemManager.Instance.PlayfabRegistrySystem.ReEnterPassword = password;
+    }
+
+    public void InputEmail(string email)
+    {
+        PlayfabSystemManager.Instance.PlayfabRegistrySystem.Email = email;
     }
 }
