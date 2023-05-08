@@ -42,6 +42,8 @@ public class HPBarUI : MonoBehaviour
     {
         hpSlider.maxValue = playerCtrl.playerStatus.maxHP;
         hpSlider.value = playerCtrl.playerStatus.currentHP;
+        hpBGSlider.maxValue = hpSlider.maxValue;
+        hpBGSlider.value = hpSlider.value;
     }
 
     private void Update()
@@ -61,5 +63,13 @@ public class HPBarUI : MonoBehaviour
         if (hpSlider.value == playerCtrl.playerStatus.currentHP) return;
 
         hpSlider.value -= smoothTime;
+        Invoke("SetHPBGSlider", 0.4f);
+    }
+
+    private void SetHPBGSlider()
+    {
+        if (hpBGSlider.value == hpSlider.value) return;
+
+        hpBGSlider.value -= smoothTime;
     }
 }
