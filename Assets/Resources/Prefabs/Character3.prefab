@@ -538,7 +538,7 @@ MonoBehaviour:
   primaryWeaponData: {fileID: 11400000, guid: 1a20ccba53708654c818e625e348f2cf, type: 2}
   secondaryWeaponData: {fileID: 11400000, guid: 5ebd0e51e89aa094d98e3b3370352c13, type: 2}
   coinRequirement: 0
-  upgradePrice: 5000
+  upgradePrice: 5500
   upgradePriceAdd: 500
   buyPrice: 40000
   isOwned: 0

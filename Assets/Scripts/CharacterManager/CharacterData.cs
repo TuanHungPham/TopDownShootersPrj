@@ -39,8 +39,6 @@ public class CharacterData : MonoBehaviour
     private void LoadComponents()
     {
         characterName = transform.parent.name;
-        upgradePrice = 5000;
-        upgradePriceAdd = 500;
     }
 
     private void Update()
@@ -57,5 +55,15 @@ public class CharacterData : MonoBehaviour
         }
 
         coinRequirement = buyPrice;
+    }
+
+    public void SetData(LoadedCharacterData loadedCharacterData)
+    {
+        this.characterSkinIndex = loadedCharacterData.CharacterSkinIndex;
+        this.characterName = loadedCharacterData.CharacterName;
+        this.characterLevel = loadedCharacterData.CharacterLevel;
+        this.characterHP = loadedCharacterData.CharacterHP;
+        this.buyPrice = loadedCharacterData.BuyPrice;
+        this.isOwned = loadedCharacterData.IsOwned;
     }
 }

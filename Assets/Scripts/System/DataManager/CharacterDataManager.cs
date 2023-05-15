@@ -13,6 +13,7 @@ public class CharacterDataManager : MonoBehaviour
     [Space(20)]
     public WeaponData primaryWeaponData;
     public WeaponData secondaryWeaponData;
+    public bool IsDataLoaded { get => isDataLoaded; set => isDataLoaded = value; }
     #endregion
 
     #region private var
@@ -26,20 +27,6 @@ public class CharacterDataManager : MonoBehaviour
     [Space(20)]
     [SerializeField] private Scene currentScene;
     #endregion
-
-    private void Awake()
-    {
-        LoadComponents();
-    }
-
-    private void Reset()
-    {
-        LoadComponents();
-    }
-
-    private void LoadComponents()
-    {
-    }
 
     private void Update()
     {
@@ -71,20 +58,21 @@ public class CharacterDataManager : MonoBehaviour
     {
         if (!currentScene.name.Equals("InGameScene"))
         {
-            isDataLoaded = false;
+            IsDataLoaded = false;
             return;
         }
 
-        if (isDataLoaded) return;
-
         playerCtrl = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter").GetComponent<PlayerCtrl>();
+
+        if (IsDataLoaded) return;
 
         SetHP();
         SetCharacterSkin();
         SetInitialWeapons();
         SetInitialAmmo();
 
-        isDataLoaded = true;
+        Debug.Log("Data is loaded!");
+        IsDataLoaded = true;
     }
 
     private void SetHP()

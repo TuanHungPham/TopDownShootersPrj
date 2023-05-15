@@ -117,7 +117,7 @@ MonoBehaviour:
   upgradePrice: 5000
   upgradePriceAdd: 500
   buyPrice: 10000
-  isOwned: 0
+  isOwned: 1
 --- !u!1 &1277702901283987833
 GameObject:
   m_ObjectHideFlags: 0

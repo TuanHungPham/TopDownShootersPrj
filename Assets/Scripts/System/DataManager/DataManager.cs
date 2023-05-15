@@ -11,14 +11,16 @@ public class DataManager : MonoBehaviour
     #region public var
     public CharacterDataManager characterDataManager;
     public AchievementDataManager achievementDataManager;
+    public bool IsRetry { get => isRetry; set => isRetry = value; }
     #endregion
 
     #region private var
+    [SerializeField] private bool isRetry;
     #endregion
 
     private void Awake()
     {
-        instance = this;
+        HandleSingletonObject();
         LoadComponents();
         DontDestroyOnLoad(this);
     }
@@ -32,5 +34,17 @@ public class DataManager : MonoBehaviour
     {
         characterDataManager = GetComponentInChildren<CharacterDataManager>();
         achievementDataManager = GetComponentInChildren<AchievementDataManager>();
+    }
+
+    private void HandleSingletonObject()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 }

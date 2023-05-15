@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class CharacterManagerCtrl : MonoBehaviour
@@ -22,6 +22,7 @@ public class CharacterManagerCtrl : MonoBehaviour
     {
         instance = this;
         LoadComponents();
+        Load();
     }
 
     private void Reset()
@@ -82,5 +83,47 @@ public class CharacterManagerCtrl : MonoBehaviour
             DataManager.Instance.characterDataManager.GetSelectedCharacterData();
             return;
         }
+    }
+
+    private void Save()
+    {
+        foreach (Transform character in listOfCharacter)
+        {
+            CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
+            CharacterData characterData = characterDisplayCtrl.characterData;
+
+            string fileName = character.name;
+            string json = JsonUtility.ToJson(characterData);
+
+            IOSystem.WriteToFile(fileName, json);
+        }
+
+        Debug.Log("Character data is saved!");
+    }
+
+    private void Load()
+    {
+        foreach (Transform character in listOfCharacter)
+        {
+            CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
+            CharacterData characterData = characterDisplayCtrl.characterData;
+            LoadedCharacterData loadedCharacterData = new LoadedCharacterData();
+
+            string fileName = character.name;
+
+            string json = IOSystem.ReadFromFIle(fileName);
+            if (json == null) continue;
+
+            JsonUtility.FromJsonOverwrite(json, loadedCharacterData);
+
+            characterData.SetData(loadedCharacterData);
+            Debug.Log(character.name + " buy price: " + loadedCharacterData.BuyPrice);
+            Debug.Log(character.name + " data is loaded!");
+        }
+    }
+
+    private void OnDisable()
+    {
+        Save();
     }
 }

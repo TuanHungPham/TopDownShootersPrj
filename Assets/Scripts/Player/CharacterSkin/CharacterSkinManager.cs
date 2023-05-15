@@ -14,6 +14,7 @@ public class CharacterSkinManager : MonoBehaviour
     #region private var
     [SerializeField] private Transform recentCharacterSkin;
     [SerializeField] private Transform selectedCharacterSkin;
+    [SerializeField] private bool isCharacterSkinLoaded;
     #endregion
 
     private void Awake()
@@ -27,7 +28,7 @@ public class CharacterSkinManager : MonoBehaviour
         LoadComponents();
     }
 
-    private void Start()
+    private void Update()
     {
         ChangeSkin();
     }
@@ -51,11 +52,12 @@ public class CharacterSkinManager : MonoBehaviour
 
     private void ChangeSkin()
     {
-        if (selectedCharacterSkin == null) return;
+        if (selectedCharacterSkin == null || isCharacterSkinLoaded) return;
 
         Animator animator = recentCharacterSkin.GetComponent<Animator>();
         Animator newAnimator = selectedCharacterSkin.GetComponent<Animator>();
         animator.runtimeAnimatorController = newAnimator.runtimeAnimatorController;
+        isCharacterSkinLoaded = true;
     }
 
     public void SetSkin(int index)

@@ -23,6 +23,8 @@ public class InGameManager : MonoBehaviour
         instance = this;
 
         LoadComponents();
+
+        DataManager.Instance.IsRetry = false;
     }
 
     private void Reset()
@@ -37,8 +39,6 @@ public class InGameManager : MonoBehaviour
 
         respawnManager = GetComponentInChildren<RespawnManager>();
         gameOverManager = GetComponentInChildren<GameOverManager>();
-
-        pauseMenu.SetActive(false);
     }
 
     public void SetPauseAndResumeGame()
@@ -81,7 +81,8 @@ public class InGameManager : MonoBehaviour
 
     public void ResetGame()
     {
-        SceneManager.LoadScene("InGameScene");
+        SceneManager.LoadScene("LoadDataScene");
+        DataManager.Instance.IsRetry = true;
         ResumeTime();
     }
 

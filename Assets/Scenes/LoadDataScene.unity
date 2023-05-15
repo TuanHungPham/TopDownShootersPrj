@@ -306,6 +306,10 @@ MonoBehaviour:
   primaryWeaponData: {fileID: 0}
   secondaryWeaponData: {fileID: 0}
   selectedCharacterData: {fileID: 0}
+  playerCtrl: {fileID: 0}
+  isDataLoaded: 0
+  currentScene:
+    m_Handle: 0
 --- !u!4 &569066300
 Transform:
   m_ObjectHideFlags: 0

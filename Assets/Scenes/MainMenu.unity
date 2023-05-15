@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b79b5624d944058bd39aad2b90fb275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productId: com.HowieCompany.TopDownShooters.Coin
+  productId: coin
   buttonType: 0
   consumePurchase: 1
   onTransactionsRestored:
@@ -3567,7 +3567,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.75003, y: -319.1502}
+  m_AnchoredPosition: {x: 261.75, y: -319.1502}
   m_SizeDelta: {x: 523.5001, y: 183.84982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &194496459
@@ -4999,7 +4999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -711.0002, y: 4}
+  m_AnchoredPosition: {x: -711.00024, y: 4}
   m_SizeDelta: {x: -1607.77, y: -950.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &352902986
@@ -5752,7 +5752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b79b5624d944058bd39aad2b90fb275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productId: 
+  productId: alotofcoins
   buttonType: 0
   consumePurchase: 1
   onTransactionsRestored:
@@ -6199,7 +6199,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -827.0002, y: -437.00006}
+  m_AnchoredPosition: {x: -827.00024, y: -437.00006}
   m_SizeDelta: {x: -1797.0201, y: -954.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &519453224
@@ -6727,7 +6727,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.75003, y: -285.77472}
+  m_AnchoredPosition: {x: 261.75, y: -285.77472}
   m_SizeDelta: {x: 523.5001, y: 183.84982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &602509365
@@ -7347,7 +7347,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.75003, y: -813}
+  m_AnchoredPosition: {x: 261.75, y: -813}
   m_SizeDelta: {x: 213.9, y: 98.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675881643
@@ -7481,7 +7481,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.75003, y: -949}
+  m_AnchoredPosition: {x: 261.75, y: -949}
   m_SizeDelta: {x: 213.9, y: 98.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &685623221
@@ -7975,7 +7975,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -711.0002, y: -133}
+  m_AnchoredPosition: {x: -711.00024, y: -133}
   m_SizeDelta: {x: -1607.77, y: -950.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &710597459
@@ -8335,7 +8335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.75003, y: -653.47437}
+  m_AnchoredPosition: {x: 261.75, y: -653.47437}
   m_SizeDelta: {x: 523.5001, y: 183.84982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &759113292
@@ -8787,7 +8787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.75003, y: -950}
+  m_AnchoredPosition: {x: 261.75, y: -950}
   m_SizeDelta: {x: 213.9, y: 98.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &785050852
@@ -11212,7 +11212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -691.0002, y: -437.00006}
+  m_AnchoredPosition: {x: -691.00024, y: -437.00006}
   m_SizeDelta: {x: -1820.2802, y: -972.03}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1006073614
@@ -11335,7 +11335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.75003, y: -101.92493}
+  m_AnchoredPosition: {x: 261.75, y: -101.92493}
   m_SizeDelta: {x: 523.5001, y: 183.84982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007085307
@@ -11939,7 +11939,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.75003, y: -519}
+  m_AnchoredPosition: {x: 261.75, y: -519}
   m_SizeDelta: {x: 523.5001, y: 183.84982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1058091272
@@ -13610,7 +13610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.75003, y: -285.77472}
+  m_AnchoredPosition: {x: 261.75, y: -285.77472}
   m_SizeDelta: {x: 523.5001, y: 183.84982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1311316704
@@ -14429,7 +14429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -711.0004, y: -269}
+  m_AnchoredPosition: {x: -711.0005, y: -269}
   m_SizeDelta: {x: -1607.77, y: -950.27}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1396357111
@@ -15473,7 +15473,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 262.16006, y: -798}
+  m_AnchoredPosition: {x: 262.16003, y: -798}
   m_SizeDelta: {x: 213.9, y: 98.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1485865974
@@ -16507,7 +16507,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 221.70999, y: -262}
+  m_AnchoredPosition: {x: 221.70996, y: -262}
   m_SizeDelta: {x: 203.38, y: 48.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1586735438
@@ -16935,7 +16935,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.75003, y: -469.62457}
+  m_AnchoredPosition: {x: 261.75, y: -469.62457}
   m_SizeDelta: {x: 523.5001, y: 183.84982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1637734789
@@ -17376,7 +17376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b79b5624d944058bd39aad2b90fb275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productId: com.HowieCompany.TopDownShooters.Treasure
+  productId: treasure
   buttonType: 0
   consumePurchase: 1
   onTransactionsRestored:
@@ -20756,7 +20756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 261.75003, y: -813}
+  m_AnchoredPosition: {x: 261.75, y: -813}
   m_SizeDelta: {x: 213.9, y: 98.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1782536224
@@ -22432,7 +22432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b79b5624d944058bd39aad2b90fb275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  productId: com.HowieCompany.TopDownShooters.BagOfCoin
+  productId: bagofcoins
   buttonType: 0
   consumePurchase: 1
   onTransactionsRestored:
