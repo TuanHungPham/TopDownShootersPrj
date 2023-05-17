@@ -35,7 +35,7 @@ public class GameOverManager : MonoBehaviour
 
     private void GetGameOverBoard()
     {
-        if (!GameOverCheck) return;
+        if (!gameOverCheck) return;
 
         Invoke("SetGameOverBoard", 1.8f);
     }

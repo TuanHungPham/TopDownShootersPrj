@@ -9,6 +9,7 @@ public class RespawnManager : MonoBehaviour
     public float respawnAvailableTimer;
     public bool CanRespawn { get => canRespawn; set => canRespawn = value; }
     public bool IsRespawned { get => isRespawned; set => isRespawned = value; }
+    public bool IsRespawning { get => isRespawning; set => isRespawning = value; }
     #endregion
 
     #region private var
@@ -18,6 +19,7 @@ public class RespawnManager : MonoBehaviour
     [SerializeField] private Transform enemySpawner;
     [SerializeField] private bool canRespawn;
     [SerializeField] private bool isRespawned;
+    [SerializeField] private bool isRespawning;
     #endregion
 
     private void Awake()
@@ -65,16 +67,17 @@ public class RespawnManager : MonoBehaviour
 
     public void Respawn()
     {
-        ResetPlayerComponentState();
-
-        IsRespawned = true;
+        isRespawning = true;
+        isRespawned = true;
+        Invoke("ResetPlayerComponentState", 1.5f);
     }
 
     private void ResetPlayerComponentState()
     {
         EnableWeapon();
-
         playerCtrl.EnableComponents();
+
+        isRespawning = false;
     }
 
     private void RespawnCheck()
@@ -85,7 +88,7 @@ public class RespawnManager : MonoBehaviour
             return;
         }
 
-        if (IsRespawned || respawnAvailableTimer <= 0.1)
+        if ((isRespawned || respawnAvailableTimer <= 0.1) && !isRespawning)
         {
             canRespawn = false;
             InGameManager.Instance.gameOverManager.GameOverCheck = true;

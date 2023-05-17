@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.SceneManagement;
 
 public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
 {
@@ -33,8 +34,11 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
     private void LoadComponents()
     {
-        rewardPanel = GameObject.Find("------ UI ------").transform.GetChild(0).Find("RewardPanel").gameObject;
-        darkScreen = GameObject.Find("------ UI ------").transform.GetChild(0).Find("DarkScreen").gameObject;
+        if (SceneManager.GetActiveScene().Equals("MainMenu"))
+        {
+            rewardPanel = GameObject.Find("------ UI ------").transform.GetChild(0).Find("RewardPanel").gameObject;
+            darkScreen = GameObject.Find("------ UI ------").transform.GetChild(0).Find("DarkScreen").gameObject;
+        }
 
         androidAdUnitID = "Rewarded_Android";
         iosAdUnitID = "Rewarded_iOS";
@@ -59,6 +63,7 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
     public void ShowAds()
     {
         Advertisement.Show(adUnitID, this);
+        Time.timeScale = 0;
     }
 
     public void OnUnityAdsAdLoaded(string placementId)
@@ -77,19 +82,30 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
         Debug.Log("Unity Ads Rewarded Ad Completed");
         Reward();
+        Time.timeScale = 1;
 
-        rewardPanel.SetActive(false);
-        darkScreen.SetActive(false);
+        if (SceneManager.GetActiveScene().Equals("MainMenu"))
+        {
+            rewardPanel.SetActive(false);
+            darkScreen.SetActive(false);
+        }
     }
 
     private void Reward()
     {
-        UserManager.Instance.coin += 1500;
+        if (SceneManager.GetActiveScene().Equals("MainMenu"))
+        {
+            UserManager.Instance.coin += 1500;
+            return;
+        }
+
+        InGameManager.Instance.respawnManager.Respawn();
     }
 
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)
     {
         Debug.Log("Ads Showed Failed: " + error.ToString() + " " + message);
+        Time.timeScale = 1;
     }
 
     public void OnUnityAdsShowStart(string placementId)
@@ -102,6 +118,8 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
     private void SetupRewardPanelRandomly()
     {
+        if (!SceneManager.GetActiveScene().Equals("MainMenu")) return;
+
         float random = Random.Range(0f, 1f);
         Debug.Log(random);
 

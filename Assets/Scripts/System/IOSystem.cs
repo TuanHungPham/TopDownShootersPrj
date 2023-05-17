@@ -3,20 +3,6 @@ using UnityEngine;
 
 public static class IOSystem
 {
-    public static void LoadCharacterData(string fileName, LoadedCharacterData data)
-    {
-        string json = ReadFromFIle(fileName);
-        if (json == null) return;
-
-        JsonUtility.FromJsonOverwrite(json, data);
-    }
-
-    public static void SaveCharacterData(string fileName, CharacterData data)
-    {
-        string json = JsonUtility.ToJson(data);
-        WriteToFile(fileName, json);
-    }
-
     public static void WriteToFile(string fileName, string json)
     {
         string path = GetFilePath(fileName);

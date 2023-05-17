@@ -18,6 +18,7 @@ public class CharacterData : MonoBehaviour
     public int coinRequirement;
     public int upgradePrice;
     public int upgradePriceAdd;
+    public int BuyPrice { get => buyPrice; set => buyPrice = value; }
     public bool IsOwned { get => isOwned; set => isOwned = value; }
     #endregion
 
@@ -54,16 +55,17 @@ public class CharacterData : MonoBehaviour
             return;
         }
 
-        coinRequirement = buyPrice;
+        coinRequirement = BuyPrice;
     }
 
     public void SetData(LoadedCharacterData loadedCharacterData)
     {
-        this.characterSkinIndex = loadedCharacterData.CharacterSkinIndex;
-        this.characterName = loadedCharacterData.CharacterName;
-        this.characterLevel = loadedCharacterData.CharacterLevel;
-        this.characterHP = loadedCharacterData.CharacterHP;
-        this.buyPrice = loadedCharacterData.BuyPrice;
-        this.isOwned = loadedCharacterData.IsOwned;
+        characterSkinIndex = loadedCharacterData.characterSkinIndex;
+        characterName = loadedCharacterData.characterName;
+        characterLevel = loadedCharacterData.characterLevel;
+        characterHP = loadedCharacterData.characterHP;
+        BuyPrice = loadedCharacterData.buyPrice;
+        upgradePrice = loadedCharacterData.upgradePrice;
+        isOwned = loadedCharacterData.isOwned;
     }
 }

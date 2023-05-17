@@ -1,24 +1,33 @@
-[System.Serializable]
 public class LoadedCharacterData
 {
     #region public var
-    public int CharacterSkinIndex { get => characterSkinIndex; set => characterSkinIndex = value; }
-    public string CharacterName { get => characterName; set => characterName = value; }
-    public int CharacterLevel { get => characterLevel; set => characterLevel = value; }
-    public int CharacterHP { get => characterHP; set => characterHP = value; }
-    public int BuyPrice { get => buyPrice; set => buyPrice = value; }
-    public bool IsOwned { get => isOwned; set => isOwned = value; }
     #endregion
 
     #region private var
-    private int characterSkinIndex;
-    private string characterName;
-    private int characterLevel;
-    private int characterHP;
-    private int coinRequirement;
-    private int upgradePrice;
-    private int upgradePriceAdd;
-    private int buyPrice;
-    private bool isOwned;
+    public int characterSkinIndex;
+    public string characterName;
+    public int characterLevel;
+    public int characterHP;
+    public int coinRequirement;
+    public int upgradePrice;
+    public int upgradePriceAdd;
+    public int buyPrice;
+    public bool isOwned;
     #endregion
+
+    public LoadedCharacterData(int skinIndex, string name, int level, int hp, int upgradePrice, int buyPrice, bool isOwned)
+    {
+        characterSkinIndex = skinIndex;
+        characterName = name;
+        characterLevel = level;
+        characterHP = hp;
+        this.upgradePrice = upgradePrice;
+        this.buyPrice = buyPrice;
+        this.isOwned = isOwned;
+    }
+
+    public override string ToString()
+    {
+        return base.ToString();
+    }
 }

@@ -16,13 +16,14 @@ public class CharacterManagerCtrl : MonoBehaviour
     #endregion
 
     #region private var
+    private LoadedCharacterData loadedCharacterData;
     #endregion
 
     private void Awake()
     {
         instance = this;
         LoadComponents();
-        // Load();
+        Load();
     }
 
     private void Reset()
@@ -67,7 +68,6 @@ public class CharacterManagerCtrl : MonoBehaviour
         Transform character = listOfCharacter.Find((x) => x.name.Equals("Character1"));
 
         CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
-        characterDisplayCtrl.characterData.characterLevel = 1;
         characterDisplayCtrl.characterData.IsOwned = true;
     }
 
@@ -92,8 +92,19 @@ public class CharacterManagerCtrl : MonoBehaviour
             CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
             CharacterData characterData = characterDisplayCtrl.characterData;
 
+            loadedCharacterData = new LoadedCharacterData
+            (
+                characterData.characterSkinIndex,
+                characterData.characterName,
+                characterData.characterLevel,
+                characterData.characterHP,
+                characterData.upgradePrice,
+                characterData.BuyPrice,
+                characterData.IsOwned
+            );
+
             string fileName = character.name;
-            string json = JsonUtility.ToJson(characterData);
+            string json = JsonUtility.ToJson(loadedCharacterData);
 
             IOSystem.WriteToFile(fileName, json);
         }
@@ -107,23 +118,21 @@ public class CharacterManagerCtrl : MonoBehaviour
         {
             CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
             CharacterData characterData = characterDisplayCtrl.characterData;
-            LoadedCharacterData loadedCharacterData = new LoadedCharacterData();
 
             string fileName = character.name;
 
             string json = IOSystem.ReadFromFIle(fileName);
             if (json == null) continue;
 
-            JsonUtility.FromJsonOverwrite(json, loadedCharacterData);
+            loadedCharacterData = JsonUtility.FromJson<LoadedCharacterData>(json);
 
             characterData.SetData(loadedCharacterData);
-            Debug.Log(character.name + " buy price: " + loadedCharacterData.BuyPrice);
             Debug.Log(character.name + " data is loaded!");
         }
     }
 
     private void OnDisable()
     {
-        // Save();
+        Save();
     }
 }
