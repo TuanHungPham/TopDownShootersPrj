@@ -37,18 +37,19 @@ public class IAPSystem : MonoBehaviour
     public void OnPurchaseComplete(Product product)
     {
         Debug.Log("You have just bought " + product.metadata.localizedTitle);
-        switch (product.metadata.localizedTitle)
+        switch (product.definition.id)
         {
-            case "200 Coin":
+            case "coin":
                 UserManager.Instance.coin += 200;
+                Debug.Log("Add 200 Coin to your Account!!!");
                 break;
-            case "1000 Coin":
+            case "alotofcoin":
                 UserManager.Instance.coin += 1000;
                 break;
-            case "4000 Coin":
+            case "bagofcoins":
                 UserManager.Instance.coin += 4000;
                 break;
-            case "10000 Coin":
+            case "treasure":
                 UserManager.Instance.coin += 10000;
                 break;
             default:
@@ -64,6 +65,8 @@ public class IAPSystem : MonoBehaviour
     public void OnProductFetched(Product product)
     {
         productTitle.text = product.metadata.localizedTitle;
-        priceText.text = product.metadata.localizedPriceString + "$";
+        Debug.Log("ID: " + product.definition.id);
+        Debug.Log("Title: " + product.metadata.localizedTitle);
+        priceText.text = product.metadata.localizedPriceString;
     }
 }

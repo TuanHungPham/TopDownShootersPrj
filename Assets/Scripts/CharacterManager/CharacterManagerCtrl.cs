@@ -22,7 +22,7 @@ public class CharacterManagerCtrl : MonoBehaviour
     {
         instance = this;
         LoadComponents();
-        Load();
+        // Load();
     }
 
     private void Reset()
@@ -124,6 +124,6 @@ public class CharacterManagerCtrl : MonoBehaviour
 
     private void OnDisable()
     {
-        Save();
+        // Save();
     }
 }
