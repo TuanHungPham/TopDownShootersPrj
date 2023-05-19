@@ -40,6 +40,7 @@ public class PlayerShootingSystem : MonoBehaviour
     {
         CheckCooldown();
         Shoot();
+        GetWeaponSound();
         GetShootingVFX();
     }
 
@@ -64,6 +65,17 @@ public class PlayerShootingSystem : MonoBehaviour
         IsShooting = true;
         playerCtrl.ammoSystem.ConsumpAmmo();
         playerCtrl.playerWeaponSystem.shootingTimer = playerCtrl.playerWeaponSystem.shootingDelay;
+    }
+
+    private void GetWeaponSound()
+    {
+        if (playerCtrl.playerWeaponSystem.hit.collider == null)
+        {
+            playerCtrl.playerSound.SetWeaponSound(false);
+            return;
+        }
+
+        playerCtrl.playerSound.SetWeaponSound(true);
     }
 
     private void GetShootingVFX()

@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     #region private var
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private Transform playerSprite;
+    [SerializeField] private PlayerCtrl playerCtrl;
     private Vector2 move;
     #endregion
 
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     private void Loadcomponents()
     {
         rb2d = GetComponentInParent<Rigidbody2D>();
+        playerCtrl = transform.parent.GetComponent<PlayerCtrl>();
 
         Transform uiParent = GameObject.Find("------ UI ------").transform.Find("Canvas");
         joystick = uiParent.Find("MovingJoystick").GetComponentInChildren<FixedJoystick>();

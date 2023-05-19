@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using PlayFab;
+using Facebook.Unity;
+using System;
 
 public class UserManager : MonoBehaviour
 {
@@ -31,7 +32,6 @@ public class UserManager : MonoBehaviour
 
     public void SaveData()
     {
-        PlayerPrefs.SetString("Username", userName);
         PlayerPrefs.SetInt("Coin", coin);
         PlayerPrefs.SetInt("Highest Enemies Killed", highestEnemiesKilled);
         PlayerPrefs.SetFloat("Highest Survival Time", highestSurvivalTime);
@@ -39,7 +39,6 @@ public class UserManager : MonoBehaviour
 
     public void LoadData()
     {
-        userName = PlayerPrefs.GetString("Username", "");
         coin = PlayerPrefs.GetInt("Coin", 0);
         highestEnemiesKilled = PlayerPrefs.GetInt("Highest Enemies Killed", 0);
         highestSurvivalTime = PlayerPrefs.GetFloat("Highest Survival Time", 0);
@@ -47,9 +46,15 @@ public class UserManager : MonoBehaviour
 
     public void UpdateData()
     {
+        UpdateUsername();
         UpdateCoin();
         UpdateEnemiesKilled();
         UpdateSurvivalTime();
+    }
+
+    private void UpdateUsername()
+    {
+        userName = DataManager.Instance.Username;
     }
 
     private void UpdateCoin()

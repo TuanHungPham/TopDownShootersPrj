@@ -39,9 +39,10 @@ public class PlayerBehaviour : MonoBehaviour
         if (playerCtrl.playerMovement.joystick.Horizontal != 0 || playerCtrl.playerMovement.joystick.Vertical != 0 || InputManager.Instance.IsMovingInput)
         {
             animator.SetBool("Run", true);
+            playerCtrl.playerSound.SetMovingSound(true);
             return;
         }
-
+        playerCtrl.playerSound.SetMovingSound(false);
         animator.SetBool("Run", false);
     }
 

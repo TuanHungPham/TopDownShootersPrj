@@ -25,6 +25,11 @@ public class CharacterManagerUI : MonoBehaviour
         LoadComponents();
     }
 
+    private void Start()
+    {
+        ShowUsername();
+    }
+
     private void LoadComponents()
     {
         usernameText = transform.Find("UsernameUI").GetComponent<TMP_Text>();

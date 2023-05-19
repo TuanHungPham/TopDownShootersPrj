@@ -14,6 +14,7 @@ public class WeaponData : ScriptableObject
     [SerializeField] private AmmoType ammoType;
     [SerializeField] private int initialAmmo;
     [SerializeField] private int ammo;
+    [SerializeField] private AudioClip weaponSound;
 
     public int Id { get => id; set => id = GetInstanceID(); }
     public string WeaponName { get => weaponName; set => weaponName = value; }
@@ -25,4 +26,5 @@ public class WeaponData : ScriptableObject
     public AmmoType AmmoType { get => ammoType; set => ammoType = value; }
     public int InitialAmmo { get => initialAmmo; set => initialAmmo = value; }
     public int Ammo { get => ammo; set => ammo = value; }
+    public AudioClip WeaponSound { get => weaponSound; set => weaponSound = value; }
 }

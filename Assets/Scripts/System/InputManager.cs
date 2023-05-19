@@ -19,16 +19,6 @@ public class InputManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        LoadComponents();
-    }
-
-    private void Reset()
-    {
-        LoadComponents();
-    }
-
-    private void LoadComponents()
-    {
 
     }
 

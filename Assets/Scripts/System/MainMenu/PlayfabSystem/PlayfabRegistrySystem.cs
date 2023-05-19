@@ -15,7 +15,9 @@ public class PlayfabRegistrySystem : MonoBehaviour
     #region private var
     [SerializeField] private GameObject accountRegisterPanel;
     [SerializeField] private GameObject errorPanel;
+    [SerializeField] private GameObject notiPanel;
     [SerializeField] private TMP_Text errorPanelText;
+    [SerializeField] private TMP_Text notiPanelText;
     [SerializeField] private string username;
     [SerializeField] private string email;
     [SerializeField] private string password;
@@ -37,18 +39,20 @@ public class PlayfabRegistrySystem : MonoBehaviour
         accountRegisterPanel = GameObject.Find("------ UI ------").transform.GetChild(0).Find("AccountRegisterPanel").gameObject;
         errorPanel = GameObject.Find("------ UI ------").transform.GetChild(0).Find("ErrorPanel").gameObject;
         errorPanelText = errorPanel.transform.Find("Scroll View").Find("Viewport").GetChild(0).GetComponentInChildren<TMP_Text>();
+        notiPanel = GameObject.Find("------ UI ------").transform.GetChild(0).Find("NotiPanel").gameObject;
+        notiPanelText = notiPanel.transform.Find("Scroll View").Find("Viewport").GetChild(0).GetComponentInChildren<TMP_Text>();
     }
 
     public void DisplayRegistryPanel()
     {
-        accountRegisterPanel.gameObject.SetActive(true);
+        accountRegisterPanel.SetActive(true);
     }
 
     public void RegisterPlayfabAccount()
     {
         if (reEnterPassword != password)
         {
-            errorPanel.gameObject.SetActive(true);
+            errorPanel.SetActive(true);
             errorPanelText.text = "Re-enter Password is not match with Password!";
             return;
         }
@@ -66,12 +70,13 @@ public class PlayfabRegistrySystem : MonoBehaviour
 
     private void OnRegister(RegisterPlayFabUserResult result)
     {
-        Debug.Log("Register successfully!");
+        notiPanel.SetActive(true);
+        notiPanelText.text = "Register successfully!";
     }
 
     private void OnRegisterError(PlayFabError error)
     {
-        errorPanel.gameObject.SetActive(true);
+        errorPanel.SetActive(true);
         errorPanelText.text = error.GenerateErrorReport();
     }
 }

@@ -48,6 +48,9 @@ public class DamageReceiver : MonoBehaviour
         if (this.gameObject.CompareTag("Player"))
         {
             UIManager.Instance.hitScene.TriggerHitScene();
+
+            PlayerCtrl playerCtrl = gameObject.GetComponent<PlayerCtrl>();
+            playerCtrl.playerSound.PlayHitSound();
         }
 
         if (objStatus.currentHP <= 0)

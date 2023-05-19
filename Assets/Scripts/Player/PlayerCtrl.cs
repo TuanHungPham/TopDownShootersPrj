@@ -11,6 +11,7 @@ public class PlayerCtrl : MonoBehaviour
     public PlayerAimingSystem playerAimingSystem;
     public PlayerWeaponInventory playerWeaponInventory;
     public PlayerSwapWeaponSystem playerSwapWeaponSystem;
+    public PlayerSound playerSound;
     public Status playerStatus;
     public GrenadeSystem grenadeSystem;
     public GrenadeAimSystem grenadeAimSystem;
@@ -39,6 +40,7 @@ public class PlayerCtrl : MonoBehaviour
         playerStatus = GetComponent<Status>();
         damageReceiver = GetComponent<DamageReceiver>();
         playerMovement = GetComponentInChildren<PlayerMovement>();
+        playerSound = GetComponentInChildren<PlayerSound>();
         playerBehaviour = transform.GetComponentInChildren<PlayerBehaviour>();
         playerWeaponSystem = GetComponentInChildren<PlayerWeaponSystem>();
         playerWeaponInventory = GetComponentInChildren<PlayerWeaponInventory>();

@@ -99,6 +99,7 @@ public class FacebookAccountSystem : MonoBehaviour
         string username = result.ResultDictionary["name"].ToString();
 
         UserManager.Instance.userName = username;
+        DataManager.Instance.Username = username;
         MenuUIManager.Instance.CharacterManagerUI.ShowUsername();
 
         PlayfabSystemManager.Instance.PlayfabAccountSystem.LoginWithFacebook(accessToken.TokenString, username);
