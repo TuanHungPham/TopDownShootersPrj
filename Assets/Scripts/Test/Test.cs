@@ -34,12 +34,6 @@ public class Test : MonoBehaviour
     private void Update()
     {
         DrawThrowLine();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Throw();
-            TestScore.Instance.score++;
-        }
     }
 
     private void DrawThrowLine()
@@ -71,9 +65,10 @@ public class Test : MonoBehaviour
         listOfPoint.Clear();
     }
 
-    private void Throw()
+    public void Throw()
     {
         Instantiate(obj, transform.position, transform.rotation);
+        TestScore.Instance.score++;
         obj.SetActive(true);
     }
 

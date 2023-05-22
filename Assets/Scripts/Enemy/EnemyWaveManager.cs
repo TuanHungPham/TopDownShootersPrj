@@ -116,6 +116,7 @@ public class EnemyWaveManager : MonoBehaviour
     {
         if (restOfEnemy <= 0)
         {
+            restOfEnemy = 0;
             IsEndWave = true;
             return;
         }

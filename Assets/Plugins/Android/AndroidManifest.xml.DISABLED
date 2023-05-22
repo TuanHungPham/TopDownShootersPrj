@@ -4,6 +4,8 @@
     package="com.unity3d.player"
     xmlns:tools="http://schemas.android.com/tools">
     <application>
+        <meta-data android:name="com.google.android.gms.games.APP_ID"
+                android:value="<string name="app_id">255148225273</string>" />
         <activity android:name="com.unity3d.player.UnityPlayerActivity"
                   android:theme="@style/UnityThemeSelector">
             <intent-filter>

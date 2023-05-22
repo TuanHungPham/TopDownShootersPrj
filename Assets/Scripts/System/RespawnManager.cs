@@ -93,6 +93,11 @@ public class RespawnManager : MonoBehaviour
             canRespawn = false;
             InGameManager.Instance.gameOverManager.GameOverCheck = true;
         }
+        else if (isRespawned && isRespawning)
+        {
+            canRespawn = false;
+            InGameManager.Instance.gameOverManager.GameOverCheck = false;
+        }
         else
         {
             canRespawn = true;
