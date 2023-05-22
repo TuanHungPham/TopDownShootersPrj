@@ -82,9 +82,10 @@ public class RespawnManager : MonoBehaviour
 
     private void RespawnCheck()
     {
-        if (!playerCtrl.playerStatus.IsDeath)
+        if (!playerCtrl.playerStatus.IsDeath || (isRespawned && isRespawning))
         {
             canRespawn = false;
+            InGameManager.Instance.gameOverManager.GameOverCheck = false;
             return;
         }
 
@@ -92,11 +93,6 @@ public class RespawnManager : MonoBehaviour
         {
             canRespawn = false;
             InGameManager.Instance.gameOverManager.GameOverCheck = true;
-        }
-        else if (isRespawned && isRespawning)
-        {
-            canRespawn = false;
-            InGameManager.Instance.gameOverManager.GameOverCheck = false;
         }
         else
         {
