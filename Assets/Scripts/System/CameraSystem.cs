@@ -40,8 +40,8 @@ public class CameraSystem : MonoBehaviour
 
         camSpeed = 0.75f;
         smoothZoom = 0.05f;
-        defaultZoom = 7f;
-        sniperZoom = 9.5f;
+        defaultZoom = 10.5f;
+        sniperZoom = 12f;
         mainCam.orthographicSize = defaultZoom;
     }
 

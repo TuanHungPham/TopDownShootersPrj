@@ -10,6 +10,7 @@ public class EnemyCtrl : MonoBehaviour
     public EnemyBehaviour enemyBehaviour;
     public Status enemyStatus;
     public EnemyCombat enemyCombat;
+    public EnemySound enemySound;
     public DamageReceiver damageReceiver;
     public ItemDropSystem itemDropSystem;
     public bool TargetExist { get => targetExist; set => targetExist = value; }
@@ -37,6 +38,7 @@ public class EnemyCtrl : MonoBehaviour
         enemyMovement = GetComponentInChildren<EnemyMovement>();
         enemyBehaviour = GetComponentInChildren<EnemyBehaviour>();
         enemyCombat = GetComponentInChildren<EnemyCombat>();
+        enemySound = GetComponentInChildren<EnemySound>();
         itemDropSystem = GetComponentInChildren<ItemDropSystem>();
         playerCtrl = GameObject.Find("MainCharacter").GetComponent<PlayerCtrl>();
     }

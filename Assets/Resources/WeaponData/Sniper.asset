@@ -21,3 +21,4 @@ MonoBehaviour:
   ammoType: 0
   initialAmmo: 50
   ammo: 20
+  weaponSound: {fileID: 8300000, guid: 9a41afeaa49c03f478ef8c2cbb0cfc8d, type: 3}

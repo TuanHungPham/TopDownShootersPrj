@@ -9,11 +9,11 @@ public class PlayerSound : MonoBehaviour
 
     #region private var
     [SerializeField] private PlayerCtrl playerCtrl;
+    [SerializeField] private GameObject weaponAudioSource;
 
     [Space(20)]
     [SerializeField] private AudioSource movingAudio;
     [SerializeField] private AudioSource hittingAudio;
-    [SerializeField] private AudioSource weaponAudio;
 
     [Space(20)]
     [SerializeField] private AudioClip footStepSound;
@@ -34,18 +34,16 @@ public class PlayerSound : MonoBehaviour
     private void LoadComponents()
     {
         playerCtrl = GetComponentInParent<PlayerCtrl>();
+        weaponAudioSource = Resources.Load<GameObject>("Prefabs/WeaponSound");
 
         hittingAudio = GetComponent<AudioSource>();
         movingAudio = transform.parent.Find("PlayerMovement").GetComponent<AudioSource>();
-        weaponAudio = transform.parent.Find("PlayerWeapon").GetComponent<AudioSource>();
-
 
         footStepSound = Resources.Load<AudioClip>("Audio/footstep");
         hitSound = Resources.Load<AudioClip>("Audio/player_hit");
 
         SetupHitSound();
         SetupMovingSound();
-        SetupWeaponSound();
     }
 
     private void Update()
@@ -56,13 +54,16 @@ public class PlayerSound : MonoBehaviour
     private void GetWeaponSound()
     {
         weaponSound = playerCtrl.playerWeaponSystem.playerShootingSystem.weapon.weaponData.WeaponSound;
-        weaponAudio.clip = weaponSound;
     }
 
-    private void SetupWeaponSound()
+    public void CreateWeaponAudioSource()
     {
-        weaponAudio.enabled = false;
-        weaponAudio.loop = true;
+        GameObject audioSource = Instantiate(weaponAudioSource);
+        audioSource.transform.SetParent(transform);
+
+        AudioSource source = audioSource.GetComponent<AudioSource>();
+        source.clip = weaponSound;
+        source.Play();
     }
 
     private void SetupMovingSound()
@@ -88,10 +89,5 @@ public class PlayerSound : MonoBehaviour
     public void SetMovingSound(bool set)
     {
         movingAudio.enabled = set;
-    }
-
-    public void SetWeaponSound(bool set)
-    {
-        weaponAudio.enabled = set;
     }
 }

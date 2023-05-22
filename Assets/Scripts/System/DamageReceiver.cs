@@ -55,12 +55,22 @@ public class DamageReceiver : MonoBehaviour
 
         if (objStatus.currentHP <= 0)
         {
+            GetDeathSound();
             Invoke("SetDeadVFX", 1.2f);
             Drop();
 
             Achievement.Instance.enemiesKilled++;
             EnemyWaveManager.Instance.restOfEnemy--;
         }
+    }
+
+    private void GetDeathSound()
+    {
+        if (this.gameObject.CompareTag("Player")) return;
+
+        EnemyCtrl enemyCtrl = gameObject.GetComponent<EnemyCtrl>();
+
+        enemyCtrl.enemySound.SetRoarAudio();
     }
 
     private void SetBloodVFX()

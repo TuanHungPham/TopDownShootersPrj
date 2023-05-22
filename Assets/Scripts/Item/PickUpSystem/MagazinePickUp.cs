@@ -40,6 +40,7 @@ public class MagazinePickUp : PickUpSystem
     protected override void AddItemToPlayerInventory()
     {
         playerCtrl.ammoSystem.AddAmmo(magazineData.AmmoType, magazineData.AmmoQuantity);
+        SoundSystemManager.Instance.SetReloadSound();
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

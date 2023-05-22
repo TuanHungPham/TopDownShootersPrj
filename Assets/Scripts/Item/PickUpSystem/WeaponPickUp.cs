@@ -47,6 +47,7 @@ public class WeaponPickUp : PickUpSystem
     {
         playerCtrl.playerWeaponInventory.AddWeaponToInventory(weapon.weaponData);
         playerCtrl.playerWeaponInventory.IsUpdateInventory = true;
+        SoundSystemManager.Instance.SetReloadSound();
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

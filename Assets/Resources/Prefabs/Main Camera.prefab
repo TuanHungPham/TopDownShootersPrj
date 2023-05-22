@@ -57,11 +57,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -60
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 10.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camSpeed: 0.75
-  defaultZoom: 7
-  sniperZoom: 9.5
+  defaultZoom: 10.5
+  sniperZoom: 12
   smoothZoom: 0.05
   player: {fileID: 0}
   crosshair: {fileID: 0}

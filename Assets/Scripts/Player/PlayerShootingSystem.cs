@@ -69,13 +69,9 @@ public class PlayerShootingSystem : MonoBehaviour
 
     private void GetWeaponSound()
     {
-        if (playerCtrl.playerWeaponSystem.hit.collider == null)
-        {
-            playerCtrl.playerSound.SetWeaponSound(false);
-            return;
-        }
+        if (playerCtrl.playerWeaponSystem.hit.collider == null || !CanShoot()) return;
 
-        playerCtrl.playerSound.SetWeaponSound(true);
+        playerCtrl.playerSound.CreateWeaponAudioSource();
     }
 
     private void GetShootingVFX()

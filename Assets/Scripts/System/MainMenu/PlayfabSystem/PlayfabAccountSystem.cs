@@ -36,7 +36,6 @@ public class PlayfabAccountSystem : MonoBehaviour
         notiPanelText = notiPanel.transform.Find("Scroll View").Find("Viewport").GetChild(0).GetComponentInChildren<TMP_Text>();
     }
 
-
     public void LoginWithFacebook(string accessToken, string username)
     {
         LoginWithFacebookRequest request = new LoginWithFacebookRequest

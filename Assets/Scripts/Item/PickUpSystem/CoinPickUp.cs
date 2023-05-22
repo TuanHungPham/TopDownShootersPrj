@@ -39,6 +39,7 @@ public class CoinPickUp : PickUpSystem
     protected override void AddItemToPlayerInventory()
     {
         Achievement.Instance.totalMoney += coinQuantity;
+        SoundSystemManager.Instance.SetCoinSound();
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

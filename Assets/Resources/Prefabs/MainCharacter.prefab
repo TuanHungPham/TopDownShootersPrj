@@ -311,12 +311,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5d3c6d6d74b37f45ba7b6656a09c678, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCtrl: {fileID: 3018312048441220676}
+  weaponAudioSource: {fileID: 1173462081116983371, guid: f6ef65d73e2460f49b857a2d612c2846, type: 3}
   movingAudio: {fileID: 3018312047670018147}
   hittingAudio: {fileID: 594815808}
-  weaponAudio: {fileID: 3018312047670018145}
   footStepSound: {fileID: 8300000, guid: eab952b5c9f7f4a40bf1f33da1d07537, type: 3}
   hitSound: {fileID: 8300000, guid: 48b8b7eeeb9bc1b4ca540a9fbd6c5b1f, type: 3}
-  weaponSound: {fileID: 8300000, guid: 964c5709c5c35214e8c9d88f98638053, type: 3}
+  weaponSound: {fileID: 0}
 --- !u!82 &594815808
 AudioSource:
   m_ObjectHideFlags: 0

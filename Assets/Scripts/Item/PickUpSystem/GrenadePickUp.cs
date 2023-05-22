@@ -39,6 +39,7 @@ public class GrenadePickUp : PickUpSystem
     protected override void AddItemToPlayerInventory()
     {
         playerCtrl.grenadeSystem.grenadeQuantity++;
+        SoundSystemManager.Instance.SetReloadSound();
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
