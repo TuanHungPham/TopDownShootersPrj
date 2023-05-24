@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         Transform uiParent = GameObject.Find("------ UI ------").transform.Find("Canvas");
         joystick = uiParent.Find("MovingJoystick").GetComponentInChildren<FixedJoystick>();
 
-        moveSpeed = 3;
+        moveSpeed = 3.5f;
     }
 
     private void Update()
