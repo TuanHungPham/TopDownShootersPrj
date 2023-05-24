@@ -46,5 +46,14 @@ public abstract class Status : MonoBehaviour
         DisableComponents();
     }
 
+    public virtual void Heal(int healAmount)
+    {
+        currentHP += healAmount;
+
+        if (currentHP < maxHP) return;
+
+        currentHP = maxHP;
+    }
+
     protected abstract void DisableComponents();
 }

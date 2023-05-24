@@ -62,14 +62,29 @@ public class HPBarUI : MonoBehaviour
     {
         if (hpSlider.value == playerCtrl.playerStatus.currentHP) return;
 
-        hpSlider.value -= smoothTime;
-        Invoke("SetHPBGSlider", 0.4f);
+        if (hpSlider.value < playerCtrl.playerStatus.currentHP)
+        {
+            hpSlider.value += smoothTime;
+            Invoke("SetHPBGSlider", 0.4f);
+        }
+        else
+        {
+            hpSlider.value -= smoothTime;
+            Invoke("SetHPBGSlider", 0.4f);
+        }
     }
 
     private void SetHPBGSlider()
     {
         if (hpBGSlider.value == hpSlider.value) return;
 
-        hpBGSlider.value -= smoothTime;
+        if (hpBGSlider.value < hpSlider.value)
+        {
+            hpBGSlider.value += smoothTime;
+        }
+        else
+        {
+            hpBGSlider.value -= smoothTime;
+        }
     }
 }

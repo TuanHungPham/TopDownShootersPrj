@@ -41,6 +41,11 @@ public class PlayerStatus : Status
         base.Die();
     }
 
+    public override void Heal(int healAmount)
+    {
+        base.Heal(healAmount);
+    }
+
     private void DisableWeapon()
     {
         foreach (Transform item in GameObject.Find("------ PLAYER ------").transform.GetChild(0).Find("PlayerWeapon"))

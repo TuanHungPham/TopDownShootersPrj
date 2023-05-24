@@ -9,6 +9,7 @@ public class ItemDropSystem : MonoBehaviour
     public float coinDropRate;
     public float magazineDropRate;
     public float weaponDropRate;
+    public float potionDropRate;
     public Transform dropPos;
     #endregion
 
@@ -37,6 +38,7 @@ public class ItemDropSystem : MonoBehaviour
         coinDropRate = 0.8f;
         magazineDropRate = 0.3f;
         weaponDropRate = 0.1f;
+        potionDropRate = 0.25f;
     }
 
     private void Update()
@@ -54,6 +56,7 @@ public class ItemDropSystem : MonoBehaviour
         DropItem(coinDropRate, ItemSpawnerCtrl.Instance.coinSpawner, coinDropQuantity);
         DropItem(magazineDropRate, ItemSpawnerCtrl.Instance.magazineSpawner, 1);
         DropItem(weaponDropRate, ItemSpawnerCtrl.Instance.weaponSpawner, 1);
+        DropItem(potionDropRate, ItemSpawnerCtrl.Instance.consumpItemSpawner, 1);
 
         isDrop = true;
     }
