@@ -24,12 +24,12 @@
 
 public static class GPGSIds
 {
-    public const string achievement_noob_like_long = "CgkI-eWTwLYHEAIQBg"; // <GPGSID>
-    public const string leaderboard_time_survival = "CgkI-eWTwLYHEAIQCQ"; // <GPGSID>
-    public const string achievement_first_kill = "CgkI-eWTwLYHEAIQBQ"; // <GPGSID>
-    public const string achievement_10_kills = "CgkI-eWTwLYHEAIQBw"; // <GPGSID>
-    public const string achievement_test = "CgkI-eWTwLYHEAIQAQ"; // <GPGSID>
-    public const string leaderboard_enemies_killed = "CgkI-eWTwLYHEAIQCA"; // <GPGSID>
+        public const string achievement_noob_like_long = "CgkI-eWTwLYHEAIQBg"; // <GPGSID>
+        public const string leaderboard_time_survival = "CgkI-eWTwLYHEAIQCQ"; // <GPGSID>
+        public const string achievement_first_kill = "CgkI-eWTwLYHEAIQBQ"; // <GPGSID>
+        public const string achievement_10_kills = "CgkI-eWTwLYHEAIQBw"; // <GPGSID>
+        public const string achievement_test = "CgkI-eWTwLYHEAIQAQ"; // <GPGSID>
+        public const string leaderboard_enemies_killed = "CgkI-eWTwLYHEAIQCA"; // <GPGSID>
 
 }
 

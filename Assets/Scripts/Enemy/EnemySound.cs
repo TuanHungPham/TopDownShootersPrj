@@ -38,7 +38,6 @@ public class EnemySound : MonoBehaviour
         {
             enemyAudioSource.clip = roarAudio;
         }
-        Debug.Log(transform.parent.name);
 
         enemyAudioSource.Play();
     }

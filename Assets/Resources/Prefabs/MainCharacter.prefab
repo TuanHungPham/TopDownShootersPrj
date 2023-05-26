@@ -692,7 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fabc378c93bceb47ba9a1bb15d0e7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 3.5
   joystick: {fileID: 0}
   rb2d: {fileID: 3018312048441220679}
   playerSprite: {fileID: 0}

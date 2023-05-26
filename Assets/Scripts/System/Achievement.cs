@@ -49,4 +49,32 @@ public class Achievement : MonoBehaviour
         survivalTime = DataManager.Instance.achievementDataManager.survivalTime = survivalTime;
         totalMoney = DataManager.Instance.achievementDataManager.coin = totalMoney;
     }
+
+    public void SaveDataWhenRetry()
+    {
+        int highestEnemiesKilled = PlayerPrefs.GetInt("Highest Enemies Killed", 0);
+        float highestSurvivalTime = PlayerPrefs.GetFloat("Highest Survival Time", 0);
+        int coin = PlayerPrefs.GetInt("Coin", 0);
+
+        if (highestEnemiesKilled < enemiesKilled)
+        {
+            highestEnemiesKilled = enemiesKilled;
+        }
+
+        if (highestSurvivalTime < survivalTime)
+        {
+            highestSurvivalTime = survivalTime;
+        }
+
+        coin += totalMoney;
+
+        SaveDataIngame(highestEnemiesKilled, highestSurvivalTime, coin);
+    }
+
+    private static void SaveDataIngame(int highestEnemiesKilled, float highestSurvivalTime, int coin)
+    {
+        PlayerPrefs.SetInt("Coin", coin);
+        PlayerPrefs.SetInt("Highest Enemies Killed", highestEnemiesKilled);
+        PlayerPrefs.SetFloat("Highest Survival Time", highestSurvivalTime);
+    }
 }

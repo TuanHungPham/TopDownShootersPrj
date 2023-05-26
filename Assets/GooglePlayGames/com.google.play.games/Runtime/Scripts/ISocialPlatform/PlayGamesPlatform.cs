@@ -106,9 +106,9 @@ namespace GooglePlayGames
             {
                 if (sInstance == null)
                 {
-                  OurUtils.Logger.d("Initializing the PlayGamesPlatform instance.");
-                  sInstance =
-                      new PlayGamesPlatform(PlayGamesClientFactory.GetPlatformPlayGamesClient());
+                    OurUtils.Logger.d("Initializing the PlayGamesPlatform instance.");
+                    sInstance =
+                        new PlayGamesPlatform(PlayGamesClientFactory.GetPlatformPlayGamesClient());
                 }
 
                 return sInstance;
@@ -213,6 +213,7 @@ namespace GooglePlayGames
         public static PlayGamesPlatform Activate()
         {
             GooglePlayGames.OurUtils.Logger.d("Activating PlayGamesPlatform.");
+            Debug.Log("GGPGS is Initialized!!!!!!!!!!!!!");
 
             Social.Active = PlayGamesPlatform.Instance;
             GooglePlayGames.OurUtils.Logger.d(
@@ -292,8 +293,9 @@ namespace GooglePlayGames
         /// Services.
         /// </remarks>
         /// <param name="callback"></param>
-        public void ManuallyAuthenticate(Action<SignInStatus> callback) {
-          mClient.ManuallyAuthenticate(callback);
+        public void ManuallyAuthenticate(Action<SignInStatus> callback)
+        {
+            mClient.ManuallyAuthenticate(callback);
         }
 
         /// <summary>
@@ -534,8 +536,9 @@ namespace GooglePlayGames
             });
         }
 
-        internal static int progressToSteps(double progress, int totalSteps) {
-            return (progress >= 100.0) ? totalSteps : (int) (progress * totalSteps / 100.0);
+        internal static int progressToSteps(double progress, int totalSteps)
+        {
+            return (progress >= 100.0) ? totalSteps : (int)(progress * totalSteps / 100.0);
         }
 
         /// <summary>
@@ -1103,7 +1106,7 @@ namespace GooglePlayGames
                     break;
             }
 
-            ((PlayGamesLeaderboard) board).loading = true;
+            ((PlayGamesLeaderboard)board).loading = true;
             GooglePlayGames.OurUtils.Logger.d("LoadScores, board=" + board +
                                               " callback is " + callback);
             mClient.LoadScores(
@@ -1113,7 +1116,7 @@ namespace GooglePlayGames
                 board.userScope == UserScope.FriendsOnly ? LeaderboardCollection.Social : LeaderboardCollection.Public,
                 timeSpan,
                 (scoreData) => HandleLoadingScores(
-                    (PlayGamesLeaderboard) board, scoreData, callback));
+                    (PlayGamesLeaderboard)board, scoreData, callback));
         }
 
         /// <summary>

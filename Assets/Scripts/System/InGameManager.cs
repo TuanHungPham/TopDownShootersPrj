@@ -81,6 +81,7 @@ public class InGameManager : MonoBehaviour
 
     public void ResetGame()
     {
+        Achievement.Instance.SaveDataWhenRetry();
         SceneManager.LoadScene("LoadDataScene");
         DataManager.Instance.IsRetry = true;
         ResumeTime();

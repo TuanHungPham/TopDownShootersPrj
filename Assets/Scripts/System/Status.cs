@@ -36,6 +36,7 @@ public abstract class Status : MonoBehaviour
     {
         if (currentHP <= 0)
         {
+            currentHP = 0;
             Die();
         }
     }

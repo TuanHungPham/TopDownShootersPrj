@@ -4,6 +4,7 @@ using UnityEngine.Advertisements;
 public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
 {
     #region public var
+    public bool IsAdsLoaded { get => isAdsLoaded; private set => isAdsLoaded = value; }
     #endregion
 
     #region private var
@@ -11,7 +12,9 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
     [SerializeField] private string androidGameID;
     [SerializeField] private string iosGameID;
     [SerializeField] private bool testMode;
+    [SerializeField] private bool isAdsLoaded;
     private string gameID;
+
 
     #endregion
 
@@ -39,6 +42,11 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
         InitializeADS();
     }
 
+    private void Update()
+    {
+        CheckAdsLoaded();
+    }
+
     private void InitializeADS()
     {
         SetGameID();
@@ -47,6 +55,8 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
         {
             Advertisement.Initialize(gameID, testMode, this);
         }
+
+        adsReward.LoadAds();
     }
 
     public void OnInitializationComplete()
@@ -73,4 +83,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
         }
     }
 
+    private void CheckAdsLoaded()
+    {
+    }
 }

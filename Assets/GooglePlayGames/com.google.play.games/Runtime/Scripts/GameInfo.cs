@@ -38,7 +38,7 @@ namespace GooglePlayGames {
 
         public const string ApplicationId = "255148225273"; // Filled in automatically
         public const string IosClientId = "__IOS_CLIENTID__"; // Filled in automatically
-        public const string WebClientId = "255148225273-k90nhd29kmjoogq5rt0g6937iponscfm.apps.googleusercontent.com"; // Filled in automatically
+        public const string WebClientId = "255148225273-tnkomu99v90982hkqqqldep5jm76rl62.apps.googleusercontent.com"; // Filled in automatically
         public const string NearbyConnectionServiceId = "com.HowieCompany.TopDownShooters";
 
         public static bool ApplicationIdInitialized() {
