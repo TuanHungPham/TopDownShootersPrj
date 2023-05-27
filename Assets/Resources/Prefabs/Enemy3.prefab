@@ -249,6 +249,7 @@ MonoBehaviour:
   coinDropRate: 0
   magazineDropRate: 0
   weaponDropRate: 0
+  potionDropRate: 0
   dropPos: {fileID: 0}
   isDrop: 0
 --- !u!1 &1353490740619232863
@@ -470,7 +471,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2496625591363071717}
   - component: {fileID: 2298891932342639556}
-  - component: {fileID: 8883907159459142451}
   m_Layer: 0
   m_Name: AttackArea
   m_TagString: Untagged
@@ -505,24 +505,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a58d8b529f4734caae754cc395245b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerDistance: 1.5
   targetTag: Player
   isTrigger: 0
---- !u!58 &8883907159459142451
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2250901300607496463}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.9373028, y: 0.37741685}
-  serializedVersion: 2
-  m_Radius: 1.4917247
+  player: {fileID: 0}
+  thisEnemy: {fileID: 8758125936858409214}
 --- !u!1 &4429668640127984694
 GameObject:
   m_ObjectHideFlags: 0

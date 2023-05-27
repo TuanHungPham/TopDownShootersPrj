@@ -48,6 +48,7 @@ MonoBehaviour:
   coinDropRate: 0
   magazineDropRate: 0
   weaponDropRate: 0
+  potionDropRate: 0
   dropPos: {fileID: 6600201456604779144}
   isDrop: 0
 --- !u!1 &6600201455478772430
@@ -92,8 +93,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6600201455503365233}
   - component: {fileID: 6600201455503365246}
-  - component: {fileID: 6600201455503365247}
-  - component: {fileID: 6600201455503365244}
   m_Layer: 0
   m_Name: knife
   m_TagString: Untagged
@@ -168,153 +167,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &6600201455503365247
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6600201455503365232}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 3.49}
-    newSize: {x: 5.12, y: 3.49}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -1.29, y: -1.305}
-      - {x: -1.1999999, y: -1.265}
-      - {x: -1.12, y: -1.2149999}
-      - {x: 0.02, y: -0.49499997}
-      - {x: 0.099999994, y: -0.45499998}
-      - {x: 0.21, y: -0.345}
-      - {x: 0.34, y: -0.275}
-      - {x: 0.44, y: -0.42499998}
-      - {x: 0.53, y: -0.545}
-      - {x: 0.66999996, y: -0.685}
-      - {x: 0.78999996, y: -0.685}
-      - {x: 0.84999996, y: -0.615}
-      - {x: 0.84, y: -0.575}
-      - {x: 0.59999996, y: -0.175}
-      - {x: 0.55, y: -0.114999995}
-      - {x: 0.62, y: -0.074999996}
-      - {x: 0.65, y: -0.044999998}
-      - {x: 0.72999996, y: 0.015}
-      - {x: 0.75, y: 0.065}
-      - {x: 0.84999996, y: 0.065}
-      - {x: 0.96999997, y: 0.145}
-      - {x: 1.05, y: 0.225}
-      - {x: 1.11, y: 0.265}
-      - {x: 1.15, y: 0.265}
-      - {x: 1.3299999, y: 0.355}
-      - {x: 1.39, y: 0.435}
-      - {x: 1.38, y: 0.475}
-      - {x: 1.48, y: 0.475}
-      - {x: 1.53, y: 0.49499997}
-      - {x: 1.66, y: 0.575}
-      - {x: 1.73, y: 0.655}
-      - {x: 1.81, y: 0.685}
-      - {x: 1.92, y: 0.73499995}
-      - {x: 1.99, y: 0.78499997}
-      - {x: 2.05, y: 0.85499996}
-      - {x: 2.05, y: 0.905}
-      - {x: 2.1299999, y: 0.85499996}
-      - {x: 2.25, y: 0.85499996}
-      - {x: 2.31, y: 0.865}
-      - {x: 2.48, y: 0.945}
-      - {x: 2.55, y: 1.015}
-      - {x: 2.56, y: 1.045}
-      - {x: 2.56, y: 1.2049999}
-      - {x: 2.49, y: 1.3149999}
-      - {x: 2.26, y: 1.685}
-      - {x: 2.21, y: 1.735}
-      - {x: 2.18, y: 1.745}
-      - {x: 2.02, y: 1.745}
-      - {x: 1.9699999, y: 1.7149999}
-      - {x: 1.91, y: 1.665}
-      - {x: 1.78, y: 1.525}
-      - {x: 1.76, y: 1.475}
-      - {x: 1.76, y: 1.385}
-      - {x: 1.62, y: 1.385}
-      - {x: 1.4399999, y: 1.245}
-      - {x: 1.43, y: 1.2149999}
-      - {x: 1.29, y: 1.165}
-      - {x: 1.17, y: 1.0849999}
-      - {x: 1.11, y: 1.035}
-      - {x: 1.0799999, y: 0.955}
-      - {x: 1.04, y: 0.965}
-      - {x: 0.96, y: 0.965}
-      - {x: 0.78, y: 0.825}
-      - {x: 0.72999996, y: 0.775}
-      - {x: 0.65999997, y: 0.775}
-      - {x: 0.48, y: 0.66499996}
-      - {x: 0.42999998, y: 0.59499997}
-      - {x: 0.24, y: 0.505}
-      - {x: 0.19999999, y: 0.465}
-      - {x: 0.17, y: 0.525}
-      - {x: -0.01, y: 0.805}
-      - {x: -0.099999994, y: 0.815}
-      - {x: -0.19, y: 0.73499995}
-      - {x: -0.19, y: 0.675}
-      - {x: -0.06, y: 0.435}
-      - {x: -0.02, y: 0.385}
-      - {x: -0.13, y: 0.315}
-      - {x: -0.29, y: 0.21499999}
-      - {x: -0.39, y: 0.175}
-      - {x: -0.44, y: 0.175}
-      - {x: -0.5, y: 0.145}
-      - {x: -0.62, y: 0.065}
-      - {x: -1.77, y: -0.705}
-      - {x: -2.11, y: -0.935}
-      - {x: -2.26, y: -1.095}
-      - {x: -2.32, y: -1.175}
-      - {x: -2.4199998, y: -1.3249999}
-      - {x: -2.51, y: -1.515}
-      - {x: -2.54, y: -1.5849999}
-      - {x: -2.56, y: -1.635}
-      - {x: -2.56, y: -1.745}
-      - {x: -2.4299998, y: -1.745}
-      - {x: -2.19, y: -1.645}
-      - {x: -1.79, y: -1.495}
-      - {x: -1.5799999, y: -1.415}
-    - - {x: -1.67, y: -1.125}
-      - {x: -1.65, y: -1.115}
-      - {x: -1.62, y: -1.105}
-      - {x: -1.5999999, y: -1.0849999}
-      - {x: -1.5699999, y: -1.0649999}
-      - {x: -1.56, y: -1.0649999}
-      - {x: -1.56, y: -1.0749999}
-      - {x: -1.64, y: -1.115}
-      - {x: -1.65, y: -1.135}
-      - {x: -1.67, y: -1.135}
---- !u!114 &6600201455503365244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6600201455503365232}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6a4e76878971934da06fa1689bee9ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmgSending: 10
-  rawDmg: 10
-  criticalRate: 0
-  criticalDmg: 0
-  targetTag: Player
 --- !u!1 &6600201455510509647
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +179,7 @@ GameObject:
   - component: {fileID: 6600201455510509645}
   - component: {fileID: 6600201455510509642}
   - component: {fileID: 6600201455510509643}
+  - component: {fileID: 755857372295581243}
   m_Layer: 0
   m_Name: EnemySprite
   m_TagString: Untagged
@@ -437,6 +290,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 6600201455510509642}
   enemyCtrl: {fileID: 6600201456604779253}
+--- !u!114 &755857372295581243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6600201455510509647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a4e76878971934da06fa1689bee9ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmgSending: 10
+  rawDmg: 10
+  dealDmgDistance: 2
+  targetTag: Player
+  player: {fileID: 0}
+  thisEnemy: {fileID: 6600201456604779144}
 --- !u!1 &6600201455789464050
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +415,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6600201456545108448}
-  - component: {fileID: 6600201456545108449}
   - component: {fileID: 6600201456545108462}
   m_Layer: 0
   m_Name: AttackArea
@@ -568,32 +438,6 @@ Transform:
   m_Father: {fileID: 6600201455789464051}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6600201456545108449
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6600201456545108451}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.35363722, y: 0.12464619}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6790037, y: 1.6062326}
-  m_EdgeRadius: 0
 --- !u!114 &6600201456545108462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,8 +450,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a58d8b529f4734caae754cc395245b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  triggerDistance: 1.5
   targetTag: Player
   isTrigger: 0
+  player: {fileID: 0}
+  thisEnemy: {fileID: 6600201456604779144}
 --- !u!1 &6600201456604779147
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackArea : MonoBehaviour
@@ -9,8 +7,13 @@ public class AttackArea : MonoBehaviour
     #endregion
 
     #region private var
+    [SerializeField] private float triggerDistance;
     [SerializeField] private string targetTag;
     [SerializeField] private bool isTrigger;
+
+    [Space(20)]
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform thisEnemy;
 
     #endregion
 
@@ -26,22 +29,43 @@ public class AttackArea : MonoBehaviour
 
     private void LoadComponents()
     {
+        player = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter");
+        thisEnemy = transform.parent.parent;
 
+        targetTag = "Player";
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Update()
     {
-        if (collision.CompareTag(targetTag))
-        {
-            IsTrigger = true;
-        }
+        CheckTriggerDistance();
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void CheckTriggerDistance()
     {
-        if (collision.CompareTag(targetTag))
+        float distance = Vector2.Distance(thisEnemy.position, player.position);
+
+        if (distance > triggerDistance)
         {
-            IsTrigger = false;
+            isTrigger = false;
+            return;
         }
+
+        isTrigger = true;
     }
+
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     if (collision.CompareTag(targetTag))
+    //     {
+    //         IsTrigger = true;
+    //     }
+    // }
+
+    // private void OnTriggerExit2D(Collider2D collision)
+    // {
+    //     if (collision.CompareTag(targetTag))
+    //     {
+    //         IsTrigger = false;
+    //     }
+    // }
 }

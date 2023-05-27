@@ -7,12 +7,13 @@ public class DamageSender : MonoBehaviour
     #region public var
     public int dmgSending;
     public int rawDmg;
-    public float criticalRate;
-    public float criticalDmg;
     #endregion
 
     #region private var
+    [SerializeField] private float dealDmgDistance;
     [SerializeField] private string targetTag;
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform thisEnemy;
     #endregion
 
     private void Awake()
@@ -27,7 +28,22 @@ public class DamageSender : MonoBehaviour
 
     private void LoadComponents()
     {
+        player = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter");
+        thisEnemy = transform.parent;
+
         dmgSending = rawDmg;
+    }
+
+    private void SendDamage()
+    {
+        float distance = Vector2.Distance(thisEnemy.position, player.position);
+
+        if (distance > dealDmgDistance) return;
+
+        DamageReceiver damageReceiver = player.GetComponent<DamageReceiver>();
+        if (damageReceiver == null) return;
+
+        damageReceiver.ReceiveDamage(dmgSending);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
