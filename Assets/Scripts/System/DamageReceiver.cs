@@ -44,24 +44,35 @@ public class DamageReceiver : MonoBehaviour
         objStatus.currentHP -= dmg;
         animator.SetTrigger("Hit");
         SetBloodVFX();
+        ShowDamageText(this.transform.position, dmg);
 
         if (this.gameObject.CompareTag("Player"))
         {
             UIManager.Instance.hitScene.TriggerHitScene();
 
-            PlayerCtrl playerCtrl = gameObject.GetComponent<PlayerCtrl>();
+            PlayerCtrl playerCtrl = this.gameObject.GetComponent<PlayerCtrl>();
             playerCtrl.playerSound.PlayHitSound();
         }
 
-        if (objStatus.currentHP <= 0)
-        {
-            GetDeathSound();
-            Invoke("SetDeadVFX", 1.2f);
-            Drop();
+        HandleDeath();
+    }
 
-            Achievement.Instance.enemiesKilled++;
-            EnemyWaveManager.Instance.restOfEnemy--;
-        }
+    private void ShowDamageText(Vector3 showPosition, int damage)
+    {
+        UIManager.Instance.showDamageUIManager.ShowDamage(showPosition, damage);
+    }
+
+    private void HandleDeath()
+    {
+        if (objStatus.currentHP > 0) return;
+
+        GetDeathSound();
+        Invoke("SetDeadVFX", 1.2f);
+        Drop();
+
+        Achievement.Instance.enemiesKilled++;
+        EnemyWaveManager.Instance.restOfEnemy--;
+
     }
 
     private void GetDeathSound()

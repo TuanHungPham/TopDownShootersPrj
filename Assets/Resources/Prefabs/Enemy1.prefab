@@ -304,7 +304,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmgSending: 10
   rawDmg: 10
-  dealDmgDistance: 2
+  dealDmgDistance: 1.5
   targetTag: Player
   player: {fileID: 0}
   thisEnemy: {fileID: 6600201456604779144}

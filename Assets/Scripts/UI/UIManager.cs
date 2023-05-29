@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public HPBarUI hPBarUI;
     public RespawnSystemUI respawnSystemUI;
     public WeaponInventoryPanel weaponInventoryPanel;
+    public ShowDamageUIManager showDamageUIManager;
 
     private void Awake()
     {
@@ -32,10 +33,11 @@ public class UIManager : MonoBehaviour
         achievementUI = GetComponentInChildren<AchievementUI>();
         ammoSystemUI = GetComponentInChildren<AmmoSystemUI>();
         enemyWaveUI = GetComponentInChildren<EnemyWaveUI>();
+        hPBarUI = GetComponentInChildren<HPBarUI>();
         weaponInventoryPanel = GetComponentInChildren<WeaponInventoryPanel>();
+        showDamageUIManager = GetComponentInChildren<ShowDamageUIManager>();
         gameOverBoard = transform.Find("GameOverBoard").Find("GameOverAchievementBoard").GetComponent<GameOverBoard>();
         hitScene = transform.Find("HitScene").GetComponent<HitScene>();
-        hPBarUI = GetComponentInChildren<HPBarUI>();
         respawnSystemUI = transform.Find("RespawnBoard").GetComponent<RespawnSystemUI>();
     }
 }

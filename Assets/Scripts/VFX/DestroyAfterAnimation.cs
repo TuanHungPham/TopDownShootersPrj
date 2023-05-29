@@ -50,4 +50,9 @@ public class DestroyAfterAnimation : MonoBehaviour
     {
         explosionAudio.Play();
     }
+
+    public void DestroyParent()
+    {
+        Destroy(transform.parent.gameObject);
+    }
 }

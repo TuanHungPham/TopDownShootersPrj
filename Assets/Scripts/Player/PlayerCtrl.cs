@@ -18,8 +18,6 @@ public class PlayerCtrl : MonoBehaviour
     public AmmoSystem ammoSystem;
     public DamageReceiver damageReceiver;
 
-    public UIManager uIManager;
-
     private void OnEnable()
     {
         EnableComponents();
@@ -49,8 +47,6 @@ public class PlayerCtrl : MonoBehaviour
         grenadeAimSystem = GetComponentInChildren<GrenadeAimSystem>();
         playerAimingSystem = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetComponent<PlayerAimingSystem>();
         grenadeSystem = GameObject.Find("------ PLAYER ------").transform.Find("GrenadeSystem").GetComponent<GrenadeSystem>();
-
-        uIManager = GameObject.Find("------ UI ------").GetComponentInChildren<UIManager>();
     }
 
     public void EnableComponents()
@@ -67,6 +63,6 @@ public class PlayerCtrl : MonoBehaviour
         GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 
-        uIManager.hPBarUI.hpSlider.value = playerStatus.maxHP;
+        UIManager.Instance.hPBarUI.hpSlider.value = playerStatus.maxHP;
     }
 }
