@@ -7,13 +7,15 @@ public class PlayerShootingSystem : MonoBehaviour
 {
     #region public var
     public bool IsShooting { get => isShooting; set => isShooting = value; }
+    public Weapon Weapon { get => weapon; set => weapon = value; }
     #endregion
 
     #region private var
     [SerializeField] private GameObject bulletTrail;
     [Space]
     [SerializeField] private PlayerCtrl playerCtrl;
-    [SerializeField] public Weapon weapon;
+    [SerializeField] private Weapon weapon;
+    [SerializeField] private BulletSpawner bulletSpawner;
     [Space]
     [SerializeField] private bool isShooting;
     [SerializeField] private bool cooldown;
@@ -32,6 +34,7 @@ public class PlayerShootingSystem : MonoBehaviour
     private void LoadComponents()
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
+        bulletSpawner = GameObject.Find("------ PLAYER ------").GetComponentInChildren<BulletSpawner>();
 
         bulletTrail = Resources.Load<GameObject>("Prefabs/BulletTrail");
     }
@@ -52,15 +55,7 @@ public class PlayerShootingSystem : MonoBehaviour
             return;
         }
 
-        GameObject trail = Instantiate(bulletTrail, playerCtrl.playerWeaponSystem.shootingPoint.position, playerCtrl.playerWeaponSystem.shootingPoint.rotation);
-        BulletTrail trailScript = trail.GetComponent<BulletTrail>();
-        trailScript.SetTargetPoint(playerCtrl.playerWeaponSystem.hit.point);
-
-        DamageReceiver damageReceiver = playerCtrl.playerWeaponSystem.hit.collider.GetComponent<DamageReceiver>();
-        if (damageReceiver == null) return;
-        damageReceiver.ReceiveDamage(playerCtrl.playerWeaponSystem.dmg);
-
-        Achievement.Instance.totalDmg += playerCtrl.playerWeaponSystem.dmg;
+        bulletSpawner.Spawn(playerCtrl.playerWeaponSystem.hit.collider.transform, playerCtrl.playerWeaponSystem.dmg);
 
         IsShooting = true;
         playerCtrl.ammoSystem.ConsumpAmmo();

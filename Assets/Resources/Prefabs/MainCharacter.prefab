@@ -493,6 +493,7 @@ MonoBehaviour:
   bulletTrail: {fileID: 1206378085696735749, guid: a3f6de3a78961af4ba2940a456ef2a7d, type: 3}
   playerCtrl: {fileID: 3018312048441220676}
   weapon: {fileID: 0}
+  bulletSpawner: {fileID: 0}
   isShooting: 0
   cooldown: 0
 --- !u!1 &1258274170
@@ -841,6 +842,7 @@ MonoBehaviour:
   bulletTrail: {fileID: 1206378085696735749, guid: a3f6de3a78961af4ba2940a456ef2a7d, type: 3}
   playerCtrl: {fileID: 3018312048441220676}
   weapon: {fileID: 0}
+  bulletSpawner: {fileID: 0}
   isShooting: 0
   cooldown: 0
 --- !u!1 &3018312047909351435
@@ -1151,7 +1153,6 @@ MonoBehaviour:
   grenadeAimSystem: {fileID: 8201038299736368772}
   ammoSystem: {fileID: 3018312047909351430}
   damageReceiver: {fileID: 3018312048441220677}
-  uIManager: {fileID: 0}
 --- !u!114 &3018312048441220677
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -53,7 +53,7 @@ public class PlayerSound : MonoBehaviour
 
     private void GetWeaponSound()
     {
-        weaponSound = playerCtrl.playerWeaponSystem.playerShootingSystem.weapon.weaponData.WeaponSound;
+        weaponSound = playerCtrl.playerWeaponSystem.playerShootingSystem.Weapon.weaponData.WeaponSound;
     }
 
     public void CreateWeaponAudioSource()

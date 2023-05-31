@@ -70,7 +70,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private void SetUpAimingLine()
     {
-        shootDistance = playerShootingSystem.weapon.weaponData.ShootDistance;
+        shootDistance = playerShootingSystem.Weapon.weaponData.ShootDistance;
 
         hit = Physics2D.Raycast(shootingPoint.position, direction, shootDistance, enemyLayer);
         Debug.DrawRay(shootingPoint.position, direction * shootDistance, Color.red);
@@ -154,9 +154,9 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         muzzleFlash = selectedWeapon.Find("Muzzle").gameObject;
 
-        playerShootingSystem.weapon = transform.Find("Holder").GetComponentInChildren<Weapon>();
-        shootDistance = playerShootingSystem.weapon.weaponData.ShootDistance;
-        shootingDelay = 1 / playerShootingSystem.weapon.weaponData.FireRate;
-        dmg = playerShootingSystem.weapon.weaponData.WeaponDmg;
+        playerShootingSystem.Weapon = transform.Find("Holder").GetComponentInChildren<Weapon>();
+        shootDistance = playerShootingSystem.Weapon.weaponData.ShootDistance;
+        shootingDelay = 1 / playerShootingSystem.Weapon.weaponData.FireRate;
+        dmg = playerShootingSystem.Weapon.weaponData.WeaponDmg;
     }
 }
