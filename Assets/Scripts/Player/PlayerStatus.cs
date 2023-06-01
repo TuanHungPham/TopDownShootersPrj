@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStatus : Status
@@ -60,10 +58,10 @@ public class PlayerStatus : Status
     {
         DisableWeapon();
 
-        playerCtrl.playerMovement.enabled = false;
-        playerCtrl.playerWeaponSystem.enabled = false;
-        playerCtrl.playerAimingSystem.enabled = false;
-        playerCtrl.grenadeAimSystem.enabled = false;
+        playerCtrl.PlayerMovement.enabled = false;
+        playerCtrl.PlayerWeaponSystem.enabled = false;
+        playerCtrl.PlayerAimingSystem.enabled = false;
+        playerCtrl.GrenadeAimSystem.enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
     }

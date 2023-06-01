@@ -39,7 +39,7 @@ public class PlayfabLeaderboardSystem : MonoBehaviour
             int score = user.StatValue;
 
             int index = result.Leaderboard.IndexOf(user);
-            leaderboardList[index].userName = name;
+            leaderboardList[index].UserName = name;
             GetLeaderboardUserScore(statsName, score, leaderboardList[index]);
         }
     }
@@ -48,11 +48,11 @@ public class PlayfabLeaderboardSystem : MonoBehaviour
     {
         if (statsName.Equals("EnemiesKilled"))
         {
-            newUser.highestEnemiesKilled = score;
+            newUser.HighestEnemiesKilled = score;
         }
         else if (statsName.Equals("SurvivalTime"))
         {
-            newUser.highestSurvivalTime = score;
+            newUser.HighestSurvivalTime = score;
         }
     }
 

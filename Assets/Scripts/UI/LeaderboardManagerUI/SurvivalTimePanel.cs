@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,8 +45,8 @@ public class SurvivalTimePanel : LeaderboardPanel
         {
             if (i >= listOfBoard.Count) return;
 
-            string name = achievementList[i].userName;
-            float time = achievementList[i].highestSurvivalTime;
+            string name = achievementList[i].UserName;
+            float time = achievementList[i].HighestSurvivalTime;
 
             listOfBoard[i].SetUISurvivalTimeData(name, time);
         }

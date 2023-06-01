@@ -1,22 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyCtrl : MonoBehaviour
 {
     #region public var
-    public PlayerCtrl playerCtrl;
-    public EnemyMovement enemyMovement;
-    public EnemyBehaviour enemyBehaviour;
-    public Status enemyStatus;
-    public EnemyCombat enemyCombat;
-    public EnemySound enemySound;
-    public DamageReceiver damageReceiver;
-    public ItemDropSystem itemDropSystem;
     public bool TargetExist { get => targetExist; set => targetExist = value; }
+    public PlayerCtrl PlayerCtrl { get => playerCtrl; set => playerCtrl = value; }
+    public EnemyMovement EnemyMovement { get => enemyMovement; set => enemyMovement = value; }
+    public EnemyBehaviour EnemyBehaviour { get => enemyBehaviour; set => enemyBehaviour = value; }
+    public Status EnemyStatus { get => enemyStatus; set => enemyStatus = value; }
+    public EnemyCombat EnemyCombat { get => enemyCombat; set => enemyCombat = value; }
+    public EnemySound EnemySound { get => enemySound; set => enemySound = value; }
+    public DamageReceiver DamageReceiver { get => damageReceiver; set => damageReceiver = value; }
+    public ItemDropSystem ItemDropSystem { get => itemDropSystem; set => itemDropSystem = value; }
     #endregion
 
     #region private var
+    [SerializeField] private PlayerCtrl playerCtrl;
+    [SerializeField] private EnemyMovement enemyMovement;
+    [SerializeField] private EnemyBehaviour enemyBehaviour;
+    [SerializeField] private Status enemyStatus;
+    [SerializeField] private EnemyCombat enemyCombat;
+    [SerializeField] private EnemySound enemySound;
+    [SerializeField] private DamageReceiver damageReceiver;
+    [SerializeField] private ItemDropSystem itemDropSystem;
     [SerializeField] private bool targetExist;
 
     #endregion
@@ -33,14 +39,14 @@ public class EnemyCtrl : MonoBehaviour
 
     private void LoadComponents()
     {
-        damageReceiver = GetComponent<DamageReceiver>();
-        enemyStatus = GetComponent<Status>();
-        enemyMovement = GetComponentInChildren<EnemyMovement>();
-        enemyBehaviour = GetComponentInChildren<EnemyBehaviour>();
-        enemyCombat = GetComponentInChildren<EnemyCombat>();
-        enemySound = GetComponentInChildren<EnemySound>();
-        itemDropSystem = GetComponentInChildren<ItemDropSystem>();
-        playerCtrl = GameObject.Find("MainCharacter").GetComponent<PlayerCtrl>();
+        DamageReceiver = GetComponent<DamageReceiver>();
+        EnemyStatus = GetComponent<Status>();
+        EnemyMovement = GetComponentInChildren<EnemyMovement>();
+        EnemyBehaviour = GetComponentInChildren<EnemyBehaviour>();
+        EnemyCombat = GetComponentInChildren<EnemyCombat>();
+        EnemySound = GetComponentInChildren<EnemySound>();
+        ItemDropSystem = GetComponentInChildren<ItemDropSystem>();
+        PlayerCtrl = GameObject.Find("MainCharacter").GetComponent<PlayerCtrl>();
     }
 
     private void Update()
@@ -53,9 +59,9 @@ public class EnemyCtrl : MonoBehaviour
     {
         if (!this.gameObject.activeSelf) return;
 
-        enemyStatus.enabled = true;
-        enemyCombat.enabled = true;
-        enemyMovement.enabled = true;
+        EnemyStatus.enabled = true;
+        EnemyCombat.enabled = true;
+        EnemyMovement.enabled = true;
         GetComponent<BoxCollider2D>().enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 
@@ -66,8 +72,8 @@ public class EnemyCtrl : MonoBehaviour
 
     public void DisableComponents()
     {
-        enemyCombat.enabled = false;
-        enemyMovement.enabled = false;
+        EnemyCombat.enabled = false;
+        EnemyMovement.enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
     }
@@ -81,7 +87,7 @@ public class EnemyCtrl : MonoBehaviour
 
     private void CheckTargetExist()
     {
-        if (playerCtrl.playerStatus.IsDeath)
+        if (PlayerCtrl.PlayerStatus.IsDeath)
         {
             targetExist = false;
             return;

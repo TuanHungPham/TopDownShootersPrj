@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     #region public var
-    public WeaponData weaponData;
+    public WeaponData WeaponData { get => weaponData; set => weaponData = value; }
     #endregion
 
     #region private var
+    [SerializeField] private WeaponData weaponData;
     [SerializeField] private SpriteRenderer weaponSprite;
+
     #endregion
 
     private void Awake()
@@ -26,6 +26,6 @@ public class Weapon : MonoBehaviour
     {
         weaponSprite = GetComponentInChildren<SpriteRenderer>();
 
-        weaponSprite.sprite = weaponData.WeaponSprite;
+        weaponSprite.sprite = WeaponData.WeaponSprite;
     }
 }

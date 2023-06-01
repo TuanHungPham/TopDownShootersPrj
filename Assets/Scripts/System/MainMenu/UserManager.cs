@@ -1,7 +1,4 @@
 using UnityEngine;
-using PlayFab;
-using Facebook.Unity;
-using System;
 
 public class UserManager : MonoBehaviour
 {
@@ -9,16 +6,22 @@ public class UserManager : MonoBehaviour
     public static UserManager Instance { get => instance; }
 
     #region public var
-    public string userName;
-    public int enemiesKilled;
-    public int highestEnemiesKilled;
-    public float survivalTime;
-    public float highestSurvivalTime;
-    public int coin;
     public bool IsAchievementUpdated { get => isAchievementUpdated; private set => isAchievementUpdated = value; }
+    public string UserName { get => userName; set => userName = value; }
+    public int EnemiesKilled { get => enemiesKilled; set => enemiesKilled = value; }
+    public int HighestEnemiesKilled { get => highestEnemiesKilled; set => highestEnemiesKilled = value; }
+    public float SurvivalTime { get => survivalTime; set => survivalTime = value; }
+    public float HighestSurvivalTime { get => highestSurvivalTime; set => highestSurvivalTime = value; }
+    public int Coin { get => coin; set => coin = value; }
     #endregion
 
     #region private var
+    [SerializeField] private string userName;
+    [SerializeField] private int enemiesKilled;
+    [SerializeField] private int highestEnemiesKilled;
+    [SerializeField] private float survivalTime;
+    [SerializeField] private float highestSurvivalTime;
+    [SerializeField] private int coin;
     [SerializeField] private bool isAchievementUpdated;
     #endregion
 
@@ -32,16 +35,16 @@ public class UserManager : MonoBehaviour
 
     public void SaveData()
     {
-        PlayerPrefs.SetInt("Coin", coin);
-        PlayerPrefs.SetInt("Highest Enemies Killed", highestEnemiesKilled);
-        PlayerPrefs.SetFloat("Highest Survival Time", highestSurvivalTime);
+        PlayerPrefs.SetInt("Coin", Coin);
+        PlayerPrefs.SetInt("Highest Enemies Killed", HighestEnemiesKilled);
+        PlayerPrefs.SetFloat("Highest Survival Time", HighestSurvivalTime);
     }
 
     public void LoadData()
     {
-        coin = PlayerPrefs.GetInt("Coin", 0);
-        highestEnemiesKilled = PlayerPrefs.GetInt("Highest Enemies Killed", 0);
-        highestSurvivalTime = PlayerPrefs.GetFloat("Highest Survival Time", 0);
+        Coin = PlayerPrefs.GetInt("Coin", 0);
+        HighestEnemiesKilled = PlayerPrefs.GetInt("Highest Enemies Killed", 0);
+        HighestSurvivalTime = PlayerPrefs.GetFloat("Highest Survival Time", 0);
     }
 
     public void UpdateData()
@@ -54,37 +57,37 @@ public class UserManager : MonoBehaviour
 
     private void UpdateUsername()
     {
-        userName = DataManager.Instance.Username;
+        UserName = DataManager.Instance.Username;
     }
 
     private void UpdateCoin()
     {
-        coin += DataManager.Instance.achievementDataManager.coin;
+        Coin += DataManager.Instance.AchievementDataManager.coin;
     }
 
     private void UpdateEnemiesKilled()
     {
-        enemiesKilled = DataManager.Instance.achievementDataManager.enemiesKilled;
+        EnemiesKilled = DataManager.Instance.AchievementDataManager.enemiesKilled;
 
-        if (highestEnemiesKilled >= DataManager.Instance.achievementDataManager.enemiesKilled) return;
+        if (HighestEnemiesKilled >= DataManager.Instance.AchievementDataManager.enemiesKilled) return;
 
-        highestEnemiesKilled = DataManager.Instance.achievementDataManager.enemiesKilled;
+        HighestEnemiesKilled = DataManager.Instance.AchievementDataManager.enemiesKilled;
         isAchievementUpdated = true;
     }
 
     private void UpdateSurvivalTime()
     {
-        survivalTime = DataManager.Instance.achievementDataManager.survivalTime;
+        SurvivalTime = DataManager.Instance.AchievementDataManager.survivalTime;
 
-        if (highestSurvivalTime >= DataManager.Instance.achievementDataManager.survivalTime) return;
+        if (HighestSurvivalTime >= DataManager.Instance.AchievementDataManager.survivalTime) return;
 
-        highestSurvivalTime = DataManager.Instance.achievementDataManager.survivalTime;
+        HighestSurvivalTime = DataManager.Instance.AchievementDataManager.survivalTime;
         isAchievementUpdated = true;
     }
 
     public void ConsumeCoin(int consumptionQuantity)
     {
-        coin -= consumptionQuantity;
+        Coin -= consumptionQuantity;
     }
 
     private void OnDisable()

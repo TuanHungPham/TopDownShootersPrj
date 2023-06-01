@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -49,20 +46,20 @@ public class GameOverBoard : MonoBehaviour
 
     private void ShowAchievement()
     {
-        enemiesKilledText.text = Achievement.Instance.enemiesKilled.ToString();
-        totalDamageText.text = Achievement.Instance.totalDmg.ToString();
-        totalMoneyText.text = Achievement.Instance.totalMoney.ToString();
+        enemiesKilledText.text = Achievement.Instance.EnemiesKilled.ToString();
+        totalDamageText.text = Achievement.Instance.TotalDmg.ToString();
+        totalMoneyText.text = Achievement.Instance.TotalMoney.ToString();
         ShowSurvivalTimeText();
     }
 
     private void ShowSurvivalTimeText()
     {
-        min = Mathf.FloorToInt(Achievement.Instance.survivalTime / 60);
-        sec = Mathf.FloorToInt(Achievement.Instance.survivalTime % 60);
+        min = Mathf.FloorToInt(Achievement.Instance.SurvivalTime / 60);
+        sec = Mathf.FloorToInt(Achievement.Instance.SurvivalTime % 60);
         if (min == 60)
         {
             hour++;
-            Achievement.Instance.survivalTime = 0;
+            Achievement.Instance.SurvivalTime = 0;
         }
 
         timeSurvivedText.text = string.Format("{0:00}:{1:00}:{2:00}", hour, min, sec);

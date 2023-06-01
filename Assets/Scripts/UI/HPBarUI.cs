@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,11 +5,12 @@ using UnityEngine.UI;
 public class HPBarUI : MonoBehaviour
 {
     #region public var
-    public Slider hpSlider;
-    public Slider hpBGSlider;
+    public Slider HpSlider { get => hpSlider; set => hpSlider = value; }
     #endregion
 
     #region private var
+    [SerializeField] private Slider hpSlider;
+    [SerializeField] private Slider hpBGSlider;
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private TMP_Text hpText;
     [SerializeField] private float smoothTime;
@@ -30,7 +29,7 @@ public class HPBarUI : MonoBehaviour
     private void LoadComponents()
     {
         hpText = transform.Find("TextBG").GetComponentInChildren<TMP_Text>();
-        hpSlider = transform.Find("HPBarBG").Find("HPSlider").GetComponent<Slider>();
+        HpSlider = transform.Find("HPBarBG").Find("HPSlider").GetComponent<Slider>();
         hpBGSlider = transform.Find("HPBarBG").Find("HPBGSlider").GetComponent<Slider>();
 
         playerCtrl = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter").GetComponent<PlayerCtrl>();
@@ -40,10 +39,10 @@ public class HPBarUI : MonoBehaviour
 
     public void InitializeHPBar()
     {
-        hpSlider.maxValue = playerCtrl.playerStatus.maxHP;
-        hpSlider.value = playerCtrl.playerStatus.currentHP;
-        hpBGSlider.maxValue = hpSlider.maxValue;
-        hpBGSlider.value = hpSlider.value;
+        HpSlider.maxValue = playerCtrl.PlayerStatus.MaxHP;
+        HpSlider.value = playerCtrl.PlayerStatus.CurrentHP;
+        hpBGSlider.maxValue = HpSlider.maxValue;
+        hpBGSlider.value = HpSlider.value;
     }
 
     private void Update()
@@ -53,32 +52,32 @@ public class HPBarUI : MonoBehaviour
 
     private void ShowHP()
     {
-        hpText.text = string.Format("{0}/{1}", playerCtrl.playerStatus.currentHP, playerCtrl.playerStatus.maxHP);
+        hpText.text = string.Format("{0}/{1}", playerCtrl.PlayerStatus.CurrentHP, playerCtrl.PlayerStatus.MaxHP);
 
         SetHPSlider();
     }
 
     private void SetHPSlider()
     {
-        if (hpSlider.value == playerCtrl.playerStatus.currentHP) return;
+        if (HpSlider.value == playerCtrl.PlayerStatus.CurrentHP) return;
 
-        if (hpSlider.value < playerCtrl.playerStatus.currentHP)
+        if (HpSlider.value < playerCtrl.PlayerStatus.CurrentHP)
         {
-            hpSlider.value += smoothTime;
+            HpSlider.value += smoothTime;
             Invoke("SetHPBGSlider", 0.4f);
         }
         else
         {
-            hpSlider.value -= smoothTime;
+            HpSlider.value -= smoothTime;
             Invoke("SetHPBGSlider", 0.4f);
         }
     }
 
     private void SetHPBGSlider()
     {
-        if (hpBGSlider.value == hpSlider.value) return;
+        if (hpBGSlider.value == HpSlider.value) return;
 
-        if (hpBGSlider.value < hpSlider.value)
+        if (hpBGSlider.value < HpSlider.value)
         {
             hpBGSlider.value += smoothTime;
         }

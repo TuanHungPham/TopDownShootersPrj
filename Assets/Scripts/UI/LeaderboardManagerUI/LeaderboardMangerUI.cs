@@ -42,9 +42,9 @@ public class LeaderboardMangerUI : MonoBehaviour
         {
             listOfUser.Add(new UserManager
             {
-                userName = "",
-                highestEnemiesKilled = 0,
-                highestSurvivalTime = 0,
+                UserName = "",
+                HighestEnemiesKilled = 0,
+                HighestSurvivalTime = 0,
             });
         }
     }
@@ -53,9 +53,9 @@ public class LeaderboardMangerUI : MonoBehaviour
     {
         foreach (var user in listOfUser)
         {
-            user.userName = "";
-            user.highestEnemiesKilled = 0;
-            user.highestSurvivalTime = 0;
+            user.UserName = "";
+            user.HighestEnemiesKilled = 0;
+            user.HighestSurvivalTime = 0;
         }
     }
 

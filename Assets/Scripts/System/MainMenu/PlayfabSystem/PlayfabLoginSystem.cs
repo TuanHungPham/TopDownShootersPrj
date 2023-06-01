@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
-using System;
 
 public class PlayfabLoginSystem : MonoBehaviour
 {
@@ -72,7 +71,7 @@ public class PlayfabLoginSystem : MonoBehaviour
 
     private void DisplayUserName()
     {
-        UserManager.Instance.userName = username;
+        UserManager.Instance.UserName = username;
         DataManager.Instance.Username = username;
         MenuUIManager.Instance.CharacterManagerUI.ShowUsername();
     }

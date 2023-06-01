@@ -1,15 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ListOfObj : MonoBehaviour
 {
     #region public var
-    public GameObject selectedObj;
     public List<GameObject> listOfObj = new List<GameObject>();
+    public GameObject SelectedObj { get => selectedObj; set => selectedObj = value; }
     #endregion
 
     #region private var
+    [SerializeField] private GameObject selectedObj;
     #endregion
 
     private void Awake()
@@ -45,6 +45,6 @@ public class ListOfObj : MonoBehaviour
     private void GetRandomObjFromList()
     {
         int index = Random.Range(0, listOfObj.Count);
-        selectedObj = listOfObj[index];
+        SelectedObj = listOfObj[index];
     }
 }

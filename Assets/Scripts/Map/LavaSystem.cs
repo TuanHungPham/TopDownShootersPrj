@@ -1,19 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LavaSystem : MonoBehaviour
 {
     #region public var
-    public int lavaDmg;
-    public float burnDelay;
-    public float burnTimer;
     #endregion
 
     #region private var
-    [SerializeField] private PlayerCtrl playerCtrl;
+    [SerializeField] private int lavaDmg;
+    [SerializeField] private float burnDelay;
+    [SerializeField] private float burnTimer;
     [SerializeField] private bool isPlayerIn;
     [SerializeField] private bool canBurn;
+
+    [Space(20)]
+    [SerializeField] private PlayerCtrl playerCtrl;
     #endregion
 
     private void Awake()
@@ -44,7 +45,7 @@ public class LavaSystem : MonoBehaviour
     {
         if (!isPlayerIn || !canBurn) return;
 
-        playerCtrl.damageReceiver.ReceiveDamage(lavaDmg);
+        playerCtrl.DamageReceiver.ReceiveDamage(lavaDmg);
 
         burnTimer = burnDelay;
     }

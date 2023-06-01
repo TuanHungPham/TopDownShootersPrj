@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MagazinePickUp : PickUpSystem
@@ -39,7 +37,7 @@ public class MagazinePickUp : PickUpSystem
 
     protected override void AddItemToPlayerInventory()
     {
-        playerCtrl.ammoSystem.AddAmmo(magazineData.AmmoType, magazineData.AmmoQuantity);
+        playerCtrl.AmmoSystem.AddAmmo(magazineData.AmmoType, magazineData.AmmoQuantity);
         SoundSystemManager.Instance.SetReloadSound();
     }
 

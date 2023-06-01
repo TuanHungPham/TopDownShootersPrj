@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,9 +13,9 @@ public class MainMenuManager : MonoBehaviour
 
     private bool CanPlay()
     {
-        CharacterDisplayCtrl characterDisplayCtrl = CharacterManagerCtrl.Instance.selectedCharacter.GetComponent<CharacterDisplayCtrl>();
+        CharacterDisplayCtrl characterDisplayCtrl = CharacterManagerCtrl.Instance.SelectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        if (characterDisplayCtrl.characterData.IsOwned) return true;
+        if (characterDisplayCtrl.CharacterData.IsOwned) return true;
         return false;
     }
 

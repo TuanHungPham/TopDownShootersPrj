@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyStatus : Status
@@ -15,7 +13,7 @@ public class EnemyStatus : Status
     private void OnEnable()
     {
         IsDeath = false;
-        currentHP = maxHP;
+        CurrentHP = MaxHP;
     }
 
     protected override void Awake()
@@ -32,7 +30,7 @@ public class EnemyStatus : Status
     {
         enemyCtrl = GetComponent<EnemyCtrl>();
 
-        currentHP = maxHP;
+        CurrentHP = MaxHP;
     }
 
     protected override void Update()

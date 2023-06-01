@@ -1,20 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemDropSystem : MonoBehaviour
 {
     #region public var
-    public int coinDropQuantity;
-    public float coinDropRate;
-    public float magazineDropRate;
-    public float weaponDropRate;
-    public float potionDropRate;
-    public Transform dropPos;
     #endregion
 
     #region private var
+    [SerializeField] private int coinDropQuantity;
+    [SerializeField] private float coinDropRate;
+    [SerializeField] private float magazineDropRate;
+    [SerializeField] private float weaponDropRate;
+    [SerializeField] private float potionDropRate;
     [SerializeField] private bool isDrop;
+
+    [Space(20)]
+    [SerializeField] private Transform dropPos;
     private float dropChance;
     #endregion
 
@@ -53,10 +53,10 @@ public class ItemDropSystem : MonoBehaviour
 
     public void DropItem()
     {
-        DropItem(coinDropRate, ItemSpawnerCtrl.Instance.coinSpawner, coinDropQuantity);
-        DropItem(magazineDropRate, ItemSpawnerCtrl.Instance.magazineSpawner, 1);
-        DropItem(weaponDropRate, ItemSpawnerCtrl.Instance.weaponSpawner, 1);
-        DropItem(potionDropRate, ItemSpawnerCtrl.Instance.consumpItemSpawner, 1);
+        DropItem(coinDropRate, ItemSpawnerCtrl.Instance.CoinSpawner, coinDropQuantity);
+        DropItem(magazineDropRate, ItemSpawnerCtrl.Instance.MagazineSpawner, 1);
+        DropItem(weaponDropRate, ItemSpawnerCtrl.Instance.WeaponSpawner, 1);
+        DropItem(potionDropRate, ItemSpawnerCtrl.Instance.ConsumpItemSpawner, 1);
 
         isDrop = true;
     }
@@ -73,7 +73,7 @@ public class ItemDropSystem : MonoBehaviour
         }
 
         itemSpawner.SetSpawnPos(dropPos);
-        itemSpawner.maxObj += itemDropQuantity;
+        itemSpawner.MaxObj += itemDropQuantity;
         itemSpawner.CanDrop = true;
     }
 }

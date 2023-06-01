@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -44,12 +42,12 @@ public class CharacterInfoPanel : MonoBehaviour
 
     private void ShowCharacterInfo()
     {
-        if (characterManagerCtrl.selectedCharacter == null) return;
+        if (characterManagerCtrl.SelectedCharacter == null) return;
 
-        CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.selectedCharacter.GetComponent<CharacterDisplayCtrl>();
+        CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.SelectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        ShowHP(characterDisplayCtrl.characterData.characterHP);
-        ShowWeapon(characterDisplayCtrl.characterData.primaryWeaponData, characterDisplayCtrl.characterData.secondaryWeaponData);
+        ShowHP(characterDisplayCtrl.CharacterData.characterHP);
+        ShowWeapon(characterDisplayCtrl.CharacterData.primaryWeaponData, characterDisplayCtrl.CharacterData.secondaryWeaponData);
         ShowUpgradeHPQuantity();
     }
 
@@ -60,7 +58,7 @@ public class CharacterInfoPanel : MonoBehaviour
 
     private void ShowUpgradeHPQuantity()
     {
-        hpAddMoreText.text = "+ " + characterManagerCtrl.characterUpgrade.hpUpgrade.ToString();
+        hpAddMoreText.text = "+ " + characterManagerCtrl.CharacterUpgrade.hpUpgrade.ToString();
     }
 
     private void ShowWeapon(WeaponData primaryWeapon, WeaponData secondaryWeapon)

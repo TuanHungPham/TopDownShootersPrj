@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private int bulletDmg;
     [SerializeField] private float bulletSpeed;
     [SerializeField] private float flyTime;
+    [SerializeField] private bool isDealingDmg;
 
     [Space(20)]
     [SerializeField] private Transform target;
@@ -20,6 +21,8 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
+        isDealingDmg = false;
+
         GetFlyDirection();
     }
 
@@ -67,14 +70,15 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (!collider.CompareTag("Enemy")) return;
+        if (!collider.CompareTag("Enemy") || isDealingDmg) return;
 
         DamageReceiver damageReceiver = collider.GetComponent<DamageReceiver>();
         if (damageReceiver == null) return;
 
         damageReceiver.ReceiveDamage(bulletDmg);
-        Achievement.Instance.totalDmg += bulletDmg;
+        Achievement.Instance.TotalDmg += bulletDmg;
 
+        isDealingDmg = true;
         DisableBullet();
     }
 

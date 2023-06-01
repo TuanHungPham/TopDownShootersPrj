@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MainAchievementData : MonoBehaviour
@@ -24,23 +22,23 @@ public class MainAchievementData : MonoBehaviour
 
     private void UpdateCoin()
     {
-        coin += DataManager.Instance.achievementDataManager.coin;
+        coin += DataManager.Instance.AchievementDataManager.coin;
     }
 
     private void UpdateEnemiesKilled()
     {
-        enemiesKilled = DataManager.Instance.achievementDataManager.enemiesKilled;
+        enemiesKilled = DataManager.Instance.AchievementDataManager.enemiesKilled;
 
-        if (highestEnemiesKilled >= DataManager.Instance.achievementDataManager.enemiesKilled) return;
-        highestEnemiesKilled = DataManager.Instance.achievementDataManager.enemiesKilled;
+        if (highestEnemiesKilled >= DataManager.Instance.AchievementDataManager.enemiesKilled) return;
+        highestEnemiesKilled = DataManager.Instance.AchievementDataManager.enemiesKilled;
     }
 
     private void UpdateSurvivalTime()
     {
-        survivalTime = DataManager.Instance.achievementDataManager.survivalTime;
+        survivalTime = DataManager.Instance.AchievementDataManager.survivalTime;
 
-        if (highestSurvivalTime >= DataManager.Instance.achievementDataManager.survivalTime) return;
-        highestSurvivalTime = DataManager.Instance.achievementDataManager.survivalTime;
+        if (highestSurvivalTime >= DataManager.Instance.AchievementDataManager.survivalTime) return;
+        highestSurvivalTime = DataManager.Instance.AchievementDataManager.survivalTime;
     }
 
     public void ConsumeCoin(int consumptionQuantity)

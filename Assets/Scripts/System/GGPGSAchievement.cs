@@ -1,7 +1,4 @@
 using UnityEngine;
-using GooglePlayGames;
-using GooglePlayGames.BasicApi;
-using System;
 
 public class GGPGSAchievement : MonoBehaviour
 {
@@ -24,7 +21,7 @@ public class GGPGSAchievement : MonoBehaviour
 
     private void CheckKillAchievement()
     {
-        switch (Achievement.Instance.enemiesKilled)
+        switch (Achievement.Instance.EnemiesKilled)
         {
             case 1:
                 Social.ReportProgress(GPGSIds.achievement_first_kill, 100.0f, OnReportProgressCallback);
@@ -39,9 +36,9 @@ public class GGPGSAchievement : MonoBehaviour
 
     private void CheckNoobAchievement()
     {
-        if (!InGameManager.Instance.gameOverManager.GameOverCheck) return;
+        if (!InGameManager.Instance.GameOverManager.GameOverCheck) return;
 
-        if (Achievement.Instance.survivalTime < 60)
+        if (Achievement.Instance.SurvivalTime < 60)
         {
             Social.ReportProgress(GPGSIds.achievement_noob_like_long, 100.0f, OnReportProgressCallback);
         }

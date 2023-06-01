@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageReceiver : MonoBehaviour
@@ -41,17 +39,17 @@ public class DamageReceiver : MonoBehaviour
 
     public void ReceiveDamage(int dmg)
     {
-        objStatus.currentHP -= dmg;
+        objStatus.CurrentHP -= dmg;
         animator.SetTrigger("Hit");
         SetBloodVFX();
         ShowDamageText(this.transform.position, dmg);
 
         if (this.gameObject.CompareTag("Player"))
         {
-            UIManager.Instance.hitScene.TriggerHitScene();
+            UIManager.Instance.HitScene.TriggerHitScene();
 
             PlayerCtrl playerCtrl = this.gameObject.GetComponent<PlayerCtrl>();
-            playerCtrl.playerSound.PlayHitSound();
+            playerCtrl.PlayerSound.PlayHitSound();
         }
 
         HandleDeath();
@@ -59,19 +57,19 @@ public class DamageReceiver : MonoBehaviour
 
     private void ShowDamageText(Vector3 showPosition, int damage)
     {
-        UIManager.Instance.showDamageUIManager.ShowDamage(showPosition, damage);
+        UIManager.Instance.ShowDamageUIManager.ShowDamage(showPosition, damage);
     }
 
     private void HandleDeath()
     {
-        if (objStatus.currentHP > 0) return;
+        if (objStatus.CurrentHP > 0) return;
 
         GetDeathSound();
         Invoke("SetDeadVFX", 1.2f);
         Drop();
 
-        Achievement.Instance.enemiesKilled++;
-        EnemyWaveManager.Instance.restOfEnemy--;
+        Achievement.Instance.EnemiesKilled++;
+        EnemyWaveManager.Instance.RestOfEnemy--;
 
     }
 
@@ -81,7 +79,7 @@ public class DamageReceiver : MonoBehaviour
 
         EnemyCtrl enemyCtrl = gameObject.GetComponent<EnemyCtrl>();
 
-        enemyCtrl.enemySound.SetRoarAudio();
+        enemyCtrl.EnemySound.SetRoarAudio();
     }
 
     private void SetBloodVFX()
@@ -114,7 +112,7 @@ public class DamageReceiver : MonoBehaviour
     {
         if (!this.gameObject.CompareTag("Enemy")) return;
         EnemyCtrl enemyCtrl = this.gameObject.GetComponent<EnemyCtrl>();
-        enemyCtrl.itemDropSystem.Invoke("DropItem", 1.3f);
+        enemyCtrl.ItemDropSystem.Invoke("DropItem", 1.3f);
     }
 
     private void CheckHit()

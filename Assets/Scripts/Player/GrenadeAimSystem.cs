@@ -1,17 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GrenadeAimSystem : MonoBehaviour
 {
     #region public var
-    public FixedJoystick joystick;
-    public Vector2 aimDirection;
     #endregion
 
     #region private var
-    [SerializeField] private RectTransform joystickTransform;
     [SerializeField] private Transform hand;
+    [SerializeField] private FixedJoystick joystick;
+    [SerializeField] private Vector2 aimDirection;
+    [SerializeField] private RectTransform joystickTransform;
     private Quaternion lastRotation;
     #endregion
 

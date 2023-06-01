@@ -1,25 +1,28 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public abstract class Spawner : MonoBehaviour
 {
     #region public var
-    public int maxObj;
-    public float spawnDelay;
-    public float spawnTimer;
     public List<GameObject> listOfActiveObj = new List<GameObject>();
     public List<GameObject> listOfInactiveObj = new List<GameObject>();
+    public float SpawnTimer { get => spawnTimer; set => spawnTimer = value; }
+    public float SpawnDelay { get => spawnDelay; set => spawnDelay = value; }
+    public int MaxObj { get => maxObj; set => maxObj = value; }
     #endregion
 
     #region private var
+    [SerializeField] private int maxObj;
+    [SerializeField] private float spawnDelay;
+    [SerializeField] private float spawnTimer;
+
+    [Space(20)]
     [SerializeField] protected ListOfObj listOfObj;
     [SerializeField] protected GameObject gameObj;
     [SerializeField] protected Transform spawnPos;
     [SerializeField] protected Transform parent;
+
     #endregion
 
     protected virtual void Awake()
@@ -36,7 +39,7 @@ public abstract class Spawner : MonoBehaviour
 
     protected virtual void GetObjFromList()
     {
-        gameObj = listOfObj.selectedObj;
+        gameObj = listOfObj.SelectedObj;
     }
 
     public virtual void Spawn()
@@ -62,7 +65,7 @@ public abstract class Spawner : MonoBehaviour
         obj.transform.parent = parent;
         obj.SetActive(true);
 
-        spawnTimer = spawnDelay;
+        SpawnTimer = SpawnDelay;
     }
 
     protected virtual void SetActiveObj()

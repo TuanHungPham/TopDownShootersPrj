@@ -3,21 +3,26 @@ using UnityEngine;
 public class CharacterDisplayCtrl : MonoBehaviour
 {
     #region public var
-    public CharacterData characterData;
-    [Space(20)]
-    public SpriteRenderer characterSprite;
-    public SpriteRenderer characterWeapomSprite;
-    public int pointIndex;
-    public float smoothTime;
-
     public bool IsSelected { get => isSelected; set => isSelected = value; }
+    public int PointIndex { get => pointIndex; set => pointIndex = value; }
+    public CharacterData CharacterData { get => characterData; set => characterData = value; }
     #endregion
 
     #region private var
-    [SerializeField] private DisplayPointManager displayPointManager;
+    [Space(20)]
+    [SerializeField] private int pointIndex;
+    [SerializeField] private float smoothTime;
+    [SerializeField] private bool isSelected;
+
+    [Space(20)]
     [SerializeField] private Transform recentPoint;
     [SerializeField] private Transform targetPoint;
-    [SerializeField] private bool isSelected;
+
+    [Space(20)]
+    [SerializeField] private SpriteRenderer characterSprite;
+    [SerializeField] private SpriteRenderer characterWeaponSprite;
+    [SerializeField] private DisplayPointManager displayPointManager;
+    [SerializeField] private CharacterData characterData;
     private Transform selectedPoint;
     private Vector3 velocity = Vector3.zero;
     #endregion
@@ -34,10 +39,10 @@ public class CharacterDisplayCtrl : MonoBehaviour
 
     private void LoadComponents()
     {
-        characterData = GetComponentInChildren<CharacterData>();
+        CharacterData = GetComponentInChildren<CharacterData>();
         characterSprite = GetComponentInChildren<SpriteRenderer>();
         displayPointManager = transform.root.GetComponentInChildren<DisplayPointManager>();
-        characterWeapomSprite = transform.Find("CharacterWeaponDisplay").GetChild(0).GetComponentInChildren<SpriteRenderer>();
+        characterWeaponSprite = transform.Find("CharacterWeaponDisplay").GetChild(0).GetComponentInChildren<SpriteRenderer>();
         selectedPoint = transform.root.Find("DisplayPoint").Find("SelectedPoint");
     }
 
@@ -50,15 +55,15 @@ public class CharacterDisplayCtrl : MonoBehaviour
 
     private void DisplayCharacter()
     {
-        if (characterData.IsOwned)
+        if (CharacterData.IsOwned)
         {
             characterSprite.color = Color.white;
-            characterWeapomSprite.color = Color.white;
+            characterWeaponSprite.color = Color.white;
             return;
         }
 
         characterSprite.color = Color.black;
-        characterWeapomSprite.color = Color.black;
+        characterWeaponSprite.color = Color.black;
     }
 
     private void CheckSelected()
@@ -74,7 +79,7 @@ public class CharacterDisplayCtrl : MonoBehaviour
 
     private void MoveToRecentPoint()
     {
-        targetPoint = displayPointManager.listOfDisplayPoint[pointIndex];
+        targetPoint = displayPointManager.listOfDisplayPoint[PointIndex];
         transform.position = Vector3.SmoothDamp(transform.position, targetPoint.position, ref velocity, smoothTime);
     }
 }

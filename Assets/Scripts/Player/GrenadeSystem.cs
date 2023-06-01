@@ -1,23 +1,23 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GrenadeSystem : MonoBehaviour
 {
     #region public var
-    public float grenadeQuantity;
-    public float throwTimer;
-    public float throwDelay;
-    public Transform throwingPoint;
+    public float GrenadeQuantity { get => grenadeQuantity; set => grenadeQuantity = value; }
     #endregion
 
     #region private var
-    [SerializeField] private GrenadeTrajectorySystem grenadeTrajectorySystem;
+    [SerializeField] private float grenadeQuantity;
+    [SerializeField] private float throwTimer;
+    [SerializeField] private float throwDelay;
+    [SerializeField] private bool isThrowing;
+    [SerializeField] private bool isDelay;
+    [SerializeField] private bool grenadeLeft;
+
+    [Space(20)]
+    [SerializeField] private Transform throwingPoint;
     [SerializeField] private GameObject grenadePrefab;
-    private bool isThrowing;
-    private bool isDelay;
-    private bool grenadeLeft;
+    [SerializeField] private GrenadeTrajectorySystem grenadeTrajectorySystem;
     #endregion
 
     private void Awake()
@@ -38,7 +38,7 @@ public class GrenadeSystem : MonoBehaviour
 
         throwDelay = 2;
         throwTimer = throwDelay;
-        grenadeQuantity = 3;
+        GrenadeQuantity = 3;
     }
 
     private void Update()
@@ -76,7 +76,7 @@ public class GrenadeSystem : MonoBehaviour
 
     private void CheckGrenadeQuantity()
     {
-        if (grenadeQuantity <= 0)
+        if (GrenadeQuantity <= 0)
         {
             grenadeLeft = false;
             return;
@@ -87,13 +87,13 @@ public class GrenadeSystem : MonoBehaviour
 
     private bool CanThrow()
     {
-        if (grenadeTrajectorySystem.grenadeTrajectory.listOfTrajectoryPoint.Count == 0 || grenadeTrajectorySystem.IsAreaActive || isDelay || !grenadeLeft) return false;
+        if (grenadeTrajectorySystem.GrenadeTrajectory.listOfTrajectoryPoint.Count == 0 || grenadeTrajectorySystem.IsAreaActive || isDelay || !grenadeLeft) return false;
 
         return true;
     }
 
     private void ConsumeGrenade()
     {
-        grenadeQuantity--;
+        GrenadeQuantity--;
     }
 }

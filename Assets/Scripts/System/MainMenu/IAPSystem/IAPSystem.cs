@@ -40,17 +40,17 @@ public class IAPSystem : MonoBehaviour
         switch (product.definition.id)
         {
             case "coin":
-                UserManager.Instance.coin += 200;
+                UserManager.Instance.Coin += 200;
                 Debug.Log("Add 200 Coin to your Account!!!");
                 break;
             case "alotofcoin":
-                UserManager.Instance.coin += 1000;
+                UserManager.Instance.Coin += 1000;
                 break;
             case "bagofcoins":
-                UserManager.Instance.coin += 4000;
+                UserManager.Instance.Coin += 4000;
                 break;
             case "treasure":
-                UserManager.Instance.coin += 10000;
+                UserManager.Instance.Coin += 10000;
                 break;
             default:
                 break;

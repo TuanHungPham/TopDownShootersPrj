@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DamageSender : MonoBehaviour
 {
     #region public var
-    public int dmgSending;
-    public int rawDmg;
     #endregion
 
     #region private var
+    [SerializeField] private int dmgSending;
+    [SerializeField] private int rawDmg;
     [SerializeField] private float dealDmgDistance;
     [SerializeField] private string targetTag;
+
+    [Space(20)]
     [SerializeField] private Transform player;
     [SerializeField] private Transform thisEnemy;
     #endregion

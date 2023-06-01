@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,7 +49,7 @@ public class DisplayPointManager : MonoBehaviour
         {
             CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.listOfCharacter[i].GetComponent<CharacterDisplayCtrl>();
 
-            characterDisplayCtrl.pointIndex = i;
+            characterDisplayCtrl.PointIndex = i;
         }
     }
 
@@ -60,7 +59,7 @@ public class DisplayPointManager : MonoBehaviour
         {
             CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.listOfCharacter[i].GetComponent<CharacterDisplayCtrl>();
 
-            int index = characterDisplayCtrl.pointIndex;
+            int index = characterDisplayCtrl.PointIndex;
             index++;
 
             if (index > listOfDisplayPoint.Count - 1)
@@ -68,7 +67,7 @@ public class DisplayPointManager : MonoBehaviour
                 index = 0;
             }
 
-            characterDisplayCtrl.pointIndex = index;
+            characterDisplayCtrl.PointIndex = index;
         }
     }
 
@@ -78,7 +77,7 @@ public class DisplayPointManager : MonoBehaviour
         {
             CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.listOfCharacter[i].GetComponent<CharacterDisplayCtrl>();
 
-            int index = characterDisplayCtrl.pointIndex;
+            int index = characterDisplayCtrl.PointIndex;
             index--;
 
             if (index < 0)
@@ -86,7 +85,7 @@ public class DisplayPointManager : MonoBehaviour
                 index = listOfDisplayPoint.Count - 1;
             }
 
-            characterDisplayCtrl.pointIndex = index;
+            characterDisplayCtrl.PointIndex = index;
         }
     }
 }

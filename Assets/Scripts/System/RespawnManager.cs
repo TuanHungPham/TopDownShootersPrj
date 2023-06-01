@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class RespawnManager : MonoBehaviour
 {
     #region public var
-    public float respawnAvailableTimer;
     public bool CanRespawn { get => canRespawn; set => canRespawn = value; }
     public bool IsRespawned { get => isRespawned; set => isRespawned = value; }
     public bool IsRespawning { get => isRespawning; set => isRespawning = value; }
+    public float RespawnAvailableTimer { get => respawnAvailableTimer; set => respawnAvailableTimer = value; }
     #endregion
 
     #region private var
+    [SerializeField] private float respawnAvailableTimer;
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private Transform player;
     [SerializeField] private GameObject respawnBoard;
@@ -40,7 +38,7 @@ public class RespawnManager : MonoBehaviour
         player = GameObject.Find("------ PLAYER ------").transform.GetChild(0);
         enemySpawner = GameObject.Find("------ ENEMY ------").transform.Find("EnemySpawner");
 
-        respawnAvailableTimer = 6.5f;
+        RespawnAvailableTimer = 6.5f;
     }
 
     private void Update()
@@ -82,29 +80,29 @@ public class RespawnManager : MonoBehaviour
 
     private void RespawnCheck()
     {
-        if (!playerCtrl.playerStatus.IsDeath || (isRespawned && isRespawning))
+        if (!playerCtrl.PlayerStatus.IsDeath || (isRespawned && isRespawning))
         {
             canRespawn = false;
-            InGameManager.Instance.gameOverManager.GameOverCheck = false;
+            InGameManager.Instance.GameOverManager.GameOverCheck = false;
             return;
         }
 
-        if ((isRespawned || respawnAvailableTimer <= 0.1) && !isRespawning)
+        if ((isRespawned || RespawnAvailableTimer <= 0.1) && !isRespawning)
         {
             canRespawn = false;
-            InGameManager.Instance.gameOverManager.GameOverCheck = true;
+            InGameManager.Instance.GameOverManager.GameOverCheck = true;
         }
         else
         {
             canRespawn = true;
-            InGameManager.Instance.gameOverManager.GameOverCheck = false;
+            InGameManager.Instance.GameOverManager.GameOverCheck = false;
             RunRespawnButtonTimer();
         }
     }
 
     private void RunRespawnButtonTimer()
     {
-        respawnAvailableTimer -= Time.deltaTime;
+        RespawnAvailableTimer -= Time.deltaTime;
     }
 
     private void EnableWeapon()

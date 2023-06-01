@@ -1,21 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AmmoSystem : MonoBehaviour
 {
     #region public var
-    public int currentWeaponAmmo;
-    public int rifleAmmo;
-    public int pistolAmmo;
-    public AmmoType currentUsingAmmoType;
     public bool AmmoLeft { get => ammoLeft; set => ammoLeft = value; }
+    public int RifleAmmo { get => rifleAmmo; set => rifleAmmo = value; }
+    public int PistolAmmo { get => pistolAmmo; set => pistolAmmo = value; }
+    public int CurrentWeaponAmmo { get => currentWeaponAmmo; set => currentWeaponAmmo = value; }
+    public AmmoType CurrentUsingAmmoType { get => currentUsingAmmoType; set => currentUsingAmmoType = value; }
     #endregion
 
     #region private var
+    [SerializeField] private int currentWeaponAmmo;
+    [SerializeField] private int rifleAmmo;
+    [SerializeField] private int pistolAmmo;
+    [SerializeField] private AmmoType currentUsingAmmoType;
+    [SerializeField] private bool ammoLeft;
+
+    [Space(20)]
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private UIManager uIManager;
-    [SerializeField] private bool ammoLeft;
     #endregion
 
     private void Awake()
@@ -30,7 +34,7 @@ public class AmmoSystem : MonoBehaviour
 
     private void Start()
     {
-        currentWeaponAmmo = rifleAmmo;
+        CurrentWeaponAmmo = RifleAmmo;
     }
 
     private void LoadComponents()
@@ -47,16 +51,16 @@ public class AmmoSystem : MonoBehaviour
 
     private void SwapAmmoType()
     {
-        if (!uIManager.weaponInventoryPanel.IsWeaponSwitched) return;
-        WeaponHolderUI holderSelected = uIManager.weaponInventoryPanel.WeaponHolderSelected();
+        if (!uIManager.WeaponInventoryPanel.IsWeaponSwitched) return;
+        WeaponHolderUI holderSelected = uIManager.WeaponInventoryPanel.WeaponHolderSelected();
 
-        if (holderSelected.holderType == HolderType.PRIMARY_HOLDER)
+        if (holderSelected.HolderType == HolderType.PRIMARY_HOLDER)
         {
-            currentUsingAmmoType = AmmoType.RIFLE_AMMO;
+            CurrentUsingAmmoType = AmmoType.RIFLE_AMMO;
         }
-        else if (holderSelected.holderType == HolderType.SECONDARY_HOLDER)
+        else if (holderSelected.HolderType == HolderType.SECONDARY_HOLDER)
         {
-            currentUsingAmmoType = AmmoType.PISTOL_AMMO;
+            CurrentUsingAmmoType = AmmoType.PISTOL_AMMO;
         }
 
         RenewAmmoCapacity();
@@ -64,7 +68,7 @@ public class AmmoSystem : MonoBehaviour
 
     public void ConsumpAmmo()
     {
-        currentWeaponAmmo--;
+        CurrentWeaponAmmo--;
         UseAmmo();
     }
 
@@ -72,11 +76,11 @@ public class AmmoSystem : MonoBehaviour
     {
         if (ammoType == AmmoType.RIFLE_AMMO)
         {
-            rifleAmmo += ammoQuantity;
+            RifleAmmo += ammoQuantity;
         }
         else if (ammoType == AmmoType.PISTOL_AMMO)
         {
-            pistolAmmo += ammoQuantity;
+            PistolAmmo += ammoQuantity;
         }
 
         RenewAmmoCapacity();
@@ -84,31 +88,31 @@ public class AmmoSystem : MonoBehaviour
 
     private void RenewAmmoCapacity()
     {
-        if (currentUsingAmmoType == AmmoType.RIFLE_AMMO)
+        if (CurrentUsingAmmoType == AmmoType.RIFLE_AMMO)
         {
-            currentWeaponAmmo = rifleAmmo;
+            CurrentWeaponAmmo = RifleAmmo;
         }
-        else if (currentUsingAmmoType == AmmoType.PISTOL_AMMO)
+        else if (CurrentUsingAmmoType == AmmoType.PISTOL_AMMO)
         {
-            currentWeaponAmmo = pistolAmmo;
+            CurrentWeaponAmmo = PistolAmmo;
         }
     }
 
     private void UseAmmo()
     {
-        if (currentUsingAmmoType == AmmoType.RIFLE_AMMO)
+        if (CurrentUsingAmmoType == AmmoType.RIFLE_AMMO)
         {
-            rifleAmmo = currentWeaponAmmo;
+            RifleAmmo = CurrentWeaponAmmo;
         }
-        else if (currentUsingAmmoType == AmmoType.PISTOL_AMMO)
+        else if (CurrentUsingAmmoType == AmmoType.PISTOL_AMMO)
         {
-            pistolAmmo = currentWeaponAmmo;
+            PistolAmmo = CurrentWeaponAmmo;
         }
     }
 
     private void CheckAmmo()
     {
-        if (currentWeaponAmmo <= 0)
+        if (CurrentWeaponAmmo <= 0)
         {
             ammoLeft = false;
             return;

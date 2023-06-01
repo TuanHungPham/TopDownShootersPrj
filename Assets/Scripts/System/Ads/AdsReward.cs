@@ -95,11 +95,11 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
     {
         if (SceneManager.GetActiveScene().Equals("MainMenu"))
         {
-            UserManager.Instance.coin += 1500;
+            UserManager.Instance.Coin += 1500;
             return;
         }
 
-        InGameManager.Instance.respawnManager.Respawn();
+        InGameManager.Instance.RespawnManager.Respawn();
     }
 
     public void OnUnityAdsShowFailure(string placementId, UnityAdsShowError error, string message)

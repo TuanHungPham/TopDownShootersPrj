@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -67,7 +66,7 @@ public class SupplyManager : MonoBehaviour
 
     private void CheckSupplySpawn()
     {
-        if (EnemyWaveManager.Instance.waveNumber % 5 != 0 || EnemyWaveManager.Instance.nextWaveTimer <= 0 || !EnemyWaveManager.Instance.IsEndWave)
+        if (EnemyWaveManager.Instance.WaveNumber % 5 != 0 || EnemyWaveManager.Instance.NextWaveTimer <= 0 || !EnemyWaveManager.Instance.IsEndWave)
         {
             supplyBox.Clear();
             canSupply = false;

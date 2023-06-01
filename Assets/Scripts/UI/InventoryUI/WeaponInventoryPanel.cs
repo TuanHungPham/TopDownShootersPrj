@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -106,7 +104,7 @@ public class WeaponInventoryPanel : MonoBehaviour
     {
         foreach (WeaponHolderUI weaponHolderUI in listOfWeaponHolderUI)
         {
-            if (weaponHolderUI.holderType != HolderType.PRIMARY_HOLDER) continue;
+            if (weaponHolderUI.HolderType != HolderType.PRIMARY_HOLDER) continue;
 
             HandleItemSelection(weaponHolderUI);
         }
@@ -122,7 +120,7 @@ public class WeaponInventoryPanel : MonoBehaviour
 
     private void SetData(WeaponHolderUI weaponHolderUI, WeaponType weaponType)
     {
-        WeaponData weapon = playerCtrl.playerWeaponInventory.SearchInventoryByWeaponType(weaponType);
+        WeaponData weapon = playerCtrl.PlayerWeaponInventory.SearchInventoryByWeaponType(weaponType);
         if (weapon == null) return;
 
         weaponHolderUI.SetImage(weapon.WeaponSprite);

@@ -1,7 +1,6 @@
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
-using System;
 using TMPro;
 
 public class PlayfabAccountSystem : MonoBehaviour

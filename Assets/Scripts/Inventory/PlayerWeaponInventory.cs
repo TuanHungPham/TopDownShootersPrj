@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,10 +6,11 @@ public class PlayerWeaponInventory : MonoBehaviour
     #region public var
     public List<WeaponData> weaponInventory = new List<WeaponData>();
     public bool IsUpdateInventory { get => isUpdateInventory; set => isUpdateInventory = value; }
-    public WeaponData swappedWeapon;
+    public WeaponData SwappedWeapon { get => swappedWeapon; set => swappedWeapon = value; }
     #endregion
 
     #region private var
+    [SerializeField] private WeaponData swappedWeapon;
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private bool isUpdateInventory;
     #endregion
@@ -33,7 +33,7 @@ public class PlayerWeaponInventory : MonoBehaviour
     public void AddWeaponToInventory(WeaponData weaponData)
     {
         AddNewWeapon(weaponData);
-        playerCtrl.ammoSystem.AddAmmo(weaponData.AmmoType, weaponData.Ammo);
+        playerCtrl.AmmoSystem.AddAmmo(weaponData.AmmoType, weaponData.Ammo);
     }
 
     private void AddNewWeapon(WeaponData weaponData)
@@ -45,16 +45,16 @@ public class PlayerWeaponInventory : MonoBehaviour
         }
         else if (weaponInventory.Contains(weaponData)) return;
 
-        weaponInventory.Remove(swappedWeapon);
+        weaponInventory.Remove(SwappedWeapon);
         weaponInventory.Add(weaponData);
         return;
     }
 
     private bool IsExistWeaponTypeInInventory(WeaponData weaponData)
     {
-        swappedWeapon = weaponInventory.Find((x) => x.WeaponType == weaponData.WeaponType);
+        SwappedWeapon = weaponInventory.Find((x) => x.WeaponType == weaponData.WeaponType);
 
-        if (swappedWeapon == null) return false;
+        if (SwappedWeapon == null) return false;
         return true;
     }
 

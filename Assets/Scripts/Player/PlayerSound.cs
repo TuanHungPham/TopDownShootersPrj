@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSound : MonoBehaviour
@@ -53,7 +51,7 @@ public class PlayerSound : MonoBehaviour
 
     private void GetWeaponSound()
     {
-        weaponSound = playerCtrl.playerWeaponSystem.playerShootingSystem.Weapon.weaponData.WeaponSound;
+        weaponSound = playerCtrl.PlayerWeaponSystem.PlayerShootingSystem.Weapon.WeaponData.WeaponSound;
     }
 
     public void CreateWeaponAudioSource()

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerShootingSystem : MonoBehaviour
@@ -49,39 +46,39 @@ public class PlayerShootingSystem : MonoBehaviour
 
     private void Shoot()
     {
-        if (playerCtrl.playerWeaponSystem.hit.collider == null || !CanShoot())
+        if (playerCtrl.PlayerWeaponSystem.Hit.collider == null || !CanShoot())
         {
             IsShooting = false;
             return;
         }
 
-        bulletSpawner.Spawn(playerCtrl.playerWeaponSystem.hit.collider.transform, playerCtrl.playerWeaponSystem.dmg);
+        bulletSpawner.Spawn(playerCtrl.PlayerWeaponSystem.Hit.collider.transform, playerCtrl.PlayerWeaponSystem.Dmg);
 
         IsShooting = true;
-        playerCtrl.ammoSystem.ConsumpAmmo();
-        playerCtrl.playerWeaponSystem.shootingTimer = playerCtrl.playerWeaponSystem.shootingDelay;
+        playerCtrl.AmmoSystem.ConsumpAmmo();
+        playerCtrl.PlayerWeaponSystem.ShootingTimer = playerCtrl.PlayerWeaponSystem.ShootingDelay;
     }
 
     private void GetWeaponSound()
     {
-        if (playerCtrl.playerWeaponSystem.hit.collider == null || !CanShoot()) return;
+        if (playerCtrl.PlayerWeaponSystem.Hit.collider == null || !CanShoot()) return;
 
-        playerCtrl.playerSound.CreateWeaponAudioSource();
+        playerCtrl.PlayerSound.CreateWeaponAudioSource();
     }
 
     private void GetShootingVFX()
     {
-        if (playerCtrl.playerWeaponSystem.muzzleFlash == null) return;
+        if (playerCtrl.PlayerWeaponSystem.MuzzleFlash == null) return;
 
-        if (!IsShooting) playerCtrl.playerWeaponSystem.muzzleFlash.SetActive(false);
-        else playerCtrl.playerWeaponSystem.muzzleFlash.SetActive(true);
+        if (!IsShooting) playerCtrl.PlayerWeaponSystem.MuzzleFlash.SetActive(false);
+        else playerCtrl.PlayerWeaponSystem.MuzzleFlash.SetActive(true);
     }
 
     private void CheckCooldown()
     {
-        if (playerCtrl.playerWeaponSystem.shootingTimer > 0)
+        if (playerCtrl.PlayerWeaponSystem.ShootingTimer > 0)
         {
-            playerCtrl.playerWeaponSystem.shootingTimer -= Time.deltaTime;
+            playerCtrl.PlayerWeaponSystem.ShootingTimer -= Time.deltaTime;
             cooldown = true;
             return;
         }
@@ -91,7 +88,7 @@ public class PlayerShootingSystem : MonoBehaviour
 
     private bool CanShoot()
     {
-        if (cooldown || !playerCtrl.ammoSystem.AmmoLeft) return false;
+        if (cooldown || !playerCtrl.AmmoSystem.AmmoLeft) return false;
 
         return true;
     }

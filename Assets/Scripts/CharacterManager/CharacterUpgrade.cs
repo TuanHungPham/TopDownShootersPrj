@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterUpgrade : MonoBehaviour
@@ -29,13 +27,13 @@ public class CharacterUpgrade : MonoBehaviour
 
     public void Upgrade()
     {
-        CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.selectedCharacter.GetComponent<CharacterDisplayCtrl>();
+        CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.SelectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        if (UserManager.Instance.coin < characterDisplayCtrl.characterData.coinRequirement) return;
+        if (UserManager.Instance.Coin < characterDisplayCtrl.CharacterData.coinRequirement) return;
 
-        UserManager.Instance.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
-        characterDisplayCtrl.characterData.characterLevel++;
-        characterDisplayCtrl.characterData.characterHP += hpUpgrade;
-        characterDisplayCtrl.characterData.upgradePrice += characterDisplayCtrl.characterData.upgradePriceAdd;
+        UserManager.Instance.ConsumeCoin(characterDisplayCtrl.CharacterData.coinRequirement);
+        characterDisplayCtrl.CharacterData.characterLevel++;
+        characterDisplayCtrl.CharacterData.characterHP += hpUpgrade;
+        characterDisplayCtrl.CharacterData.upgradePrice += characterDisplayCtrl.CharacterData.upgradePriceAdd;
     }
 }

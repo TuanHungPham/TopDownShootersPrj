@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponPickUp : PickUpSystem
@@ -45,8 +43,8 @@ public class WeaponPickUp : PickUpSystem
 
     protected override void AddItemToPlayerInventory()
     {
-        playerCtrl.playerWeaponInventory.AddWeaponToInventory(weapon.weaponData);
-        playerCtrl.playerWeaponInventory.IsUpdateInventory = true;
+        playerCtrl.PlayerWeaponInventory.AddWeaponToInventory(weapon.WeaponData);
+        playerCtrl.PlayerWeaponInventory.IsUpdateInventory = true;
         SoundSystemManager.Instance.SetReloadSound();
     }
 

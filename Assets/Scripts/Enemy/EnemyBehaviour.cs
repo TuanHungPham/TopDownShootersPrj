@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBehaviour : MonoBehaviour
@@ -58,7 +56,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (checkDeathAnimation) return;
 
-        if (enemyCtrl.enemyStatus.IsDeath)
+        if (enemyCtrl.EnemyStatus.IsDeath)
         {
             animator.SetTrigger("isDeath");
             checkDeathAnimation = true;
@@ -68,7 +66,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void SetAttackAnimation()
     {
-        if (enemyCtrl.enemyCombat.IsAttacking)
+        if (enemyCtrl.EnemyCombat.IsAttacking)
         {
             animator.SetBool("Attack", true);
             return;
@@ -79,7 +77,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void SetRunAnimation()
     {
-        if (enemyCtrl.enemyMovement.IsRunning)
+        if (enemyCtrl.EnemyMovement.IsRunning)
         {
             animator.SetBool("Run", true);
             return;

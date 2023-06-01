@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,23 +5,31 @@ public class EnemyWaveManager : MonoBehaviour
 {
     private static EnemyWaveManager instance;
     public static EnemyWaveManager Instance { get => instance; set => instance = value; }
-    public bool UpdateWave { get => updateWave; set => updateWave = value; }
-    public bool IsEndWave { get => isEndWave; set => isEndWave = value; }
 
     #region public var
-    public int waveNumber;
-    public int numberOfEnemy;
-    public int restOfEnemy;
-    public float nextWaveTimer;
+    public bool UpdateWave { get => updateWave; set => updateWave = value; }
+    public bool IsEndWave { get => isEndWave; set => isEndWave = value; }
+    public int NumberOfEnemy { get => numberOfEnemy; set => numberOfEnemy = value; }
+    public int RestOfEnemy { get => RestOfEnemy1; set => RestOfEnemy1 = value; }
+    public int WaveNumber { get => WaveNumber1; set => WaveNumber1 = value; }
+    public float NextWaveTimer { get => nextWaveTimer; set => nextWaveTimer = value; }
+    public int RestOfEnemy1 { get => restOfEnemy; set => restOfEnemy = value; }
+    public int WaveNumber1 { get => waveNumber; set => waveNumber = value; }
     #endregion
 
     #region private var
+    [SerializeField] private int waveNumber;
+    [SerializeField] private int numberOfEnemy;
+    [SerializeField] private int restOfEnemy;
     [SerializeField] private int addEnemyNumber;
     [SerializeField] private int addEnemyHP;
-    [SerializeField] private ListOfObj listOfEnemy;
-    [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private float nextWaveTimer;
     [SerializeField] private bool isEndWave;
     [SerializeField] private bool updateWave;
+
+    [Space(20)]
+    [SerializeField] private ListOfObj listOfEnemy;
+    [SerializeField] private EnemySpawner enemySpawner;
     #endregion
 
     private void Awake()
@@ -41,12 +48,12 @@ public class EnemyWaveManager : MonoBehaviour
         listOfEnemy = transform.root.Find("ListOfEnemy").GetComponent<ListOfObj>();
         enemySpawner = transform.root.Find("EnemySpawner").GetComponent<EnemySpawner>();
 
-        waveNumber = 1;
-        numberOfEnemy = 10;
-        nextWaveTimer = 15;
+        WaveNumber = 1;
+        NumberOfEnemy = 10;
+        NextWaveTimer = 15;
         addEnemyNumber = 5;
-        addEnemyHP = 25;
-        restOfEnemy = numberOfEnemy;
+        addEnemyHP = 5;
+        RestOfEnemy = NumberOfEnemy;
     }
 
     private void Update()
@@ -61,7 +68,7 @@ public class EnemyWaveManager : MonoBehaviour
         if (!IsEndWave)
         {
             UpdateWave = false;
-            nextWaveTimer = 15;
+            NextWaveTimer = 15;
             return;
         }
 
@@ -71,12 +78,12 @@ public class EnemyWaveManager : MonoBehaviour
         {
             CheckNextWaveTimer();
             StopSpawnEnemy();
-            if (nextWaveTimer > 0) return;
+            if (NextWaveTimer > 0) return;
 
             AddEnemyNumber();
             AddEnemyHP(listOfEnemy.listOfObj);
             AddEnemyHP(enemySpawner.listOfInactiveObj);
-            waveNumber++;
+            WaveNumber++;
             UpdateWave = false;
             IsEndWave = false;
         }
@@ -84,7 +91,7 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void CheckNextWaveTimer()
     {
-        nextWaveTimer -= Time.deltaTime;
+        NextWaveTimer -= Time.deltaTime;
     }
 
     private void AddEnemyHP(List<GameObject> list)
@@ -92,31 +99,31 @@ public class EnemyWaveManager : MonoBehaviour
         foreach (GameObject enemy in list)
         {
             EnemyCtrl enemyCtrl = enemy.GetComponent<EnemyCtrl>();
-            enemyCtrl.enemyStatus.maxHP += addEnemyHP;
+            enemyCtrl.EnemyStatus.MaxHP += addEnemyHP;
         }
     }
 
     private void CheckNumberOfAliveEnemy()
     {
-        enemySpawner.maxObj = restOfEnemy;
+        enemySpawner.MaxObj = RestOfEnemy;
     }
 
     private void AddEnemyNumber()
     {
-        numberOfEnemy += addEnemyNumber;
-        restOfEnemy = numberOfEnemy;
+        NumberOfEnemy += addEnemyNumber;
+        RestOfEnemy = NumberOfEnemy;
     }
 
     private void StopSpawnEnemy()
     {
-        enemySpawner.maxObj = 0;
+        enemySpawner.MaxObj = 0;
     }
 
     private void CheckWave()
     {
-        if (restOfEnemy <= 0)
+        if (RestOfEnemy <= 0)
         {
-            restOfEnemy = 0;
+            RestOfEnemy = 0;
             IsEndWave = true;
             return;
         }

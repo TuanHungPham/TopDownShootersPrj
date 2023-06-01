@@ -36,7 +36,7 @@ public class Grenade : MonoBehaviour
 
     private void Start()
     {
-        listOfTrajectoryPoint = grenadeTrajectorySystem.grenadeTrajectory.listOfTrajectoryPoint;
+        listOfTrajectoryPoint = grenadeTrajectorySystem.GrenadeTrajectory.listOfTrajectoryPoint;
         StartCoroutine("GrenadeFly");
     }
 
@@ -48,7 +48,7 @@ public class Grenade : MonoBehaviour
             yield return null;
         }
 
-        grenadeTrajectorySystem.grenadeTrajectory.ClearListOfTrajectoryPoint();
+        grenadeTrajectorySystem.GrenadeTrajectory.ClearListOfTrajectoryPoint();
         Explode();
     }
 

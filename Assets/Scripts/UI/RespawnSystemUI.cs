@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class RespawnSystemUI : MonoBehaviour
@@ -35,7 +32,7 @@ public class RespawnSystemUI : MonoBehaviour
 
     private void ShowRespawnTimerText()
     {
-        float sec = Mathf.FloorToInt(InGameManager.Instance.respawnManager.respawnAvailableTimer % 60);
+        float sec = Mathf.FloorToInt(InGameManager.Instance.RespawnManager.RespawnAvailableTimer % 60);
         respawnTimerText.text = sec.ToString();
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Achievement : MonoBehaviour
@@ -8,13 +6,17 @@ public class Achievement : MonoBehaviour
     public static Achievement Instance { get => instance; }
 
     #region public var
-    public int enemiesKilled;
-    public float survivalTime;
-    public int totalDmg;
-    public int totalMoney;
+    public int EnemiesKilled { get => enemiesKilled; set => enemiesKilled = value; }
+    public float SurvivalTime { get => survivalTime; set => survivalTime = value; }
+    public int TotalDmg { get => totalDmg; set => totalDmg = value; }
+    public int TotalMoney { get => totalMoney; set => totalMoney = value; }
     #endregion
 
     #region private var
+    [SerializeField] private int enemiesKilled;
+    [SerializeField] private float survivalTime;
+    [SerializeField] private int totalDmg;
+    [SerializeField] private int totalMoney;
     #endregion
 
     private void Awake()
@@ -40,14 +42,14 @@ public class Achievement : MonoBehaviour
 
     private void TimeCounter()
     {
-        survivalTime += Time.deltaTime;
+        SurvivalTime += Time.deltaTime;
     }
 
     public void UpdateToMainData()
     {
-        DataManager.Instance.achievementDataManager.enemiesKilled = enemiesKilled;
-        survivalTime = DataManager.Instance.achievementDataManager.survivalTime = survivalTime;
-        totalMoney = DataManager.Instance.achievementDataManager.coin = totalMoney;
+        DataManager.Instance.AchievementDataManager.enemiesKilled = EnemiesKilled;
+        SurvivalTime = DataManager.Instance.AchievementDataManager.survivalTime = SurvivalTime;
+        TotalMoney = DataManager.Instance.AchievementDataManager.coin = TotalMoney;
     }
 
     public void SaveDataWhenRetry()
@@ -56,17 +58,17 @@ public class Achievement : MonoBehaviour
         float highestSurvivalTime = PlayerPrefs.GetFloat("Highest Survival Time", 0);
         int coin = PlayerPrefs.GetInt("Coin", 0);
 
-        if (highestEnemiesKilled < enemiesKilled)
+        if (highestEnemiesKilled < EnemiesKilled)
         {
-            highestEnemiesKilled = enemiesKilled;
+            highestEnemiesKilled = EnemiesKilled;
         }
 
-        if (highestSurvivalTime < survivalTime)
+        if (highestSurvivalTime < SurvivalTime)
         {
-            highestSurvivalTime = survivalTime;
+            highestSurvivalTime = SurvivalTime;
         }
 
-        coin += totalMoney;
+        coin += TotalMoney;
 
         SaveDataIngame(highestEnemiesKilled, highestSurvivalTime, coin);
     }

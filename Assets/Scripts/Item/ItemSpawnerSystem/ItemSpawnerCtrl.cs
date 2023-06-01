@@ -1,16 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemSpawnerCtrl : MonoBehaviour
 {
     private static ItemSpawnerCtrl instance;
-    public static ItemSpawnerCtrl Instance { get => instance; }
+    [SerializeField] public static ItemSpawnerCtrl Instance { get => instance; }
 
-    public ItemSpanwer coinSpawner;
-    public MagazineSpawner magazineSpawner;
-    public WeaponSpawner weaponSpawner;
-    public ConsumpItemSpawner consumpItemSpawner;
+    #region public var
+    public ItemSpanwer CoinSpawner { get => coinSpawner; set => coinSpawner = value; }
+    public MagazineSpawner MagazineSpawner { get => magazineSpawner; set => magazineSpawner = value; }
+    public WeaponSpawner WeaponSpawner { get => weaponSpawner; set => weaponSpawner = value; }
+    public ConsumpItemSpawner ConsumpItemSpawner { get => consumpItemSpawner; set => consumpItemSpawner = value; }
+    #endregion
+
+    #region private var
+    [SerializeField] private ItemSpanwer coinSpawner;
+    [SerializeField] private MagazineSpawner magazineSpawner;
+    [SerializeField] private WeaponSpawner weaponSpawner;
+    [SerializeField] private ConsumpItemSpawner consumpItemSpawner;
+    #endregion
 
     private void Awake()
     {
@@ -25,9 +32,9 @@ public class ItemSpawnerCtrl : MonoBehaviour
 
     private void LoadComponents()
     {
-        coinSpawner = GetComponentInChildren<ItemSpanwer>();
-        magazineSpawner = GetComponentInChildren<MagazineSpawner>();
-        weaponSpawner = GetComponentInChildren<WeaponSpawner>();
-        consumpItemSpawner = GetComponentInChildren<ConsumpItemSpawner>();
+        CoinSpawner = GetComponentInChildren<ItemSpanwer>();
+        MagazineSpawner = GetComponentInChildren<MagazineSpawner>();
+        WeaponSpawner = GetComponentInChildren<WeaponSpawner>();
+        ConsumpItemSpawner = GetComponentInChildren<ConsumpItemSpawner>();
     }
 }

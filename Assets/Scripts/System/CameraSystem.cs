@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraSystem : MonoBehaviour
 {
     #region public var
-    public float camSpeed;
-    public float defaultZoom;
-    public float sniperZoom;
-    public float smoothZoom;
     #endregion
 
     #region private var
+    [SerializeField] private float camSpeed;
+    [SerializeField] private float defaultZoom;
+    [SerializeField] private float sniperZoom;
+    [SerializeField] private float smoothZoom;
+
+    [Space(20)]
     [SerializeField] private Transform player;
     [SerializeField] private Transform crosshair;
     [SerializeField] private Camera mainCam;
@@ -71,7 +71,7 @@ public class CameraSystem : MonoBehaviour
 
     private void SetUpCameraZoom()
     {
-        if (playerCtrl.playerWeaponSystem.selectedWeapon.name.Equals("Sniper"))
+        if (playerCtrl.PlayerWeaponSystem.SelectedWeapon.name.Equals("Sniper"))
         {
             if (mainCam.orthographicSize >= sniperZoom) return;
 

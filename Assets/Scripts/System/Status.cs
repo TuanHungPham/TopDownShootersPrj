@@ -1,17 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Status : MonoBehaviour
 {
     #region public var
-    public float currentHP;
-    public float maxHP;
     public bool IsDeath { get => isDeath; set => isDeath = value; }
+    public float CurrentHP { get => currentHP; set => currentHP = value; }
+    public float MaxHP { get => maxHP; set => maxHP = value; }
     #endregion
 
     #region private var
+    [SerializeField] private float currentHP;
+    [SerializeField] private float maxHP;
     [SerializeField] private bool isDeath;
     #endregion
 
@@ -34,9 +33,9 @@ public abstract class Status : MonoBehaviour
 
     protected virtual void CheckHP()
     {
-        if (currentHP <= 0)
+        if (CurrentHP <= 0)
         {
-            currentHP = 0;
+            CurrentHP = 0;
             Die();
         }
     }
@@ -49,11 +48,11 @@ public abstract class Status : MonoBehaviour
 
     public virtual void Heal(int healAmount)
     {
-        currentHP += healAmount;
+        CurrentHP += healAmount;
 
-        if (currentHP < maxHP) return;
+        if (CurrentHP < MaxHP) return;
 
-        currentHP = maxHP;
+        CurrentHP = MaxHP;
     }
 
     protected abstract void DisableComponents();

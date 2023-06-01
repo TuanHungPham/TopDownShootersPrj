@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSwapWeaponSystem : MonoBehaviour
@@ -46,11 +44,11 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
 
     public void GetWeaponFromStorage()
     {
-        if (!playerCtrl.playerWeaponInventory.IsUpdateInventory) return;
+        if (!playerCtrl.PlayerWeaponInventory.IsUpdateInventory) return;
 
-        for (int i = 0; i < playerCtrl.playerWeaponInventory.weaponInventory.Count; i++)
+        for (int i = 0; i < playerCtrl.PlayerWeaponInventory.weaponInventory.Count; i++)
         {
-            Transform weapon = GetWeaponInStorageByName(playerCtrl.playerWeaponInventory.weaponInventory[i]);
+            Transform weapon = GetWeaponInStorageByName(playerCtrl.PlayerWeaponInventory.weaponInventory[i]);
 
             if (weapon == null) continue;
 
@@ -60,18 +58,18 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
             weapon.gameObject.SetActive(true);
         }
 
-        playerCtrl.playerWeaponInventory.IsUpdateInventory = false;
+        playerCtrl.PlayerWeaponInventory.IsUpdateInventory = false;
     }
 
     private void PutWeaponToHolder(Transform obj)
     {
         Weapon weapon = obj.GetComponent<Weapon>();
 
-        if (weapon.weaponData.WeaponType == WeaponType.PRIMARY_WEAPON)
+        if (weapon.WeaponData.WeaponType == WeaponType.PRIMARY_WEAPON)
         {
             obj.SetParent(primaryWeaponHolder);
         }
-        else if (weapon.weaponData.WeaponType == WeaponType.SECONDARY_WEAPON)
+        else if (weapon.WeaponData.WeaponType == WeaponType.SECONDARY_WEAPON)
         {
             obj.SetParent(secondaryWeaponHolder);
         }
@@ -83,15 +81,15 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
 
     private void StoreWeapon()
     {
-        if (!playerCtrl.playerWeaponInventory.IsUpdateInventory || playerCtrl.playerWeaponInventory.swappedWeapon == null) return;
+        if (!playerCtrl.PlayerWeaponInventory.IsUpdateInventory || playerCtrl.PlayerWeaponInventory.SwappedWeapon == null) return;
 
         Transform holder = null;
 
-        if (playerCtrl.playerWeaponInventory.swappedWeapon.WeaponType == WeaponType.PRIMARY_WEAPON)
+        if (playerCtrl.PlayerWeaponInventory.SwappedWeapon.WeaponType == WeaponType.PRIMARY_WEAPON)
         {
             holder = primaryWeaponHolder;
         }
-        else if (playerCtrl.playerWeaponInventory.swappedWeapon.WeaponType == WeaponType.SECONDARY_WEAPON)
+        else if (playerCtrl.PlayerWeaponInventory.SwappedWeapon.WeaponType == WeaponType.SECONDARY_WEAPON)
         {
             holder = secondaryWeaponHolder;
         }
@@ -100,7 +98,7 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
         {
             Weapon weapon = item.GetComponent<Weapon>();
 
-            if (weapon.weaponData != playerCtrl.playerWeaponInventory.swappedWeapon) continue;
+            if (weapon.WeaponData != playerCtrl.PlayerWeaponInventory.SwappedWeapon) continue;
 
             item.gameObject.SetActive(false);
             PutWeaponToStorage(item);
@@ -122,7 +120,7 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
             childCount++;
             Weapon weapon = item.GetComponent<Weapon>();
 
-            if (!weapon.weaponData.WeaponName.Equals(weaponData.WeaponName)) continue;
+            if (!weapon.WeaponData.WeaponName.Equals(weaponData.WeaponName)) continue;
 
             return item;
         }
@@ -132,9 +130,9 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
 
     private void SwitchWeapon()
     {
-        if (!uIManager.weaponInventoryPanel.IsWeaponSwitched) return;
+        if (!uIManager.WeaponInventoryPanel.IsWeaponSwitched) return;
 
-        WeaponHolderUI weaponHolderUI = uIManager.weaponInventoryPanel.WeaponHolderSelected();
+        WeaponHolderUI weaponHolderUI = uIManager.WeaponInventoryPanel.WeaponHolderSelected();
 
         GetHolder(weaponHolderUI);
     }
@@ -144,11 +142,11 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
         primaryWeaponHolder.gameObject.SetActive(false);
         secondaryWeaponHolder.gameObject.SetActive(false);
 
-        if (weaponHolderUI.holderType == HolderType.PRIMARY_HOLDER)
+        if (weaponHolderUI.HolderType == HolderType.PRIMARY_HOLDER)
         {
             primaryWeaponHolder.gameObject.SetActive(true);
         }
-        else if (weaponHolderUI.holderType == HolderType.SECONDARY_HOLDER)
+        else if (weaponHolderUI.HolderType == HolderType.SECONDARY_HOLDER)
         {
             secondaryWeaponHolder.gameObject.SetActive(true);
         }

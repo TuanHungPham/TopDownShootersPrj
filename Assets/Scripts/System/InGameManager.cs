@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,15 +5,17 @@ public class InGameManager : MonoBehaviour
 {
     private static InGameManager instance;
     public static InGameManager Instance { get => instance; }
+    public RespawnManager RespawnManager { get => respawnManager; set => respawnManager = value; }
+    public GameOverManager GameOverManager { get => gameOverManager; set => gameOverManager = value; }
 
     #region public var
-    public RespawnManager respawnManager;
-    public GameOverManager gameOverManager;
     #endregion
 
     #region private var
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject pauseSceneColor;
+    [SerializeField] private RespawnManager respawnManager;
+    [SerializeField] private GameOverManager gameOverManager;
     #endregion
 
     private void Awake()
@@ -37,8 +37,8 @@ public class InGameManager : MonoBehaviour
         pauseMenu = GameObject.Find("Canvas").transform.Find("PauseMenu").gameObject;
         pauseSceneColor = GameObject.Find("Canvas").transform.Find("PauseSceneColor").gameObject;
 
-        respawnManager = GetComponentInChildren<RespawnManager>();
-        gameOverManager = GetComponentInChildren<GameOverManager>();
+        RespawnManager = GetComponentInChildren<RespawnManager>();
+        GameOverManager = GetComponentInChildren<GameOverManager>();
     }
 
     public void SetPauseAndResumeGame()

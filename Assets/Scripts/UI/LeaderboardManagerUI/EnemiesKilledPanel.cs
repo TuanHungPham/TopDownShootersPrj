@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,8 +45,8 @@ public class EnemiesKilledPanel : LeaderboardPanel
         {
             if (i >= listOfBoard.Count) return;
 
-            string name = achievementList[i].userName;
-            int score = achievementList[i].highestEnemiesKilled;
+            string name = achievementList[i].UserName;
+            int score = achievementList[i].HighestEnemiesKilled;
 
             listOfBoard[i].SetUIEnemiesKilledData(name, score);
         }

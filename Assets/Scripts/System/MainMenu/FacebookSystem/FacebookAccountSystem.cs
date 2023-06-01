@@ -1,6 +1,5 @@
 using UnityEngine;
 using Facebook.Unity;
-using System;
 using System.Collections.Generic;
 
 public class FacebookAccountSystem : MonoBehaviour
@@ -98,7 +97,7 @@ public class FacebookAccountSystem : MonoBehaviour
 
         string username = result.ResultDictionary["name"].ToString();
 
-        UserManager.Instance.userName = username;
+        UserManager.Instance.UserName = username;
         DataManager.Instance.Username = username;
         MenuUIManager.Instance.CharacterManagerUI.ShowUsername();
 

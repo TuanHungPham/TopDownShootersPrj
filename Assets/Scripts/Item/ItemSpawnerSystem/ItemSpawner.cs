@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemSpanwer : Spawner
@@ -92,12 +90,12 @@ public class ItemSpanwer : Spawner
         if (!EnemyWaveManager.Instance.UpdateWave) return;
 
         listOfActiveObj.Clear();
-        maxObj = 0;
+        MaxObj = 0;
     }
 
     protected override bool CanSpawn()
     {
-        if (canDrop && listOfActiveObj.Count < maxObj) return true;
+        if (canDrop && listOfActiveObj.Count < MaxObj) return true;
 
         return false;
     }

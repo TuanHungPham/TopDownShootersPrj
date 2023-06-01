@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +5,13 @@ public class GrenadeTrajectory : MonoBehaviour
 {
     #region  public var
     public List<Vector3> listOfTrajectoryPoint = new List<Vector3>();
-    public float stepSize;
-    public float heigthPlus;
     #endregion
 
     #region private var
+    [SerializeField] private float stepSize;
+    [SerializeField] private float heigthPlus;
+
+    [Space(20)]
     [SerializeField] private GrenadeTrajectorySystem grenadeTrajectorySystem;
     [SerializeField] private Vector3 startPoint;
     [SerializeField] private Vector3 endPoint;

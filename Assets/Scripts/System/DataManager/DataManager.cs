@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -8,15 +6,17 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance { get => instance; }
 
     #region public var
-    public CharacterDataManager characterDataManager;
-    public AchievementDataManager achievementDataManager;
     public string Username { get => username; set => username = value; }
     public bool IsRetry { get => isRetry; set => isRetry = value; }
+    public CharacterDataManager CharacterDataManager { get => characterDataManager; set => characterDataManager = value; }
+    public AchievementDataManager AchievementDataManager { get => achievementDataManager; set => achievementDataManager = value; }
     #endregion
 
     #region private var
     [SerializeField] private string username;
     [SerializeField] private bool isRetry;
+    [SerializeField] private CharacterDataManager characterDataManager;
+    [SerializeField] private AchievementDataManager achievementDataManager;
     #endregion
 
     private void Awake()
@@ -33,8 +33,8 @@ public class DataManager : MonoBehaviour
 
     private void LoadComponents()
     {
-        characterDataManager = GetComponentInChildren<CharacterDataManager>();
-        achievementDataManager = GetComponentInChildren<AchievementDataManager>();
+        CharacterDataManager = GetComponentInChildren<CharacterDataManager>();
+        AchievementDataManager = GetComponentInChildren<AchievementDataManager>();
     }
 
     private void HandleSingletonObject()

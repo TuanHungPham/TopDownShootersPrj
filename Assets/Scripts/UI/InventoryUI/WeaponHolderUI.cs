@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,15 +6,16 @@ using UnityEngine.UI;
 public class WeaponHolderUI : MonoBehaviour, IPointerClickHandler
 {
     #region public var
-    public HolderType holderType;
     public event Action<WeaponHolderUI> OnItemClicked;
     public bool IsEmpty { get => isEmpty; set => isEmpty = value; }
     public bool IsSelected { get => isSelected; set => isSelected = value; }
+    public HolderType HolderType { get => holderType; set => holderType = value; }
     #endregion
 
     #region private var
     [SerializeField] private Image background;
     [SerializeField] private Image weaponImage;
+    [SerializeField] private HolderType holderType;
     [SerializeField] private bool isEmpty;
     [SerializeField] private bool isSelected;
     #endregion

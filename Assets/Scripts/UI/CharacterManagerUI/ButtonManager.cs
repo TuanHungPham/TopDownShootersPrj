@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -44,7 +41,7 @@ public class ButtonManager : MonoBehaviour
 
     private void HandleButton()
     {
-        if (!characterManagerCtrl.characterShop.IsCharacterCanBeOwned)
+        if (!characterManagerCtrl.CharacterShop.IsCharacterCanBeOwned)
         {
             levelUpButton.gameObject.SetActive(true);
             buyButton.gameObject.SetActive(false);
@@ -57,10 +54,10 @@ public class ButtonManager : MonoBehaviour
 
     private void ShowCoinRequirement()
     {
-        if (characterManagerCtrl.selectedCharacter == null) return;
+        if (characterManagerCtrl.SelectedCharacter == null) return;
 
-        CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.selectedCharacter.GetComponent<CharacterDisplayCtrl>();
+        CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.SelectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        coinRequirementText.text = characterDisplayCtrl.characterData.coinRequirement.ToString();
+        coinRequirementText.text = characterDisplayCtrl.CharacterData.coinRequirement.ToString();
     }
 }

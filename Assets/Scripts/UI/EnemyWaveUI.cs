@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -46,18 +44,18 @@ public class EnemyWaveUI : MonoBehaviour
 
     private void ShowNumberOfEnemy()
     {
-        numberOfEnemy.text = EnemyWaveManager.Instance.restOfEnemy.ToString();
+        numberOfEnemy.text = EnemyWaveManager.Instance.RestOfEnemy.ToString();
     }
 
     private void ShowWaveNumber()
     {
-        waveNumber.text = EnemyWaveManager.Instance.waveNumber.ToString();
+        waveNumber.text = EnemyWaveManager.Instance.WaveNumber.ToString();
     }
 
     private void ShowNextWaveTimer()
     {
-        min = Mathf.FloorToInt(EnemyWaveManager.Instance.nextWaveTimer / 60);
-        sec = Mathf.FloorToInt(EnemyWaveManager.Instance.nextWaveTimer % 60);
+        min = Mathf.FloorToInt(EnemyWaveManager.Instance.NextWaveTimer / 60);
+        sec = Mathf.FloorToInt(EnemyWaveManager.Instance.NextWaveTimer % 60);
 
         nextWaveTimer.text = string.Format("{0:00}:{1:00}", min, sec);
     }

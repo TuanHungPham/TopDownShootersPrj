@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -40,11 +38,11 @@ public class AmmoSystemUI : MonoBehaviour
 
     private void ShowAmmo()
     {
-        ammoCapacityText.text = playerCtrl.ammoSystem.currentWeaponAmmo.ToString();
+        ammoCapacityText.text = playerCtrl.AmmoSystem.CurrentWeaponAmmo.ToString();
     }
 
     private void ShowGrenadeQuantity()
     {
-        grenadeIcon.fillAmount = playerCtrl.grenadeSystem.grenadeQuantity / 3f;
+        grenadeIcon.fillAmount = playerCtrl.GrenadeSystem.GrenadeQuantity / 3f;
     }
 }

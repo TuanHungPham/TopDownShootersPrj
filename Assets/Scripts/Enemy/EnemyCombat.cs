@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
     #region public var
-    public float atkCoolDownTimer;
-    public float atkDelay;
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
-    public AttackArea attackArea;
+    public AttackArea AttackArea { get => attackArea; set => attackArea = value; }
     #endregion
 
     #region private var
+    [SerializeField] private float atkCoolDownTimer;
+    [SerializeField] private float atkDelay;
+    [SerializeField] private AttackArea attackArea;
     [SerializeField] private EnemyCtrl enemyCtrl;
     [SerializeField] private bool isAttacking;
     private bool cooldown;
@@ -29,12 +28,12 @@ public class EnemyCombat : MonoBehaviour
 
     private void Reset()
     {
-        LoadComponents();   
+        LoadComponents();
     }
 
     private void LoadComponents()
     {
-        attackArea = GetComponentInChildren<AttackArea>();
+        AttackArea = GetComponentInChildren<AttackArea>();
         enemyCtrl = GetComponentInParent<EnemyCtrl>();
 
         atkDelay = 1.5f;
@@ -66,14 +65,14 @@ public class EnemyCombat : MonoBehaviour
             cooldown = false;
             return;
         }
-        
+
         atkCoolDownTimer -= Time.deltaTime;
         cooldown = true;
     }
 
     private bool CanAttack()
     {
-        if (attackArea.IsTrigger && !cooldown) return true;
+        if (AttackArea.IsTrigger && !cooldown) return true;
 
         return false;
     }

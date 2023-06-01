@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 
 public class CharacterManagerCtrl : MonoBehaviour
@@ -9,13 +8,16 @@ public class CharacterManagerCtrl : MonoBehaviour
 
     #region public var
     public List<Transform> listOfCharacter = new List<Transform>();
-    public Transform selectedCharacter;
-    public CharacterShop characterShop;
-    public CharacterUpgrade characterUpgrade;
-    public DisplayPointManager displayPointManager;
+    public Transform SelectedCharacter { get => selectedCharacter; set => selectedCharacter = value; }
+    public CharacterUpgrade CharacterUpgrade { get => characterUpgrade; set => characterUpgrade = value; }
+    public CharacterShop CharacterShop { get => characterShop; set => characterShop = value; }
     #endregion
 
     #region private var
+    [SerializeField] private Transform selectedCharacter;
+    [SerializeField] private CharacterShop characterShop;
+    [SerializeField] private CharacterUpgrade characterUpgrade;
+    [SerializeField] private DisplayPointManager displayPointManager;
     private LoadedCharacterData loadedCharacterData;
     #endregion
 
@@ -39,8 +41,8 @@ public class CharacterManagerCtrl : MonoBehaviour
 
     private void LoadComponents()
     {
-        characterShop = GetComponent<CharacterShop>();
-        characterUpgrade = GetComponent<CharacterUpgrade>();
+        CharacterShop = GetComponent<CharacterShop>();
+        CharacterUpgrade = GetComponent<CharacterUpgrade>();
         displayPointManager = transform.parent.GetComponentInChildren<DisplayPointManager>();
 
         InitializeCharacterList();
@@ -68,7 +70,7 @@ public class CharacterManagerCtrl : MonoBehaviour
         Transform character = listOfCharacter.Find((x) => x.name.Equals("Character1"));
 
         CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
-        characterDisplayCtrl.characterData.IsOwned = true;
+        characterDisplayCtrl.CharacterData.IsOwned = true;
     }
 
     private void GetSelectedCharacter()
@@ -78,9 +80,9 @@ public class CharacterManagerCtrl : MonoBehaviour
             CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
             if (!characterDisplayCtrl.IsSelected) continue;
 
-            selectedCharacter = character;
+            SelectedCharacter = character;
 
-            DataManager.Instance.characterDataManager.GetSelectedCharacterData();
+            DataManager.Instance.CharacterDataManager.GetSelectedCharacterData();
             return;
         }
     }
@@ -90,7 +92,7 @@ public class CharacterManagerCtrl : MonoBehaviour
         foreach (Transform character in listOfCharacter)
         {
             CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
-            CharacterData characterData = characterDisplayCtrl.characterData;
+            CharacterData characterData = characterDisplayCtrl.CharacterData;
 
             loadedCharacterData = new LoadedCharacterData
             (
@@ -117,7 +119,7 @@ public class CharacterManagerCtrl : MonoBehaviour
         foreach (Transform character in listOfCharacter)
         {
             CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
-            CharacterData characterData = characterDisplayCtrl.characterData;
+            CharacterData characterData = characterDisplayCtrl.CharacterData;
 
             string fileName = character.name;
 

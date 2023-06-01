@@ -36,7 +36,7 @@ public class BulletSpawner : Spawner
 
     private void GetSpawnPosition()
     {
-        spawnPos = playerCtrl.playerWeaponSystem.shootingPoint;
+        spawnPos = playerCtrl.PlayerWeaponSystem.ShootingPoint;
     }
 
     public void Spawn(Transform target, int dmg)

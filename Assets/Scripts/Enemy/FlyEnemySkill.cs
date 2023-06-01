@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class FlyEnemySkill : MonoBehaviour
@@ -42,12 +39,12 @@ public class FlyEnemySkill : MonoBehaviour
 
     private void Explode()
     {
-        if (!enemyCtrl.enemyCombat.IsAttacking || checkExplode)
+        if (!enemyCtrl.EnemyCombat.IsAttacking || checkExplode)
         {
             return;
         }
 
-        enemyCtrl.damageReceiver.ReceiveDamage((int)enemyCtrl.enemyStatus.maxHP);
+        enemyCtrl.DamageReceiver.ReceiveDamage((int)enemyCtrl.EnemyStatus.MaxHP);
         checkExplode = true;
     }
 }

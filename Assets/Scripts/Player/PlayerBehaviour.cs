@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -36,19 +34,19 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void SetRunAnimation()
     {
-        if (playerCtrl.playerMovement.joystick.Horizontal != 0 || playerCtrl.playerMovement.joystick.Vertical != 0 || InputManager.Instance.IsMovingInput)
+        if (playerCtrl.PlayerMovement.Joystick.Horizontal != 0 || playerCtrl.PlayerMovement.Joystick.Vertical != 0 || InputManager.Instance.IsMovingInput)
         {
             animator.SetBool("Run", true);
-            playerCtrl.playerSound.SetMovingSound(true);
+            playerCtrl.PlayerSound.SetMovingSound(true);
             return;
         }
-        playerCtrl.playerSound.SetMovingSound(false);
+        playerCtrl.PlayerSound.SetMovingSound(false);
         animator.SetBool("Run", false);
     }
 
     private void SetDeathAnimation()
     {
-        if (playerCtrl.playerStatus.IsDeath)
+        if (playerCtrl.PlayerStatus.IsDeath)
         {
             animator.SetBool("isDeath", true);
             return;

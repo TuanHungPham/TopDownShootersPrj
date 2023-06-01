@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : Spawner
@@ -29,8 +27,8 @@ public class EnemySpawner : Spawner
         spawnPointScript = GameObject.Find("------ OTHER ------").transform.Find("SpawnPoint").GetComponent<SpawnPoint>();
 
         parent = transform;
-        spawnTimer = spawnDelay;
-        maxObj = EnemyWaveManager.Instance.numberOfEnemy;
+        SpawnTimer = SpawnDelay;
+        MaxObj = EnemyWaveManager.Instance.NumberOfEnemy;
     }
 
     protected void Update()
@@ -69,19 +67,19 @@ public class EnemySpawner : Spawner
 
     private void CheckSpawnTime()
     {
-        if (spawnTimer <= 0)
+        if (SpawnTimer <= 0)
         {
             isSpawnCooldown = false;
             return;
         }
 
         isSpawnCooldown = true;
-        spawnTimer -= Time.deltaTime;
+        SpawnTimer -= Time.deltaTime;
     }
 
     protected override bool CanSpawn()
     {
-        if (!isSpawnCooldown && listOfActiveObj.Count < maxObj) return true;
+        if (!isSpawnCooldown && listOfActiveObj.Count < MaxObj) return true;
 
         return false;
     }
@@ -109,6 +107,6 @@ public class EnemySpawner : Spawner
 
     private void GetSpawnPosition()
     {
-        spawnPos = spawnPointScript.spawnPointSelected;
+        spawnPos = spawnPointScript.SpawnPointSelected;
     }
 }

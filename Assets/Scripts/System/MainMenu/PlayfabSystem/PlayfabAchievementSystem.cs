@@ -19,8 +19,8 @@ public class PlayfabAchievementSystem : MonoBehaviour
     {
         if (!UserManager.Instance.IsAchievementUpdated || !PlayFabClientAPI.IsClientLoggedIn()) return;
 
-        int highestEnemiesKilled = UserManager.Instance.highestEnemiesKilled;
-        int highestSurvivalTime = (int)UserManager.Instance.highestSurvivalTime;
+        int highestEnemiesKilled = UserManager.Instance.HighestEnemiesKilled;
+        int highestSurvivalTime = (int)UserManager.Instance.HighestSurvivalTime;
 
         ExecuteCloudScriptRequest request = new ExecuteCloudScriptRequest
         {

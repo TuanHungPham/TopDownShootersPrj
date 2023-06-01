@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -34,6 +32,6 @@ public class CoinPanel : MonoBehaviour
 
     private void ShowCoin()
     {
-        coinText.text = UserManager.Instance.coin.ToString();
+        coinText.text = UserManager.Instance.Coin.ToString();
     }
 }

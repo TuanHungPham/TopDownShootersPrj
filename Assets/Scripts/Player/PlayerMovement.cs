@@ -1,19 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     #region public var
-    public float moveSpeed;
-    public FixedJoystick joystick;
+    public FixedJoystick Joystick { get => joystick; set => joystick = value; }
     #endregion
 
     #region private var
-    [SerializeField] private Rigidbody2D rb2d;
+    [SerializeField] private float moveSpeed;
+
+    [Space(20)]
     [SerializeField] private Transform playerSprite;
+    [SerializeField] private Rigidbody2D rb2d;
+    [SerializeField] private FixedJoystick joystick;
     [SerializeField] private PlayerCtrl playerCtrl;
-    private Vector2 move;
+    private Vector2 direction;
     #endregion
 
     private void Awake()
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         playerCtrl = transform.parent.GetComponent<PlayerCtrl>();
 
         Transform uiParent = GameObject.Find("------ UI ------").transform.Find("Canvas");
-        joystick = uiParent.Find("MovingJoystick").GetComponentInChildren<FixedJoystick>();
+        Joystick = uiParent.Find("MovingJoystick").GetComponentInChildren<FixedJoystick>();
 
         moveSpeed = 3.5f;
     }
@@ -51,8 +52,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
-            move.x = Input.GetAxis("Horizontal");
-            move.y = Input.GetAxis("Vertical");
+            direction.x = Input.GetAxis("Horizontal");
+            direction.y = Input.GetAxis("Vertical");
             return;
         }
 
@@ -61,12 +62,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        rb2d.MovePosition(rb2d.position + move * moveSpeed * Time.fixedDeltaTime);
+        rb2d.MovePosition(rb2d.position + direction * moveSpeed * Time.fixedDeltaTime);
     }
 
     private void GetMovingDirectionByTouchPad()
     {
-        move.x = joystick.Horizontal;
-        move.y = joystick.Vertical;
+        direction.x = Joystick.Horizontal;
+        direction.y = Joystick.Vertical;
     }
 }

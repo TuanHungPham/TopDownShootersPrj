@@ -1,19 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class AchievementUI : MonoBehaviour
 {
     #region public var
-    public TMP_Text enemiesKilledText;
-    public TMP_Text survivalTimeText;
-    public TMP_Text totalDmgText;
-    public TMP_Text totalMoneyText;
     #endregion
 
     #region private var
+    [SerializeField] private TMP_Text enemiesKilledText;
+    [SerializeField] private TMP_Text survivalTimeText;
+    [SerializeField] private TMP_Text totalDmgText;
+    [SerializeField] private TMP_Text totalMoneyText;
     private int hour;
     private float min;
     private float sec;
@@ -47,22 +44,22 @@ public class AchievementUI : MonoBehaviour
 
     private void ShowTotalMoneyText()
     {
-        totalMoneyText.text = "Total Money: " + Achievement.Instance.totalMoney.ToString();
+        totalMoneyText.text = "Total Money: " + Achievement.Instance.TotalMoney.ToString();
     }
 
     private void ShowEnemiesKilledText()
     {
-        enemiesKilledText.text = "Enemies Killed: " + Achievement.Instance.enemiesKilled.ToString();
+        enemiesKilledText.text = "Enemies Killed: " + Achievement.Instance.EnemiesKilled.ToString();
     }
 
     private void ShowSurvivalTimeText()
     {
-        min = Mathf.FloorToInt(Achievement.Instance.survivalTime / 60);
-        sec = Mathf.FloorToInt(Achievement.Instance.survivalTime % 60);
+        min = Mathf.FloorToInt(Achievement.Instance.SurvivalTime / 60);
+        sec = Mathf.FloorToInt(Achievement.Instance.SurvivalTime % 60);
         if (min == 60)
         {
             hour++;
-            Achievement.Instance.survivalTime = 0;
+            Achievement.Instance.SurvivalTime = 0;
         }
 
         survivalTimeText.text = string.Format("Survival Time:  {0:00}:{1:00}:{2:00}", hour, min, sec);
@@ -70,6 +67,6 @@ public class AchievementUI : MonoBehaviour
 
     private void ShowTotalDamageText()
     {
-        totalDmgText.text = "Total Damage: " + Achievement.Instance.totalDmg.ToString();
+        totalDmgText.text = "Total Damage: " + Achievement.Instance.TotalDmg.ToString();
     }
 }

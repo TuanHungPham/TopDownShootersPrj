@@ -1,23 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GrenadeTrajectorySystem : MonoBehaviour
 {
     #region public var
-    public float maxThrowDistance;
-    public Vector3 lastPredictPosition;
-    public GrenadeTrajectory grenadeTrajectory;
     public bool IsAreaActive { get => isAreaActive; set => isAreaActive = value; }
+    public GrenadeTrajectory GrenadeTrajectory { get => grenadeTrajectory; set => grenadeTrajectory = value; }
     #endregion
 
     #region private var
+    [SerializeField] private float maxThrowDistance;
+    [SerializeField] private bool isAreaActive;
+
+    [Space(20)]
+    [SerializeField] private Vector3 lastPredictPosition;
+    [SerializeField] private GrenadeTrajectory grenadeTrajectory;
     [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private FixedJoystick joystick;
     [SerializeField] private RectTransform grenadeJoystick;
     [SerializeField] private Transform grenadeDmgArea;
     [SerializeField] private Transform player;
-    [SerializeField] private bool isAreaActive;
     private Vector2 distance;
     private Vector2 direction;
 
@@ -36,7 +37,7 @@ public class GrenadeTrajectorySystem : MonoBehaviour
     private void LoadComponents()
     {
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
-        grenadeTrajectory = transform.Find("GrenadeTrajectory").GetComponent<GrenadeTrajectory>();
+        GrenadeTrajectory = transform.Find("GrenadeTrajectory").GetComponent<GrenadeTrajectory>();
         player = GameObject.Find("------ PLAYER ------").transform.Find("MainCharacter");
         grenadeDmgArea = transform.Find("GrenadeDmgAreaBG");
 
@@ -78,6 +79,6 @@ public class GrenadeTrajectorySystem : MonoBehaviour
         isAreaActive = false;
         grenadeDmgArea.gameObject.SetActive(false);
 
-        grenadeTrajectory.HideTrajectory();
+        GrenadeTrajectory.HideTrajectory();
     }
 }

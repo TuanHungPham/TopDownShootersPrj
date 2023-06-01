@@ -694,9 +694,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3.5
-  joystick: {fileID: 0}
-  rb2d: {fileID: 3018312048441220679}
   playerSprite: {fileID: 0}
+  rb2d: {fileID: 3018312048441220679}
+  joystick: {fileID: 0}
   playerCtrl: {fileID: 3018312048441220676}
 --- !u!82 &3018312047670018147
 AudioSource:
@@ -1090,7 +1090,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3018312048441220680}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

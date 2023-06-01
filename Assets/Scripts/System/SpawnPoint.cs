@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -7,10 +5,11 @@ using Random = UnityEngine.Random;
 public class SpawnPoint : MonoBehaviour
 {
     #region public var
-    public Transform spawnPointSelected;
+    public Transform SpawnPointSelected { get => spawnPointSelected; set => spawnPointSelected = value; }
     #endregion
 
     #region private var
+    [SerializeField] private Transform spawnPointSelected;
     [SerializeField] private List<Transform> listOfSpawnPoint = new List<Transform>();
     #endregion
 
@@ -48,6 +47,6 @@ public class SpawnPoint : MonoBehaviour
     {
         int index = Random.Range(0, listOfSpawnPoint.Count);
 
-        spawnPointSelected = listOfSpawnPoint[index];
+        SpawnPointSelected = listOfSpawnPoint[index];
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinPickUp : PickUpSystem
@@ -38,7 +36,7 @@ public class CoinPickUp : PickUpSystem
 
     protected override void AddItemToPlayerInventory()
     {
-        Achievement.Instance.totalMoney += coinQuantity;
+        Achievement.Instance.TotalMoney += coinQuantity;
         SoundSystemManager.Instance.SetCoinSound();
     }
 

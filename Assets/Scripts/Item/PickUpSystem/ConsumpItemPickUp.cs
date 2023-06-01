@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ConsumpItemPickUp : PickUpSystem
@@ -39,7 +37,7 @@ public class ConsumpItemPickUp : PickUpSystem
 
     protected override void AddItemToPlayerInventory()
     {
-        playerCtrl.playerStatus.Heal(healAmount);
+        playerCtrl.PlayerStatus.Heal(healAmount);
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

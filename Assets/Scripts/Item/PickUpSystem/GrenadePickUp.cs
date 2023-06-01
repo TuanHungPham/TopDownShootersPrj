@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GrenadePickUp : PickUpSystem
@@ -38,7 +36,7 @@ public class GrenadePickUp : PickUpSystem
 
     protected override void AddItemToPlayerInventory()
     {
-        playerCtrl.grenadeSystem.grenadeQuantity++;
+        playerCtrl.GrenadeSystem.GrenadeQuantity++;
         SoundSystemManager.Instance.SetReloadSound();
     }
 

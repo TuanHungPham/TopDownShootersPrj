@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class CharacterManagerUI : MonoBehaviour
 {
     #region public var
-    public ButtonManager buttonManager;
-    public CharacterInfoPanel characterInfoPanel;
     #endregion
 
     #region private var
+    [SerializeField] private ButtonManager buttonManager;
+    [SerializeField] private CharacterInfoPanel characterInfoPanel;
     [SerializeField] private CharacterManagerCtrl characterManagerCtrl;
     [SerializeField] private TMP_Text usernameText;
     #endregion
@@ -41,6 +39,6 @@ public class CharacterManagerUI : MonoBehaviour
 
     public void ShowUsername()
     {
-        usernameText.text = UserManager.Instance.userName;
+        usernameText.text = UserManager.Instance.UserName;
     }
 }

@@ -1,7 +1,5 @@
 using UnityEngine;
 using GooglePlayGames;
-using GooglePlayGames.BasicApi;
-using System;
 
 public class GGPGSLeaderboard : MonoBehaviour
 {
@@ -30,12 +28,12 @@ public class GGPGSLeaderboard : MonoBehaviour
 
     private void PostEnemiesKillScore()
     {
-        Social.ReportScore(UserManager.Instance.highestEnemiesKilled, GPGSIds.leaderboard_enemies_killed, OnReportScoreCallback);
+        Social.ReportScore(UserManager.Instance.HighestEnemiesKilled, GPGSIds.leaderboard_enemies_killed, OnReportScoreCallback);
     }
 
     private void PostTimeSurvivalScore()
     {
-        long survivalTime = (long)UserManager.Instance.highestSurvivalTime;
+        long survivalTime = (long)UserManager.Instance.HighestSurvivalTime;
         Social.ReportScore(survivalTime, GPGSIds.leaderboard_time_survival, OnReportScoreCallback);
     }
 

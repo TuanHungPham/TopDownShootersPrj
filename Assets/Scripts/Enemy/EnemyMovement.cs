@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
     #region public var
-    public float moveSpeed;
     public bool IsRunning { get => isRunning; set => isRunning = value; }
     #endregion
 
     #region private var
+    [SerializeField] private float moveSpeed;
     [SerializeField] private EnemyCtrl enemyCtrl;
     [SerializeField] private Rigidbody2D rb2d;
     [SerializeField] private Transform player;
@@ -42,7 +40,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void ChasePlayer()
     {
-        if (enemyCtrl.damageReceiver.IsHit || enemyCtrl.enemyCombat.attackArea.IsTrigger || !enemyCtrl.TargetExist) return;
+        if (enemyCtrl.DamageReceiver.IsHit || enemyCtrl.EnemyCombat.AttackArea.IsTrigger || !enemyCtrl.TargetExist) return;
 
         Vector3 direction = player.position - transform.parent.position;
         direction.Normalize();
@@ -54,7 +52,7 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector2 scale = transform.parent.localScale;
 
-        if (player.position.x < transform.parent.position.x) 
+        if (player.position.x < transform.parent.position.x)
         {
             scale.x = -1;
         }

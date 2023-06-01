@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterShop : MonoBehaviour
@@ -35,11 +33,11 @@ public class CharacterShop : MonoBehaviour
 
     private void CheckCanBuy()
     {
-        if (characterManagerCtrl.selectedCharacter == null) return;
+        if (characterManagerCtrl.SelectedCharacter == null) return;
 
-        CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.selectedCharacter.GetComponent<CharacterDisplayCtrl>();
+        CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.SelectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        if (!characterDisplayCtrl.characterData.IsOwned)
+        if (!characterDisplayCtrl.CharacterData.IsOwned)
         {
             isCharacterCanBeOwned = true;
             return;
@@ -49,12 +47,12 @@ public class CharacterShop : MonoBehaviour
 
     public void Buy()
     {
-        CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.selectedCharacter.GetComponent<CharacterDisplayCtrl>();
+        CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.SelectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        if (UserManager.Instance.coin < characterDisplayCtrl.characterData.coinRequirement) return;
+        if (UserManager.Instance.Coin < characterDisplayCtrl.CharacterData.coinRequirement) return;
 
-        UserManager.Instance.ConsumeCoin(characterDisplayCtrl.characterData.coinRequirement);
-        characterDisplayCtrl.characterData.IsOwned = true;
-        characterDisplayCtrl.characterData.characterLevel = 1;
+        UserManager.Instance.ConsumeCoin(characterDisplayCtrl.CharacterData.coinRequirement);
+        characterDisplayCtrl.CharacterData.IsOwned = true;
+        characterDisplayCtrl.CharacterData.characterLevel = 1;
     }
 }
