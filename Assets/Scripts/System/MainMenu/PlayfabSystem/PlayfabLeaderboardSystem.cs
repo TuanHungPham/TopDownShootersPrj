@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
-using System;
 
 public class PlayfabLeaderboardSystem : MonoBehaviour
 {
@@ -58,6 +56,5 @@ public class PlayfabLeaderboardSystem : MonoBehaviour
 
     private void OnGetLeaderboardError(PlayFabError error)
     {
-        throw new NotImplementedException();
     }
 }
