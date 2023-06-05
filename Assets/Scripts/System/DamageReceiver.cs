@@ -1,4 +1,5 @@
 using UnityEngine;
+using MarchingBytes;
 
 public class DamageReceiver : MonoBehaviour
 {
@@ -7,12 +8,13 @@ public class DamageReceiver : MonoBehaviour
     #endregion
 
     #region private var
+    [SerializeField] private bool isHit;
+    [SerializeField] private string stateName;
+
+    [Space(20)]
+    [SerializeField] private GameObject deadVFX;
     [SerializeField] private Status objStatus;
     [SerializeField] private Animator animator;
-    [SerializeField] private bool isHit;
-    [SerializeField] private GameObject deadVFX;
-    [SerializeField] private GameObject bloodVFX;
-    [SerializeField] private string stateName;
     #endregion
 
     private void Awake()
@@ -29,7 +31,6 @@ public class DamageReceiver : MonoBehaviour
     {
         objStatus = GetComponent<Status>();
         animator = GetComponentInChildren<Animator>();
-        bloodVFX = Resources.Load<GameObject>("Prefabs/ParticalEffects/CFX2_Blood");
     }
 
     private void Update()
@@ -84,28 +85,25 @@ public class DamageReceiver : MonoBehaviour
 
     private void SetBloodVFX()
     {
-        GameObject blood = Instantiate(bloodVFX);
-        blood.transform.position = new Vector3(transform.position.x, transform.position.y - 1f, transform.position.z);
+        GameObject blood = EasyObjectPool.instance.GetObjectFromPool("Blood", transform.position, transform.rotation);
 
-        Vector3 rotate = blood.transform.localEulerAngles;
-        if (transform.localScale.x == -1)
-        {
-            rotate.y = transform.rotation.y + 90;
-        }
-        else if (transform.localScale.x == 1)
-        {
-            rotate.y = transform.rotation.y - 90;
-        }
-        blood.transform.localEulerAngles = rotate;
+        // Quaternion rotate = blood.transform.rotation;
+        // if (transform.localScale.x == -1)
+        // {
+        //     rotate.y = transform.rotation.y + 90;
+        // }
+        // else if (transform.localScale.x == 1)
+        // {
+        //     rotate.y = transform.rotation.y - 90;
+        // }
+        // blood.transform.rotation = rotate;
     }
 
     private void SetDeadVFX()
     {
         if (deadVFX == null) return;
 
-        GameObject vfx = Instantiate(deadVFX);
-        vfx.transform.position = this.transform.position;
-        vfx.transform.rotation = this.transform.rotation;
+        GameObject vfx = EasyObjectPool.instance.GetObjectFromPool(deadVFX.name, this.transform.position, this.transform.rotation);
     }
 
     private void Drop()

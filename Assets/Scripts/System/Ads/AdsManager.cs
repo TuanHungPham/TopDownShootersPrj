@@ -42,11 +42,6 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
         InitializeADS();
     }
 
-    private void Update()
-    {
-        CheckAdsLoaded();
-    }
-
     private void InitializeADS()
     {
         SetGameID();
@@ -81,9 +76,5 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener
         {
             gameID = iosGameID;
         }
-    }
-
-    private void CheckAdsLoaded()
-    {
     }
 }

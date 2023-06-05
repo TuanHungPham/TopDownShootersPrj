@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class CharacterManagerUI : MonoBehaviour
 {
+    private static CharacterManagerUI instance;
+    public static CharacterManagerUI Instance { get => instance; private set => instance = value; }
+
     #region public var
     #endregion
 
@@ -11,10 +14,12 @@ public class CharacterManagerUI : MonoBehaviour
     [SerializeField] private CharacterInfoPanel characterInfoPanel;
     [SerializeField] private CharacterManagerCtrl characterManagerCtrl;
     [SerializeField] private TMP_Text usernameText;
+
     #endregion
 
     private void Awake()
     {
+        instance = this;
         LoadComponents();
     }
 

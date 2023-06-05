@@ -100,4 +100,17 @@ public class PlayfabAccountSystem : MonoBehaviour
         errorPanel.gameObject.SetActive(true);
         errorPanelText.text = error.GenerateErrorReport();
     }
+
+    public void LogOut()
+    {
+        if (!PlayFabClientAPI.IsClientLoggedIn()) return;
+
+        UserManager.Instance.UserName = "";
+        DataManager.Instance.Username = "";
+
+        CharacterManagerUI.Instance.ShowUsername();
+
+        FacebookAccountSystem.Instance.LogoutFacebook();
+        PlayFabClientAPI.ForgetAllCredentials();
+    }
 }

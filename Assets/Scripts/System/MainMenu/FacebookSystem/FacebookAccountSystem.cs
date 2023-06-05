@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class FacebookAccountSystem : MonoBehaviour
 {
+    private static FacebookAccountSystem instance;
+    public static FacebookAccountSystem Instance { get => instance; private set => instance = value; }
 
     #region public var
     #endregion
@@ -14,6 +16,7 @@ public class FacebookAccountSystem : MonoBehaviour
 
     private void Awake()
     {
+        instance = this;
         InitializeFacebookSDK();
     }
 
@@ -109,5 +112,12 @@ public class FacebookAccountSystem : MonoBehaviour
         if (!FB.IsLoggedIn) return;
 
         MenuUIManager.Instance.CharacterManagerUI.ShowUsername();
+    }
+
+    public void LogoutFacebook()
+    {
+        if (!FB.IsLoggedIn) return;
+
+        FB.LogOut();
     }
 }

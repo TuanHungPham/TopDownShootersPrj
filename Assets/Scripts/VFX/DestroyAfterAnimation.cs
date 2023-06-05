@@ -10,16 +10,13 @@ public class DestroyAfterAnimation : MonoBehaviour
     [SerializeField] private AudioClip explosionSound;
     #endregion
 
-    private void Awake()
+    private void OnEnable()
     {
         explosionAudio = GetComponent<AudioSource>();
         explosionSound = Resources.Load<AudioClip>("Audio/Explosion");
 
         SetExplosionSound();
-    }
 
-    void Start()
-    {
         DestroyAfterSoundEnded();
         DestroyAfterAnimationEnded();
     }
@@ -27,7 +24,8 @@ public class DestroyAfterAnimation : MonoBehaviour
     private void DestroyAfterAnimationEnded()
     {
         if (explosionAudio != null) return;
-        Destroy(gameObject, this.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length);
+
+        Invoke(nameof(DisableObj), this.GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).length);
     }
 
     private void DestroyAfterSoundEnded()
@@ -35,7 +33,8 @@ public class DestroyAfterAnimation : MonoBehaviour
         if (explosionAudio == null) return;
 
         PlayExplosionSound();
-        Destroy(gameObject, explosionAudio.clip.length);
+
+        Invoke(nameof(DisableObj), explosionAudio.clip.length);
     }
 
     private void SetExplosionSound()
@@ -47,6 +46,11 @@ public class DestroyAfterAnimation : MonoBehaviour
     private void PlayExplosionSound()
     {
         explosionAudio.Play();
+    }
+
+    public void DisableObj()
+    {
+        gameObject.SetActive(false);
     }
 
     public void DestroyParent()

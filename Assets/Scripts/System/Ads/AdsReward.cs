@@ -118,7 +118,7 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
     private void SetupRewardPanelRandomly()
     {
-        if (!SceneManager.GetActiveScene().Equals("MainMenu")) return;
+        if (SceneManager.GetActiveScene().buildIndex != 1) return;
 
         float random = Random.Range(0f, 1f);
         Debug.Log(random);
@@ -127,5 +127,6 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
         rewardPanel.SetActive(true);
         darkScreen.SetActive(true);
+
     }
 }

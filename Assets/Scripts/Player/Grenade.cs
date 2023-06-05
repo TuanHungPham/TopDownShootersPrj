@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MarchingBytes;
 
 public class Grenade : MonoBehaviour
 {
@@ -15,6 +16,12 @@ public class Grenade : MonoBehaviour
     private bool isExploded;
     private Vector3 velocity = Vector3.zero;
     #endregion
+
+    private void OnEnable()
+    {
+        listOfTrajectoryPoint = grenadeTrajectorySystem.GrenadeTrajectory.listOfTrajectoryPoint;
+        StartCoroutine("GrenadeFly");
+    }
 
     private void Awake()
     {
@@ -32,12 +39,6 @@ public class Grenade : MonoBehaviour
         grenadeTrajectorySystem = GameObject.Find("------ PLAYER ------").transform.GetComponentInChildren<GrenadeTrajectorySystem>();
 
         explodeVFX = Resources.Load<GameObject>("Prefabs/GrenadeExplosiveVFX");
-    }
-
-    private void Start()
-    {
-        listOfTrajectoryPoint = grenadeTrajectorySystem.GrenadeTrajectory.listOfTrajectoryPoint;
-        StartCoroutine("GrenadeFly");
     }
 
     IEnumerator GrenadeFly()
@@ -58,8 +59,7 @@ public class Grenade : MonoBehaviour
 
         if (isExploded) return;
 
-        GameObject vfx = Instantiate(explodeVFX);
-        vfx.transform.position = transform.position;
+        GameObject vfx = EasyObjectPool.instance.GetObjectFromPool(explodeVFX.name, transform.position, Quaternion.identity);
         isExploded = true;
     }
 }
