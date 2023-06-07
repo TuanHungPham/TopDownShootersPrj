@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3243834800551066558}
   - component: {fileID: 3243834800551066557}
   - component: {fileID: 3243834800551066559}
+  - component: {fileID: 1161636500104128213}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Untagged
@@ -97,9 +98,26 @@ MonoBehaviour:
   bulletDmg: 0
   bulletSpeed: 40
   flyTime: 2
+  isDealingDmg: 0
   target: {fileID: 0}
   direction: {x: 0, y: 0, z: 0}
+  poolObject: {fileID: 1161636500104128213}
+  playerCtrl: {fileID: 0}
   rb2d: {fileID: 3243834800551066557}
+--- !u!114 &1161636500104128213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243834800551066555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d50de441be2e4981a2a5f46cf067f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolName: Bullet
+  isPooled: 0
 --- !u!1 &3243834801892144574
 GameObject:
   m_ObjectHideFlags: 0

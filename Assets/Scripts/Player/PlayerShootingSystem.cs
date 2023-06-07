@@ -52,7 +52,7 @@ public class PlayerShootingSystem : MonoBehaviour
             return;
         }
 
-        bulletSpawner.Spawn(playerCtrl.PlayerWeaponSystem.Hit.collider.transform, playerCtrl.PlayerWeaponSystem.Dmg);
+        bulletSpawner.Spawn();
 
         IsShooting = true;
         playerCtrl.AmmoSystem.ConsumpAmmo();

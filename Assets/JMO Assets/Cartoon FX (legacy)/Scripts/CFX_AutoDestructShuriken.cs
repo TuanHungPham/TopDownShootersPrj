@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using MarchingBytes;
 
 // Cartoon FX  - (c) 2015 Jean Moreno
 
@@ -32,7 +33,7 @@ public class CFX_AutoDestructShuriken : MonoBehaviour
 #if UNITY_3_5
 						this.gameObject.SetActiveRecursively(false);
 #else
-                    this.gameObject.SetActive(false);
+                    EasyObjectPool.instance.ReturnObjectToPool(this.gameObject);
 #endif
                 }
                 else

@@ -1,4 +1,5 @@
 using UnityEngine;
+using MarchingBytes;
 
 public class DestroyAfterAnimation : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class DestroyAfterAnimation : MonoBehaviour
 
     public void DisableObj()
     {
-        gameObject.SetActive(false);
+        EasyObjectPool.instance.ReturnObjectToPool(this.gameObject);
     }
 
     public void DestroyParent()

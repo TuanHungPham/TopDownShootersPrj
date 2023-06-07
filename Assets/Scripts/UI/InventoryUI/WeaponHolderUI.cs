@@ -15,6 +15,7 @@ public class WeaponHolderUI : MonoBehaviour, IPointerClickHandler
     #region private var
     [SerializeField] private Image background;
     [SerializeField] private Image weaponImage;
+    [SerializeField] private Sprite noneWeaponImage;
     [SerializeField] private HolderType holderType;
     [SerializeField] private bool isEmpty;
     [SerializeField] private bool isSelected;
@@ -34,21 +35,24 @@ public class WeaponHolderUI : MonoBehaviour, IPointerClickHandler
     {
         background = transform.Find("BackGround").GetComponent<Image>();
         weaponImage = transform.Find("BackGround").Find("WeaponImage").GetComponent<Image>();
+    }
 
+    private void Start()
+    {
         ResetImage();
     }
 
     public void SetImage(Sprite image)
     {
-        weaponImage.gameObject.SetActive(true);
         weaponImage.sprite = image;
+        weaponImage.color = Color.white;
         IsEmpty = false;
     }
 
     public void ResetImage()
     {
-        weaponImage.gameObject.SetActive(false);
-        weaponImage.sprite = null;
+        weaponImage.sprite = noneWeaponImage;
+        weaponImage.color = Color.red;
         IsEmpty = true;
     }
 
@@ -56,20 +60,22 @@ public class WeaponHolderUI : MonoBehaviour, IPointerClickHandler
     {
         if (IsEmpty) return;
 
-        Color color;
-        ColorUtility.TryParseHtmlString("#225926", out color);
-
-        background.color = color;
+        background.color = SetColor("#225926");
         IsSelected = true;
     }
 
     public void Deselect()
     {
-        Color color;
-        ColorUtility.TryParseHtmlString("#223B59", out color);
-
-        background.color = color;
+        background.color = SetColor("#223B59");
         IsSelected = false;
+    }
+
+    private Color SetColor(string colorString)
+    {
+        Color color;
+        ColorUtility.TryParseHtmlString(colorString, out color);
+
+        return color;
     }
 
     public void OnPointerClick(PointerEventData eventData)

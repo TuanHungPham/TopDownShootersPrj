@@ -90,6 +90,11 @@ public class UserManager : MonoBehaviour
         Coin -= consumptionQuantity;
     }
 
+    public void AddCoint(int coinQuantity)
+    {
+        Coin += coinQuantity;
+    }
+
     private void OnDisable()
     {
         SaveData();

@@ -1,4 +1,5 @@
 using UnityEngine;
+using MarchingBytes;
 
 public class Bullet : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Vector3 direction;
 
     [Space(20)]
+    [SerializeField] private PoolObject poolObject;
+    [SerializeField] private PlayerCtrl playerCtrl;
     [SerializeField] private Rigidbody2D rb2d;
     #endregion
 
@@ -23,6 +26,7 @@ public class Bullet : MonoBehaviour
     {
         isDealingDmg = false;
 
+        InitializeBullet();
         GetFlyDirection();
     }
 
@@ -38,7 +42,10 @@ public class Bullet : MonoBehaviour
 
     private void LoadComponents()
     {
+        poolObject = GetComponent<PoolObject>();
         rb2d = GetComponent<Rigidbody2D>();
+
+        playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
     }
 
     private void Update()
@@ -51,14 +58,16 @@ public class Bullet : MonoBehaviour
         Fly();
     }
 
-    public void SetupBullet(Transform targetDestination, int dmg)
+    public void InitializeBullet()
     {
-        target = targetDestination;
-        bulletDmg = dmg;
+        target = playerCtrl.PlayerWeaponSystem.Crosshair;
+        bulletDmg = playerCtrl.PlayerWeaponSystem.Dmg;
     }
 
     private void GetFlyDirection()
     {
+        if (target == null) return;
+
         direction = target.position - transform.position;
         direction.Normalize();
     }
@@ -84,6 +93,8 @@ public class Bullet : MonoBehaviour
 
     private void DisableBullet()
     {
-        gameObject.SetActive(false);
+        if (poolObject.isPooled) return;
+
+        EasyObjectPool.instance.ReturnObjectToPool(this.gameObject);
     }
 }

@@ -68,8 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listOfTrajectoryPoint: []
-  flyTime: 0
-  smoothTime: 50
   playerCtrl: {fileID: 0}
   explodeVFX: {fileID: 4322210011380972357, guid: 33d1d09b76550c84f98c25dc60e80663, type: 3}
   grenadeTrajectorySystem: {fileID: 0}
@@ -83,6 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5219775289063481564}
   - component: {fileID: 5219775289063481565}
+  - component: {fileID: 8381128914278042444}
   m_Layer: 0
   m_Name: GrenadeSprite
   m_TagString: Untagged
@@ -157,3 +156,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8381128914278042444
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5219775289063481563}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb16a942067b3e4448475d89dd0349fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

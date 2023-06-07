@@ -84,7 +84,7 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
         Reward();
         Time.timeScale = 1;
 
-        if (SceneManager.GetActiveScene().Equals("MainMenu"))
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             rewardPanel.SetActive(false);
             darkScreen.SetActive(false);
@@ -93,7 +93,7 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
     private void Reward()
     {
-        if (SceneManager.GetActiveScene().Equals("MainMenu"))
+        if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             UserManager.Instance.Coin += 1500;
             return;

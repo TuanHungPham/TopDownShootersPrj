@@ -85,9 +85,8 @@ public class DamageReceiver : MonoBehaviour
 
     private void SetBloodVFX()
     {
-        GameObject blood = EasyObjectPool.instance.GetObjectFromPool("Blood", transform.position, transform.rotation);
 
-        // Quaternion rotate = blood.transform.rotation;
+        // Quaternion rotate = new(1, 1, 1, 1);
         // if (transform.localScale.x == -1)
         // {
         //     rotate.y = transform.rotation.y + 90;
@@ -96,7 +95,8 @@ public class DamageReceiver : MonoBehaviour
         // {
         //     rotate.y = transform.rotation.y - 90;
         // }
-        // blood.transform.rotation = rotate;
+
+        GameObject blood = EasyObjectPool.instance.GetObjectFromPool("Blood", transform.position, transform.rotation);
     }
 
     private void SetDeadVFX()

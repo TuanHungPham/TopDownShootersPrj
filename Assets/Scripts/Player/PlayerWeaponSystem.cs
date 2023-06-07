@@ -22,18 +22,19 @@ public class PlayerWeaponSystem : MonoBehaviour
     [SerializeField] private Transform selectedWeapon;
     [SerializeField] private Transform shootingPoint;
     [SerializeField] private Transform crosshair;
+    [SerializeField] private GameObject muzzleFlash;
 
     [Space]
     [SerializeField] private float shootDistance;
     [SerializeField] private float shootingTimer;
     [SerializeField] private float shootingDelay;
     [SerializeField] private int dmg;
-    [SerializeField] private GameObject muzzleFlash;
 
     [Space]
     [SerializeField] private PlayerShootingSystem playerShootingSystem;
     [SerializeField] private RaycastHit2D hit;
     [SerializeField] private PlayerCtrl playerCtrl;
+    [SerializeField] private LineRenderer lineRenderer;
 
     [Space]
     [SerializeField] private LayerMask enemyLayer;
@@ -59,6 +60,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private void LoadComponents()
     {
+        lineRenderer = GetComponent<LineRenderer>();
         PlayerCtrl = GetComponentInParent<PlayerCtrl>();
 
         Crosshair = GameObject.Find("------ PLAYER ------").transform.Find("AimingSystem").GetChild(0);
@@ -81,20 +83,24 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         ShootDistance = PlayerShootingSystem.Weapon.WeaponData.ShootDistance;
 
-        Hit = Physics2D.Raycast(ShootingPoint.position, direction, ShootDistance, EnemyLayer);
-        Debug.DrawRay(ShootingPoint.position, direction * ShootDistance, Color.red);
+        hit = Physics2D.Raycast(shootingPoint.position, direction, ShootDistance, EnemyLayer);
+
+        lineRenderer.enabled = true;
+        lineRenderer.SetPosition(0, shootingPoint.position);
+        lineRenderer.SetPosition(1, crosshair.position);
+
         SetUpCrosshairPosition();
     }
 
     private void GetShootDirection()
     {
-        direction = Crosshair.position - ShootingPoint.position;
+        direction = Crosshair.position - shootingPoint.position;
         direction.Normalize();
     }
 
     private void SetUpCrosshairPosition()
     {
-        Crosshair.position = ShootingPoint.position + direction * ShootDistance;
+        Crosshair.position = shootingPoint.position + direction * ShootDistance;
     }
 
     private void FlipWeapon()
