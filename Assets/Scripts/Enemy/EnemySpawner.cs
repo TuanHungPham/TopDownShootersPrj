@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : Spawner
@@ -35,8 +36,8 @@ public class EnemySpawner : Spawner
     {
         CheckSpawnTime();
         GetSpawnPosition();
+        GetObjFromList();
         Spawn();
-        SetActiveObj();
         UpdateListGameObj();
     }
 
@@ -50,20 +51,20 @@ public class EnemySpawner : Spawner
         base.Spawn();
     }
 
-    protected override void SetActiveObj()
-    {
-        base.SetActiveObj();
-    }
+    // protected override void SetActiveObj()
+    // {
+    //     base.SetActiveObj();
+    // }
 
-    protected override GameObject NewGameObj(GameObject obj)
-    {
-        return base.NewGameObj(obj);
-    }
+    // protected override GameObject NewGameObj(GameObject obj)
+    // {
+    //     return base.NewGameObj(obj);
+    // }
 
-    protected override GameObject RandomGameObj()
-    {
-        return base.RandomGameObj();
-    }
+    // protected override GameObject RandomGameObj()
+    // {
+    //     return base.RandomGameObj();
+    // }
 
     private void CheckSpawnTime()
     {

@@ -8,7 +8,6 @@ public class ItemSpanwer : Spawner
 
     #region private var
     [SerializeField] protected bool canDrop;
-    [SerializeField] private Vector3 checkPos;
     #endregion
 
     protected override void Awake()
@@ -28,6 +27,7 @@ public class ItemSpanwer : Spawner
 
     private void Update()
     {
+        GetObjFromList();
         Spawn();
         UpdateListGameObj();
         ClearActiveList();
@@ -46,7 +46,6 @@ public class ItemSpanwer : Spawner
         Vector3 randomPos = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
 
         spawnPos.position = spawnPos.position + randomPos;
-        checkPos = spawnPos.position;
     }
 
     public virtual void SetSpawnPos(Transform position)
@@ -59,20 +58,20 @@ public class ItemSpanwer : Spawner
         base.GetObjFromList();
     }
 
-    protected override GameObject RandomGameObj()
-    {
-        return base.RandomGameObj();
-    }
+    // protected override GameObject RandomGameObj()
+    // {
+    //     return base.RandomGameObj();
+    // }
 
-    protected override GameObject NewGameObj(GameObject obj)
-    {
-        return base.NewGameObj(obj);
-    }
+    // protected override GameObject NewGameObj(GameObject obj)
+    // {
+    //     return base.NewGameObj(obj);
+    // }
 
-    protected override void SetActiveObj()
-    {
-        base.SetActiveObj();
-    }
+    // protected override void SetActiveObj()
+    // {
+    //     base.SetActiveObj();
+    // }
 
     protected override void UpdateListGameObj()
     {

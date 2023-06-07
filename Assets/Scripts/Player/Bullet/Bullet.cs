@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     #region private var
     [SerializeField] private int bulletDmg;
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private float flyTimer;
     [SerializeField] private float flyTime;
     [SerializeField] private bool isDealingDmg;
 
@@ -24,6 +25,7 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
+        flyTimer = flyTime;
         isDealingDmg = false;
 
         InitializeBullet();
@@ -50,7 +52,7 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        Invoke("DisableBullet", flyTime);
+        CheckLifeTime();
     }
 
     private void FixedUpdate()
@@ -60,7 +62,7 @@ public class Bullet : MonoBehaviour
 
     public void InitializeBullet()
     {
-        target = playerCtrl.PlayerWeaponSystem.Crosshair;
+        target = playerCtrl.PlayerWeaponSystem.Hit.transform;
         bulletDmg = playerCtrl.PlayerWeaponSystem.Dmg;
     }
 
@@ -68,8 +70,19 @@ public class Bullet : MonoBehaviour
     {
         if (target == null) return;
 
-        direction = target.position - transform.position;
+        direction = target.position - playerCtrl.PlayerWeaponSystem.ShootingPoint.position;
         direction.Normalize();
+    }
+
+    private void CheckLifeTime()
+    {
+        if (flyTimer <= 0)
+        {
+            DisableBullet();
+            return;
+        }
+
+        flyTimer -= Time.deltaTime;
     }
 
     private void Fly()

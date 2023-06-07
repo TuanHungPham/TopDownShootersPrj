@@ -43,21 +43,6 @@ public class ConsumpItemSpawner : ItemSpanwer
         base.GetObjFromList();
     }
 
-    protected override GameObject NewGameObj(GameObject obj)
-    {
-        return base.NewGameObj(obj);
-    }
-
-    protected override GameObject RandomGameObj()
-    {
-        return base.RandomGameObj();
-    }
-
-    protected override void SetActiveObj()
-    {
-        base.SetActiveObj();
-    }
-
     protected override void UpdateListGameObj()
     {
         base.UpdateListGameObj();

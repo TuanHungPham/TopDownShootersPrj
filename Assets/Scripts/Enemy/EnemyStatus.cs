@@ -1,4 +1,5 @@
 using UnityEngine;
+using MarchingBytes;
 
 public class EnemyStatus : Status
 {
@@ -56,7 +57,7 @@ public class EnemyStatus : Status
 
     private void DisableGameObject()
     {
-        this.gameObject.SetActive(false);
+        EasyObjectPool.instance.ReturnObjectToPool(this.gameObject);
         enemyCtrl.DisableWeapon();
         GetComponent<EnemyStatus>().enabled = false;
     }

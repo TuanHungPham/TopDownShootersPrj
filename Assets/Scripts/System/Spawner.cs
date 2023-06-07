@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using MarchingBytes;
 
 public abstract class Spawner : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public abstract class Spawner : MonoBehaviour
     [SerializeField] private int maxObj;
     [SerializeField] private float spawnDelay;
     [SerializeField] private float spawnTimer;
+    [SerializeField] protected string poolName;
 
     [Space(20)]
     [SerializeField] protected ListOfObj listOfObj;
@@ -40,55 +41,59 @@ public abstract class Spawner : MonoBehaviour
     protected virtual void GetObjFromList()
     {
         gameObj = listOfObj.SelectedObj;
+        poolName = gameObj.name;
     }
 
     public virtual void Spawn()
     {
         if (!CanSpawn()) return;
 
-        GameObject obj;
-        if (listOfInactiveObj.Count > 0)
-        {
-            obj = RandomGameObj();
-            listOfInactiveObj.Remove(obj);
-            listOfActiveObj.Add(obj);
-        }
-        else
-        {
-            GetObjFromList();
-            obj = NewGameObj(gameObj);
-            listOfActiveObj.Add(obj);
-        }
+        GameObject obj = EasyObjectPool.instance.GetObjectFromPool(poolName, spawnPos.position, spawnPos.rotation);
+        listOfActiveObj.Add(obj);
 
-        obj.transform.position = spawnPos.position;
-        obj.transform.rotation = spawnPos.rotation;
-        obj.transform.parent = parent;
-        obj.SetActive(true);
+        // GameObject obj;
+        // if (listOfInactiveObj.Count > 0)
+        // {
+        //     obj = RandomGameObj();
+        //     listOfInactiveObj.Remove(obj);
+        //     listOfActiveObj.Add(obj);
+        // }
+        // else
+        // {
+        //     GetObjFromList();
+        //     obj = NewGameObj(gameObj);
+        //     listOfActiveObj.Add(obj);
+        // }
+
+        // obj.transform.position = spawnPos.position;
+        // obj.transform.rotation = spawnPos.rotation;
+        // obj.transform.parent = parent;
+        // obj.SetActive(true);
 
         SpawnTimer = SpawnDelay;
     }
 
-    protected virtual void SetActiveObj()
-    {
-        foreach (var item in listOfActiveObj)
-        {
-            if (item.activeSelf) continue;
+    // protected virtual void SetActiveObj()
+    // {
+    //     foreach (var item in listOfActiveObj)
+    //     {
+    //         if (item.activeSelf) continue;
 
-            item.SetActive(true);
-        }
-    }
+    //         item.SetActive(true);
+    //     }
+    // }
 
-    protected virtual GameObject NewGameObj(GameObject obj)
-    {
-        GameObject newGameObj = Instantiate(obj);
-        return newGameObj;
-    }
+    // protected virtual GameObject NewGameObj(GameObject obj)
+    // {
+    //     GameObject newGameObj = Instantiate(obj);
+    //     return newGameObj;
+    // }
 
-    protected virtual GameObject RandomGameObj()
-    {
-        int index = Random.Range(0, listOfInactiveObj.Count);
-        return listOfInactiveObj[index];
-    }
+    // protected virtual GameObject RandomGameObj()
+    // {
+    //     int index = Random.Range(0, listOfInactiveObj.Count);
+    //     return listOfInactiveObj[index];
+    // }
 
     protected abstract bool CanSpawn();
 

@@ -49,8 +49,8 @@ MonoBehaviour:
   magazineDropRate: 0
   weaponDropRate: 0
   potionDropRate: 0
-  dropPos: {fileID: 6600201456604779144}
   isDrop: 0
+  dropPos: {fileID: 6600201456604779144}
 --- !u!1 &6600201455478772430
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,12 +576,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473c44eab0af94d49a3e893ccde09118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHit: 0
+  stateName: Enemy_Hit
+  deadVFX: {fileID: 4974702213885670630, guid: 0e7694f2151e1e74791d0e62b954309d, type: 3}
   objStatus: {fileID: 6600201456604779250}
   animator: {fileID: 6600201455510509642}
-  isHit: 0
-  deadVFX: {fileID: 4974702213885670630, guid: 0e7694f2151e1e74791d0e62b954309d, type: 3}
-  bloodVFX: {fileID: 0}
-  stateName: Enemy_Hit
 --- !u!114 &6600201456604779250
 MonoBehaviour:
   m_ObjectHideFlags: 0

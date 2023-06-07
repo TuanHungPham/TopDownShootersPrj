@@ -26,6 +26,8 @@ public class BulletSpawner : Spawner
         playerCtrl = GameObject.Find("------ PLAYER ------").GetComponentInChildren<PlayerCtrl>();
 
         gameObj = Resources.Load<GameObject>("Prefabs/Bullet");
+
+        poolName = "Bullet";
     }
 
     protected void Update()
@@ -38,9 +40,9 @@ public class BulletSpawner : Spawner
         spawnPos = playerCtrl.PlayerWeaponSystem.ShootingPoint;
     }
 
-    public new void Spawn()
+    public override void Spawn()
     {
-        GameObject bullet = EasyObjectPool.instance.GetObjectFromPool("Bullet", spawnPos.position, spawnPos.rotation);
+        base.Spawn();
     }
 
     protected override bool CanSpawn()
