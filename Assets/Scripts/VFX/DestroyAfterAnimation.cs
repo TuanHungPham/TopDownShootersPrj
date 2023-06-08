@@ -51,6 +51,9 @@ public class DestroyAfterAnimation : MonoBehaviour
 
     public void DisableObj()
     {
+        PoolObject poolObject = GetComponent<PoolObject>();
+        if (poolObject.isPooled) return;
+
         EasyObjectPool.instance.ReturnObjectToPool(this.gameObject);
     }
 

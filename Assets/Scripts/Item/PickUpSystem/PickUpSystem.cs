@@ -1,4 +1,5 @@
 using UnityEngine;
+using MarchingBytes;
 
 public abstract class PickUpSystem : MonoBehaviour
 {
@@ -30,7 +31,7 @@ public abstract class PickUpSystem : MonoBehaviour
     {
         if (existTime <= 0)
         {
-            gameObject.SetActive(false);
+            EasyObjectPool.instance.ReturnObjectToPool(this.gameObject);
             return;
         }
 
@@ -42,7 +43,7 @@ public abstract class PickUpSystem : MonoBehaviour
         if (!collision.CompareTag("Player")) return;
 
         AddItemToPlayerInventory();
-        gameObject.SetActive(false);
+        EasyObjectPool.instance.ReturnObjectToPool(this.gameObject);
     }
 
     protected abstract void AddItemToPlayerInventory();

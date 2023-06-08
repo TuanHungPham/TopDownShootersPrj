@@ -22,8 +22,6 @@ public abstract class Spawner : MonoBehaviour
     [SerializeField] protected ListOfObj listOfObj;
     [SerializeField] protected GameObject gameObj;
     [SerializeField] protected Transform spawnPos;
-    [SerializeField] protected Transform parent;
-
     #endregion
 
     protected virtual void Awake()
@@ -40,6 +38,8 @@ public abstract class Spawner : MonoBehaviour
 
     protected virtual void GetObjFromList()
     {
+        if (listOfObj.SelectedObj == null) return;
+
         gameObj = listOfObj.SelectedObj;
         poolName = gameObj.name;
     }
@@ -51,49 +51,18 @@ public abstract class Spawner : MonoBehaviour
         GameObject obj = EasyObjectPool.instance.GetObjectFromPool(poolName, spawnPos.position, spawnPos.rotation);
         listOfActiveObj.Add(obj);
 
-        // GameObject obj;
-        // if (listOfInactiveObj.Count > 0)
-        // {
-        //     obj = RandomGameObj();
-        //     listOfInactiveObj.Remove(obj);
-        //     listOfActiveObj.Add(obj);
-        // }
-        // else
-        // {
-        //     GetObjFromList();
-        //     obj = NewGameObj(gameObj);
-        //     listOfActiveObj.Add(obj);
-        // }
-
-        // obj.transform.position = spawnPos.position;
-        // obj.transform.rotation = spawnPos.rotation;
-        // obj.transform.parent = parent;
-        // obj.SetActive(true);
-
         SpawnTimer = SpawnDelay;
     }
 
-    // protected virtual void SetActiveObj()
-    // {
-    //     foreach (var item in listOfActiveObj)
-    //     {
-    //         if (item.activeSelf) continue;
+    protected virtual void SetActiveObj()
+    {
+        foreach (var item in listOfActiveObj)
+        {
+            if (item.activeSelf) continue;
 
-    //         item.SetActive(true);
-    //     }
-    // }
-
-    // protected virtual GameObject NewGameObj(GameObject obj)
-    // {
-    //     GameObject newGameObj = Instantiate(obj);
-    //     return newGameObj;
-    // }
-
-    // protected virtual GameObject RandomGameObj()
-    // {
-    //     int index = Random.Range(0, listOfInactiveObj.Count);
-    //     return listOfInactiveObj[index];
-    // }
+            item.SetActive(true);
+        }
+    }
 
     protected abstract bool CanSpawn();
 

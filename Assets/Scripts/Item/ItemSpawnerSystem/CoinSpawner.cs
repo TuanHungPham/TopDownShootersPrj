@@ -38,10 +38,10 @@ public class CoinSpawner : ItemSpanwer
         base.ClearActiveList();
     }
 
-    // protected override void GetObjFromList()
-    // {
-    //     base.GetObjFromList();
-    // }
+    protected override void GetObjFromList()
+    {
+        base.GetObjFromList();
+    }
 
     // protected override void SetActiveObj()
     // {

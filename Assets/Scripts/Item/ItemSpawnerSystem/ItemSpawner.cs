@@ -22,7 +22,6 @@ public class ItemSpanwer : Spawner
 
     protected override void LoadComponents()
     {
-        parent = transform;
     }
 
     private void Update()
@@ -57,21 +56,6 @@ public class ItemSpanwer : Spawner
     {
         base.GetObjFromList();
     }
-
-    // protected override GameObject RandomGameObj()
-    // {
-    //     return base.RandomGameObj();
-    // }
-
-    // protected override GameObject NewGameObj(GameObject obj)
-    // {
-    //     return base.NewGameObj(obj);
-    // }
-
-    // protected override void SetActiveObj()
-    // {
-    //     base.SetActiveObj();
-    // }
 
     protected override void UpdateListGameObj()
     {

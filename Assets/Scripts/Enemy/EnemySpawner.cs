@@ -27,7 +27,6 @@ public class EnemySpawner : Spawner
 
         spawnPointScript = GameObject.Find("------ OTHER ------").transform.Find("SpawnPoint").GetComponent<SpawnPoint>();
 
-        parent = transform;
         SpawnTimer = SpawnDelay;
         MaxObj = EnemyWaveManager.Instance.NumberOfEnemy;
     }
@@ -51,20 +50,10 @@ public class EnemySpawner : Spawner
         base.Spawn();
     }
 
-    // protected override void SetActiveObj()
-    // {
-    //     base.SetActiveObj();
-    // }
-
-    // protected override GameObject NewGameObj(GameObject obj)
-    // {
-    //     return base.NewGameObj(obj);
-    // }
-
-    // protected override GameObject RandomGameObj()
-    // {
-    //     return base.RandomGameObj();
-    // }
+    protected override void SetActiveObj()
+    {
+        base.SetActiveObj();
+    }
 
     private void CheckSpawnTime()
     {
