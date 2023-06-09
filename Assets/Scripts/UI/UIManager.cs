@@ -4,7 +4,6 @@ public class UIManager : MonoBehaviour
 {
     private static UIManager instance;
     [SerializeField] public static UIManager Instance { get => instance; set => instance = value; }
-    public AchievementUI AchievementUI { get => achievementUI; set => achievementUI = value; }
     public AmmoSystemUI AmmoSystemUI { get => ammoSystemUI; set => ammoSystemUI = value; }
     public EnemyWaveUI EnemyWaveUI { get => enemyWaveUI; set => enemyWaveUI = value; }
     public GameOverBoard GameOverBoard { get => gameOverBoard; set => gameOverBoard = value; }
@@ -15,7 +14,6 @@ public class UIManager : MonoBehaviour
     public ShowDamageUIManager ShowDamageUIManager { get => showDamageUIManager; set => showDamageUIManager = value; }
 
     #region public
-    [SerializeField] private AchievementUI achievementUI;
     [SerializeField] private AmmoSystemUI ammoSystemUI;
     [SerializeField] private EnemyWaveUI enemyWaveUI;
     [SerializeField] private GameOverBoard gameOverBoard;
@@ -42,7 +40,6 @@ public class UIManager : MonoBehaviour
 
     private void LoadComponents()
     {
-        AchievementUI = GetComponentInChildren<AchievementUI>();
         AmmoSystemUI = GetComponentInChildren<AmmoSystemUI>();
         EnemyWaveUI = GetComponentInChildren<EnemyWaveUI>();
         HPBarUI = GetComponentInChildren<HPBarUI>();

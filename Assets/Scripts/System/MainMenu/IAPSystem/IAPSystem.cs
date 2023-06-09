@@ -64,7 +64,6 @@ public class IAPSystem : MonoBehaviour
 
     public void OnProductFetched(Product product)
     {
-        productTitle.text = product.metadata.localizedTitle;
         Debug.Log("----------------ID: " + product.definition.id);
         Debug.Log("----------------Title: " + product.metadata.localizedTitle);
         priceText.text = product.metadata.localizedPriceString;

@@ -7,7 +7,8 @@ public static class IOSystem
     {
         string path = GetFilePath(fileName);
 
-        CreateNewFolder(Application.dataPath + "/Saves");
+        CreateNewFolder(Application.persistentDataPath + "/Saves");
+
 
         FileStream fileStream = new FileStream(path, FileMode.Create);
 
@@ -43,6 +44,6 @@ public static class IOSystem
 
     public static string GetFilePath(string fileName)
     {
-        return Application.dataPath + "/Saves/" + fileName;
+        return Application.persistentDataPath + "/Saves/" + fileName;
     }
 }
