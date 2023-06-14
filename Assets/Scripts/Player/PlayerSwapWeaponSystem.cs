@@ -1,3 +1,4 @@
+using TigerForge;
 using UnityEngine;
 
 public class PlayerSwapWeaponSystem : MonoBehaviour
@@ -135,6 +136,8 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
         WeaponHolderUI weaponHolderUI = uIManager.WeaponInventoryPanel.WeaponHolderSelected();
 
         GetHolder(weaponHolderUI);
+
+        EventManager.EmitEvent(EventID.SWITCHING_WEAPON.ToString());
     }
 
     private void GetHolder(WeaponHolderUI weaponHolderUI)

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TigerForge;
+using System;
 
 public class EnemyWaveManager : MonoBehaviour
 {
@@ -54,6 +56,21 @@ public class EnemyWaveManager : MonoBehaviour
         addEnemyNumber = 5;
         addEnemyHP = 5;
         RestOfEnemy = NumberOfEnemy;
+    }
+
+    private void Start()
+    {
+        ListenEvent();
+    }
+
+    private void ListenEvent()
+    {
+        EventManager.StartListening(EventID.ENEMY_DEATH.ToString(), DecreaseRestOfEnemyNumber);
+    }
+
+    private void DecreaseRestOfEnemyNumber()
+    {
+        restOfEnemy--;
     }
 
     private void Update()

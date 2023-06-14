@@ -1,4 +1,5 @@
 using UnityEngine;
+using TigerForge;
 
 public class AmmoSystem : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class AmmoSystem : MonoBehaviour
 
     private void Start()
     {
+        ListenEvent();
+
         CurrentWeaponAmmo = RifleAmmo;
     }
 
@@ -43,9 +46,14 @@ public class AmmoSystem : MonoBehaviour
         uIManager = GameObject.Find("------ UI ------").GetComponentInChildren<UIManager>();
     }
 
+    private void ListenEvent()
+    {
+        EventManager.StartListening(EventID.PLAYER_SHOOTING.ToString(), ConsumpAmmo);
+        EventManager.StartListening(EventID.SWITCHING_WEAPON.ToString(), SwapAmmoType);
+    }
+
     private void Update()
     {
-        SwapAmmoType();
         CheckAmmo();
     }
 

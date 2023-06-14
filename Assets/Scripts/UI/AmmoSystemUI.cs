@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using TigerForge;
 
 public class AmmoSystemUI : MonoBehaviour
 {
@@ -30,10 +31,16 @@ public class AmmoSystemUI : MonoBehaviour
         grenadeIcon = transform.Find("GrenadeCapacityUIBG").GetChild(0).GetComponent<Image>();
     }
 
-    private void Update()
+    private void Start()
     {
-        ShowAmmo();
-        ShowGrenadeQuantity();
+        ListenEvent();
+    }
+
+    private void ListenEvent()
+    {
+        EventManager.StartListening(EventID.PLAYER_SHOOTING.ToString(), ShowAmmo);
+        EventManager.StartListening(EventID.SWITCHING_WEAPON.ToString(), ShowAmmo);
+        EventManager.StartListening(EventID.PLAYER_THROWING_GRENADE.ToString(), ShowGrenadeQuantity);
     }
 
     private void ShowAmmo()

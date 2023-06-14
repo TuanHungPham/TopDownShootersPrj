@@ -1,5 +1,6 @@
 using UnityEngine;
 using MarchingBytes;
+using TigerForge;
 
 public class DamageReceiver : MonoBehaviour
 {
@@ -69,9 +70,7 @@ public class DamageReceiver : MonoBehaviour
         Invoke("SetDeadVFX", 1.2f);
         Drop();
 
-        Achievement.Instance.EnemiesKilled++;
-        EnemyWaveManager.Instance.RestOfEnemy--;
-
+        EventManager.EmitEvent(EventID.ENEMY_DEATH.ToString());
     }
 
     private void GetDeathSound()

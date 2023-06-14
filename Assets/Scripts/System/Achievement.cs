@@ -1,3 +1,5 @@
+using System;
+using TigerForge;
 using UnityEngine;
 
 public class Achievement : MonoBehaviour
@@ -34,10 +36,25 @@ public class Achievement : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        ListenEvent();
+    }
+
+    private void ListenEvent()
+    {
+        EventManager.StartListening(EventID.ENEMY_DEATH.ToString(), PlusEnemyKilledNumber);
+    }
+
     private void Update()
     {
         TimeCounter();
         UpdateToMainData();
+    }
+
+    private void PlusEnemyKilledNumber()
+    {
+        enemiesKilled++;
     }
 
     private void TimeCounter()

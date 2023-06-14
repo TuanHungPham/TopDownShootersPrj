@@ -1,4 +1,5 @@
 using UnityEngine;
+using TigerForge;
 
 public class GrenadeSystem : MonoBehaviour
 {
@@ -59,6 +60,8 @@ public class GrenadeSystem : MonoBehaviour
         ConsumeGrenade();
         isThrowing = true;
         throwTimer = throwDelay;
+
+        EventManager.EmitEvent(EventID.PLAYER_THROWING_GRENADE.ToString());
     }
 
     private void CheckThrowTimer()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using TigerForge;
 
 public class PlayerShootingSystem : MonoBehaviour
 {
@@ -55,7 +56,9 @@ public class PlayerShootingSystem : MonoBehaviour
         bulletSpawner.Spawn();
 
         IsShooting = true;
-        playerCtrl.AmmoSystem.ConsumpAmmo();
+
+        EventManager.EmitEvent(EventID.PLAYER_SHOOTING.ToString());
+
         playerCtrl.PlayerWeaponSystem.ShootingTimer = playerCtrl.PlayerWeaponSystem.ShootingDelay;
     }
 
