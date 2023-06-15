@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using TigerForge;
 
 public class WeaponInventoryPanel : MonoBehaviour
 {
@@ -97,7 +98,8 @@ public class WeaponInventoryPanel : MonoBehaviour
 
         DeselecteAllItems();
         weaponHolderUI.Select();
-        IsWeaponSwitched = true;
+
+        EventManager.EmitEvent(EventID.SWITCHING_WEAPON.ToString());
     }
 
     private void SelectInitialWeapon()

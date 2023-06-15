@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TigerForge;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class MainMenuManager : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene("InGameScene");
+        EventManager.EmitEvent(EventID.PLAY_GAME.ToString());
     }
 
     private bool CanPlay()

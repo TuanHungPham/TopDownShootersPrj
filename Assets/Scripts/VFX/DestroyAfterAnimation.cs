@@ -9,6 +9,7 @@ public class DestroyAfterAnimation : MonoBehaviour
     #region private var
     [SerializeField] private AudioSource explosionAudio;
     [SerializeField] private AudioClip explosionSound;
+    [SerializeField] private PoolObject poolObject;
     #endregion
 
     private void OnEnable()
@@ -51,7 +52,7 @@ public class DestroyAfterAnimation : MonoBehaviour
 
     public void DisableObj()
     {
-        PoolObject poolObject = GetComponent<PoolObject>();
+        poolObject = GetComponent<PoolObject>();
         if (poolObject.isPooled) return;
 
         EasyObjectPool.instance.ReturnObjectToPool(this.gameObject);

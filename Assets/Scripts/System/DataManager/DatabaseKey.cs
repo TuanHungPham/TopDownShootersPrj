@@ -1,0 +1,8 @@
+public enum DatabaseKey
+{
+    COIN,
+    HIGHEST_ENEMIES_KILLED,
+    HIGHEST_SURVIVAL_TIME,
+    CHARACTER_SHOP_DATA
+}
+

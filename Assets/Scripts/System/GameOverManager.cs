@@ -1,4 +1,5 @@
 using UnityEngine;
+using TigerForge;
 
 public class GameOverManager : MonoBehaviour
 {
@@ -40,9 +41,10 @@ public class GameOverManager : MonoBehaviour
 
     private void SetGameOverBoard()
     {
-        gameOverBoard.SetActive(GameOverCheck);
+        gameOverBoard.SetActive(gameOverCheck);
+        EventManager.EmitEvent(EventID.GAME_OVER.ToString());
 
-        if (!GameOverCheck) return;
+        if (!gameOverCheck) return;
         InGameManager.Instance.PauseTime();
     }
 }

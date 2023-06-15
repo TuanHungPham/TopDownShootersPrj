@@ -17,7 +17,7 @@ public class PlayfabAchievementSystem : MonoBehaviour
 
     public void UpdateUserAchievementToServer()
     {
-        if (!UserManager.Instance.IsAchievementUpdated || !PlayFabClientAPI.IsClientLoggedIn()) return;
+        if (!PlayFabClientAPI.IsClientLoggedIn()) return;
 
         int highestEnemiesKilled = UserManager.Instance.HighestEnemiesKilled;
         int highestSurvivalTime = (int)UserManager.Instance.HighestSurvivalTime;

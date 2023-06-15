@@ -36,17 +36,20 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
         secondaryWeaponHolder = transform.Find("SecondaryWeapon").Find("Holder");
     }
 
-    private void Update()
+    private void Start()
     {
-        StoreWeapon();
-        GetWeaponFromStorage();
-        SwitchWeapon();
+        ListenEvent();
+    }
+
+    private void ListenEvent()
+    {
+        EventManager.StartListening(EventID.SWITCHING_WEAPON.ToString(), SwitchWeapon);
+        EventManager.StartListening(EventID.UPDATING_WEAPON_INVENTORY.ToString(), StoreWeapon);
+        EventManager.StartListening(EventID.UPDATING_WEAPON_INVENTORY.ToString(), GetWeaponFromStorage);
     }
 
     public void GetWeaponFromStorage()
     {
-        if (!playerCtrl.PlayerWeaponInventory.IsUpdateInventory) return;
-
         for (int i = 0; i < playerCtrl.PlayerWeaponInventory.weaponInventory.Count; i++)
         {
             Transform weapon = GetWeaponInStorageByName(playerCtrl.PlayerWeaponInventory.weaponInventory[i]);
@@ -58,8 +61,6 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
             weapon.localRotation = transform.parent.rotation;
             weapon.gameObject.SetActive(true);
         }
-
-        playerCtrl.PlayerWeaponInventory.IsUpdateInventory = false;
     }
 
     private void PutWeaponToHolder(Transform obj)
@@ -82,7 +83,7 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
 
     private void StoreWeapon()
     {
-        if (!playerCtrl.PlayerWeaponInventory.IsUpdateInventory || playerCtrl.PlayerWeaponInventory.SwappedWeapon == null) return;
+        if (playerCtrl.PlayerWeaponInventory.SwappedWeapon == null) return;
 
         Transform holder = null;
 
@@ -131,13 +132,9 @@ public class PlayerSwapWeaponSystem : MonoBehaviour
 
     private void SwitchWeapon()
     {
-        if (!uIManager.WeaponInventoryPanel.IsWeaponSwitched) return;
-
         WeaponHolderUI weaponHolderUI = uIManager.WeaponInventoryPanel.WeaponHolderSelected();
 
         GetHolder(weaponHolderUI);
-
-        EventManager.EmitEvent(EventID.SWITCHING_WEAPON.ToString());
     }
 
     private void GetHolder(WeaponHolderUI weaponHolderUI)

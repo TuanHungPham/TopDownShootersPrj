@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
+using TigerForge;
 
 public class IAPSystem : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class IAPSystem : MonoBehaviour
     [SerializeField] private TMP_Text productTitle;
     [SerializeField] private TMP_Text priceText;
     [SerializeField] private CodelessIAPButton iAPButton;
+    private int coinPackage1;
+    private int coinPackage2;
+    private int coinPackage3;
+    private int coinPackage4;
     #endregion
 
     private void Awake()
@@ -32,29 +37,34 @@ public class IAPSystem : MonoBehaviour
         priceText = transform.GetChild(0).Find("Button").GetComponentInChildren<TMP_Text>();
 
         iAPButton.button = transform.GetChild(0).Find("Button").GetComponent<Button>();
+
+        coinPackage1 = 200;
+        coinPackage2 = 1000;
+        coinPackage3 = 4000;
+        coinPackage4 = 10000;
     }
 
     public void OnPurchaseComplete(Product product)
     {
-        Debug.Log("You have just bought " + product.metadata.localizedTitle);
         switch (product.definition.id)
         {
             case "coin":
-                UserManager.Instance.Coin += 200;
-                Debug.Log("Add 200 Coin to your Account!!!");
+                DataManager.Instance.AchievementDataManager.AddCoin(200);
                 break;
             case "alotofcoin":
-                UserManager.Instance.Coin += 1000;
+                DataManager.Instance.AchievementDataManager.AddCoin(1000);
                 break;
             case "bagofcoins":
-                UserManager.Instance.Coin += 4000;
+                DataManager.Instance.AchievementDataManager.AddCoin(4000);
                 break;
             case "treasure":
-                UserManager.Instance.Coin += 10000;
+                DataManager.Instance.AchievementDataManager.AddCoin(10000);
                 break;
             default:
                 break;
         }
+
+        EventManager.EmitEvent(EventID.CHANGING_COIN_QUANTITY.ToString());
     }
 
     public void OnPurchaseFailed(Product product, PurchaseFailureDescription purchaseFailureDescription)

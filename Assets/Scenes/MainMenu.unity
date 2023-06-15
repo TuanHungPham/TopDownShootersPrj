@@ -7728,6 +7728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84abd0af218d3ef47a56eb8cde920587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinReward: 0
   rewardPanel: {fileID: 828784545}
   darkScreen: {fileID: 193670394}
   androidAdUnitID: Rewarded_Android
@@ -10440,12 +10441,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userName: 
-  enemiesKilled: 0
   highestEnemiesKilled: 0
-  survivalTime: 0
   highestSurvivalTime: 0
-  coin: 0
-  isAchievementUpdated: 0
 --- !u!1 &853035807
 GameObject:
   m_ObjectHideFlags: 0
@@ -26690,7 +26687,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 839391158}
         m_TargetAssemblyTypeName: UserManager, Assembly-CSharp
-        m_MethodName: AddCoint
+        m_MethodName: AddCoinToDataManager
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -9,7 +9,6 @@ public static class IOSystem
 
         CreateNewFolder(Application.persistentDataPath + "/Saves");
 
-
         FileStream fileStream = new FileStream(path, FileMode.Create);
 
         using (StreamWriter writer = new StreamWriter(fileStream))

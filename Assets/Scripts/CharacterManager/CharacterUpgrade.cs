@@ -1,3 +1,4 @@
+using TigerForge;
 using UnityEngine;
 
 public class CharacterUpgrade : MonoBehaviour
@@ -29,11 +30,14 @@ public class CharacterUpgrade : MonoBehaviour
     {
         CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.SelectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        if (UserManager.Instance.Coin < characterDisplayCtrl.CharacterData.coinRequirement) return;
+        if (DataManager.Instance.AchievementDataManager.Coin < characterDisplayCtrl.CharacterData.coinRequirement) return;
 
-        UserManager.Instance.ConsumeCoin(characterDisplayCtrl.CharacterData.coinRequirement);
+        DataManager.Instance.AchievementDataManager.ConsumeCoin(characterDisplayCtrl.CharacterData.coinRequirement);
+
         characterDisplayCtrl.CharacterData.characterLevel++;
         characterDisplayCtrl.CharacterData.characterHP += hpUpgrade;
         characterDisplayCtrl.CharacterData.upgradePrice += characterDisplayCtrl.CharacterData.upgradePriceAdd;
+
+        EventManager.EmitEvent(EventID.CHANGING_COIN_QUANTITY.ToString());
     }
 }

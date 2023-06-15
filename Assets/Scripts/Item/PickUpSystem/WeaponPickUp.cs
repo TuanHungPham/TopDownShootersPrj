@@ -1,4 +1,5 @@
 using UnityEngine;
+using TigerForge;
 
 public class WeaponPickUp : PickUpSystem
 {
@@ -44,8 +45,10 @@ public class WeaponPickUp : PickUpSystem
     protected override void AddItemToPlayerInventory()
     {
         playerCtrl.PlayerWeaponInventory.AddWeaponToInventory(weapon.WeaponData);
-        playerCtrl.PlayerWeaponInventory.IsUpdateInventory = true;
+
         SoundSystemManager.Instance.SetReloadSound();
+
+        EventManager.EmitEvent(EventID.UPDATING_WEAPON_INVENTORY.ToString());
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)

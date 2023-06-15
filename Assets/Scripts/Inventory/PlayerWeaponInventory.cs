@@ -5,14 +5,12 @@ public class PlayerWeaponInventory : MonoBehaviour
 {
     #region public var
     public List<WeaponData> weaponInventory = new List<WeaponData>();
-    public bool IsUpdateInventory { get => isUpdateInventory; set => isUpdateInventory = value; }
     public WeaponData SwappedWeapon { get => swappedWeapon; set => swappedWeapon = value; }
     #endregion
 
     #region private var
     [SerializeField] private WeaponData swappedWeapon;
     [SerializeField] private PlayerCtrl playerCtrl;
-    [SerializeField] private bool isUpdateInventory;
     #endregion
 
     private void Awake()

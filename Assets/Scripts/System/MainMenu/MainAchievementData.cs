@@ -22,23 +22,23 @@ public class MainAchievementData : MonoBehaviour
 
     private void UpdateCoin()
     {
-        coin += DataManager.Instance.AchievementDataManager.coin;
+        coin += DataManager.Instance.AchievementDataManager.Coin;
     }
 
     private void UpdateEnemiesKilled()
     {
-        enemiesKilled = DataManager.Instance.AchievementDataManager.enemiesKilled;
+        enemiesKilled = DataManager.Instance.AchievementDataManager.HighestEnemiesKilled;
 
-        if (highestEnemiesKilled >= DataManager.Instance.AchievementDataManager.enemiesKilled) return;
-        highestEnemiesKilled = DataManager.Instance.AchievementDataManager.enemiesKilled;
+        if (highestEnemiesKilled >= DataManager.Instance.AchievementDataManager.HighestEnemiesKilled) return;
+        highestEnemiesKilled = DataManager.Instance.AchievementDataManager.HighestEnemiesKilled;
     }
 
     private void UpdateSurvivalTime()
     {
-        survivalTime = DataManager.Instance.AchievementDataManager.survivalTime;
+        survivalTime = DataManager.Instance.AchievementDataManager.HighestSurvivalTime;
 
-        if (highestSurvivalTime >= DataManager.Instance.AchievementDataManager.survivalTime) return;
-        highestSurvivalTime = DataManager.Instance.AchievementDataManager.survivalTime;
+        if (highestSurvivalTime >= DataManager.Instance.AchievementDataManager.HighestSurvivalTime) return;
+        highestSurvivalTime = DataManager.Instance.AchievementDataManager.HighestSurvivalTime;
     }
 
     public void ConsumeCoin(int consumptionQuantity)

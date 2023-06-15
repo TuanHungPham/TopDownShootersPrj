@@ -1,3 +1,4 @@
+using TigerForge;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -88,7 +89,7 @@ public class CharacterDataManager : MonoBehaviour
     {
         playerCtrl.PlayerWeaponInventory.weaponInventory.Add(DataManager.Instance.CharacterDataManager.primaryWeaponData);
         playerCtrl.PlayerWeaponInventory.weaponInventory.Add(DataManager.Instance.CharacterDataManager.secondaryWeaponData);
-        playerCtrl.PlayerWeaponInventory.IsUpdateInventory = true;
+        EventManager.EmitEvent(EventID.UPDATING_WEAPON_INVENTORY.ToString());
 
         playerCtrl.PlayerSwapWeaponSystem.GetWeaponFromStorage();
         playerCtrl.PlayerWeaponSystem.GetWeaponInHolder();

@@ -59,7 +59,6 @@ public class AmmoSystem : MonoBehaviour
 
     private void SwapAmmoType()
     {
-        if (!uIManager.WeaponInventoryPanel.IsWeaponSwitched) return;
         WeaponHolderUI holderSelected = uIManager.WeaponInventoryPanel.WeaponHolderSelected();
 
         if (holderSelected.HolderType == HolderType.PRIMARY_HOLDER)

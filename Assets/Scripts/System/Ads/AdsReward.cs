@@ -1,3 +1,4 @@
+using TigerForge;
 using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,7 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
     #endregion 
 
     #region private var
+    [SerializeField] private int coinReward;
     [SerializeField] private GameObject rewardPanel;
     [SerializeField] private GameObject darkScreen;
     [SerializeField] private string androidAdUnitID;
@@ -42,6 +44,7 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
 
         androidAdUnitID = "Rewarded_Android";
         iosAdUnitID = "Rewarded_iOS";
+        coinReward = 1500;
     }
 
     private void SetUnitID()
@@ -95,7 +98,9 @@ public class AdsReward : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowList
     {
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            UserManager.Instance.Coin += 1500;
+            DataManager.Instance.AchievementDataManager.AddCoin(coinReward);
+
+            EventManager.EmitEvent(EventID.CHANGING_COIN_QUANTITY.ToString());
             return;
         }
 

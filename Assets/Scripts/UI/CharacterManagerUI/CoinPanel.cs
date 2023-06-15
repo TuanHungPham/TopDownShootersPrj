@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using TigerForge;
+using System;
 
 public class CoinPanel : MonoBehaviour
 {
@@ -25,13 +27,19 @@ public class CoinPanel : MonoBehaviour
         coinText = GetComponentInChildren<TMP_Text>();
     }
 
-    private void Update()
+    private void Start()
     {
+        ListenEvent();
         ShowCoin();
+    }
+
+    private void ListenEvent()
+    {
+        EventManager.StartListening(EventID.CHANGING_COIN_QUANTITY.ToString(), ShowCoin);
     }
 
     private void ShowCoin()
     {
-        coinText.text = UserManager.Instance.Coin.ToString();
+        coinText.text = DataManager.Instance.AchievementDataManager.Coin.ToString();
     }
 }

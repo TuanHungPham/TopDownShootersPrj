@@ -18,14 +18,12 @@ public class CharacterManagerCtrl : MonoBehaviour
     [SerializeField] private CharacterShop characterShop;
     [SerializeField] private CharacterUpgrade characterUpgrade;
     [SerializeField] private DisplayPointManager displayPointManager;
-    private LoadedCharacterData loadedCharacterData;
     #endregion
 
     private void Awake()
     {
         instance = this;
         LoadComponents();
-        Load();
     }
 
     private void Reset()
@@ -35,6 +33,7 @@ public class CharacterManagerCtrl : MonoBehaviour
 
     private void Start()
     {
+        LoadDataFromMainData();
         SetDefaultCharacter();
         GetSelectedCharacter();
     }
@@ -87,54 +86,8 @@ public class CharacterManagerCtrl : MonoBehaviour
         }
     }
 
-    private void Save()
+    private void LoadDataFromMainData()
     {
-        foreach (Transform character in listOfCharacter)
-        {
-            CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
-            CharacterData characterData = characterDisplayCtrl.CharacterData;
-
-            loadedCharacterData = new LoadedCharacterData
-            (
-                characterData.characterSkinIndex,
-                characterData.characterName,
-                characterData.characterLevel,
-                characterData.characterHP,
-                characterData.upgradePrice,
-                characterData.BuyPrice,
-                characterData.IsOwned
-            );
-
-            string fileName = character.name;
-            string json = JsonUtility.ToJson(loadedCharacterData);
-
-            IOSystem.WriteToFile(fileName, json);
-        }
-
-        Debug.Log("Character data is saved!");
-    }
-
-    private void Load()
-    {
-        foreach (Transform character in listOfCharacter)
-        {
-            CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
-            CharacterData characterData = characterDisplayCtrl.CharacterData;
-
-            string fileName = character.name;
-
-            string json = IOSystem.ReadFromFIle(fileName);
-            if (json == null) continue;
-
-            loadedCharacterData = JsonUtility.FromJson<LoadedCharacterData>(json);
-
-            characterData.SetData(loadedCharacterData);
-            Debug.Log(character.name + " data is loaded!");
-        }
-    }
-
-    private void OnDisable()
-    {
-        Save();
+        DataManager.Instance.LoadCharacterShop();
     }
 }

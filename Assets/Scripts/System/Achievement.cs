@@ -1,4 +1,3 @@
-using System;
 using TigerForge;
 using UnityEngine;
 
@@ -44,12 +43,12 @@ public class Achievement : MonoBehaviour
     private void ListenEvent()
     {
         EventManager.StartListening(EventID.ENEMY_DEATH.ToString(), PlusEnemyKilledNumber);
+        EventManager.StartListening(EventID.GAME_OVER.ToString(), UpdateToMainData);
     }
 
     private void Update()
     {
         TimeCounter();
-        UpdateToMainData();
     }
 
     private void PlusEnemyKilledNumber()
@@ -59,41 +58,32 @@ public class Achievement : MonoBehaviour
 
     private void TimeCounter()
     {
-        SurvivalTime += Time.deltaTime;
+        survivalTime += Time.deltaTime;
     }
 
     public void UpdateToMainData()
     {
-        DataManager.Instance.AchievementDataManager.enemiesKilled = EnemiesKilled;
-        SurvivalTime = DataManager.Instance.AchievementDataManager.survivalTime = SurvivalTime;
-        TotalMoney = DataManager.Instance.AchievementDataManager.coin = TotalMoney;
+        UpdateCoinToMainData();
+        UpdateKilledScoreToMainData();
+        UpdateTimeScoreToMainData();
     }
 
-    public void SaveDataWhenRetry()
+    private void UpdateCoinToMainData()
     {
-        int highestEnemiesKilled = PlayerPrefs.GetInt("Highest Enemies Killed", 0);
-        float highestSurvivalTime = PlayerPrefs.GetFloat("Highest Survival Time", 0);
-        int coin = PlayerPrefs.GetInt("Coin", 0);
-
-        if (highestEnemiesKilled < EnemiesKilled)
-        {
-            highestEnemiesKilled = EnemiesKilled;
-        }
-
-        if (highestSurvivalTime < SurvivalTime)
-        {
-            highestSurvivalTime = SurvivalTime;
-        }
-
-        coin += TotalMoney;
-
-        SaveDataIngame(highestEnemiesKilled, highestSurvivalTime, coin);
+        DataManager.Instance.AchievementDataManager.AddCoin(totalMoney);
     }
 
-    private static void SaveDataIngame(int highestEnemiesKilled, float highestSurvivalTime, int coin)
+    private void UpdateKilledScoreToMainData()
     {
-        PlayerPrefs.SetInt("Coin", coin);
-        PlayerPrefs.SetInt("Highest Enemies Killed", highestEnemiesKilled);
-        PlayerPrefs.SetFloat("Highest Survival Time", highestSurvivalTime);
+        if (enemiesKilled <= DataManager.Instance.AchievementDataManager.HighestEnemiesKilled) return;
+
+        DataManager.Instance.AchievementDataManager.HighestEnemiesKilled = enemiesKilled;
+    }
+
+    private void UpdateTimeScoreToMainData()
+    {
+        if (survivalTime <= DataManager.Instance.AchievementDataManager.HighestSurvivalTime) return;
+
+        DataManager.Instance.AchievementDataManager.HighestSurvivalTime = survivalTime;
     }
 }

@@ -1,3 +1,4 @@
+using TigerForge;
 using UnityEngine;
 
 public class CharacterShop : MonoBehaviour
@@ -49,10 +50,12 @@ public class CharacterShop : MonoBehaviour
     {
         CharacterDisplayCtrl characterDisplayCtrl = characterManagerCtrl.SelectedCharacter.GetComponent<CharacterDisplayCtrl>();
 
-        if (UserManager.Instance.Coin < characterDisplayCtrl.CharacterData.coinRequirement) return;
+        if (DataManager.Instance.AchievementDataManager.Coin < characterDisplayCtrl.CharacterData.coinRequirement) return;
 
-        UserManager.Instance.ConsumeCoin(characterDisplayCtrl.CharacterData.coinRequirement);
+        DataManager.Instance.AchievementDataManager.ConsumeCoin(characterDisplayCtrl.CharacterData.coinRequirement);
         characterDisplayCtrl.CharacterData.IsOwned = true;
         characterDisplayCtrl.CharacterData.characterLevel = 1;
+
+        EventManager.EmitEvent(EventID.CHANGING_COIN_QUANTITY.ToString());
     }
 }
