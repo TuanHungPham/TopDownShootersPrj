@@ -19,14 +19,14 @@ public class DataManager : MonoBehaviour
     [SerializeField] private CharacterDataManager characterDataManager;
     [SerializeField] private AchievementDataManager achievementDataManager;
     private LoadedCharacterData loadedCharacterData;
-    private Database databaseInstance;
+    private IKeyValueDatabase databaseInstance;
     #endregion
 
     private void Awake()
     {
         HandleSingletonObject();
-        LoadComponents();
         DontDestroyOnLoad(this);
+        LoadComponents();
     }
 
     private void Start()
@@ -45,7 +45,7 @@ public class DataManager : MonoBehaviour
         CharacterDataManager = GetComponentInChildren<CharacterDataManager>();
         AchievementDataManager = GetComponentInChildren<AchievementDataManager>();
 
-        databaseInstance = new Database();
+        databaseInstance = new KeyValueFileDatabase();
     }
 
     private void ListenEvent()
@@ -65,11 +65,11 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void SaveData(bool isImportant = false)
+    public void SaveData()
     {
-        databaseInstance.Save(DatabaseKey.COIN.ToString(), achievementDataManager.Coin);
         databaseInstance.Save(DatabaseKey.HIGHEST_ENEMIES_KILLED.ToString(), achievementDataManager.HighestEnemiesKilled);
         databaseInstance.Save(DatabaseKey.HIGHEST_SURVIVAL_TIME.ToString(), achievementDataManager.HighestSurvivalTime);
+        databaseInstance.Save(DatabaseKey.COIN.ToString(), achievementDataManager.Coin);
     }
 
     public void LoadData()
@@ -123,6 +123,7 @@ public class DataManager : MonoBehaviour
 
     private void OnDisable()
     {
+        Debug.Log("OnDisable");
         SaveData();
         SaveCharacterShop();
     }
