@@ -2,6 +2,7 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using TMPro;
+using TigerForge;
 
 public class PlayfabAccountSystem : MonoBehaviour
 {
@@ -50,6 +51,8 @@ public class PlayfabAccountSystem : MonoBehaviour
             notiPanelText.text = "Login Facebook account successfully!";
 
             UpdateUserDisplayName(username);
+
+            EventManager.EmitEvent(EventID.PLAYFAB_LOGGINGIN.ToString());
         }, OnLoginFailed);
     }
 

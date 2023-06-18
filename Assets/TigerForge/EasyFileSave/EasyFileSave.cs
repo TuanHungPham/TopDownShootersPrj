@@ -171,7 +171,7 @@ namespace TigerForge
         }
 
         #endregion
-        
+
 
         #region " SAVE, APPEND, LOAD, ADD "
 
@@ -191,17 +191,18 @@ namespace TigerForge
                     saveFile.Close();
                     Dispose();
                     return true;
-                } else
+                }
+                else
                 {
                     return SaveSecure(password);
-                }                
+                }
             }
             catch (System.Exception e)
             {
                 Error = "[Easy File Save] This system exeption has been thrown during saving: " + e.Message;
                 return false;
             }
-            
+
         }
 
         /// <summary>
@@ -226,7 +227,8 @@ namespace TigerForge
                         FileStream openFile = File.Open(fileName, FileMode.Open);
                         fileStorage = (Dictionary<string, object>)bf2.Deserialize(openFile);
                         openFile.Close();
-                    } else
+                    }
+                    else
                     {
                         var loadPassword = (password + "easyfilesavesecure1234").Substring(0, 16);
                         byte[] key = Encoding.UTF8.GetBytes(loadPassword);
@@ -272,7 +274,8 @@ namespace TigerForge
                     bf.Serialize(saveFile, fileStorage);
                     saveFile.Close();
                     Dispose();
-                } else
+                }
+                else
                 {
                     var savePassword = (password + "easyfilesavesecure1234").Substring(0, 16);
                     byte[] key = Encoding.UTF8.GetBytes(savePassword);
@@ -302,7 +305,7 @@ namespace TigerForge
                 return false;
             }
 
-            
+
         }
 
         /// <summary>
@@ -328,11 +331,12 @@ namespace TigerForge
                     storage = (Dictionary<string, object>)bf.Deserialize(loadFile);
                     loadFile.Close();
                     return true;
-                } else
+                }
+                else
                 {
                     return LoadSecure(password);
                 }
-                
+
             }
             catch (System.Exception e)
             {
@@ -408,7 +412,7 @@ namespace TigerForge
             }
             catch (System.Exception e)
             {
-                Error = "[Easy File Save] This system exeption has been thrown during SaveSecure: " + e.Message;Debug.Log(e.Message);
+                Error = "[Easy File Save] This system exeption has been thrown during SaveSecure: " + e.Message; Debug.Log(e.Message);
                 return false;
             }
         }
@@ -877,7 +881,7 @@ namespace TigerForge
         {
             try
             {
-                if (storage.ContainsKey(key)) return (T[]) storage[key]; else return Array.Empty<T>();
+                if (storage.ContainsKey(key)) return (T[])storage[key]; else return Array.Empty<T>();
             }
             catch (System.Exception)
             {
@@ -987,8 +991,9 @@ namespace TigerForge
         {
             try
             {
-                
-                if (storage.ContainsKey(key)) {
+
+                if (storage.ContainsKey(key))
+                {
 
                     if (!customs.mapping.ContainsKey(extensionName))
                     {
@@ -1022,7 +1027,7 @@ namespace TigerForge
                     {
                         customData.Add(mapping[i], new CustomData { data = dataToLoad[i] });
                     }
-                    
+
                     return customData;
                 }
             }

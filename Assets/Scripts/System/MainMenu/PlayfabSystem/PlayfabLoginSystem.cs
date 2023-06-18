@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using TigerForge;
 
 public class PlayfabLoginSystem : MonoBehaviour
 {
@@ -61,6 +62,8 @@ public class PlayfabLoginSystem : MonoBehaviour
         darkScreen.SetActive(false);
 
         DisplayUserName();
+
+        EventManager.EmitEvent(EventID.PLAYFAB_LOGGINGIN.ToString());
     }
 
     private void OnLoginError(PlayFabError error)

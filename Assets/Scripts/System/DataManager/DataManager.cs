@@ -45,12 +45,15 @@ public class DataManager : MonoBehaviour
         CharacterDataManager = GetComponentInChildren<CharacterDataManager>();
         AchievementDataManager = GetComponentInChildren<AchievementDataManager>();
 
-        databaseInstance = new KeyValueFileDatabase();
+        databaseInstance = new PlayfabDatabase();
     }
 
     private void ListenEvent()
     {
         EventManager.StartListening(EventID.PLAY_GAME.ToString(), SaveCharacterShop);
+        EventManager.StartListening(EventID.PLAY_GAME.ToString(), SaveData);
+        EventManager.StartListening(EventID.PLAYFAB_LOGGINGIN.ToString(), LoadData);
+        // EventManager.StartListening(EventID.PLAYFAB_LOGGINGIN.ToString(), LoadCharacterShop);
     }
 
     private void HandleSingletonObject()
@@ -68,8 +71,8 @@ public class DataManager : MonoBehaviour
     public void SaveData()
     {
         databaseInstance.Save(DatabaseKey.HIGHEST_ENEMIES_KILLED.ToString(), achievementDataManager.HighestEnemiesKilled);
-        databaseInstance.Save(DatabaseKey.HIGHEST_SURVIVAL_TIME.ToString(), achievementDataManager.HighestSurvivalTime);
         databaseInstance.Save(DatabaseKey.COIN.ToString(), achievementDataManager.Coin);
+        databaseInstance.Save(DatabaseKey.HIGHEST_SURVIVAL_TIME.ToString(), achievementDataManager.HighestSurvivalTime);
     }
 
     public void LoadData()
@@ -77,6 +80,9 @@ public class DataManager : MonoBehaviour
         achievementDataManager.Coin = databaseInstance.Load<int>(DatabaseKey.COIN.ToString());
         achievementDataManager.HighestEnemiesKilled = databaseInstance.Load<int>(DatabaseKey.HIGHEST_ENEMIES_KILLED.ToString());
         achievementDataManager.HighestSurvivalTime = databaseInstance.Load<float>(DatabaseKey.HIGHEST_SURVIVAL_TIME.ToString());
+
+        EventManager.EmitEvent(EventID.CHANGING_COIN_QUANTITY.ToString());
+        Debug.Log("Data is loading...");
     }
 
     public void SaveCharacterShop()
@@ -86,23 +92,32 @@ public class DataManager : MonoBehaviour
             CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
             CharacterData characterData = characterDisplayCtrl.CharacterData;
 
+            // loadedCharacterData = new LoadedCharacterData
+            // (
+            //     characterData.characterSkinIndex,
+            //     characterData.characterName,
+            //     characterData.characterLevel,
+            //     characterData.characterHP,
+            //     characterData.upgradePrice,
+            //     characterData.BuyPrice,
+            //     characterData.IsOwned
+            // );
+
             loadedCharacterData = new LoadedCharacterData
-            (
-                characterData.characterSkinIndex,
-                characterData.characterName,
-                characterData.characterLevel,
-                characterData.characterHP,
-                characterData.upgradePrice,
-                characterData.BuyPrice,
-                characterData.IsOwned
-            );
+            {
+                characterSkinIndex = characterData.characterSkinIndex,
+                characterName = characterData.characterName,
+                characterLevel = characterData.characterLevel,
+                characterHP = characterData.characterHP,
+                upgradePrice = characterData.upgradePrice,
+                buyPrice = characterData.BuyPrice,
+                isOwned = characterData.IsOwned
+            };
 
             string key = character.name;
 
             databaseInstance.Save(key, loadedCharacterData);
         }
-
-        Debug.Log("Saving Character Shop Data...");
     }
 
     public void LoadCharacterShop()
@@ -116,15 +131,16 @@ public class DataManager : MonoBehaviour
 
             loadedCharacterData = databaseInstance.Load<LoadedCharacterData>(key);
 
+            if (loadedCharacterData == null) return;
+
             characterData.SetData(loadedCharacterData);
             Debug.Log(character.name + " data is loaded!");
         }
     }
 
-    private void OnDisable()
+    private void OnApplicationQuit()
     {
-        Debug.Log("OnDisable");
-        SaveData();
         SaveCharacterShop();
+        // SaveData();
     }
 }

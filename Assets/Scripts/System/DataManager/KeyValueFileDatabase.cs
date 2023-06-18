@@ -74,6 +74,8 @@ public class KeyValueFileDatabase : IKeyValueDatabase
             filePath = Path.Combine(Application.persistentDataPath, "data.json");
         }
 
+        if (!File.Exists(filePath)) return;
+
         string json = File.ReadAllText(filePath);
         _data.Collection = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 

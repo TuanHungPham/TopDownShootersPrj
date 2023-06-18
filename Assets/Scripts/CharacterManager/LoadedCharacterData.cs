@@ -26,6 +26,11 @@ public class LoadedCharacterData
         this.isOwned = isOwned;
     }
 
+    public LoadedCharacterData()
+    {
+
+    }
+
     public override string ToString()
     {
         return base.ToString();
