@@ -1,5 +1,6 @@
 using UnityEngine;
 using TigerForge;
+using System;
 
 public class DataManager : MonoBehaviour
 {
@@ -45,15 +46,15 @@ public class DataManager : MonoBehaviour
         CharacterDataManager = GetComponentInChildren<CharacterDataManager>();
         AchievementDataManager = GetComponentInChildren<AchievementDataManager>();
 
-        databaseInstance = new PlayfabDatabase();
+        databaseInstance = new KeyValueFileDatabase();
     }
 
     private void ListenEvent()
     {
         EventManager.StartListening(EventID.PLAY_GAME.ToString(), SaveCharacterShop);
         EventManager.StartListening(EventID.PLAY_GAME.ToString(), SaveData);
-        EventManager.StartListening(EventID.PLAYFAB_LOGGINGIN.ToString(), LoadData);
-        // EventManager.StartListening(EventID.PLAYFAB_LOGGINGIN.ToString(), LoadCharacterShop);
+        EventManager.StartListening(EventID.PLAYFAB_LOADING_DATA.ToString(), LoadData);
+        EventManager.StartListening(EventID.PLAYFAB_LOADING_DATA.ToString(), LoadCharacterShop);
     }
 
     private void HandleSingletonObject()
@@ -82,7 +83,6 @@ public class DataManager : MonoBehaviour
         achievementDataManager.HighestSurvivalTime = databaseInstance.Load<float>(DatabaseKey.HIGHEST_SURVIVAL_TIME.ToString());
 
         EventManager.EmitEvent(EventID.CHANGING_COIN_QUANTITY.ToString());
-        Debug.Log("Data is loading...");
     }
 
     public void SaveCharacterShop()
@@ -91,17 +91,6 @@ public class DataManager : MonoBehaviour
         {
             CharacterDisplayCtrl characterDisplayCtrl = character.GetComponent<CharacterDisplayCtrl>();
             CharacterData characterData = characterDisplayCtrl.CharacterData;
-
-            // loadedCharacterData = new LoadedCharacterData
-            // (
-            //     characterData.characterSkinIndex,
-            //     characterData.characterName,
-            //     characterData.characterLevel,
-            //     characterData.characterHP,
-            //     characterData.upgradePrice,
-            //     characterData.BuyPrice,
-            //     characterData.IsOwned
-            // );
 
             loadedCharacterData = new LoadedCharacterData
             {
@@ -134,13 +123,12 @@ public class DataManager : MonoBehaviour
             if (loadedCharacterData == null) return;
 
             characterData.SetData(loadedCharacterData);
-            Debug.Log(character.name + " data is loaded!");
         }
     }
 
     private void OnApplicationQuit()
     {
         SaveCharacterShop();
-        // SaveData();
+        SaveData();
     }
 }

@@ -7,28 +7,20 @@ using UnityEngine;
 
 public class KeyValueFileDatabase : IKeyValueDatabase
 {
-    private Data _data;
-
-    public KeyValueFileDatabase(Dictionary<string, string> collection)
-    {
-        _data = new Data(collection);
-        ReadFile();
-    }
-
     public KeyValueFileDatabase()
     {
-        _data = new Data();
         ReadFile();
     }
 
     public T Load<T>(string key)
     {
-        Debug.Log($"Data Loaded: {_data.Collection}");
+        Debug.Log($"Data Loaded: ");
+        LogSystem.LogDictionary(UserData.LoadedData);
 
-        if (_data.Collection.ContainsKey(key))
+        if (UserData.LoadedData.ContainsKey(key))
         {
             string dataString = string.Empty;
-            _data.Collection.TryGetValue(key, out dataString);
+            UserData.LoadedData.TryGetValue(key, out dataString);
             var datatType = typeof(T);
 
             if (datatType.IsPrimitive || datatType == typeof(string))
@@ -50,21 +42,11 @@ public class KeyValueFileDatabase : IKeyValueDatabase
     {
         string dataString = string.Empty;
 
-        var datatType = typeof(T);
-        if (datatType.IsPrimitive || datatType == typeof(string))
-        {
-            dataString = data.ToString();
-        }
-        else
-        {
-            dataString = JsonConvert.SerializeObject(data);
-        }
+        UserData.AddData(key, data);
 
-        _data.Collection[key] = dataString;
+        LogSystem.LogDictionary(UserData.LoadedData);
 
-        LogDictionary(_data.Collection);
-
-        SaveFile(JsonConvert.SerializeObject(_data.Collection));
+        SaveFile(JsonConvert.SerializeObject(UserData.LoadedData));
     }
 
     public void ReadFile(string filePath = "")
@@ -76,10 +58,12 @@ public class KeyValueFileDatabase : IKeyValueDatabase
 
         if (!File.Exists(filePath)) return;
 
-        string json = File.ReadAllText(filePath);
-        _data.Collection = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+        Debug.Log("Reading File...");
 
-        Debug.Log($"Json: {json}");
+        string json = File.ReadAllText(filePath);
+
+        Debug.Log($"JSON String: {json}");
+        UserData.LoadedData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
     }
 
     private void SaveFile(string content, string filePath = "")
@@ -89,17 +73,6 @@ public class KeyValueFileDatabase : IKeyValueDatabase
             filePath = Path.Combine(Application.persistentDataPath, "data.json");
         }
 
-        Debug.Log($"data path: {filePath}");
         File.WriteAllText(filePath, content);
-    }
-
-    private void LogDictionary(Dictionary<string, string> collection)
-    {
-        var log = new StringBuilder();
-        foreach (var item in collection)
-        {
-            log.AppendLine($"{item.Key}: {item.Value}");
-        }
-        Debug.Log(log.ToString());
     }
 }

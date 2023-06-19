@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Database : IKeyValueDatabase
+public class PlayerPrefsDatabase : IKeyValueDatabase
 {
     public void Save<T>(string key, T data)
     {
@@ -42,22 +41,5 @@ public class Database : IKeyValueDatabase
         {
             return default(T);
         }
-    }
-}
-
-[Serializable]
-public class Data
-{
-    public Dictionary<string, string> Collection { get => collection; set => collection = value; }
-    private Dictionary<string, string> collection;
-
-    public Data()
-    {
-        Collection = new Dictionary<string, string>();
-    }
-
-    public Data(Dictionary<string, string> collection)
-    {
-        this.Collection = collection;
     }
 }

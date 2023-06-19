@@ -11,6 +11,7 @@ public class PlayfabSystemManager : MonoBehaviour
     public PlayfabLeaderboardSystem PlayfabLeaderboardSystem { get => playfabLeaderboardSystem; set => playfabLeaderboardSystem = value; }
     public PlayfabRegistrySystem PlayfabRegistrySystem { get => playfabRegistrySystem; set => playfabRegistrySystem = value; }
     public PlayfabLoginSystem PlayfabLoginSystem { get => playfabLoginSystem; set => playfabLoginSystem = value; }
+    public PlayfabDatabase PlayfabDatabase { get => playfabDatabase; set => playfabDatabase = value; }
     #endregion
 
     #region private var
@@ -19,6 +20,7 @@ public class PlayfabSystemManager : MonoBehaviour
     [SerializeField] private PlayfabLeaderboardSystem playfabLeaderboardSystem;
     [SerializeField] private PlayfabRegistrySystem playfabRegistrySystem;
     [SerializeField] private PlayfabLoginSystem playfabLoginSystem;
+    [SerializeField] private PlayfabDatabase playfabDatabase;
     #endregion
 
     private void Awake()
