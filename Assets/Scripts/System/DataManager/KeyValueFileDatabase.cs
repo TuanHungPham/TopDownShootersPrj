@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Newtonsoft.Json;
 using UnityEngine;
 
@@ -9,14 +8,14 @@ public class KeyValueFileDatabase : IKeyValueDatabase
 {
     public KeyValueFileDatabase()
     {
-        ReadFile();
+        LoadFromDatabase();
     }
 
-    public T Load<T>(string key)
+    public T GetInGameData<T>(string key)
     {
-        Debug.Log($"Data Loaded: ");
-        LogSystem.LogDictionary(UserData.LoadedData);
+        if (UserData.LoadedData == null) return default(T);
 
+        Debug.Log($"INGAME DATA LOADING...");
         if (UserData.LoadedData.ContainsKey(key))
         {
             string dataString = string.Empty;
@@ -38,32 +37,48 @@ public class KeyValueFileDatabase : IKeyValueDatabase
         }
     }
 
-    public void Save<T>(string key, T data)
+    public void SetInGameData<T>(string key, T data)
     {
-        string dataString = string.Empty;
-
+        Debug.Log("INGAME SAVING...");
         UserData.AddData(key, data);
-
-        LogSystem.LogDictionary(UserData.LoadedData);
-
-        SaveFile(JsonConvert.SerializeObject(UserData.LoadedData));
     }
 
-    public void ReadFile(string filePath = "")
+    public void SaveToDatabase()
+    {
+        Debug.Log("SAVING TO FILE...");
+        string content = JsonConvert.SerializeObject(UserData.LoadedData);
+        SaveFile(content);
+    }
+
+    public void LoadFromDatabase(string key = null)
+    {
+        string json;
+        ReadFile(out json);
+
+        if (string.IsNullOrEmpty(json)) return;
+
+        Debug.Log("LOADING FROM FILE...");
+        var dataFromBase = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+        UserData.LoadedData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+        LogSystem.LogDictionary(UserData.LoadedData, "InGameLoadedData");
+    }
+
+    public void ReadFile(out string json, string filePath = "")
     {
         if (string.IsNullOrEmpty(filePath))
         {
             filePath = Path.Combine(Application.persistentDataPath, "data.json");
         }
 
-        if (!File.Exists(filePath)) return;
+        if (!File.Exists(filePath))
+        {
+            json = null;
+            return;
+        }
 
         Debug.Log("Reading File...");
 
-        string json = File.ReadAllText(filePath);
-
-        Debug.Log($"JSON String: {json}");
-        UserData.LoadedData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+        json = File.ReadAllText(filePath);
     }
 
     private void SaveFile(string content, string filePath = "")

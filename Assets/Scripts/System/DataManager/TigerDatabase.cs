@@ -15,7 +15,7 @@ public class TigerDatabase : IKeyValueDatabase
         newFile = new EasyFileSave();
     }
 
-    public void Save<T>(string key, T data)
+    public void SetInGameData<T>(string key, T data)
     {
         var dataType = typeof(T);
 
@@ -28,12 +28,13 @@ public class TigerDatabase : IKeyValueDatabase
             newFile.AddSerialized(key, data);
         }
 
+        UserData.AddData(key, data);
         newFile.Append();
 
-        Debug.Log($"{key} : {data} Data Saving...");
+        Debug.Log($"{key} : {data} Saving...");
     }
 
-    public T Load<T>(string key)
+    public T GetInGameData<T>(string key)
     {
         Debug.Log($"Key Loading.....: {key}");
         Debug.Log($"Loading Status: {newFile.Load()}");
@@ -43,14 +44,28 @@ public class TigerDatabase : IKeyValueDatabase
         Debug.Log($"Data Loaded: {key}");
 
         var dataType = typeof(T);
+        object data;
 
         if (dataType.IsPrimitive || dataType == typeof(string))
         {
-            return (T)newFile.GetData(key);
+            data = newFile.GetData(key);
+            // return (T)newFile.GetData(key);
         }
         else
         {
-            return (T)newFile.GetDeserialized(key, dataType);
+            data = newFile.GetDeserialized(key, dataType);
+            // return (T)newFile.GetDeserialized(key, dataType);
         }
+        UserData.AddData("key", data);
+
+        return (T)data;
+    }
+
+    public void SaveToDatabase()
+    {
+    }
+
+    public void LoadFromDatabase(string key = null)
+    {
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerPrefsDatabase : IKeyValueDatabase
 {
-    public void Save<T>(string key, T data)
+    public void SetInGameData<T>(string key, T data)
     {
         string dataString = string.Empty;
 
@@ -18,17 +18,16 @@ public class PlayerPrefsDatabase : IKeyValueDatabase
         }
 
         PlayerPrefs.SetString(key, dataString);
-        PlayerPrefs.Save();
     }
 
-    public T Load<T>(string key)
+    public T GetInGameData<T>(string key)
     {
         if (PlayerPrefs.HasKey(key))
         {
             string dataString = PlayerPrefs.GetString(key);
-            var datatType = typeof(T);
+            var dataType = typeof(T);
 
-            if (datatType.IsPrimitive || datatType == typeof(string))
+            if (dataType.IsPrimitive || dataType == typeof(string))
             {
                 return (T)Convert.ChangeType(dataString, typeof(T));
             }
@@ -41,5 +40,13 @@ public class PlayerPrefsDatabase : IKeyValueDatabase
         {
             return default(T);
         }
+    }
+
+    public void SaveToDatabase()
+    {
+    }
+
+    public void LoadFromDatabase(string key = null)
+    {
     }
 }

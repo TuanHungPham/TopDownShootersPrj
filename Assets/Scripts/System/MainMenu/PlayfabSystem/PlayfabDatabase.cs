@@ -1,85 +1,91 @@
-using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using Newtonsoft.Json;
+using System;
 using TigerForge;
-using System.Text;
 
-public class PlayfabDatabase : MonoBehaviour
+public class PlayfabDatabase : IKeyValueDatabase
 {
     #region public
     #endregion
 
     #region private
-    private const string KEY = "DATA";
-    // private UserData UserData;
     #endregion
 
-    private void Awake()
+    public void SetInGameData<T>(string key, T data)
     {
-        // UserData = new UserData();
+        Debug.Log($"INGAME DATA SAVING...");
+        UserData.AddData(key, data);
     }
 
-    private void Start()
+    public T GetInGameData<T>(string key)
     {
-        EventManager.StartListening(EventID.PLAY_GAME.ToString(), SavePlayfabData);
-        EventManager.StartListening(EventID.PLAYFAB_LOGGINGIN.ToString(), LoadPlayfabData);
+        Debug.Log($"INGAME DATA LOADING...");
+        LogSystem.LogDictionary(UserData.LoadedData, "InGameLoadedData");
+
+        if (UserData.LoadedData.ContainsKey(key))
+        {
+            string dataString = string.Empty;
+            UserData.LoadedData.TryGetValue(key, out dataString);
+            var datatType = typeof(T);
+
+            if (datatType.IsPrimitive || datatType == typeof(string))
+            {
+                return (T)Convert.ChangeType(dataString, typeof(T));
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<T>(dataString);
+            }
+        }
+        else
+        {
+            return default(T);
+        }
     }
 
-    public void SavePlayfabData()
+    public void SaveToDatabase()
     {
         if (!PlayFabClientAPI.IsClientLoggedIn()) return;
 
-        Debug.LogWarning("Playfab Saving Data...");
-        LogSystem.LogDictionary(UserData.LoadedData);
-
-        var dataString = JsonConvert.SerializeObject(UserData.LoadedData);
-        Debug.Log($"JSON string: {dataString}");
+        Debug.Log("SAVING DATA TO PLAYFAB...");
 
         UpdateUserDataRequest updateUserDataRequest = new UpdateUserDataRequest
         {
-            Data = new Dictionary<string, string>
-            {
-                {KEY,dataString}
-            }
+            Data = UserData.LoadedData
         };
 
         PlayFabClientAPI.UpdateUserData(updateUserDataRequest, OnUpdateResultCallback, OnUpdateErrorCallback);
     }
 
-    public void LoadPlayfabData()
+    public void LoadFromDatabase(string key = null)
     {
         if (!PlayFabClientAPI.IsClientLoggedIn()) return;
 
-        Debug.LogWarning("Playfab Loading Data...");
         GetUserDataRequest getUserDataRequest = new GetUserDataRequest();
 
-        PlayFabClientAPI.GetUserData
-        (getUserDataRequest, OnGerResultCallback, OnGetErrorCallback);
-    }
-
-    private void OnGerResultCallback(GetUserDataResult result)
-    {
-        if (!result.Data.ContainsKey(KEY)) return;
-
-        Debug.Log("Playfab User's Data is loaded!");
-
-        string dataString = result.Data[KEY].Value;
-        var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(dataString);
-        LogSystem.LogDictionary(data);
-
-        if (data == null) return;
-
-        // UserData.LoadedData = JsonConvert.DeserializeObject<Dictionary<string, string>>(dataString);
-        UserData.LoadedData = data;
-
-        EventManager.EmitEvent(EventID.PLAYFAB_LOADING_DATA.ToString());
+        PlayFabClientAPI.GetUserData(getUserDataRequest, OnGetResultCallback, OnGetErrorCallback);
     }
 
     private void OnGetErrorCallback(PlayFabError error)
     {
         Debug.LogWarning($"Got error getting user data !!! {error.GenerateErrorReport()}");
+    }
+
+    private void OnGetResultCallback(GetUserDataResult result)
+    {
+        if (result.Data == null) return;
+
+        Debug.Log("LOADING DATA FROM PLAYFAB...");
+
+        foreach (var playfabData in result.Data)
+        {
+            string dataString = playfabData.Value.Value;
+            UserData.AddData(playfabData.Key, dataString);
+        }
+
+        EventManager.EmitEvent(EventID.PLAYFAB_LOADING_DATA.ToString());
     }
 
     private void OnUpdateErrorCallback(PlayFabError error)
@@ -90,10 +96,5 @@ public class PlayfabDatabase : MonoBehaviour
     private void OnUpdateResultCallback(UpdateUserDataResult result)
     {
         Debug.Log("Successfully updated user data");
-    }
-
-    private void OnApplicationQuit()
-    {
-        SavePlayfabData();
     }
 }

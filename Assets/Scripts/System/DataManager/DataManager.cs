@@ -32,7 +32,7 @@ public class DataManager : MonoBehaviour
 
     private void Start()
     {
-        LoadData();
+        LoadInGameData();
         ListenEvent();
     }
 
@@ -46,15 +46,16 @@ public class DataManager : MonoBehaviour
         CharacterDataManager = GetComponentInChildren<CharacterDataManager>();
         AchievementDataManager = GetComponentInChildren<AchievementDataManager>();
 
-        databaseInstance = new KeyValueFileDatabase();
+        databaseInstance = new PlayfabDatabase();
     }
 
     private void ListenEvent()
     {
-        EventManager.StartListening(EventID.PLAY_GAME.ToString(), SaveCharacterShop);
-        EventManager.StartListening(EventID.PLAY_GAME.ToString(), SaveData);
-        EventManager.StartListening(EventID.PLAYFAB_LOADING_DATA.ToString(), LoadData);
-        EventManager.StartListening(EventID.PLAYFAB_LOADING_DATA.ToString(), LoadCharacterShop);
+        EventManager.StartListening(EventID.PLAY_GAME.ToString(), SaveInGameCharacterShop);
+        EventManager.StartListening(EventID.PLAY_GAME.ToString(), SaveInGameData);
+        EventManager.StartListening(EventID.PLAYFAB_LOGGINGIN.ToString(), LoadDataFromDatabase);
+        EventManager.StartListening(EventID.PLAYFAB_LOADING_DATA.ToString(), LoadInGameData);
+        EventManager.StartListening(EventID.PLAYFAB_LOADING_DATA.ToString(), LoadInGameCharacterShop);
     }
 
     private void HandleSingletonObject()
@@ -69,23 +70,23 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void SaveData()
+    public void SaveInGameData()
     {
-        databaseInstance.Save(DatabaseKey.HIGHEST_ENEMIES_KILLED.ToString(), achievementDataManager.HighestEnemiesKilled);
-        databaseInstance.Save(DatabaseKey.COIN.ToString(), achievementDataManager.Coin);
-        databaseInstance.Save(DatabaseKey.HIGHEST_SURVIVAL_TIME.ToString(), achievementDataManager.HighestSurvivalTime);
+        databaseInstance.SetInGameData(DatabaseKey.HIGHEST_ENEMIES_KILLED.ToString(), achievementDataManager.HighestEnemiesKilled);
+        databaseInstance.SetInGameData(DatabaseKey.COIN.ToString(), achievementDataManager.Coin);
+        databaseInstance.SetInGameData(DatabaseKey.HIGHEST_SURVIVAL_TIME.ToString(), achievementDataManager.HighestSurvivalTime);
     }
 
-    public void LoadData()
+    public void LoadInGameData()
     {
-        achievementDataManager.Coin = databaseInstance.Load<int>(DatabaseKey.COIN.ToString());
-        achievementDataManager.HighestEnemiesKilled = databaseInstance.Load<int>(DatabaseKey.HIGHEST_ENEMIES_KILLED.ToString());
-        achievementDataManager.HighestSurvivalTime = databaseInstance.Load<float>(DatabaseKey.HIGHEST_SURVIVAL_TIME.ToString());
+        achievementDataManager.Coin = databaseInstance.GetInGameData<int>(DatabaseKey.COIN.ToString());
+        achievementDataManager.HighestEnemiesKilled = databaseInstance.GetInGameData<int>(DatabaseKey.HIGHEST_ENEMIES_KILLED.ToString());
+        achievementDataManager.HighestSurvivalTime = databaseInstance.GetInGameData<float>(DatabaseKey.HIGHEST_SURVIVAL_TIME.ToString());
 
         EventManager.EmitEvent(EventID.CHANGING_COIN_QUANTITY.ToString());
     }
 
-    public void SaveCharacterShop()
+    public void SaveInGameCharacterShop()
     {
         foreach (Transform character in CharacterManagerCtrl.Instance.listOfCharacter)
         {
@@ -105,11 +106,11 @@ public class DataManager : MonoBehaviour
 
             string key = character.name;
 
-            databaseInstance.Save(key, loadedCharacterData);
+            databaseInstance.SetInGameData(key, loadedCharacterData);
         }
     }
 
-    public void LoadCharacterShop()
+    public void LoadInGameCharacterShop()
     {
         foreach (Transform character in CharacterManagerCtrl.Instance.listOfCharacter)
         {
@@ -118,7 +119,7 @@ public class DataManager : MonoBehaviour
 
             string key = character.name;
 
-            loadedCharacterData = databaseInstance.Load<LoadedCharacterData>(key);
+            loadedCharacterData = databaseInstance.GetInGameData<LoadedCharacterData>(key);
 
             if (loadedCharacterData == null) return;
 
@@ -126,9 +127,15 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public void LoadDataFromDatabase()
+    {
+        databaseInstance.LoadFromDatabase();
+    }
+
     private void OnApplicationQuit()
     {
-        SaveCharacterShop();
-        SaveData();
+        SaveInGameCharacterShop();
+        SaveInGameData();
+        databaseInstance.SaveToDatabase();
     }
 }

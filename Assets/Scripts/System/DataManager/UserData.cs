@@ -9,10 +9,11 @@ public static class UserData
     #region public
     public static Dictionary<string, string> LoadedData
     {
-        get => loadedData; set
+        get => loadedData;
+        set
         {
             loadedData = value;
-            Debug.Log($"Value: {JsonConvert.SerializeObject(value)}");
+            // Debug.Log($"Value: {JsonConvert.SerializeObject(value)}");
         }
     }
     public static Dictionary<string, string> ModifiedData { get => modifiedData; set => modifiedData = value; }
@@ -45,8 +46,8 @@ public static class UserData
 
         // if (!loadedData.ContainsKey(key) || !loadedData[key].Equals(dataString))
         // {
-        //     loadedData[key] = dataString;
         //     modifiedData[key] = dataString;
+        //     LogSystem.LogDictionary(modifiedData, "ModifiedData");
         // }
     }
 }

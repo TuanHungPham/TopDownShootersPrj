@@ -88,6 +88,6 @@ public class CharacterManagerCtrl : MonoBehaviour
 
     private void LoadDataFromMainData()
     {
-        DataManager.Instance.LoadCharacterShop();
+        DataManager.Instance.LoadInGameCharacterShop();
     }
 }
