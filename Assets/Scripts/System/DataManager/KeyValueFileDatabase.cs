@@ -58,7 +58,22 @@ public class KeyValueFileDatabase : IKeyValueDatabase
         if (string.IsNullOrEmpty(json)) return;
 
         Debug.Log("LOADING FROM FILE...");
-        var dataFromBase = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+        Debug.Log($"JSON string: {json}");
+        // if (Application.platform == RuntimePlatform.Android)
+        // {
+        //     List<Dictionary<string, string>> list = JsonConvert.DeserializeObject<List<Dictionary<string, string>>>(json);
+        //     Debug.Log($"LIST: {list[0]}");
+        //     foreach (var dictionary in list)
+        //     {
+        //         UserData.LoadedData.Add(dictionary.Keys.ToString(), dictionary.Values.ToString());
+        //     }
+        // }
+        // else
+        // {
+        //     UserData.LoadedData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+        //     LogSystem.LogDictionary(UserData.LoadedData, "InGameLoadedData");
+        // }
+
         UserData.LoadedData = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
         LogSystem.LogDictionary(UserData.LoadedData, "InGameLoadedData");
     }
@@ -72,6 +87,7 @@ public class KeyValueFileDatabase : IKeyValueDatabase
 
         if (!File.Exists(filePath))
         {
+            Debug.LogWarning("File is not exist or cannot find this File!!!");
             json = null;
             return;
         }

@@ -46,7 +46,7 @@ public class DataManager : MonoBehaviour
         CharacterDataManager = GetComponentInChildren<CharacterDataManager>();
         AchievementDataManager = GetComponentInChildren<AchievementDataManager>();
 
-        databaseInstance = new PlayfabDatabase();
+        databaseInstance = new KeyValueFileDatabase();
     }
 
     private void ListenEvent()
@@ -119,12 +119,19 @@ public class DataManager : MonoBehaviour
 
             string key = character.name;
 
+            Debug.Log($"databaseInstance: {databaseInstance}");
             loadedCharacterData = databaseInstance.GetInGameData<LoadedCharacterData>(key);
+            Debug.Log($"loadedCharacterData: {loadedCharacterData}");
 
             if (loadedCharacterData == null) return;
 
             characterData.SetData(loadedCharacterData);
         }
+    }
+
+    public void SaveDataToDatabase()
+    {
+        databaseInstance.SaveToDatabase();
     }
 
     public void LoadDataFromDatabase()
@@ -136,6 +143,6 @@ public class DataManager : MonoBehaviour
     {
         SaveInGameCharacterShop();
         SaveInGameData();
-        databaseInstance.SaveToDatabase();
+        SaveDataToDatabase();
     }
 }

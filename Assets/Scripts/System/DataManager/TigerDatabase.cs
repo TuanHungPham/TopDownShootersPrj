@@ -1,5 +1,7 @@
 using UnityEngine;
 using TigerForge;
+using Newtonsoft.Json;
+using System;
 
 public class TigerDatabase : IKeyValueDatabase
 {
@@ -29,43 +31,50 @@ public class TigerDatabase : IKeyValueDatabase
         }
 
         UserData.AddData(key, data);
-        newFile.Append();
 
         Debug.Log($"{key} : {data} Saving...");
     }
 
     public T GetInGameData<T>(string key)
     {
-        Debug.Log($"Key Loading.....: {key}");
-        Debug.Log($"Loading Status: {newFile.Load()}");
+        if (UserData.LoadedData == null) return default(T);
 
-        if (!newFile.KeyExists(key) || !newFile.Load()) return default(T);
-
-        Debug.Log($"Data Loaded: {key}");
-
-        var dataType = typeof(T);
-        object data;
-
-        if (dataType.IsPrimitive || dataType == typeof(string))
+        Debug.Log($"INGAME DATA LOADING...");
+        if (UserData.LoadedData.ContainsKey(key))
         {
-            data = newFile.GetData(key);
-            // return (T)newFile.GetData(key);
+            string dataString = string.Empty;
+            UserData.LoadedData.TryGetValue(key, out dataString);
+            var datatType = typeof(T);
+
+            if (datatType.IsPrimitive || datatType == typeof(string))
+            {
+                return (T)Convert.ChangeType(dataString, typeof(T));
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<T>(dataString);
+            }
         }
         else
         {
-            data = newFile.GetDeserialized(key, dataType);
-            // return (T)newFile.GetDeserialized(key, dataType);
+            return default(T);
         }
-        UserData.AddData("key", data);
-
-        return (T)data;
     }
 
     public void SaveToDatabase()
     {
+        newFile.Append();
     }
 
     public void LoadFromDatabase(string key = null)
     {
+        Debug.Log($"Key Loading.....: {key}");
+        Debug.Log($"Loading Status: {newFile.Load()}");
+
+        if (!newFile.KeyExists(key) || !newFile.Load()) return;
+
+        Debug.Log($"Data Loaded: {key}");
+
+        var data = newFile.GetData(key);
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 public static class UserData
 {
     #region public
+
     public static Dictionary<string, string> LoadedData
     {
         get => loadedData;
